@@ -22,7 +22,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
     }
 	@Override
     public void addViewControllers(final ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("main");
+        registry.addViewController("/").setViewName("index");
     }
 	
 	@Override
