@@ -4,7 +4,6 @@
 <configuration>
 	<properties resource="application.properties" />
 	<typeAliases>
-		<typeAlias type="domain.Comment" alias="Comment"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
