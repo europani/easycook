@@ -14,14 +14,17 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
-
+	
 	@GetMapping("/memJoin")
 	public String memJoin() {
 		return "memJoin";
-	}
+	} 
+
 	
 	@PostMapping("/memJoin")
-	public String memRegister() {
+	public String memRegister(String id, String pwd) {
+		System.out.println("id : " + id);
+		System.out.println("password : " + pwd);
 		return "memJoinOk";
 	}
 }
