@@ -1,461 +1,72 @@
 <jsp:include page="common/header.jsp" />
-<section id="home-section" class="hero">
-	<div class="home-slider owl-carousel">
-		<div class="slider-item"
-			style="background-image: url(resources/images/bg_1.jpg);">
-			<div class="overlay"></div>
-			<div class="container">
-				<div
-					class="row slider-text justify-content-center align-items-center"
-					data-scrollax-parent="true">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!-- 슬라이드-------------------------------------------- -->
 
-					<div class="col-md-12 ftco-animate text-center">
-						<h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
-						<h2 class="subheading mb-4">We deliver organic vegetables
-							&amp; fruits</h2>
-						<p>
-							<a href="#" class="btn btn-primary">View Details</a>
-						</p>
-					</div>
-
-				</div>
+<section id="carousel_6ca8" class="u-carousel u-slide u-block-d76f-1"
+	data-u-ride="carousel" data-interval="5000">
+	<ol class="u-absolute-hcenter u-carousel-indicators u-block-d76f-2">
+		<li data-u-target="#carousel_6ca8" data-u-slide-to="0"
+			class="u-active u-grey-30"></li>
+		<li data-u-target="#carousel_6ca8" data-u-slide-to="1"
+			class="u-grey-30"></li>
+		<li data-u-target="#carousel_6ca8" class="u-grey-30"
+			data-u-slide-to="2"></li>
+	</ol>
+	<div class="u-carousel-inner" role="listbox">
+		<div
+			class="u-active u-align-left u-carousel-item u-clearfix u-image u-section-1-1"
+			src="" data-image-width="494" data-image-height="634">
+			<div class="u-clearfix u-sheet u-sheet-1">
+				<h1
+					class="u-text u-text-body-alt-color u-text-default u-title u-text-1">혹시몰라서
+					남겨두는 텍스트박스</h1>
 			</div>
 		</div>
-
-		<div class="slider-item"
-			style="background-image: url(resources/images/bg_2.jpg);">
-			<div class="overlay"></div>
-			<div class="container">
-				<div
-					class="row slider-text justify-content-center align-items-center"
-					data-scrollax-parent="true">
-
-					<div class="col-sm-12 ftco-animate text-center">
-						<h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
-						<h2 class="subheading mb-4">We deliver organic vegetables
-							&amp; fruits</h2>
-						<p>
-							<a href="#" class="btn btn-primary">View Details</a>
-						</p>
-					</div>
-
-				</div>
+		<div
+			class="u-align-center u-carousel-item u-clearfix u-image u-shading u-section-1-2"
+			src="" data-image-width="500" data-image-height="500">
+			<div class="u-clearfix u-sheet u-sheet-1">
+				<h1 class="u-text u-text-default u-title u-text-1">혹시몰라서 남겨두는
+					텍스트박스</h1>
+			</div>
+		</div>
+		<div
+			class="u-align-center u-carousel-item u-clearfix u-image u-shading u-section-1-3"
+			src="">
+			<div class="u-clearfix u-sheet u-sheet-1">
+				<h1 class="u-text u-text-default u-title u-text-1">혹시몰라서 남겨두는
+					텍스트박스</h1>
 			</div>
 		</div>
 	</div>
+	<a
+		class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-text-grey-30 u-block-d76f-3"
+		href="#carousel_6ca8" role="button" data-u-slide="prev"> <span
+		aria-hidden="true"> <svg viewBox="0 0 477.175 477.175">
+				<path
+					d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
+                    c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"></path></svg>
+	</span> <span class="sr-only">Previous</span>
+	</a> <a
+		class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-text-grey-30 u-block-d76f-4"
+		href="#carousel_6ca8" role="button" data-u-slide="next"> <span
+		aria-hidden="true"> <svg viewBox="0 0 477.175 477.175">
+				<path
+					d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5
+                    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z"></path></svg>
+	</span> <span class="sr-only">Next</span>
+	</a>
+</section>
+<section class="u-clearfix u-section-2" id="sec-6c52">
+	<div class="u-clearfix u-sheet u-sheet-1"></div>
 </section>
 
-<section class="ftco-section">
-	<div class="container">
-		<div class="row no-gutters ftco-services">
-			<div
-				class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-				<div class="media block-6 services mb-md-0 mb-4">
-					<div
-						class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
-						<span class="flaticon-shipped"></span>
-					</div>
-					<div class="media-body">
-						<h3 class="heading">Free Shipping</h3>
-						<span>On order over $100</span>
-					</div>
-				</div>
-			</div>
-			<div
-				class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-				<div class="media block-6 services mb-md-0 mb-4">
-					<div
-						class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
-						<span class="flaticon-diet"></span>
-					</div>
-					<div class="media-body">
-						<h3 class="heading">Always Fresh</h3>
-						<span>Product well package</span>
-					</div>
-				</div>
-			</div>
-			<div
-				class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-				<div class="media block-6 services mb-md-0 mb-4">
-					<div
-						class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
-						<span class="flaticon-award"></span>
-					</div>
-					<div class="media-body">
-						<h3 class="heading">Superior Quality</h3>
-						<span>Quality Products</span>
-					</div>
-				</div>
-			</div>
-			<div
-				class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-				<div class="media block-6 services mb-md-0 mb-4">
-					<div
-						class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
-						<span class="flaticon-customer-service"></span>
-					</div>
-					<div class="media-body">
-						<h3 class="heading">Support</h3>
-						<span>24/7 Support</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+<!-- ---------------------------------------------------------------------------------- -->
 
-<section class="ftco-section ftco-category ftco-no-pt">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8">
-				<div class="row">
-					<div class="col-md-6 order-md-last align-items-stretch d-flex">
-						<div
-							class="category-wrap-2 ftco-animate img align-self-stretch d-flex"
-							style="background-image: url(resources/images/category.jpg);">
-							<div class="text text-center">
-								<h2>Vegetables</h2>
-								<p>Protect the health of every home</p>
-								<p>
-									<a href="#" class="btn btn-primary">Shop now</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div
-							class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
-							style="background-image: url(resources/images/category-1.jpg);">
-							<div class="text px-3 py-1">
-								<h2 class="mb-0">
-									<a href="#">Fruits</a>
-								</h2>
-							</div>
-						</div>
-						<div class="category-wrap ftco-animate img d-flex align-items-end"
-							style="background-image: url(resources/images/category-2.jpg);">
-							<div class="text px-3 py-1">
-								<h2 class="mb-0">
-									<a href="#">Vegetables</a>
-								</h2>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- time deal -->
 
-			<div class="col-md-4">
-				<div
-					class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
-					style="background-image: url(resources/images/category-3.jpg);">
-					<div class="text px-3 py-1">
-						<h2 class="mb-0">
-							<a href="#">Juices</a>
-						</h2>
-					</div>
-				</div>
-				<div class="category-wrap ftco-animate img d-flex align-items-end"
-					style="background-image: url(resources/images/category-4.jpg);">
-					<div class="text px-3 py-1">
-						<h2 class="mb-0">
-							<a href="#">Dried</a>
-						</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="ftco-section">
-	<div class="container">
-		<div class="row justify-content-center mb-3 pb-3">
-			<div class="col-md-12 heading-section text-center ftco-animate">
-				<span class="subheading">Featured Products</span>
-				<h2 class="mb-4">Our Products</h2>
-				<p>Far far away, behind the word mountains, far from the
-					countries Vokalia and Consonantia</p>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid"
-						src="resources/images/product-1.jpg" alt="Colorlib Template">
-						<span class="status">30%</span>
-						<div class="overlay"></div> </a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<h3>
-							<a href="#">Bell Pepper</a>
-						</h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price">
-									<span class="mr-2 price-dc">$120.00</span><span
-										class="price-sale">$80.00</span>
-								</p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#"
-									class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a> <a href="#"
-									class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a> <a href="#"
-									class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid"
-						src="resources/images/product-2.jpg" alt="Colorlib Template">
-						<div class="overlay"></div> </a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<h3>
-							<a href="#">Strawberry</a>
-						</h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price">
-									<span>$120.00</span>
-								</p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#"
-									class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a> <a href="#"
-									class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a> <a href="#"
-									class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid"
-						src="resources/images/product-3.jpg" alt="Colorlib Template">
-						<div class="overlay"></div> </a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<h3>
-							<a href="#">Green Beans</a>
-						</h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price">
-									<span>$120.00</span>
-								</p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#"
-									class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a> <a href="#"
-									class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a> <a href="#"
-									class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid"
-						src="resources/images/product-4.jpg" alt="Colorlib Template">
-						<div class="overlay"></div> </a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<h3>
-							<a href="#">Purple Cabbage</a>
-						</h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price">
-									<span>$120.00</span>
-								</p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#"
-									class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a> <a href="#"
-									class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a> <a href="#"
-									class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid"
-						src="resources/images/product-5.jpg" alt="Colorlib Template">
-						<span class="status">30%</span>
-						<div class="overlay"></div> </a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<h3>
-							<a href="#">Tomatoe</a>
-						</h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price">
-									<span class="mr-2 price-dc">$120.00</span><span
-										class="price-sale">$80.00</span>
-								</p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#"
-									class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a> <a href="#"
-									class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a> <a href="#"
-									class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid"
-						src="resources/images/product-6.jpg" alt="Colorlib Template">
-						<div class="overlay"></div> </a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<h3>
-							<a href="#">Brocolli</a>
-						</h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price">
-									<span>$120.00</span>
-								</p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#"
-									class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a> <a href="#"
-									class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a> <a href="#"
-									class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid"
-						src="resources/images/product-7.jpg" alt="Colorlib Template">
-						<div class="overlay"></div> </a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<h3>
-							<a href="#">Carrots</a>
-						</h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price">
-									<span>$120.00</span>
-								</p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#"
-									class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a> <a href="#"
-									class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a> <a href="#"
-									class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="product">
-					<a href="#" class="img-prod"><img class="img-fluid"
-						src="resources/images/product-8.jpg" alt="Colorlib Template">
-						<div class="overlay"></div> </a>
-					<div class="text py-3 pb-4 px-3 text-center">
-						<h3>
-							<a href="#">Fruit Juice</a>
-						</h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<p class="price">
-									<span>$120.00</span>
-								</p>
-							</div>
-						</div>
-						<div class="bottom-area d-flex px-3">
-							<div class="m-auto d-flex">
-								<a href="#"
-									class="add-to-cart d-flex justify-content-center align-items-center text-center">
-									<span><i class="ion-ios-menu"></i></span>
-								</a> <a href="#"
-									class="buy-now d-flex justify-content-center align-items-center mx-1">
-									<span><i class="ion-ios-cart"></i></span>
-								</a> <a href="#"
-									class="heart d-flex justify-content-center align-items-center ">
-									<span><i class="ion-ios-heart"></i></span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="ftco-section img"
-	style="background-image: url(resources/images/bg_3.jpg);">
+<section class="ftco-section img" style="background-color: white;">
 	<div class="container">
 		<div class="row justify-content-end">
 			<div
@@ -479,167 +90,93 @@
 	</div>
 </section>
 
-<section class="ftco-section testimony-section">
-	<div class="container">
-		<div class="row justify-content-center mb-5 pb-3">
-			<div class="col-md-7 heading-section ftco-animate text-center">
-				<span class="subheading">Testimony</span>
-				<h2 class="mb-4">Our satisfied customer says</h2>
-				<p>Far far away, behind the word mountains, far from the
-					countries Vokalia and Consonantia, there live the blind texts.
-					Separated they live in</p>
-			</div>
-		</div>
-		<div class="row ftco-animate">
-			<div class="col-md-12">
-				<div class="carousel-testimony owl-carousel">
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(resources/images/person_1.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Far far away, behind the word
-									mountains, far from the countries Vokalia and Consonantia,
-									there live the blind texts.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">Marketing Manager</span>
-							</div>
-						</div>
+<!-- -------------------------------------------------------------------------- -->
+<!-- best3 -->
+<section class="u-align-center u-clearfix u-section-3" id="sec-51ed">
+	<div class="u-clearfix u-sheet u-sheet-1">
+		<h2 class="u-text u-text-1">
+			<font class="u-text-palette-3-base">★</font>이번주 Best3 상품<font
+				class="u-text-palette-3-base">★</font>
+		</h2>
+		<p class="u-text u-text-default u-text-2">강력하게 추천 해드리는 최고의 제품</p>
+		<div
+			class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1">
+			<div class="u-gallery-inner u-gallery-inner-1">
+				<div class="u-effect-fade u-gallery-item">
+					<div class="u-back-slide" data-image-width="500"
+						data-image-height="500">
+						<img class="u-back-image u-expanded" src="resources/images/food1.jpg">
 					</div>
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(resources/images/person_2.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Far far away, behind the word
-									mountains, far from the countries Vokalia and Consonantia,
-									there live the blind texts.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">Interface Designer</span>
-							</div>
-						</div>
+					<div class="u-over-slide u-shading u-over-slide-1">
+						<h3 class="u-gallery-heading"></h3>
+						<p class="u-gallery-text"></p>
 					</div>
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(resources/images/person_3.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Far far away, behind the word
-									mountains, far from the countries Vokalia and Consonantia,
-									there live the blind texts.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">UI Designer</span>
-							</div>
-						</div>
+				</div>
+				<div class="u-effect-fade u-gallery-item">
+					<div class="u-back-slide">
+						<img class="u-back-image u-expanded" src="resources/images/food3.jpg">
 					</div>
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(resources/images/person_1.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Far far away, behind the word
-									mountains, far from the countries Vokalia and Consonantia,
-									there live the blind texts.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">Web Developer</span>
-							</div>
-						</div>
+					<div class="u-over-slide u-shading u-over-slide-2">
+						<h3 class="u-gallery-heading"></h3>
+						<p class="u-gallery-text"></p>
 					</div>
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(resources/images/person_1.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Far far away, behind the word
-									mountains, far from the countries Vokalia and Consonantia,
-									there live the blind texts.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">System Analyst</span>
-							</div>
-						</div>
+				</div>
+				<div class="u-effect-fade u-gallery-item">
+					<div class="u-back-slide" data-image-width="500"
+						data-image-height="500">
+						<img class="u-back-image u-expanded"
+							src="resources/images/383f7b08-92d6-6e04-eef9-c13110f825b9.jpg">
+					</div>
+					<div class="u-over-slide u-shading u-over-slide-3">
+						<h3 class="u-gallery-heading"></h3>
+						<p class="u-gallery-text"></p>
 					</div>
 				</div>
 			</div>
 		</div>
+		<a href="#" class="u-btn u-button-style u-btn-1">상품더보기</a>
 	</div>
 </section>
+<!-- ----------------------------------------------------------------------- -->
 
-<hr>
 
-<section class="ftco-section ftco-partner">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm ftco-animate">
-				<a href="#" class="partner"><img
-					src="resources/images/partner-1.png" class="img-fluid"
-					alt="Colorlib Template"></a>
-			</div>
-			<div class="col-sm ftco-animate">
-				<a href="#" class="partner"><img
-					src="resources/images/partner-2.png" class="img-fluid"
-					alt="Colorlib Template"></a>
-			</div>
-			<div class="col-sm ftco-animate">
-				<a href="#" class="partner"><img
-					src="resources/images/partner-3.png" class="img-fluid"
-					alt="Colorlib Template"></a>
-			</div>
-			<div class="col-sm ftco-animate">
-				<a href="#" class="partner"><img
-					src="resources/images/partner-4.png" class="img-fluid"
-					alt="Colorlib Template"></a>
-			</div>
-			<div class="col-sm ftco-animate">
-				<a href="#" class="partner"><img
-					src="resources/images/partner-5.png" class="img-fluid"
-					alt="Colorlib Template"></a>
-			</div>
-		</div>
-	</div>
+<!-- 3개 -->
+<section class="u-clearfix u-section-4" id="sec-bfde">
+	<div class="u-clearfix u-sheet u-sheet-1"></div>
 </section>
-
-<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-	<div class="container py-4">
-		<div class="row d-flex justify-content-center py-5">
-			<div class="col-md-6">
-				<h2 style="font-size: 22px;" class="mb-0">Subcribe to our
-					Newsletter</h2>
-				<span>Get e-mail updates about our latest shops and special
-					offers</span>
-			</div>
-			<div class="col-md-6 d-flex align-items-center">
-				<form action="#" class="subscribe-form">
-					<div class="form-group d-flex">
-						<input type="text" class="form-control"
-							placeholder="Enter email address"> <input type="submit"
-							value="Subscribe" class="submit px-3">
+<section class="u-align-center u-clearfix u-section-5" id="sec-3d03">
+	<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+		<div
+			class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1">
+			<div class="u-gallery-inner u-gallery-inner-1">
+				<div class="u-effect-fade u-gallery-item">
+					<div class="u-back-slide">
+						<img class="u-back-image u-expanded" src="resources/images/a11.jpg">
 					</div>
-				</form>
+					<div class="u-over-slide u-shading u-over-slide-1">
+						<h3 class="u-gallery-heading"></h3>
+						<p class="u-gallery-text"></p>
+					</div>
+				</div>
+				<div class="u-effect-fade u-gallery-item">
+					<div class="u-back-slide">
+						<img class="u-back-image u-expanded" src="resources/images/a21.jpg">
+					</div>
+					<div class="u-over-slide u-shading u-over-slide-2">
+						<h3 class="u-gallery-heading"></h3>
+						<p class="u-gallery-text"></p>
+					</div>
+				</div>
+				<div class="u-effect-fade u-gallery-item">
+					<div class="u-back-slide" data-image-width="390"
+						data-image-height="390">
+						<img class="u-back-image u-expanded" src="resources/images/a31.jpg">
+					</div>
+					<div class="u-over-slide u-shading u-over-slide-3">
+						<h3 class="u-gallery-heading"></h3>
+						<p class="u-gallery-text"></p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
