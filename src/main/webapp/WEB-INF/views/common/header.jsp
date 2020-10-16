@@ -262,6 +262,6 @@
 					<div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
 				</div>
 			</nav>
-			<a href="https://nicepage.com" class="u-btn u-button-style u-btn-1">로그인</a>
+			<a href="/memJoin" class="u-btn u-button-style u-btn-1">로그인</a>
 		</div>
 	</header>

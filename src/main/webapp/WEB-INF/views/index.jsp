@@ -28,7 +28,7 @@
 			src="" data-image-width="500" data-image-height="500">
 			<div class="u-clearfix u-sheet u-sheet-1">
 				<h1 class="u-text u-text-default u-title u-text-1">혹시몰라서 남겨두는
-					텍스트박스</h1>
+					텍스트박스2</h1>
 			</div>
 		</div>
 		<div
@@ -36,7 +36,7 @@
 			src="">
 			<div class="u-clearfix u-sheet u-sheet-1">
 				<h1 class="u-text u-text-default u-title u-text-1">혹시몰라서 남겨두는
-					텍스트박스</h1>
+					텍스트박스3</h1>
 			</div>
 		</div>
 	</div>

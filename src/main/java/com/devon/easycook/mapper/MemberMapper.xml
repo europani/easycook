@@ -5,6 +5,6 @@
 <mapper namespace="memberMapper">
 	<select id="getTime" resultType="String">
 		SELECT sysdate FROM dual
-	</select>
+</select>
 
 </mapper>
