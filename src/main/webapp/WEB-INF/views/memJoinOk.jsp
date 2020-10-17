@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>   
 <!DOCTYPE html>
 <%
-	String id = "바보야";
+	String id = "덜덜덜";
 
 
 %>
