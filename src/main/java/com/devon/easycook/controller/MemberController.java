@@ -27,4 +27,10 @@ public class MemberController {
 		System.out.println("password : " + pwd);
 		return "memJoinOk";
 	}
+	
+	@GetMapping("/memSignUp")
+	public String memSignUp() {
+		System.out.println("회원가입을 시작합니다.");
+		return "memSignUp";
+	}
 }
