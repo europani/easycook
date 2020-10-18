@@ -19,11 +19,24 @@ public class MypageController {
 	@GetMapping("/cart")
 	public String cart() {
 		return "cart";
-	} 
+	}
+	@GetMapping("/orderList")
+	public String orderList() {
+		return "orderList";
+	}
+	@GetMapping("/memModify")
+	public String memModify() {
+		return "memModify";
+	}
+	@GetMapping("/memDelete")
+	public String memDelete() {
+		return "memDelete";
+	}
 	@GetMapping("/wishlist")
 	public String wishlist() {
 		return "wishlist";
-	} 
+	}
+	
 	
 	
 }

@@ -1,7 +1,6 @@
+<jsp:include page="common/header.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +13,7 @@
       #jb-container {
         width: 95%;
         margin: 0px auto;
-        padding: 10px;
+        padding: 50px 10px 10px 10px;
         /* border: 1px solid #bcbcbc; */
       }
       #jb-header {
@@ -39,7 +38,6 @@
       #jb-footer {
         clear: both;
         padding: 20px;
-        border: 1px solid #bcbcbc;
       }
       .form {
 		width: 200px;
@@ -54,16 +52,28 @@
       	padding: 30px 20px 30px;
         float: left;
       }
+      button {
+	    margin: 0;
+	    padding: 0;
+	    border: 0;
+	    font: inherit;
+	    background: none;
+	    box-sizing: inherit;
+	    -webkit-box-sizing: inherit;
+	    cursor: pointer;
+	    outline-style: none;
+	}
       .btn-search {	/* 나중에 추가할 버튼양식 */
 	    display: inline-block;
 	    margin-left: 30px;
 	    width: 103px;
-	    height: 66px;
-	    line-height: 66px;
+	    height: 33px;
+	    line-height: 33px;
 	    background-color: #606060;
-	    color: #fff;
 	    font-size: 14px;
+	    color: white;
 	    vertical-align: top;
+	    text-align: center;
 	   }
       table {
 		  border-collapse: collapse;
@@ -75,21 +85,17 @@
 		  text-align: left;
 		  border-bottom: 1px solid #ddd;
 	   }
-      
+	 
     </style>
   </head>
   <body>
     <div id="jb-container">
-      <div id="jb-header">
-        <h1>헤더가 여기에 들어가겠지</h1>
-      </div>
       <div id="jb-content">
         <h2>주문내역</h2>
-        <br>
         <hr>
         <br>
         <div id="content-detail" style="background-color: #F8F8F8">
-        <label for="UserCheckIN">조회기간 :</label>&nbsp;&nbsp;&nbsp;
+        <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
 		<input type="date" id="UserCheckIn" name="UserCheckIn"
 						min="2020-10-01" max="2020-12-31" name="date"
 						contenteditable="false">&nbsp;&nbsp;~&nbsp;&nbsp;
@@ -97,7 +103,7 @@
 		<input type="date" id="UserCheckOut" name="UserCheckOut" 
 						min="2020-08-01" max="2020-12-31" name="date"
 						 contenteditable="false">&nbsp;&nbsp;
-					<input id="selectdate" value="조회하기" type="submit">
+					<button type="button" class="btn-search">조회하기</button>
 		</div>
 		<br><br><br><br>
       	<hr>
@@ -157,7 +163,7 @@
 
 </div>
       <div id="jb-footer">
-        <p>footer가 여기 들어가겠지</p>
+        <br/>
       </div>
 </div>
 </body>
@@ -175,4 +181,4 @@ function myAccFunc(id) {
 </script>
   
   
-</html>
+ <jsp:include page="common/footer.jsp" /> 
