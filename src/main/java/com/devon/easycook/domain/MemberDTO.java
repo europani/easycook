@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("member")
+import lombok.Data;
+
+@Data
 public class MemberDTO {
 	private String id;
 	private String pwd;
@@ -14,6 +16,7 @@ public class MemberDTO {
 	private String tel;
 	private Timestamp birthday;
 	private String gender;
+	private String zipcode;
 	private String address;
 	private int point;
 //	private String userEmailHash;

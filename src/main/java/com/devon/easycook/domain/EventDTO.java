@@ -6,7 +6,6 @@ import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
 
-@Alias("event")
 @Data
 public class EventDTO {
 

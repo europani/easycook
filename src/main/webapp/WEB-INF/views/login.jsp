@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <title>로그인</title>
   </head>
-<<<<<<< HEAD
   <style>
   	@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 	
@@ -43,7 +42,6 @@
   		font-size: 16px;
 	}
   </style>
-=======
 <style>
 *{
   margin: 0px;
@@ -142,7 +140,7 @@ body {
         <input type="text" class="id" placeholder="ID" name="id">
       </div>
       <div class="passForm">
-        <input type="password" class="pw" placeholder="PW" name="">
+        <input type="password" class="pwd" placeholder="PW" name="pwd">
       </div>
       <button type="button" class="btn" onclick="button()">
         LOG IN
@@ -153,7 +151,7 @@ body {
         }
       </script>
       <div class="bottomText">
-        Don't you have ID? <a href="memSignUp">sign up</a>
+        Don't you have ID? <a href="signup">sign up</a>
       </div>
     </form>
     <!-- Optional JavaScript -->

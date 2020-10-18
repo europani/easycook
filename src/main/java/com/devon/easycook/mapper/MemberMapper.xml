@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="memberMapper">
 	<select id="getTime" resultType="String">
 		SELECT sysdate FROM dual
-</select>
+	</select>
+	
+	<insert id="signup" parameterType="Member">
+		INSERT INTO member(id, pwd, author, reg_date) VALUES (#{id}, #{pwd}, 0, sysdate)
+	</insert>
 
 </mapper>

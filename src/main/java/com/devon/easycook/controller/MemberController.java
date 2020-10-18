@@ -1,11 +1,16 @@
 package com.devon.easycook.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.service.MemberService;
 
 @Controller
@@ -13,24 +18,33 @@ import com.devon.easycook.service.MemberService;
 public class MemberController {
 	
 	@Autowired
-	private MemberService memberService;
+	MemberService memberService;
 	
-	@GetMapping("/memJoin")
-	public String memJoin() {
-		return "memJoin";
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
+	
+	@GetMapping("/login")
+	public String loginForm() {
+		return "login";
 	} 
-
 	
-	@PostMapping("/memJoin")
-	public String memRegister(String id, String pwd) {
-		System.out.println("id : " + id);
-		System.out.println("password : " + pwd);
-		return "memJoinOk";
+	@PostMapping("/login")
+	public String login(Model model, @RequestParam("id") String id, @RequestParam("pwd") String pwd) {
+		memberService.login();
+		
+		return "loginOk";
 	}
 	
-	@GetMapping("/memSignUp")
-	public String memSignUp() {
+	@GetMapping("/signup")
+	public String signup() {
 		System.out.println("회원가입을 시작합니다.");
-		return "memSignUp";
+		return "signup";
+	}
+	
+	@PostMapping("/signup")
+	public String signup(@ModelAttribute MemberDTO member) {
+		memberService.signup(member);
+		
+		return "signupOk";
 	}
 }

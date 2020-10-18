@@ -13,13 +13,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 @ComponentScan(basePackages = {"com.devon.easycook"})
-@MapperScan(basePackages = {"com.devon.easycook.mapper"})
 public class RootConfig {
 	
 	// JDBC
@@ -52,6 +52,13 @@ public class RootConfig {
 		tm.setDataSource(dataSource());
 		return tm;
 	}
+	
+//	@Bean
+//	public MapperFactoryBean userMapper() throws Exception {
+//	  MapperFactoryBean factoryBean = new MapperFactoryBean<T>(UserMapper.class);
+//	  factoryBean.setSqlSessionFactory(sqlSessionFactory());
+//	  return factoryBean;
+//	}
 	
 	// multipart
 	@Bean

@@ -262,6 +262,6 @@
 					<div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
 				</div>
 			</nav>
-			<a href="member/memJoin" class="u-btn u-button-style u-btn-1">로그인</a>
+			<a href="member/login" class="u-btn u-button-style u-btn-1">로그인</a>
 		</div>
 	</header>

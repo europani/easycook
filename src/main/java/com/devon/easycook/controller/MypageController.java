@@ -12,7 +12,7 @@ import com.devon.easycook.service.MemberService;
 @RequestMapping("/mypage/*")
 public class MypageController {
 	
-	@GetMapping("/mypage")
+	@GetMapping("")
 	public String mypage() {
 		return "mypage";
 	} 

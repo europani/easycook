@@ -150,7 +150,7 @@ body {
 
 </style>
   <body width="100%" height="100%">
-    <form action="index.html" method="post" class="signUpForm">
+    <form action="signup" method="post" class="signUpForm">
       <h2>회원가입</h2>
       
       <div class="Form">
@@ -186,12 +186,12 @@ body {
 		<input type="button" onclick="sample5_execDaumPostcode()" value="주소검색">	
       </div>
       
-      <button type="button" class="btn" onclick="button()">
+      <button class="btn" onclick="submit()">
         SIGN UP
       </button>
       <script>
-      	let button = () => {
-        	alert('login Button !')	
+      	let submit = () => {
+        	this.submit();
         }
       </script>
       <div>

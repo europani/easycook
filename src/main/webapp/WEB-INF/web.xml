@@ -35,7 +35,11 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<!-- <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> -->
-			<param-value>com.devon.easycook.config.ServletConfig</param-value>
+			<param-value>
+				com.devon.easycook.config.ServletConfig
+				com.devon.easycook.config.MailAuthConfig
+				com.devon.easycook.config.SecurityConfig
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

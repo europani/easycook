@@ -4,7 +4,6 @@ import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
 
-@Alias("cart")
 @Data
 public class CartDTO {
 
