@@ -165,18 +165,18 @@
 							style="padding: 10px 0;">오늘뭐먹지?</a></li>
 						<li class="u-nav-item"><a
 							class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90"
-							href="마이페이지.html" style="padding: 10px 0;">마이페이지</a>
+							href="#" style="padding: 10px 0;">마이페이지</a>
 							<div class="u-nav-popup">
 								<ul
 									class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-26 u-nav-3">
-									<li class="u-nav-item"><a
+									<li class="u-nav-item"><a 
 										class="u-button-style u-nav-link u-white">회원정보수정</a></li>
-									<li class="u-nav-item"><a
-										class="u-button-style u-nav-link u-white" target="_blank">장바구니</a>
+									<li class="u-nav-item"><a href="mypage/cart"
+										class="u-button-style u-nav-link u-white">장바구니</a>
 									</li>
 									<li class="u-nav-item"><a
 										class="u-button-style u-nav-link u-white">주문내역</a></li>
-									<li class="u-nav-item"><a
+									<li class="u-nav-item"><a href="mypage/wishlist"
 										class="u-button-style u-nav-link u-white">위시리스트</a></li>
 									<li class="u-nav-item"><a
 										class="u-button-style u-nav-link u-white">취소/반품</a></li>

@@ -55,7 +55,7 @@
           </div>
         </div>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
+    <!-- <section class="u-backlink u-clearfix u-grey-80">
       <a class="u-link" href="https://nicepage.com/html-templates" target="_blank">
         <span>HTML Template</span>
       </a>
@@ -65,11 +65,11 @@
       <a class="u-link" href="https://nicepage.com/html" target="_blank">
         <span>Nicepage</span>
       </a>. 
-    </section>
-    <span style="height: 112px; width: 112px; margin-left: 0; margin-right: auto; margin-top: 0; background-image: none; right: 25px; bottom: 0;" class="u-back-to-top u-icon u-icon-circle u-opacity u-opacity-90 u-spacing-16 u-text-white" data-href="#">
+    </section> -->
+    <!-- <span style="height: 112px; width: 112px; margin-left: 0; margin-right: auto; margin-top: 0; background-image: none; right: 25px; bottom: 0;" class="u-back-to-top u-icon u-icon-circle u-opacity u-opacity-90 u-spacing-16 u-text-white" data-href="#">
       <svg class="u-svg-link u-flip-horizontal" preserveAspectRatio="xMidYMin slice" viewBox="0 0 551.13 551.13"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-1d98"></use></svg>
       <svg class="u-svg-content" enable-background="new 0 0 551.13 551.13" viewBox="0 0 551.13 551.13" xmlns="http://www.w3.org/2000/svg" id="svg-1d98"><path d="m275.565 189.451 223.897 223.897h51.668l-275.565-275.565-275.565 275.565h51.668z"></path></svg>
-    </span>
+    </span> -->
 
      <!-- nicapage js -->
      <script class="u-script" type="text/javascript" src="/easycook/resources/js/jquery.js" defer=""></script>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<jsp:include page="common/header.jsp" />
+   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,11 +40,10 @@
 <link rel="stylesheet" href="../resources/css/icomoon.css">
 <link rel="stylesheet" href="../resources/css/style.css">
 
-<!-- Custom styles for this template -->
-<link href="../resources/admin/css/simple-sidebar.css" rel="stylesheet">
+
 </head>
 <body class="goto-here">
-   <div class="py-1 bg-primary">
+   <!-- <div class="py-1 bg-primary">
       <div class="container">
          <div
             class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -106,7 +107,7 @@
          </div>
       </div>
    </nav>
-   <!-- END nav -->
+   END nav
 
    <div class="hero-wrap hero-bread"
       style="background-image: url('../resources/images/bg_1.jpg');">
@@ -121,35 +122,14 @@
             </div>
          </div>
       </div>
-   </div>
+   </div> -->
 
 
    <section class="ftco-section ftco-cart">
-
+<jsp:include page="common/sidebar.jsp" />
       <div class="container">
          <div class="row">
             <div class="col-md-12 ftco-animate">
-            <div class="example" style="float :left;">
-               <!-- Sidebar-->
-               <div class="col-md-3 bg-light border-right" id="sidebar-wrapper">
-                  <div class="sidebar-heading">Start Bootstrap</div>
-                  <div class="list-group list-group-flush">
-                     <a href="#"
-                        class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                     <a href="#"
-                        class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-                     <a href="#"
-                        class="list-group-item list-group-item-action bg-light">Overview</a>
-                     <a href="#"
-                        class="list-group-item list-group-item-action bg-light">Events</a>
-                     <a href="#"
-                        class="list-group-item list-group-item-action bg-light">Profile</a>
-                     <a href="#"
-                        class="list-group-item list-group-item-action bg-light">Status</a>
-                  </div>
-               </div>
-            </div>
-               <!-- /#sidebar-wrapper -->
                <div class="cart-list">
                   <table class="table">
                      <thead class="thead-primary">
@@ -243,96 +223,23 @@
                            <td class="total">$15.70</td>
                         </tr>
                         <!-- END TR-->
-
-                        <tr class="text-center">
-                           <td class="product-remove"><a href="#"><span
-                                 class="ion-ios-close"></span></a></td>
-
-                           <td class="image-prod"><div class="img"
-                                 style="background-image: url(../resources/images/product-4.jpg);"></div></td>
-
-                           <td class="product-name">
-                              <h3>Bell Pepper</h3>
-                              <p>Far far away, behind the word mountains, far from the
-                                 countries</p>
-                           </td>
-
-                           <td class="price">$15.70</td>
-
-                           <td class="quantity">
-                              <div class="input-group mb-3">
-                                 <input type="text" name="quantity"
-                                    class="quantity form-control input-number" value="1" min="1"
-                                    max="100">
-                              </div>
-                           </td>
-
-                           <td class="total">$15.70</td>
-                        </tr>
-                        <!-- END TR-->
-
-                        <tr class="text-center">
-                           <td class="product-remove"><a href="#"><span
-                                 class="ion-ios-close"></span></a></td>
-
-                           <td class="image-prod"><div class="img"
-                                 style="background-image: url(../resources/images/product-5.jpg);"></div></td>
-
-                           <td class="product-name">
-                              <h3>Bell Pepper</h3>
-                              <p>Far far away, behind the word mountains, far from the
-                                 countries</p>
-                           </td>
-
-                           <td class="price">$15.70</td>
-
-                           <td class="quantity">
-                              <div class="input-group mb-3">
-                                 <input type="text" name="quantity"
-                                    class="quantity form-control input-number" value="1" min="1"
-                                    max="100">
-                              </div>
-                           </td>
-
-                           <td class="total">$15.70</td>
-                        </tr>
-                        <!-- END TR-->
-
-                        <tr class="text-center">
-                           <td class="product-remove"><a href="#"><span
-                                 class="ion-ios-close"></span></a></td>
-
-                           <td class="image-prod"><div class="img"
-                                 style="background-image: url(../resources/images/product-6.jpg);"></div></td>
-
-                           <td class="product-name">
-                              <h3>Bell Pepper</h3>
-                              <p>Far far away, behind the word mountains, far from the
-                                 countries</p>
-                           </td>
-
-                           <td class="price">$15.70</td>
-
-                           <td class="quantity">
-                              <div class="input-group mb-3">
-                                 <input type="text" name="quantity"
-                                    class="quantity form-control input-number" value="1" min="1"
-                                    max="100">
-                              </div>
-                           </td>
-
-                           <td class="total">$15.70</td>
-                        </tr>
-                        <!-- END TR-->
                      </tbody>
                   </table>
                </div>
             </div>
          </div>
       </div>
+      <div class="mouse">
+               <a href="#" class="mouse-icon">
+                  <div class="mouse-wheel">
+                     <span class="ion-ios-arrow-up"></span>
+                  </div>
+               </a>
+      </div>
    </section>
+   
 
-   <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+   <!-- <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
       <div class="container py-4">
          <div class="row d-flex justify-content-center py-5">
             <div class="col-md-6">
@@ -433,22 +340,22 @@
             <div class="col-md-12 text-center">
 
                <p>
-                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                  Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
                   Copyright &copy;
                   <script>document.write(new Date().getFullYear());</script>
                   All rights reserved | This template is made with <i
                      class="icon-heart color-danger" aria-hidden="true"></i> by <a
                      href="https://colorlib.com" target="_blank">Colorlib</a>
-                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                  Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
                </p>
             </div>
          </div>
       </div>
    </footer>
 
+ 
 
-
-   <!-- loader -->
+   loader
    <div id="ftco-loader" class="show fullscreen">
       <svg class="circular" width="48px" height="48px">
          <circle class="path-bg" cx="24" cy="24" r="22" fill="none"
@@ -456,7 +363,7 @@
          <circle class="path" cx="24" cy="24" r="22" fill="none"
             stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
    </div>
-
+ -->
 
    <script src="../resources/js/jquery.min.js"></script>
    <script src="../resources/js/jquery-migrate-3.0.1.min.js"></script>
@@ -515,3 +422,5 @@
 
 </body>
 </html>
+
+<jsp:include page="common/footer.jsp" />
