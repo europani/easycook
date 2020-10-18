@@ -80,9 +80,10 @@
 		  width: 100%;
 	   }
 
-	  th,td {
+ 	  th,td {
 		  padding: 8px;
 		  text-align: left;
+		  /* color: #fff !important; */
 		  border-bottom: 1px solid #ddd;
 	   }
 	 
@@ -107,8 +108,8 @@
 					<button type="button" class="btn-search">조회하기</button>
 		</div>
 		<br><br><br><br>
-      	<hr>
-      	주문목록/배송조회 내역 총 0건<br><br>
+      	<hr><br>
+      	<h5>주문목록/배송조회 내역 총 -건</h5><br><br>
         <div id="content-detail2">
       	<table>
 		  <tr>
@@ -117,12 +118,20 @@
 		 	<th>상품금액/수량</th>
 		 	<th>주문상태</th>
 		  </tr>
+		  <tbody>
 		  <tr>
 		    <td>20201017</td>
 		    <td>임시상품명</td>
 		    <td>$임시금액</td>
 		    <td>임시주문상태</td>
 		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  </tbody>
 		</table>
         </div>     	
       </div>

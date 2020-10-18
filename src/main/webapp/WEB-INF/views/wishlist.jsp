@@ -135,11 +135,11 @@
                      <thead class="thead-primary">
                         <tr class="text-center">
                            <th>&nbsp;</th>
-                           <th>Product List</th>
+                           <th>상품목록</th>
                            <th>&nbsp;</th>
-                           <th>Price</th>
-                           <th>Quantity</th>
-                           <th>Total</th>
+                           <th>가격</th>
+                           <th>수량</th>
+                           <th>총액</th>
                         </tr>
                      </thead>
                      <tbody>
