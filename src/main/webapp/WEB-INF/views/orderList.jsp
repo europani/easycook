@@ -22,11 +22,11 @@
         border: 1px solid #bcbcbc;
       }
       #jb-content {
-        width: 80%;
+        width: 85%;
         padding: 20px;
         margin-bottom: 20px;
         float: right;
-        border: 1px solid #bcbcbc;
+        /* border: 1px solid #bcbcbc; */
       }
       #jb-sidebar {
         width: 300px;
@@ -62,13 +62,13 @@
 	    -webkit-box-sizing: inherit;
 	    cursor: pointer;
 	    outline-style: none;
-	}
+	  }
       .btn-search {	/* 나중에 추가할 버튼양식 */
 	    display: inline-block;
 	    margin-left: 30px;
 	    width: 103px;
-	    height: 33px;
-	    line-height: 33px;
+	    height: 36px;
+	    line-height: 36px;
 	    background-color: #606060;
 	    font-size: 14px;
 	    color: white;
@@ -89,6 +89,7 @@
     </style>
   </head>
   <body>
+  <jsp:include page="common/sidebar.jsp" />
     <div id="jb-container">
       <div id="jb-content">
         <h2>주문내역</h2>
@@ -127,8 +128,8 @@
       </div>
      
       
-      <div id="jb-sidebar">
-      <!-- Sidebar/menu -->
+<!--       <div id="jb-sidebar">
+      Sidebar/menu
 
   
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
@@ -161,7 +162,7 @@
   <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a> 
 
 
-</div>
+</div> -->
       <div id="jb-footer">
         <br/>
       </div>

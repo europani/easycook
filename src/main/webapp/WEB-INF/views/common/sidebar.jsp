@@ -25,15 +25,15 @@
                <div class="bg-light border-right" id="sidebar-wrapper" style="text-align: center; font-weight: bold;">
                   <div class="sidebar-heading">마이페이지</div>
                   <div class="list-group list-group-flush">
-                     <a href="#"
+                     <a href="orderList"
                         class="list-group-item list-group-item-action bg-light" onclick="active(this)">주문내역</a>
                      <a href="cart"
                         class="list-group-item list-group-item-action bg-light" onclick="active(this)">장바구니</a>
                      <a href="wishlist"
                         class="list-group-item list-group-item-action bg-light" onclick="active(this)">찜목록</a>
-                     <a href="#"
+                     <a href="memModify"
                         class="list-group-item list-group-item-action bg-light" onclick="active(this)">정보수정</a>
-                     <a href="#"
+                     <a href="memDelete"
                         class="list-group-item list-group-item-action bg-light" onclick="active(this)">회원탈퇴</a>
                   </div>
                </div>

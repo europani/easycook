@@ -1,7 +1,6 @@
+<jsp:include page="common/header.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,11 +22,11 @@
         border: 1px solid #bcbcbc;
       }
       #jb-content {
-        width: 80%;
+        width: 85%;
         padding: 20px;
         margin-bottom: 20px;
         float: right;
-        border: 1px solid #bcbcbc;
+        /* border: 1px solid #bcbcbc; */
       }
       #jb-sidebar {
         width: 300px;
@@ -57,12 +56,13 @@
 	    display: inline-block;
 	    margin-left: 30px;
 	    width: 103px;
-	    height: 66px;
-	    line-height: 66px;
+	    height: 36px;
+	    line-height: 36px;
 	    background-color: #606060;
-	    color: #fff;
 	    font-size: 14px;
+	    color: white;
 	    vertical-align: top;
+	    text-align: center;
 	   }
       table {
 		  border-collapse: collapse;
@@ -85,15 +85,14 @@
     </style>
   </head>
   <body>
+    <jsp:include page="common/sidebar.jsp" />
     <div id="jb-container">
-      <div id="jb-header">
-        <h1>헤더가 여기에 들어가겠지</h1>
-      </div>
       <div id="jb-content">
         <h2>회원탈퇴</h2>
-        <br>
         <hr>
-        <h3 align="left">01.이지쿡 탈퇴 안내</h3>	
+        <br><br>
+        <h3 align="left">01.이지쿡 탈퇴 안내</h3>
+        <br>	
         <div id="content-detail">
 	      ■ 회원 탈퇴시의 아래 사항을 숙지하시기 바랍니다.
 	      <br><br>
@@ -108,10 +107,9 @@
         <hr>
        <div id="content-detail2">
 	      <br>
-	      <h4>회원님의 정보를 안전하게 보호하기 위해 계정을 재인증 해주세요.</h4>
+	      <h4>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 재인증 해주세요</h4>
 	      <br>
-		  <h4><input type="text"></h4><br>
-		  <h4><button>확인</button></h4>
+		  <h4><input type="text">&nbsp;&nbsp;<button type="button" class="btn-search">확인</button></h4>
 		  <br>		           
        </div>
 		</div>
@@ -119,8 +117,8 @@
       </div>
      
       
-      <div id="jb-sidebar">
-      <!-- Sidebar/menu -->
+<!--       <div id="jb-sidebar">
+      Sidebar/menu
 
   
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
@@ -153,9 +151,9 @@
   <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a> 
 
 
-</div>
+</div> -->
       <div id="jb-footer">
-        <p>footer가 여기 들어가겠지</p>
+        <br>
       </div>
     </div>
   </body>
@@ -171,6 +169,4 @@ function myAccFunc(id) {
   }
 }
 </script>
-  
-  
-</html>
+ <jsp:include page="common/footer.jsp" /> 
