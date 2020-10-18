@@ -169,17 +169,17 @@
 							<div class="u-nav-popup">
 								<ul
 									class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-26 u-nav-3">
-									<li class="u-nav-item"><a 
+									<li class="u-nav-item"><a href="mypage/memModify"
 										class="u-button-style u-nav-link u-white">회원정보수정</a></li>
 									<li class="u-nav-item"><a href="mypage/cart"
 										class="u-button-style u-nav-link u-white">장바구니</a>
 									</li>
-									<li class="u-nav-item"><a
+									<li class="u-nav-item"><a href="mypage/orderList"
 										class="u-button-style u-nav-link u-white">주문내역</a></li>
 									<li class="u-nav-item"><a href="mypage/wishlist"
 										class="u-button-style u-nav-link u-white">위시리스트</a></li>
-									<li class="u-nav-item"><a
-										class="u-button-style u-nav-link u-white">취소/반품</a></li>
+									<!-- <li class="u-nav-item"><a
+										class="u-button-style u-nav-link u-white">취소/반품</a></li> -->
 								</ul>
 							</div></li>
 						<li class="u-nav-item"><a
@@ -233,7 +233,7 @@
 									<ul
 										class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-26 u-nav-7">
 										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link">회원정보수정</a></li>
+											class="u-button-style u-nav-link">회원정보</a></li>
 										<li class="u-nav-item"><a
 											class="u-button-style u-nav-link" target="_blank">장바구니</a></li>
 										<li class="u-nav-item"><a

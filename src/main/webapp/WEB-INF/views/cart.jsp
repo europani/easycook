@@ -43,19 +43,19 @@
 	    				<table class="table">
 						    <thead class="thead-primary">
 						      <tr class="text-center">
-						        <th>&nbsp;</th>
-						        <th>&nbsp;</th>
-						        <th>Product name</th>
-						        <th>Price</th>
-						        <th>Quantity</th>
-						        <th>Total</th>
+	                           <th>&nbsp;</th>
+	                           <th>상품목록</th>
+	                           <th>&nbsp;</th>
+	                           <th>가격</th>
+	                           <th>수량</th>
+	                           <th>총액</th>
 						      </tr>
 						    </thead>
 						    <tbody>
 						      <tr class="text-center">
 						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
+						        <td class="image-prod"><div class="img" style="background-image:url(../resources/images/product-3.jpg);"></div></td>
 						        
 						        <td class="product-name">
 						        	<h3>Bell Pepper</h3>
@@ -76,7 +76,7 @@
 						      <tr class="text-center">
 						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/product-4.jpg);"></div></td>
+						        <td class="image-prod"><div class="img" style="background-image:url(../resources/images/product-4.jpg);"></div></td>
 						        
 						        <td class="product-name">
 						        	<h3>Bell Pepper</h3>
