@@ -8,29 +8,29 @@
 <meta name="keywords" content="우리지금만나, ★오늘의 추천★, 우리지금만날래?">
 <meta name="description" content="">
 <meta name="page_type" content="np-template-header-footer-from-plugin">
-<title>main</title>
+<title>이지쿡! 쉽게 요리하자</title>
 <!-- nicepage CSS -->
-<link rel="stylesheet" href="resources/css/nicepage.css" media="screen">
-<link rel="stylesheet" href="resources/css/main.css" media="screen">
+<link rel="stylesheet" href="/easycook/resources/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="/easycook/resources/css/main.css" media="screen">
 <!-- vegefood CSS -->
-<link rel="stylesheet" href="resources/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="resources/css/animate.css">
+<link rel="stylesheet" href="/easycook/resources/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="/easycook/resources/css/animate.css">
 
-<link rel="stylesheet" href="resources/css/owl.carousel.min.css">
-<link rel="stylesheet" href="resources/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="resources/css/magnific-popup.css">
+<link rel="stylesheet" href="/easycook/resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/easycook/resources/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/easycook/resources/css/magnific-popup.css">
 
-<link rel="stylesheet" href="resources/css/aos.css">
+<link rel="stylesheet" href="/easycook/resources/css/aos.css">
 
-<link rel="stylesheet" href="resources/css/ionicons.min.css">
+<link rel="stylesheet" href="/easycook/resources/css/ionicons.min.css">
 
-<link rel="stylesheet" href="resources/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="resources/css/jquery.timepicker.css">
+<link rel="stylesheet" href="/easycook/resources/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/easycook/resources/css/jquery.timepicker.css">
 
 
-<link rel="stylesheet" href="resources/css/flaticon.css">
-<link rel="stylesheet" href="resources/css/icomoon.css">
-<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="/easycook/resources/css/flaticon.css">
+<link rel="stylesheet" href="/easycook/resources/css/icomoon.css">
+<link rel="stylesheet" href="/easycook/resources/css/style.css">
 
 <link id="u-theme-google-font" rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
@@ -58,8 +58,8 @@
 	<header class="u-align-center u-clearfix u-header u-header"
 		id="sec-a6ba">
 		<div class="u-clearfix u-sheet u-sheet-1">
-			<a href="main.html" class="u-image u-logo u-image-1" title="main">
-				<img src="resources/images/logo2.png" class="u-logo-image u-logo-image-1"
+			<a href="/easycook" class="u-image u-logo u-image-1" title="main">
+				<img src="/easycook/resources/images/logo2.png" class="u-logo-image u-logo-image-1"
 				data-image-width="200">
 			</a>
 			<form

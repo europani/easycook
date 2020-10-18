@@ -17,7 +17,7 @@
               <div class="u-align-center-sm u-align-right-md u-container-style u-layout-cell u-size-20 u-size-20-md u-layout-cell-2">
                 <div class="u-container-layout u-valign-middle u-container-layout-2">
                   <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="724" data-image-height="712">
-                    <img src="resources/images/logo2.png" class="u-logo-image u-logo-image-1" data-image-width="104.037">
+                    <img src="/easycook/resources/images/logo2.png" class="u-logo-image u-logo-image-1" data-image-width="104.037">
                   </a>
                 </div>
               </div>
@@ -72,27 +72,27 @@
     </span>
 
      <!-- nicapage js -->
-     <script class="u-script" type="text/javascript" src="resources/js/jquery.js" defer=""></script>
-     <script class="u-script" type="text/javascript" src="resources/js/nicepage.js" defer=""></script>
+     <script class="u-script" type="text/javascript" src="/easycook/resources/js/jquery.js" defer=""></script>
+     <script class="u-script" type="text/javascript" src="/easycook/resources/js/nicepage.js" defer=""></script>
      <meta name="generator" content="Nicepage 2.23.0, nicepage.com">
 
     <!-- vegefood js -->
-      <script src="resources/js/jquery.js"></script>
-      <script src="resources/js/jquery.min.js"></script>
-	  <script src="resources/js/jquery-migrate-3.0.1.min.js"></script>
-	  <script src="resources/js/popper.min.js"></script>
-	  <script src="resources/js/bootstrap.min.js"></script>
-	  <script src="resources/js/jquery.easing.1.3.js"></script>
-	  <script src="resources/js/jquery.waypoints.min.js"></script>
-	  <script src="resources/js/jquery.stellar.min.js"></script>
-	  <script src="resources/js/owl.carousel.min.js"></script>
-	  <script src="resources/js/jquery.magnific-popup.min.js"></script>
-	  <script src="resources/js/aos.js"></script>
-	  <script src="resources/js/jquery.animateNumber.min.js"></script>
-	  <script src="resources/js/bootstrap-datepicker.js"></script>
-	  <script src="resources/js/scrollax.min.js"></script>
-	  <script src="resources/js/google-map.js"></script>
-	  <script src="resources/js/main.js"></script>
+      <script src="/easycook/resources/js/jquery.js"></script>
+      <script src="/easycook/resources/js/jquery.min.js"></script>
+	  <script src="/easycook/resources/js/jquery-migrate-3.0.1.min.js"></script>
+	  <script src="/easycook/resources/js/popper.min.js"></script>
+	  <script src="/easycook/resources/js/bootstrap.min.js"></script>
+	  <script src="/easycook/resources/js/jquery.easing.1.3.js"></script>
+	  <script src="/easycook/resources/js/jquery.waypoints.min.js"></script>
+	  <script src="/easycook/resources/js/jquery.stellar.min.js"></script>
+	  <script src="/easycook/resources/js/owl.carousel.min.js"></script>
+	  <script src="/easycook/resources/js/jquery.magnific-popup.min.js"></script>
+	  <script src="/easycook/resources/js/aos.js"></script>
+	  <script src="/easycook/resources/js/jquery.animateNumber.min.js"></script>
+	  <script src="/easycook/resources/js/bootstrap-datepicker.js"></script>
+	  <script src="/easycook/resources/js/scrollax.min.js"></script>
+	  <script src="/easycook/resources/js/google-map.js"></script>
+	  <script src="/easycook/resources/js/main.js"></script>
 
   </body>
 </html>
