@@ -8,7 +8,12 @@
 	</select>
 	
 	<insert id="signup" parameterType="Member">
-		INSERT INTO member(id, pwd, author, reg_date) VALUES (#{id}, #{pwd}, 0, sysdate)
+		INSERT INTO member(id, pwd, name, email, 
+		<!-- tel, birthday, gender, zipcode, address, point,  -->
+		author, reg_date) 
+			VALUES (#{id}, #{pwd}, #{name}, #{email}, 
+		<!-- 	#{tel}, #{birthday}, #{gender}, #{zipcode}, #{address}, 0, -->
+			 0, sysdate)
 	</insert>
 	
 	<select id="login" parameterType="Hashmap" resultType="Member">

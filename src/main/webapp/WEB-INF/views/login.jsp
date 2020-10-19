@@ -11,7 +11,7 @@
         <input type="text" class="id" placeholder="ID" name="id">
       </div>
       <div class="passForm">
-        <input type="password" class="pw" placeholder="PW" name="">
+        <input type="password" class="pw" placeholder="PW" name="pwd">
       </div>
       <button type="button" class="btn" onclick="button()">
         LOG IN
