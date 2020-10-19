@@ -1,5 +1,8 @@
 package com.devon.easycook.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,7 +17,7 @@ import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.service.MemberService;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/member")
 public class MemberController {
 	
 	@Autowired
@@ -30,9 +33,18 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	public String login(Model model, @RequestParam("id") String id, @RequestParam("pwd") String pwd) {
-		memberService.login();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		MemberDTO member = memberService.login(map);
 		
-		return "loginOk";
+		boolean passMatch = passEncoder.matches(pwd, member.getPwd());
+		if (passMatch) {
+			return "loginOk";
+		} else {
+			return "login";
+		}
+		
 	}
 	
 	@GetMapping("/signup")
@@ -43,6 +55,10 @@ public class MemberController {
 	
 	@PostMapping("/signup")
 	public String signup(@ModelAttribute MemberDTO member) {
+		String pwd = member.getPwd();
+		String CypPwd = passEncoder.encode(pwd);
+		member.setPwd(CypPwd);
+		
 		memberService.signup(member);
 		
 		return "signupOk";

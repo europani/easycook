@@ -134,7 +134,7 @@ body {
 }
 </style>
   <body width="100%" height="100%">
-    <form action="index.html" method="post" class="loginForm">
+    <form action="login" method="post" class="loginForm">
       <h2>로그인창</h2>
       <div class="idForm">
         <input type="text" class="id" placeholder="ID" name="id">
@@ -146,9 +146,20 @@ body {
         LOG IN
       </button>
       <script>
-      	let button = () => {
-        	alert('login Button !')
-        }
+      function button() {
+			const loginForm = document.querySelector('.loginForm');
+			if (loginForm.id.value == "") {
+				alert('아이디를 입력해주세요.');
+				loginForm.id.focus();
+				return;
+			}
+			if (loginForm.pwd.value == "") {
+				alert('비밀번호를 입력해주세요.');
+				loginForm.pwd.focus();
+				return;
+			}
+			loginForm.submit();
+		}
       </script>
       <div class="bottomText">
         Don't you have ID? <a href="signup">sign up</a>

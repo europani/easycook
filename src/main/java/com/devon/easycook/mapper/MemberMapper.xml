@@ -10,5 +10,9 @@
 	<insert id="signup" parameterType="Member">
 		INSERT INTO member(id, pwd, author, reg_date) VALUES (#{id}, #{pwd}, 0, sysdate)
 	</insert>
+	
+	<select id="login" parameterType="Hashmap" resultType="Member">
+		SELECT id, pwd FROM member WHERE id = #{id}
+	</select>
 
 </mapper>
