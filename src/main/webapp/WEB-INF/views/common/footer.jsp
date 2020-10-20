@@ -1,22 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    <section class="contact-section">
-   </section>
-   <footer class="footer">
       <div class="container">
          <div class="row">
-            <div class="col-md-12">
-               <p class="center">
-                  Shared by <i class="fa fa-love"></i><a
-                     href="https://bootstrapthemes.co">BootstrapThemes</a>
-               </p>
-
+         </div>
+         <div class="row">
+            <div class="col-md-6 wow fadeInLeft animated">
+               <div class="left-content">
+                  <h1>
+                     <span>EASY</span>COOK
+                  </h1>
+                  <div class="contact-info">
+                     <p>
+                        <b>Main Office:</b> 쌍용교육센터
+                     </p>
+                     <p>
+                        <b>Phone:</b> 112.112.112
+                     </p>
+                     <p>
+                        <b>Email:</b> ssanyoung@isyoung.com
+                     </p>
+                  </div>
+                  <div class="social-media">
+                     <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
             </div>
+           
          </div>
       </div>
-   </footer>
+   </section>
+   
 
-	 <!-- vegefood js -->
+    <!-- vegefood js -->
      <script src="/easycook/resources/js/jquery.js"></script>
      <script src="/easycook/resources/js/jquery.min.js"></script>
      <script src="/easycook/resources/js/jquery-3.2.1.min.js"></script>
