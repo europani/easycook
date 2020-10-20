@@ -13,6 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%=id %>
+로그인됨.
 </body>
 </html>

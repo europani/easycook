@@ -1,6 +1,7 @@
 package com.devon.easycook.repository;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,15 @@ public class MemberDAO extends AbstractMybatisDAO {
 				sqlsession.commit();
 			}
 			return result;
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	public MemberDTO login(Map<String, String> map) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".login", map);
 		} finally {
 			sqlsession.close();
 		}
