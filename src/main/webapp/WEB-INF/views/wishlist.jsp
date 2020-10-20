@@ -1,47 +1,168 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <jsp:include page="common/header.jsp" />
-   
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
-<meta charset="utf-8">
-<meta name="viewport"
-   content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link
-   href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-   rel="stylesheet">
-<link
-   href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
-   rel="stylesheet">
-<link
-   href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
-   rel="stylesheet">
+  <section class="ftco-section ftco-cart">
+<jsp:include page="common/sidebar.jsp" />
+      <div class="container">
+      <h2>찜목록</h2>
+        <hr>
+        <br>
+         <div class="row">
+            <div class="col-md-12 ftco-animate">
+               <div class="cart-list">
+                  <table class="table">
+                     <thead class="thead-primary">
+                        <tr class="text-center">
+                           <th>&nbsp;</th>
+                           <th>상품목록</th>
+                           <th>&nbsp;</th>
+                           <th>가격</th>
+                           <th>수량</th>
+                           <th>총액</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="text-center">
+                           <td class="product-remove"><a href="#"><span
+                                 class="ion-ios-close"></span></a></td>
 
-<link rel="stylesheet"
-   href="../resources/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="../resources/css/animate.css">
+                           <td class="image-prod"><div class="img"
+                                 style="background-image: url(../resources/images/product-1.jpg);"></div></td>
 
-<link rel="stylesheet" href="../resources/css/owl.carousel.min.css">
-<link rel="stylesheet" href="../resources/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="../resources/css/magnific-popup.css">
+                           <td class="product-name">
+                              <h3>Bell Pepper</h3>
+                              <p>Far far away, behind the word mountains, far from the
+                                 countries</p>
+                           </td>
 
-<link rel="stylesheet" href="../resources/css/aos.css">
+                           <td class="price">$4.90</td>
 
-<link rel="stylesheet" href="../resources/css/ionicons.min.css">
+                           <td class="quantity">
+                              <div class="input-group mb-3">
+                                 <input type="text" name="quantity"
+                                    class="quantity form-control input-number" value="1" min="1"
+                                    max="100">
+                              </div>
+                           </td>
 
-<link rel="stylesheet" href="../resources/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="../resources/css/jquery.timepicker.css">
+                           <td class="total">$4.90</td>
+                        </tr>
+                        <!-- END TR-->
+
+                        <tr class="text-center">
+                           <td class="product-remove"><a href="#"><span
+                                 class="ion-ios-close"></span></a></td>
+
+                           <td class="image-prod"><div class="img"
+                                 style="background-image: url(../resources/images/product-2.jpg);"></div></td>
+
+                           <td class="product-name">
+                              <h3>Bell Pepper</h3>
+                              <p>Far far away, behind the word mountains, far from the
+                                 countries</p>
+                           </td>
+
+                           <td class="price">$15.70</td>
+
+                           <td class="quantity">
+                              <div class="input-group mb-3">
+                                 <input type="text" name="quantity"
+                                    class="quantity form-control input-number" value="1" min="1"
+                                    max="100">
+                              </div>
+                           </td>
+
+                           <td class="total">$15.70</td>
+                        </tr>
+                        <!-- END TR-->
+
+                        <tr class="text-center">
+                           <td class="product-remove"><a href="#"><span
+                                 class="ion-ios-close"></span></a></td>
+
+                           <td class="image-prod"><div class="img"
+                                 style="background-image: url(../resources/images/product-3.jpg);"></div></td>
+
+                           <td class="product-name">
+                              <h3>Bell Pepper</h3>
+                              <p>Far far away, behind the word mountains, far from the
+                                 countries</p>
+                           </td>
+
+                           <td class="price">$15.70</td>
+
+                           <td class="quantity">
+                              <div class="input-group mb-3">
+                                 <input type="text" name="quantity"
+                                    class="quantity form-control input-number" value="1" min="1"
+                                    max="100">
+                              </div>
+                           </td>
+
+                           <td class="total">$15.70</td>
+                        </tr>
+                        <!-- END TR-->
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="mouse">
+               <a href="#" class="mouse-icon">
+                  <div class="mouse-wheel">
+                     <span class="ion-ios-arrow-up"></span>
+                  </div>
+               </a>
+      </div>
+   </section>
+   <script>
+      $(document).ready(function(){
+
+      var quantitiy=0;
+         $('.quantity-right-plus').click(function(e){
+              
+              // Stop acting like a button
+              e.preventDefault();
+              // Get the field name
+              var quantity = parseInt($('#quantity').val());
+              
+              // If is not undefined
+                  
+                  $('#quantity').val(quantity + 1);
+
+                
+                  // Increment
+              
+          });
+
+           $('.quantity-left-minus').click(function(e){
+              // Stop acting like a button
+              e.preventDefault();
+              // Get the field name
+              var quantity = parseInt($('#quantity').val());
+              
+              // If is not undefined
+            
+                  // Increment
+                  if(quantity>0){
+                  $('#quantity').val(quantity - 1);
+                  }
+          });
+          
+      });
+   </script>
 
 
-<link rel="stylesheet" href="../resources/css/flaticon.css">
-<link rel="stylesheet" href="../resources/css/icomoon.css">
-<link rel="stylesheet" href="../resources/css/style.css">
+<jsp:include page="common/footer.jsp" />
 
 
-</head>
+
+
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<jsp:include page="common/header.jsp" />
 <body class="goto-here">
    <!-- <div class="py-1 bg-primary">
       <div class="container">
@@ -123,9 +244,7 @@
          </div>
       </div>
    </div> -->
-
-
-   <section class="ftco-section ftco-cart">
+ <section class="ftco-section ftco-cart">
 <jsp:include page="common/sidebar.jsp" />
       <div class="container">
          <div class="row">
@@ -238,7 +357,6 @@
       </div>
    </section>
    
-
    <!-- <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
       <div class="container py-4">
          <div class="row d-flex justify-content-center py-5">
@@ -364,25 +482,6 @@
             stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
    </div>
  -->
-
-   <script src="../resources/js/jquery.min.js"></script>
-   <script src="../resources/js/jquery-migrate-3.0.1.min.js"></script>
-   <script src="../resources/js/popper.min.js"></script>
-   <script src="../resources/js/bootstrap.min.js"></script>
-   <script src="../resources/js/jquery.easing.1.3.js"></script>
-   <script src="../resources/js/jquery.waypoints.min.js"></script>
-   <script src="../resources/js/jquery.stellar.min.js"></script>
-   <script src="../resources/js/owl.carousel.min.js"></script>
-   <script src="../resources/js/jquery.magnific-popup.min.js"></script>
-   <script src="../resources/js/aos.js"></script>
-   <script src="../resources/js/jquery.animateNumber.min.js"></script>
-   <script src="../resources/js/bootstrap-datepicker.js"></script>
-   <script src="../resources/js/scrollax.min.js"></script>
-   <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-   <script src="../resources/js/google-map.js"></script>
-   <script src="../resources/js/main.js"></script>
-
    <script>
       $(document).ready(function(){
 
@@ -419,8 +518,5 @@
           
       });
    </script>
-
-</body>
-</html>
-
 <jsp:include page="common/footer.jsp" />
+ --%>

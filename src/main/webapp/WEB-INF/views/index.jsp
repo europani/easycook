@@ -1,184 +1,650 @@
 <jsp:include page="common/header.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- 슬라이드-------------------------------------------- -->
-
-<section id="carousel_6ca8" class="u-carousel u-slide u-block-d76f-1"
-	data-u-ride="carousel" data-interval="5000">
-	<ol class="u-absolute-hcenter u-carousel-indicators u-block-d76f-2">
-		<li data-u-target="#carousel_6ca8" data-u-slide-to="0"
-			class="u-active u-grey-30"></li>
-		<li data-u-target="#carousel_6ca8" data-u-slide-to="1"
-			class="u-grey-30"></li>
-		<li data-u-target="#carousel_6ca8" class="u-grey-30"
-			data-u-slide-to="2"></li>
-	</ol>
-	<div class="u-carousel-inner" role="listbox">
-		<div
-			class="u-active u-align-left u-carousel-item u-clearfix u-image u-section-1-1"
-			src="" data-image-width="494" data-image-height="634">
-			<div class="u-clearfix u-sheet u-sheet-1">
-				<h1
-					class="u-text u-text-body-alt-color u-text-default u-title u-text-1">혹시몰라서
-					남겨두는 텍스트박스</h1>
-			</div>
-		</div>
-		<div
-			class="u-align-center u-carousel-item u-clearfix u-image u-shading u-section-1-2"
-			src="" data-image-width="500" data-image-height="500">
-			<div class="u-clearfix u-sheet u-sheet-1">
-				<h1 class="u-text u-text-default u-title u-text-1">혹시몰라서 남겨두는
-					텍스트박스2</h1>
-			</div>
-		</div>
-		<div
-			class="u-align-center u-carousel-item u-clearfix u-image u-shading u-section-1-3"
-			src="">
-			<div class="u-clearfix u-sheet u-sheet-1">
-				<h1 class="u-text u-text-default u-title u-text-1">혹시몰라서 남겨두는
-					텍스트박스3</h1>
-			</div>
-		</div>
-	</div>
-	<a
-		class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-text-grey-30 u-block-d76f-3"
-		href="#carousel_6ca8" role="button" data-u-slide="prev"> <span
-		aria-hidden="true"> <svg viewBox="0 0 477.175 477.175">
-				<path
-					d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
-                    c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"></path></svg>
-	</span> <span class="sr-only">Previous</span>
-	</a> <a
-		class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-text-grey-30 u-block-d76f-4"
-		href="#carousel_6ca8" role="button" data-u-slide="next"> <span
-		aria-hidden="true"> <svg viewBox="0 0 477.175 477.175">
-				<path
-					d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5
-                    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z"></path></svg>
-	</span> <span class="sr-only">Next</span>
-	</a>
-</section>
-<section class="u-clearfix u-section-2" id="sec-6c52">
-	<div class="u-clearfix u-sheet u-sheet-1"></div>
-</section>
-
-<!-- ---------------------------------------------------------------------------------- -->
-
-<!-- time deal -->
-
-<section class="ftco-section img" style="background-color: white;">
-	<div class="container">
-		<div class="row justify-content-end">
-			<div
-				class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
-				<span class="subheading">Best Price For You</span>
-				<h2 class="mb-4">Deal of the day</h2>
-				<p>Far far away, behind the word mountains, far from the
-					countries Vokalia and Consonantia</p>
-				<h3>
-					<a href="#">Spinach</a>
-				</h3>
-				<span class="price">$10 <a href="#">now $5 only</a></span>
-				<div id="timer" class="d-flex mt-5">
-					<div class="time" id="days"></div>
-					<div class="time pl-3" id="hours"></div>
-					<div class="time pl-3" id="minutes"></div>
-					<div class="time pl-3" id="seconds"></div>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.deal {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 0px;
+}
+</style>
+<body>
+	<section class="search-section">
+		<div class="container">
+			<div class="row subscribe-from">
+				<div class="col-md-12">
+					<form class="form-inline col-md-12 wow fadeInDown animated">
+						<div class="form-group">
+							<input type="email" class="form-control subscribe" id="email"
+								placeholder="Search...">
+							<button class="suscribe-btn">
+								<i class="pe-7s-search"></i>
+							</button>
+						</div>
+					</form>
+					<!-- end /. form -->
 				</div>
 			</div>
+			<!-- end of/. row -->
 		</div>
-	</div>
-</section>
+		<!-- end of /.container -->
+	</section>
+	<!-- end of /.news letter section -->
 
-<!-- -------------------------------------------------------------------------- -->
-<!-- best3 -->
-<section class="u-align-center u-clearfix u-section-3" id="sec-51ed">
-	<div class="u-clearfix u-sheet u-sheet-1">
-		<h2 class="u-text u-text-1">
-			<font class="u-text-palette-3-base">★</font>이번주 Best3 상품<font
-				class="u-text-palette-3-base">★</font>
-		</h2>
-		<p class="u-text u-text-default u-text-2">강력하게 추천 해드리는 최고의 제품</p>
-		<div
-			class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1">
-			<div class="u-gallery-inner u-gallery-inner-1">
-				<div class="u-effect-fade u-gallery-item">
-					<div class="u-back-slide" data-image-width="500"
-						data-image-height="500">
-						<img class="u-back-image u-expanded" src="resources/images/food1.jpg">
-					</div>
-					<div class="u-over-slide u-shading u-over-slide-1">
-						<h3 class="u-gallery-heading"></h3>
-						<p class="u-gallery-text"></p>
-					</div>
+	<section class="slider-section">
+		<div id="carousel-example-generic" class="carousel slide"
+			data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators slider-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0"
+					class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img src="/easycook/resources/mart/images/best1.png" width="1648" height="600"
+						alt="">
+					<div class="carousel-caption"></div>
 				</div>
-				<div class="u-effect-fade u-gallery-item">
-					<div class="u-back-slide">
-						<img class="u-back-image u-expanded" src="resources/images/food3.jpg">
-					</div>
-					<div class="u-over-slide u-shading u-over-slide-2">
-						<h3 class="u-gallery-heading"></h3>
-						<p class="u-gallery-text"></p>
-					</div>
+				<div class="item">
+					<img src="/easycook/resources/mart/images/best.png" width="1648" height="600"
+						alt="">
+					<div class="carousel-caption"></div>
 				</div>
-				<div class="u-effect-fade u-gallery-item">
-					<div class="u-back-slide" data-image-width="500"
-						data-image-height="500">
-						<img class="u-back-image u-expanded"
-							src="resources/images/383f7b08-92d6-6e04-eef9-c13110f825b9.jpg">
-					</div>
-					<div class="u-over-slide u-shading u-over-slide-3">
-						<h3 class="u-gallery-heading"></h3>
-						<p class="u-gallery-text"></p>
-					</div>
+				<div class="item ">
+					<img src="/easycook/resources/mart/images/slider.jpg" width="1648" height="600"
+						alt="">
+					<div class="carousel-caption"></div>
+				</div>
+			</div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-example-generic"
+				role="button" data-slide="prev"> <span
+				class="pe-7s-angle-left glyphicon-chevron-left" aria-hidden="true"></span>
+			</a> <a class="right carousel-control" href="#carousel-example-generic"
+				role="button" data-slide="next"> <span
+				class="pe-7s-angle-right glyphicon-chevron-right" aria-hidden="true"></span>
+			</a>
+		</div>
+	</section>
+
+	<!-- 핫딜 -->
+
+
+	<section class="best-seller-section"
+		style="background-image: url(/easycook/resources/mart/images/slider.jpg);">
+		
+		<p id="demo" class="deal" style="margin-top: 95px;"></p>
+		<img src="/easycook/resources/mart/images/hulk.jpg">
+
+		<script>
+			var countDownDate = new Date("Oct 21, 2020 15:37:25").getTime();
+			var x = setInterval(function() {
+				var now = new Date().getTime();
+				var distance = countDownDate - now;
+				var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+				var hours = Math.floor((distance % (1000 * 60 * 60 * 24))
+						/ (1000 * 60 * 60));
+				var minutes = Math.floor((distance % (1000 * 60 * 60))
+						/ (1000 * 60));
+				var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+				document.getElementById("demo").innerHTML = days + "일 " + hours
+						+ "시 " + minutes + "분 " + seconds + "초 ";
+
+				if (distance < 0) {
+					clearInterval(x);
+					document.getElementById("demo").innerHTML = "EXPIRED";
+				}
+			}, 1000);
+		</script>
+
+	</section>
+
+
+
+	<!--------------------------------여기에 time sale 적용할것 ---------------------->
+	<section class="offer-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 wow fadeInDown animated ">
+					<h1>TIME SALE</h1>
+					<h2>Up to 35% off</h2>
 				</div>
 			</div>
 		</div>
-		<a href="#" class="u-btn u-button-style u-btn-1">상품더보기</a>
-	</div>
-</section>
-<!-- ----------------------------------------------------------------------- -->
+	</section>
+	<!-- ============================================================================= -->
 
-
-<!-- 3개 -->
-<section class="u-clearfix u-section-4" id="sec-bfde">
-	<div class="u-clearfix u-sheet u-sheet-1"></div>
-</section>
-<section class="u-align-center u-clearfix u-section-5" id="sec-3d03">
-	<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-		<div
-			class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1">
-			<div class="u-gallery-inner u-gallery-inner-1">
-				<div class="u-effect-fade u-gallery-item">
-					<div class="u-back-slide">
-						<img class="u-back-image u-expanded" src="resources/images/a11.jpg">
-					</div>
-					<div class="u-over-slide u-shading u-over-slide-1">
-						<h3 class="u-gallery-heading"></h3>
-						<p class="u-gallery-text"></p>
+	<!--------------------------------여기에 Best 적용할것 ---------------------->
+	<section class="best-seller-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="titie-section wow fadeInDown animated ">
+						<h1>BEST SELLERS</h1>
 					</div>
 				</div>
-				<div class="u-effect-fade u-gallery-item">
-					<div class="u-back-slide">
-						<img class="u-back-image u-expanded" src="resources/images/a21.jpg">
-					</div>
-					<div class="u-over-slide u-shading u-over-slide-2">
-						<h3 class="u-gallery-heading"></h3>
-						<p class="u-gallery-text"></p>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
+					data-wow-delay="0.2s">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/1.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Blue Tshirt</h3> <span>$26</span>
+							</a>
+						</div>
 					</div>
 				</div>
-				<div class="u-effect-fade u-gallery-item">
-					<div class="u-back-slide" data-image-width="390"
-						data-image-height="390">
-						<img class="u-back-image u-expanded" src="resources/images/a31.jpg">
+				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
+					data-wow-delay="0.4s">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/2.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>WOMAN shirt</h3> <span>$31</span>
+							</a>
+						</div>
 					</div>
-					<div class="u-over-slide u-shading u-over-slide-3">
-						<h3 class="u-gallery-heading"></h3>
-						<p class="u-gallery-text"></p>
+				</div>
+				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
+					data-wow-delay="0.6s">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/3.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>YELLOW Tshirt</h3> <span>$21</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
+					data-wow-delay="0.8s">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/4.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Cool lingerie</h3> <span>$56</span>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+	<!-- ============================================================================= -->
+
+	<!--------------------------------여기에 상품 적용할것 ---------------------->
+	<section class="featured-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="titie-section wow fadeInDown animated ">
+						<h1>FEATURED PRODUCTS</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="filter-menu">
+						<ul class="button-group sort-button-group">
+							<li class="button active" data-category="all">All<span>8</span></li>
+							<li class="button" data-category="cat-1">Dresses and Suits<span>2</span></li>
+							<li class="button" data-category="cat-2">Accessories<span>2</span></li>
+							<li class="button" data-category="cat-3">Miscellaneous<span>4</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row featured isotope">
+				<div
+					class="col-md-3 col-sm-6 col-xs-12 cat-3 featured-items isotope-item">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/product1.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="sell-meta">
+							<a href="#" class="new-item">New</a> <a href="#"
+								class="sell-item">Sell</a>
+						</div>
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Cool lingerie</h3> <span>$26</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-md-3 col-sm-6 col-xs-12 cat-2 featured-items isotope-item">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/product2.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="sell-meta">
+							<a href="#" class="new-item">New</a>
+						</div>
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Cool lingerie</h3> <span>$21</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-md-3 col-sm-6 col-xs-12 cat-1 featured-items isotope-item">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/product3.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="sell-meta">
+							<a href="#" class="new-item">New</a> <a href="#"
+								class="sell-item">Sell</a>
+						</div>
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Cool lingerie</h3> <span>$31</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-md-3 col-sm-6 col-xs-12 cat-3 featured-items isotope-item">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/product4.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="sell-meta">
+							<a href="#" class="sell-item">Sell</a>
+						</div>
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Cool lingerie</h3> <span>$56</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-md-3 col-sm-6 col-xs-12 cat-2 featured-items isotope-item">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/product5.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="sell-meta">
+							<a href="#" class="sell-item">Sell</a>
+						</div>
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Cool lingerie</h3> <span>$26</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-md-3 col-sm-6 col-xs-12 cat-3 featured-items isotope-item">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/product6.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="sell-meta">
+							<a href="#" class="new-item">New</a> <a href="#"
+								class="sell-item">Sell</a>
+						</div>
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Cool lingerie</h3> <span>$36</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-md-3 col-sm-6 col-xs-12 cat-1 featured-items isotope-item">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/product7.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="sell-meta">
+							<a href="#" class="new-item">New</a>
+						</div>
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Cool lingerie</h3> <span>$56</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-md-3 col-sm-6 col-xs-12 cat-3 featured-items isotope-item">
+					<div class="product-item">
+						<img src="/easycook/resources/mart/images/product8.png" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="sell-meta">
+							<a href="#" class="sell-item">Sell</a>
+						</div>
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
+									class="pe-7s-shuffle"></i></a> <a href="#"><i
+									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
+									to Cart</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>Cool lingerie</h3> <span>$66</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ============================================================================= -->
+
+	<section class="review-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="titie-section wow fadeInDown animated ">
+						<h1>customer review</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="feedback" class="carousel slide feedback"
+					data-ride="feedback">
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<img src="/easycook/resources/mart/images/member1.png" width="320" height="439"
+								alt="">
+							<div class="carousel-caption">
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+									Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+									natoque penatibus et magnis dis parturient montes, nascetur
+									ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+									eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
+									pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+									In enim justo, rhoncus ut,</p>
+								<h3>- Olivia -</h3>
+								<span>Melbour, Aus</span>
+							</div>
+						</div>
+						<div class="item">
+							<img src="/easycook/resources/mart/images/member2.png" width="320" height="439"
+								alt="">
+							<div class="carousel-caption">
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+									Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+									natoque penatibus et magnis dis parturient montes, nascetur
+									ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+									eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
+									pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+									In enim justo, rhoncus ut,</p>
+								<h3>- Olivia -</h3>
+								<span>Melbour, Aus</span>
+							</div>
+						</div>
+						<div class="item">
+							<img src="/easycook/resources/mart/images/member3.png" width="320" height="439"
+								alt="">
+							<div class="carousel-caption">
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+									Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+									natoque penatibus et magnis dis parturient montes, nascetur
+									ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+									eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
+									pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+									In enim justo, rhoncus ut,</p>
+								<h3>- Olivia -</h3>
+								<span>Melbour, Aus</span>
+							</div>
+						</div>
+					</div>
+					<!-- Indicators -->
+					<ol class="carousel-indicators review-controlar">
+						<li data-target="#feedback" data-slide-to="0" class="active">
+							<img src="/easycook/resources/mart/images/member1.png" width="320" height="439"
+							alt="">
+						</li>
+						<li data-target="#feedback" data-slide-to="1"><img
+							src="/easycook/resources/mart/images/member2.png" width="320" height="439" alt=""></li>
+						<li data-target="#feedback" data-slide-to="2"><img
+							src="/easycook/resources/mart/images/member3.png" width="320" height="439" alt=""></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="news-letter-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="titie-section white wow fadeInDown animated ">
+						<h1>NEWSLETTER</h1>
+					</div>
+					<p>Follow a collection of news & promotions</p>
+				</div>
+			</div>
+			<div class="row subscribe-from">
+				<form
+					class="form-inline col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1  wow fadeInDown animated">
+					<div class="form-group">
+						<input type="email" class="form-control subscribe" id="email"
+							placeholder="Enter your email">
+						<button class="suscribe-btn">
+							<i class="pe-7s-next"></i>
+						</button>
+					</div>
+				</form>
+				<!-- end /. form -->
+			</div>
+			<!-- end of/. row -->
+		</div>
+		<!-- end of /.container -->
+	</section>
+	<!-- end of /.news letter section -->
+
+	<section class="client-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="titie-section wow fadeInDown animated ">
+						<h1>our partner</h1>
+					</div>
+				</div>
+			</div>
+			<div id="client" class="row owl-carousel owl-theme client-area">
+				<div class="col-md-12 item">
+					<a href="#"> <img src="/easycook/resources/mart/images/client_01.jpg"
+						class="img-responsive" width="300" height="200" alt="">
+					</a>
+				</div>
+				<div class="col-md-12 item">
+					<a href="#"> <img src="/easycook/resources/mart/images/client_02.jpg"
+						class="img-responsive" width="300" height="200" alt="">
+					</a>
+				</div>
+				<div class="col-md-12 item">
+					<a href="#"> <img src="/easycook/resources/mart/images/client_03.jpg"
+						class="img-responsive" width="300" height="200" alt="">
+					</a>
+				</div>
+				<div class="col-md-12 item">
+					<a href="#"> <img src="/easycook/resources/mart/images/client_04.jpg"
+						class="img-responsive" width="300" height="200" alt="">
+					</a>
+				</div>
+				<div class="col-md-12 item">
+					<a href="#"> <img src="/easycook/resources/mart/images/client_01.jpg"
+						class="img-responsive" width="300" height="200" alt="">
+					</a>
+				</div>
+				<div class="col-md-12 item">
+					<a href="#"> <img src="/easycook/resources/mart/images/client_02.jpg"
+						class="img-responsive" width="300" height="200" alt="">
+					</a>
+				</div>
+				<div class="col-md-12 item">
+					<a href="#"> <img src="/easycook/resources/mart/images/client_03.jpg"
+						class="img-responsive" width="300" height="200" alt="">
+					</a>
+				</div>
+				<div class="col-md-12 item">
+					<a href="#"> <img src="/easycook/resources/mart/images/client_04.jpg"
+						class="img-responsive" width="300" height="200" alt="">
+					</a>
+				</div>
+			</div>
+			<div class="customNavigation works-navigation">
+				<a class="btn-work works-prev"><i class="pe-7s-angle-left"></i></a>
+				<a class="btn-work works-next"><i class="pe-7s-angle-right"></i></a>
+			</div>
+			<!-- end of /.client navigation -->
+		</div>
+	</section>
+
+	<section class="news-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="titie-section wow fadeInDown animated ">
+						<h1>Latest News</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.2s">
+					<div class="blog-item">
+						<a href="#"><img src="/easycook/resources/mart/images/blog1.jpg" width="350"
+							height="262" alt=""></a>
+						<h3>Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
+							Aenean</h3>
+						<p>Nam nec tellus a odio tincidunt auc. Duis sed odio sit amet
+							nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum
+							velit. Nam nec tellus a odio tincidunt</p>
+						<a href="#">Read More</a>
+					</div>
+				</div>
+				<div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.4s">
+					<div class="blog-item">
+						<a href="#"><img src="/easycook/resources/mart/images/blog2.jpg" width="350"
+							height="262" alt=""></a>
+						<h3>Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
+							Aenean</h3>
+						<p>Nam nec tellus a odio tincidunt auc. Duis sed odio sit amet
+							nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum
+							velit. Nam nec tellus a odio tincidunt</p>
+						<a href="#">Read More</a>
+
+					</div>
+				</div>
+				<div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.6s">
+					<div class="blog-item">
+						<a href="#"><img src="/easycook/resources/mart/images/blog3.jpg" width="350"
+							height="262" alt=""></a>
+						<h3>Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
+							Aenean</h3>
+						<p>Nam nec tellus a odio tincidunt auc. Duis sed odio sit amet
+							nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum
+							velit. Nam nec tellus a odio tincidunt</p>
+						<a href="#">Read More</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
 <jsp:include page="common/footer.jsp" />
