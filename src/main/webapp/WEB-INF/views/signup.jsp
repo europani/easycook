@@ -89,18 +89,12 @@ function sample6_execDaumPostcode() {
 <script type="text/javascript">
 	function email_change() {
 
-		if (document.signUpForm.email.options[document.signUpForm.email.selectedIndex].value == '0') {
-			document.signUpForm.email2.disabled = true;
-			document.signUpForm.email2.value = "";
-		}
-
-		if (document.signUpForm.email.options[document.signUpForm.email.selectedIndex].value == '9') {
-			document.signUpForm.email2.disabled = false;
+		if (document.signUpForm.emailBox.options[document.signUpForm.emailBox.selectedIndex].value == '9') {
+			document.signUpForm.email2.readOnly = false;
 			document.signUpForm.email2.value = "";
 			document.signUpForm.email2.focus();
 		} else {
-			document.signUpForm.email2.disabled = true;
-			document.signUpForm.email2.value = document.signUpForm.email.options[document.signUpForm.email.selectedIndex].value;
+			document.signUpForm.email2.value = document.signUpForm.emailBox.options[document.signUpForm.emailBox.selectedIndex].value;
 		}
 	}
 
@@ -120,9 +114,9 @@ function sample6_execDaumPostcode() {
 			signUpForm.name.focus();
 			return;
 		}
-		if (signUpForm.birth1.value == "" || signUpForm.birth2.value == "" || signUpForm.birth3.value == "") {
+		if (signUpForm.birthday.value == "" ) {
 			alert('생년월일을 입력해주세요.');
-			signUpForm.birth1.focus();
+			signUpForm.birthday.focus();
 			return;
 		}
 		if (signUpForm.email1.value == "" || signUpForm.email2.value == "") {
@@ -170,8 +164,8 @@ function sample6_execDaumPostcode() {
 				<th>이메일</th>
 				<td class="td1">
 					<input type="text" name="email1" value="" onfocus="this.value='';"> @ 
-					<input type="text" name="email2" value="" disabled> 
-					<select name="email" onchange="email_change()">
+					<input type="text" name="email2" value="" readonly> 
+					<select name="emailBox" onchange="email_change()">
 						<option value="0" disabled selected>선택하세요</option>
 						<option value="9">직접입력</option>
 						<option value="naver.com">naver.com</option>
@@ -196,47 +190,23 @@ function sample6_execDaumPostcode() {
 			</tr>
 			<tr>
 				<th>생년월일</th>
-				<td class="td1"><select name="birth1">
-						<%
-							for (int i = 2013; i >= 1900; i--) {
-						%>
-						<option value="<%=i%>"><%=i%></option>
-						<%
-							}
-						%>
-				</select>년&nbsp; <select name="birth2">
-						<%
-							for (int i = 1; i <= 12; i++) {
-						%>
-						<option value="<%=i%>"><%=i%></option>
-						<%
-							}
-						%>
-				</select>월&nbsp; <select name="birth3">
-						<%
-							for (int i = 1; i <= 31; i++) {
-						%>
-						<option value="<%=i%>"><%=i%></option>
-						<%
-							}
-						%>
-				</select>일</td>
+				<td class="td1"><input type="date" name="birthday"></td>
 			</tr>
 			<tr>
 				<th>성별</th>
 				<td class="td1">
-					<input type="radio" name="gender" value="남자"> 남자 
-					<input type="radio" name="gender" value="여자"> 여자
+					<input type="radio" name="gender" value="M"> 남자 
+					<input type="radio" name="gender" value="F"> 여자
 				</td>
 			</tr>
 			<tr>
 				<th>주 소</th>
 				<td class="td1">
-					<input type="text" name="zipcode" id="sample6_postcode" disabled="disabled" style="width:60px;">
+					<input type="text" name="zipcode" id="sample6_postcode" readonly style="width:60px;">
 					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" name="address1" id="sample6_address" placeholder="주소" disabled="disabled" class="address"><br>
+					<input type="text" name="address1" id="sample6_address" placeholder="주소" class="address" readonly><br>
 					<input type="text" name="address2" id="sample6_detailAddress" placeholder="상세주소" class="address">
-					<input type="text" name="address3" id="sample6_extraAddress" placeholder="참고항목" disabled="disabled" class="address">
+					<input type="text" name="address3" id="sample6_extraAddress" placeholder="참고항목" class="address" readonly>
 				</td>
 			</tr>
 

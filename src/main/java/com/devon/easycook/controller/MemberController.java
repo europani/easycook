@@ -55,6 +55,7 @@ public class MemberController {
 	
 	@PostMapping("/signup")
 	public String signup(@ModelAttribute MemberDTO member) {
+		System.out.println(member);
 		String pwd = member.getPwd();
 		String CypPwd = passEncoder.encode(pwd);
 		member.setPwd(CypPwd);
