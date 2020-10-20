@@ -12,26 +12,15 @@ import com.devon.easycook.service.MemberService;
 @RequestMapping("/mypage/*")
 public class MypageController {
 	
-	@GetMapping("")
-	public String mypage() {
-		return "mypage";
-	} 
 	@GetMapping("/cart")
 	public String cart() {
 		return "cart";
 	}
-	@GetMapping("/orderList")
-	public String orderList() {
-		return "orderList";
+	@GetMapping("/orders")
+	public String orders() {
+		return "orders";
 	}
-	@GetMapping("/memModify")
-	public String memModify() {
-		return "memModify";
-	}
-	@GetMapping("/memDelete")
-	public String memDelete() {
-		return "memDelete";
-	}
+
 	@GetMapping("/wishlist")
 	public String wishlist() {
 		return "wishlist";

@@ -4,22 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/aa/mart/css/slidebar.css">
+<title>마이페이지</title>
 </head>
 <body>
 <!-- Side navigation -->
 	<div class="sidenav">
-	<h2 class="jun1" style="color:white">easy cook</h2>
-		<p class="jun">고객센터</p>
+		<p class="jun">마이페이지</p>
 		<hr style="width: 80%;">
-		<a href="#">회원정보수정</a>
-		<a href="#">장바구니</a> 
-		<a href="#">주문내역</a> 
-		<a href="#">위시리스트</a> 
-		<a href="#">취소/반품</a> 
-		 
-	
+		<a href="/easycook/member/modify">회원정보수정</a>
+		<a href="/easycook/mypage/orders">주문내역</a> 
+		<a href="/easycook/mypage/cart">장바구니</a> 
+		<a href="/easycook/mypage/wishlist">위시리스트</a> 
+		<a href="/easycook/mypage/cancle">취소/반품</a> 
 	</div>
 </body>
 </html>

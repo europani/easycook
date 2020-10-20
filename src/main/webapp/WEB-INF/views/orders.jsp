@@ -90,10 +90,11 @@
     </style>
   </head>
   <body>
-  <jsp:include page="common/sidebar.jsp" />
+  
     <div id="jb-container">
+    <jsp:include page="common/mypageSidebar.jsp" />
       <div id="jb-content">
-        <h2>주문내역</h2>
+        <h3>주문내역</h3>
         <hr>
         <br>
         <div id="content-detail" style="background-color: #F8F8F8">

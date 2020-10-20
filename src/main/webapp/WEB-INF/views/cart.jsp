@@ -4,7 +4,7 @@
   <body class="goto-here">
 
     <section class="ftco-section ftco-cart">
-    <jsp:include page="common/sidebar.jsp" />
+   <jsp:include page="common/mypageSidebar.jsp" />
          <div class="container">
          <h2>장바구니</h2>
            <hr>
