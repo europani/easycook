@@ -18,7 +18,6 @@ public class MemberService {
 
 	public MemberDTO login(Map<String, String> map) {
 		return memberDao.login(map);
-		
 	}
 	
 	public void signup(MemberDTO member) {
