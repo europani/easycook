@@ -8929,7 +8929,7 @@ h1, h2, h3, h4, h5,
   .table th {
     font-weight: 500; } 
   .table .thead-primary {
-    background: #9bb2c0; }
+    background: #1abc9c; }
     .table .thead-primary tr th {
       padding: 20px 10px;
       color: #fff !important;
@@ -9170,7 +9170,7 @@ textarea.form-control {
 
 .ftco-animate {
   opacity: 0;
-  visibility: hidden; }
+   }
 
 .bg-primary {
   background: #82ae46 !important; }

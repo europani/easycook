@@ -85,7 +85,7 @@
     </style>
   </head>
   <body>
-    <jsp:include page="common/sidebar.jsp" />
+    <jsp:include page="common/mypageSidebar.jsp" />
     <div id="jb-container">
       <div id="jb-content">
         <h2>회원수정</h2>

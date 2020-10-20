@@ -3,8 +3,8 @@
 <jsp:include page="common/header.jsp" />
 
   <section class="ftco-section ftco-cart">
-<jsp:include page="common/sidebar.jsp" />
-      <div class="container">
+<jsp:include page="common/mypageSidebar.jsp" />
+      <div class="container"> 
       <h2>찜목록</h2>
         <hr>
         <br>
