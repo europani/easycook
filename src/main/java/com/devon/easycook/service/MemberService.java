@@ -23,6 +23,22 @@ public class MemberService {
 	public void signup(MemberDTO member) {
 		memberDao.signup(member);
 	}
+
+	public void insertAuthKey(Map<String, String> map) {
+		memberDao.insertAuthKey(map);
+	}
+
+	public boolean checkAuthKey(Map<String, String> map) {
+		String authKey = memberDao.checkAuthKey(map);
+		boolean result = authKey.equals(map.get("authKey"));
+		if (result) {
+			memberDao.changeAuthCheck(map.get("id"));
+		}
+		
+		return result;
+	}
+
+	
 	
 	
 }

@@ -8,12 +8,24 @@
 	</select>
 	
 	<insert id="signup" parameterType="Member">
-		INSERT INTO member(id, pwd, name, email, tel, birthday, gender, zipcode, address, point, author, reg_date) 
-			VALUES (#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{birthday}, #{gender}, #{zipcode}, #{address}, 0, 0, sysdate)
+		INSERT INTO member(id, pwd, name, email, tel, birthday, gender, zipcode, address, point, email_auth_check, author, reg_date) 
+			VALUES (#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{birthday}, #{gender}, #{zipcode}, #{address}, 0, 0, 0, sysdate)
 	</insert>
 	
 	<select id="login" parameterType="Hashmap" resultType="Member">
-		SELECT id, pwd FROM member WHERE id = #{id}
+		SELECT id, pwd, email_auth_check AS emailAuthCheck FROM member WHERE id = #{id}
 	</select>
+	
+	<update id="insertAuthKey" parameterType="Hashmap">
+		UPDATE member SET email_auth_key=#{authKey} WHERE id = #{id}
+	</update>
+	
+	<select id="checkAuthKey" parameterType="Hashmap" resultType="String">
+		SELECT email_auth_key FROM member WHERE id = #{id}
+	</select>
+	
+	<update id="changeAuthCheck" parameterType="String">
+		UPDATE member SET email_auth_check = 1 WHERE id = #{id}
+	</update>
 
 </mapper>

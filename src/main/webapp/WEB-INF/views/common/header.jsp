@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Mart - HTML5 Resoponsive onepage e-commerce template</title>
+<title>easycook - 쉽게 요리하자!</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/easycook/resources/mart/images/logo.png">

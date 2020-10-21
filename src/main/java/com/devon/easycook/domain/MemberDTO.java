@@ -13,7 +13,7 @@ public class MemberDTO {
 	private String name;
 	@Getter(AccessLevel.NONE)
 	private String email;
-//	private String agency;
+	private String agency;
 	@Getter(AccessLevel.NONE)
 	private String tel;
 	private String birthday;
@@ -22,8 +22,8 @@ public class MemberDTO {
 	@Getter(AccessLevel.NONE)
 	private String address;
 	private int point;
-//	private String userEmailHash;
-//	private String userEmailChecked;
+	private String emailAuthKey;
+	private int emailAuthCheck;
 	private int author;
 	private Timestamp regDate;
 	private Timestamp wdrDate;
@@ -47,7 +47,7 @@ public class MemberDTO {
 	}
 	
 	public String getAddress() {
-		return getAddress1() + getAddress2() + getAddress3();
+		return getAddress1() + " " + getAddress2() + getAddress3();
 	}
 	
 }
