@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +57,7 @@
 						</ul>
 					</div>
 				</div>
+				<c:if test="${member != null }">
 				<div class="col-md-6">
 					<div class="header-top-menu">
 						<ul class="nav nav-pills navbar-right">
@@ -69,10 +71,20 @@
 								<a href="/easycook/mypage/cancel" style="color:black;">취소/반품</a>
 							</div>
 						</li>
-							<li><a href="/easycook/member/login"><i class="pe-7s-lock"></i>Login</a></li>
+							<li><a href="/easycook/member/logout"><i class="pe-7s-lock"></i>Logout</a></li>
 						</ul>
 					</div>
 				</div>
+				</c:if>
+				<c:if test="${member == null }">
+				<div class="col-md-6">
+					<div class="header-top-menu">
+						<ul class="nav nav-pills navbar-right">
+							<li><a href="/easycook/member/login"><i class="pe-7s-lock"></i>Login</a></li>
+						</ul>
+					</div>
+				</div>	
+				</c:if>
 			</div>
 		</div>
 	</section>

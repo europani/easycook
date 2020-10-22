@@ -67,6 +67,39 @@ public class MemberDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
+	
+	public String getId(MemberDTO member) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			String result = sqlsession.selectOne(namespace + ".getId", member);
+			return result;
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public String getEmail(String id) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			String result = sqlsession.selectOne(namespace + ".getEmail", id);
+			return result;
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public void changePwd(Map<String, String> map) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".changePwd", map);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
 
 //	public int getArticleCount(String boardid, String category, String sentence) {
 //		SqlSession sqlsession = getSqlSessionFactory().openSession();

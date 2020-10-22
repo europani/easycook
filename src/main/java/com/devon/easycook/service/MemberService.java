@@ -38,6 +38,18 @@ public class MemberService {
 		return result;
 	}
 
+	public String getId(MemberDTO member) {
+		return memberDao.getId(member);
+	}
+
+	public String getEmail(String id) {
+		return memberDao.getEmail(id);
+	}
+
+	public void changePwd(Map<String, String> map) {
+		memberDao.changePwd(map);
+	}
+
 	
 	
 	

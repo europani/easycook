@@ -9,17 +9,23 @@ body {
   background-color: #FFFFFF;
 }
 
-.loginForm {
+/* .loginForm {
   position:sticky;
   width:300px;
   height:450px;
-  /* padding: 30px, 20px; */
+  padding: 30px, 20px;
   background-color:#FFFFFF;
   text-align:center;
-  /* top:50%; */
+  top:50%;
   left:35%;
   transform: translate( 50%, 10%);
- /*  border-radius: 15px; */
+  border-radius: 15px;
+} */
+
+.loginForm {
+  width:300px;
+  height:450px;
+  margin:0 auto;
 }
 
 .loginForm h2{
@@ -83,4 +89,8 @@ body {
 
 .bottomText {
   text-align: center;
+}
+
+.lgimg{
+   margin: 10px;
 }

@@ -66,7 +66,29 @@ public class MailSendService {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+          return authKey;
+    }
+    
+    public String sendPwdMail(String id, String email) {
+        String authKey = getKey(6);
 
+        try {
+            MailUtils sendMail = new MailUtils(mailSender);
+            sendMail.setSubject("비밀번호 인증번호 메일");
+            sendMail.setText(new StringBuffer().append("<h1>[비밀번호 인증번호]</h1>")
+            .append("<p>비밀번호 인증번호는 다음과 같습니다.</p>")
+            .append("<strong>")
+            .append(authKey)
+            .append("</strong>")
+            .toString());
+            sendMail.setFrom("hp304885@gmail.com", "easycook");
+            sendMail.setTo(email);
+            sendMail.send();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
           return authKey;
     }
 }

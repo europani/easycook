@@ -109,6 +109,16 @@ function sample6_execDaumPostcode() {
 			signUpForm.pwd.focus();
 			return;
 		}
+		if (signUpForm.rePwd.value == "") {
+			alert('비밀번호를 입력해주세요.');
+			signUpForm.rePwd.focus();
+			return;
+		}
+		if (signUpForm.pwd.value != signUpForm.rePwd.value) {
+			alert('비밀번호가 일치하지 않습니다.');
+			signUpForm.rePwd.focus();
+			return;
+		} 
 		if (signUpForm.name.value == "") {
 			alert('이름을 입력해주세요.');
 			signUpForm.name.focus();
@@ -155,6 +165,10 @@ function sample6_execDaumPostcode() {
 			<tr>
 				<th>비밀번호</th>
 				<td class="td1"><input type="password" name="pwd"> 영문/숫자포함 6자 이상</td>
+			</tr>
+			<tr>
+				<th>비밀번호확인</th>
+				<td class="td1"><input type="password" name="rePwd"></td>
 			</tr>
 			<tr>
 				<th>이 름</th>

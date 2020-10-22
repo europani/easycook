@@ -27,5 +27,27 @@
 	<update id="changeAuthCheck" parameterType="String">
 		UPDATE member SET email_auth_check = 1 WHERE id = #{id}
 	</update>
-
+	
+	<!-- 회원수정 -->
+	
+	<!-- 회원탈퇴 -->
+	
+	<!-- 아이디찾기 -->
+	<select id="getId" parameterType="Member" resultType="String">
+		SELECT id FROM member WHERE name = #{name}
+			 <if test="email1 != null">
+			 	AND email = #{email1}
+			 </if>
+			 <if test="tel != null">
+			 	AND tel = #{tel}
+			 </if>
+	</select>
+	<!-- 비밀번호변경(비밀번호 찾기시) -->
+	<select id="getEmail" parameterType="Member" resultType="String">
+		SELECT email FROM member WHERE id = #{id}
+	</select>
+	<!-- 비밀번호변경 -->
+	<update id="changePwd" parameterType="Hashmap">
+		UPDATE member SET pwd = #{pwd} WHERE id = #{id}
+	</update>
 </mapper>

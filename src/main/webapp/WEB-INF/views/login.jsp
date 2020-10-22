@@ -13,10 +13,17 @@
       <div class="passForm">
         <input type="password" class="pw" placeholder="PW" name="pwd">
       </div>
-      <button type="button" class="btn" onclick="button()">
-        LOG IN
-      </button>
-      <script>
+      <div class="bottomText">
+        Don't you have ID? <a href="signup">sign up</a>
+      </div>
+      <div id="login" style="text-align: center" class="lgimg">
+     	 <img width="223" src="/easycook/resources/images/login_btn.png" onclick="button()" />
+   	  </div>
+       <div id="kakao_id_login" style="text-align: center">
+   		<a href="https://kauth.kakao.com/oauth/authorize?client_id=0e5da3292d8e58d5694244ef5bc3539e&redirect_uri=http://localhost:8089/easycook/member/kakaologinCallback&response_type=code"> <img width="223" src="/easycook/resources/images/kakao_login_btn_medium_narrow.png" /></a>
+ 	   </div>
+    </form>
+    <script>
       function button() {
 			const loginForm = document.querySelector('.loginForm');
 			if (loginForm.id.value == "") {
@@ -32,8 +39,4 @@
 			loginForm.submit();
 		}
       </script>
-      <div class="bottomText">
-        Don't you have ID? <a href="signup">sign up</a>
-      </div>
-    </form>
  <jsp:include page="common/footer.jsp" />
