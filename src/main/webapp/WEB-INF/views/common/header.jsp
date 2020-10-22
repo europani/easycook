@@ -114,8 +114,8 @@
 								<a href="/easycook/food/best">BEST</a>
 								<a href="">한식</a>
 								<a href="">중식</a>
-								<a href="">양식</a>
 								<a href="">일식</a>
+								<a href="">양식</a>
 								<a href="">샐러드</a>
 							</div>
 						</li>
