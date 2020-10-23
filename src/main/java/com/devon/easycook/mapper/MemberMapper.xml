@@ -28,9 +28,22 @@
 		UPDATE member SET email_auth_check = 1 WHERE id = #{id}
 	</update>
 	
-	<!-- 회원수정 -->
+	<select id="getInfo" parameterType="String" resultType="Member">
+		SELECT name, email, tel, gender, zipcode, address FROM member WHERE id = #{id}
+	</select>
 	
+	<select id="getPwd" parameterType="String" resultType="String">
+		SELECT pwd FROM member WHERE id = #{id}
+	</select>
+	
+	<!-- 회원수정 -->
+	<update id="modify" parameterType="Member">
+		UPDATE member SET name=#{name}, email=#{email}, tel=#{tel}, gender=#{gender}, address=#{address} WHERE id=#{id}
+	</update>
 	<!-- 회원탈퇴 -->
+	<update id="delete" parameterType="String">
+		UPDATE member SET pwd=null, name=null, email=null, tel=null, birthday=null, gender=null, zipcode=null, address=null, point=-1, email_auth_key=null, email_auth_check=-1, wdr_date=sysdate WHERE id=#{id} 
+	</update>
 	
 	<!-- 아이디찾기 -->
 	<select id="getId" parameterType="Member" resultType="String">
@@ -38,8 +51,8 @@
 			 <if test="email1 != null">
 			 	AND email = #{email1}
 			 </if>
-			 <if test="tel != null">
-			 	AND tel = #{tel}
+			 <if test="tel2 != null">
+			 	AND tel = #{tel2}
 			 </if>
 	</select>
 	<!-- 비밀번호변경(비밀번호 찾기시) -->

@@ -1,13 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<form method="post" action="seekId" class="seekForm">
+<jsp:include page="common/header.jsp" />
+<form method="post" action="seekId" class="seekForm">
+<div>
+	<input type="radio" id="aaa" name="abcd" onchange="setDisplay()"> 등록한 이메일로 찾기
+		<div id="emailForm" style="display: none;">
+		<table>
+			<tr>
+				<td>이 름</td>
+				<td class="td1">
+					<input type="text" name="name" id="name1">
+				</td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td class="td1">
+					<input type="text" name="email1">
+				</td>
+			</tr>
+		</table>
+		</div>
+</div>
+<div>
+	<input type="radio" id="bbb" name="abcd" onchange="setDisplay()"> 등록한 전화번호로 찾기
+		<div id="telForm" style="display: none;">
+		<table>
+			<tr>
+				<td>이 름</td>
+				<td class="td1">
+					<input type="text" name="name" id="name2">
+				</td>
+			</tr>
+			<tr>
+				<td>핸드폰 번호</td>
+				<td class="td1">
+					<input type="text" name="tel2""> 
+				</td>
+			</tr>
+		</table>
+		</div>
+</div>
+	<input type="button" value="제출하기" onclick="button()"> 
+	<input type="reset" value="뒤로가기">
+</form>
+
+	<!-- <form method="post" action="seekId" class="seekForm">
 		<table width="720">
 			<h2 align="center">회원가입</h2>
 			<tr height="2" bgcolor="#000000">
@@ -53,7 +90,7 @@
 				</td>
 			</tr>
 		</table>
-	</form>
+	</form> -->
 <script>
 	const emailForm = document.querySelector('#emailForm');
 	const telForm = document.querySelector('#telForm');
@@ -67,19 +104,23 @@
 			seekForm.submit();
 		}
       
-      function email() {
-    	  emailForm.style.display = "block";
-    	  emailForm.disabled = "false"
-    	  telForm.style.display = "none";
-    	  telForm.disabled = "true"
-      }
+      function setDisplay(){
+    	    if($('input:radio[id=aaa]').is(':checked')){	// email
+    	        $('#emailForm').show();
+    	        $('#name1').attr("disabled", false);
+    	        $('input[name=email1]').attr("disabled", false);
+    	        $('#telForm').hide();
+    	        $('#name2').attr("disabled", true);
+    	        $('input[name=tel2]').attr("disabled", true);
+    	    }else{		// tel
+    	    	$('#telForm').show();
+    	    	$('#name2').attr("disabled", false);
+    	    	$('input[name=tel2]').attr("disabled", false);
+    	        $('#emailForm').hide();
+    	        $('#name1').attr("disabled", true);
+    	        $('input[name=email1]').attr("disabled", true);
+    	    }
+    	}
       
-      function tel() {
-    	  telForm.style.display = "block";
-    	  telForm.disabled = "false"
-    	  emailForm.style.display = "none";
-    	  emailForm.disabled = "true"
-      }
       </script>
-</body>
-</html>
+ <jsp:include page="common/footer.jsp" />

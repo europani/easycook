@@ -4,22 +4,22 @@ import java.sql.Timestamp;
 
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class MemberDTO {
 	private String id;
 	private String pwd;
 	private String name;
-	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	private String email;
 	private String agency;
-	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	private String tel;
 	private String birthday;
 	private String gender;
 	private String zipcode;
-	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	private String address;
 	private int point;
 	private String emailAuthKey;
@@ -38,16 +38,18 @@ public class MemberDTO {
 	private String address3;
 	
 	
-	public String getEmail() {
-		return getEmail1() + "@" + getEmail2();
+	public void setEmail() {
+		this.email = getEmail1() + "@" + getEmail2();
 	}
 	
-	public String getTel() {
-		return getTel1() + getTel2() + getTel3();
+	public void setTel() {
+		this.tel = getTel1() + "-" +  getTel2() + "-" + getTel3();
 	}
 	
-	public String getAddress() {
-		return getAddress1() + " " + getAddress2() + getAddress3();
+	public void setAddress() {
+		this.address = getAddress1() + "," + getAddress2() + getAddress3();
 	}
+	
+	
 	
 }

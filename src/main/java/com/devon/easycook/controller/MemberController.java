@@ -1,6 +1,7 @@
 package com.devon.easycook.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -87,6 +88,7 @@ public class MemberController {
 	
 	@PostMapping("/signup")
 	public String signup(@ModelAttribute MemberDTO member) {
+		member.setEmail();		member.setTel();		member.setAddress();
 		// 암호화
 		String pwd = member.getPwd();
 		String CypPwd = passEncoder.encode(pwd);
@@ -128,7 +130,7 @@ public class MemberController {
 		return "seekId";
 	} 
 	@PostMapping("/seekId")
-	public String seekId(Model model, @ModelAttribute MemberDTO member) {	
+	public String seekId(Model model, @ModelAttribute MemberDTO member) {
 		String id = memberService.getId(member);
 		model.addAttribute("id", id);
 		return "seekIdOk";			// 아이디 알려줌
@@ -205,8 +207,62 @@ public class MemberController {
         memberService.changePwd(map);
 		return "redirect:/";			
 	} 
+
+	@GetMapping("/modify")
+	public String modifyForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("member");
+		String id = dto.getId();
+		
+		MemberDTO member = memberService.getInfo(id);
+		String email = member.getEmail();
+		String tel = member.getTel();
+		String address = member.getAddress();
+		
+		member.setEmail1(email.substring(0, email.indexOf("@")));
+		member.setEmail2(email.substring(email.indexOf("@")+1));
+		member.setTel1(tel.substring(0, tel.indexOf("-")));
+		member.setTel2(tel.substring(tel.indexOf("-")+1, tel.lastIndexOf("-")));
+		member.setTel3(tel.substring(tel.lastIndexOf("-")+1));
+		member.setAddress1(address.substring(0, address.indexOf(",")));
+		member.setAddress2(address.substring(address.indexOf(",")+1, address.indexOf("(")-1));
+		member.setAddress3(address.substring(address.indexOf("(")));
+		model.addAttribute("info", member);
+		
+		return "modify";
+	} 
 	
+	@PostMapping("/modify")
+	public String modify(@ModelAttribute MemberDTO member) {
+		member.setEmail();		member.setTel();		member.setAddress();
+		String dbPwd = memberService.getPwd(member.getId());
+		
+		boolean passMatch = passEncoder.matches(member.getPwd(), dbPwd);
+		if (passMatch) {
+			memberService.modify(member);
+			
+			return "redirect:/";
+		} else {
+			return "redirect:/member/modify";
+		}
+	}
 	
+	@GetMapping("/delete")
+	public String delete() {
+		return "delete";
+	}
+	@PostMapping("/delete")
+	public String delete(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
+		String dbPwd = memberService.getPwd(id);
+		boolean passMatch = passEncoder.matches(pwd, dbPwd);
+		if (passMatch) {
+			memberService.delete(id);
+			return "redirect:/";
+		} else {
+			return "redirect:/member/delete";
+		}
+	}
+
 	@GetMapping(value = "/kakaologinCallback", produces="application/json;charset=UTF-8")
 	public @ResponseBody String kakaoCallback(String code) {
 		

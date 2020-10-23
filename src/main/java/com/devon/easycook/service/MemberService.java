@@ -1,11 +1,10 @@
 package com.devon.easycook.service;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.repository.MemberDAO;
@@ -34,14 +33,21 @@ public class MemberService {
 		if (result) {
 			memberDao.changeAuthCheck(map.get("id"));
 		}
-		
 		return result;
+	}
+	
+	public MemberDTO getInfo(String id) {
+		return memberDao.getInfo(id);
 	}
 
 	public String getId(MemberDTO member) {
 		return memberDao.getId(member);
 	}
-
+	
+	public String getPwd(String pwd) {
+		return memberDao.getPwd(pwd);
+	}
+	
 	public String getEmail(String id) {
 		return memberDao.getEmail(id);
 	}
@@ -50,7 +56,11 @@ public class MemberService {
 		memberDao.changePwd(map);
 	}
 
+	public void modify(MemberDTO member) {
+		memberDao.modify(member);
+	}
 	
-	
-	
+	public void delete(String id) {
+		memberDao.delete(id);
+	}
 }

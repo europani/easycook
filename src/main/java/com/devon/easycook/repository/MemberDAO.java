@@ -1,6 +1,7 @@
 package com.devon.easycook.repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -68,11 +69,28 @@ public class MemberDAO extends AbstractMybatisDAO {
 		}
 	}
 	
+	public MemberDTO getInfo(String id) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".getInfo", id);
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
 	public String getId(MemberDTO member) {
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
 		try {
-			String result = sqlsession.selectOne(namespace + ".getId", member);
-			return result;
+			return sqlsession.selectOne(namespace + ".getId", member);
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	public String getPwd(String pwd) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".getPwd", pwd);
 		} finally {
 			sqlsession.close();
 		}
@@ -81,8 +99,7 @@ public class MemberDAO extends AbstractMybatisDAO {
 	public String getEmail(String id) {
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
 		try {
-			String result = sqlsession.selectOne(namespace + ".getEmail", id);
-			return result;
+			return sqlsession.selectOne(namespace + ".getEmail", id);
 		} finally {
 			sqlsession.close();
 		}
@@ -100,6 +117,34 @@ public class MemberDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
+
+	public void modify(MemberDTO member) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".modify", member);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	public void delete(String id) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".delete", id);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+
 
 //	public int getArticleCount(String boardid, String category, String sentence) {
 //		SqlSession sqlsession = getSqlSessionFactory().openSession();

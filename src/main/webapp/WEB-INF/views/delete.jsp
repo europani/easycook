@@ -109,7 +109,13 @@
 	      <br>
 	      <h4>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 재인증 해주세요</h4>
 	      <br>
-		  <h4><input type="text">&nbsp;&nbsp;<button type="button" class="btn-search">확인</button></h4>
+		  <h4>
+		  	<form method="post" action="delete">
+		  		<input type="hidden" name="id" value="${member.id}">
+			  	<input type="password" name="pwd" >&nbsp;&nbsp;
+			  	<button type="button" class="btn-search" onclick="submit()">탈퇴하기</button>
+		  	</form>
+		  </h4>
 		  <br>		           
        </div>
 		</div>
