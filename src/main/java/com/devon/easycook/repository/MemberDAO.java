@@ -36,6 +36,15 @@ public class MemberDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
+	
+	public MemberDTO kakaologin(String nickname) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".kakaologin", nickname);
+		} finally {
+			sqlsession.close();
+		}
+	}
 
 	public void insertAuthKey(Map<String, String> map) {
 		SqlSession sqlsession = getSqlSessionFactory().openSession();

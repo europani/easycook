@@ -19,6 +19,10 @@ public class MemberService {
 		return memberDao.login(map);
 	}
 	
+	public MemberDTO kakaologin(String nickname) {
+		return memberDao.kakaologin(nickname);
+	}
+	
 	public void signup(MemberDTO member) {
 		memberDao.signup(member);
 	}

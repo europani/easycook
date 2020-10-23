@@ -42,6 +42,7 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	
 	@Autowired
 	MailSendService mss;
 	
@@ -264,7 +265,7 @@ public class MemberController {
 	}
 
 	@GetMapping(value = "/kakaologinCallback", produces="application/json;charset=UTF-8")
-	public @ResponseBody String kakaoCallback(String code) {
+	public String kakaoCallback(HttpServletRequest request, String code) {
 		
 		//POST방식으로 key=value 데이터를 요청 (카카오쪽으로)
 		RestTemplate rt = new RestTemplate();
@@ -353,6 +354,102 @@ public class MemberController {
 		System.out.println("카카오 아이디(번호):" + kakaoProfile.getId());
 		System.out.println("카카오 닉네임:" + kakaoProfile.getKakao_account().getProfile().nickname);
 		
-		return response2.getBody();
+		HttpSession session = request.getSession();
+		System.out.println("오류잡자");
+		MemberDTO member = memberService.kakaologin(kakaoProfile.getKakao_account().getProfile().nickname);
+		System.out.println("오류잡자1");
+		
+		session.setAttribute("member", member);
+		
+		/*		if (passMatch && authKey == 1) {	// 로그인
+		session.setAttribute("member", member);
+		return "redirect:/";
+	} else if (passMatch) {
+		return "authNotYet";	// 수정예정
+	} else {							// 로그인실패
+		return "redirect:/member/login";
+	}*/
+		
+		return "redirect:/member/login";
+	}
+	
+	@GetMapping(value = "/kakaosignup", produces="application/json;charset=UTF-8")
+	public String kakaosignup(HttpServletRequest request, String code, Model model) {
+		
+		//POST방식으로 key=value 데이터를 요청 (카카오쪽으로)
+		RestTemplate rt = new RestTemplate();
+		
+		//HttpHeader 오브젝트 생성
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content_type", "application/x-www-form-urlencoded:charset=utf-8");
+		
+		//HttpBody 오브젝트 생성
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		params.add("grant_type", "authorization_code");
+		params.add("client_id", "0e5da3292d8e58d5694244ef5bc3539e");
+		params.add("redirect_uri", "http://localhost:8089/easycook/member/kakaosignup");
+		params.add("code", code);
+		
+		//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
+		HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest =
+				new HttpEntity<MultiValueMap<String,String>>(params, headers);
+		
+		//Http 요청하기 - Post 방식으로 - 그리고 response 변수의 응답을 받음
+		ResponseEntity<String> response = rt.exchange(
+				"https://kauth.kakao.com/oauth/token",
+				HttpMethod.POST,
+				kakaoTokenRequest,
+				String.class
+				);
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		OAuthToken oauthToken = null;
+		
+		try {
+			oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
+		} catch (JsonMappingException e) {
+			
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			
+			e.printStackTrace();
+		}
+
+		RestTemplate rt2 = new RestTemplate();
+						
+		HttpHeaders headers2 = new HttpHeaders();
+		
+		headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token() );
+				
+		headers2.add("Content_type", "application/x-www-form-urlencoded;charset=utf-8");
+
+		HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest2 =
+						new HttpEntity<>(headers2);
+
+		ResponseEntity<String> response2 = rt2.exchange("https://kapi.kakao.com/v2/user/me", HttpMethod.POST,
+					kakaoProfileRequest2, String.class);
+				
+		ObjectMapper objectMapper2 = new ObjectMapper();
+				
+		KakaoDTO kakaoProfile = null;
+
+				
+		try {
+			kakaoProfile = objectMapper2.readValue(response2.getBody(), KakaoDTO.class);	
+
+		} catch (JsonMappingException e) {
+					
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+					
+			e.printStackTrace();
+		}		
+		
+		model.addAttribute("kakaoId", kakaoProfile.getId());
+		
+		model.addAttribute("kakaoName", kakaoProfile.getProperties().nickname);
+		
+		return "kakaosignup";
 	}
 }

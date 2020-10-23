@@ -16,7 +16,7 @@ import com.devon.easycook.util.MailUtils;
 public class MailSendService {
 	
 	int size;
-    @Resource(name = "mailSender")
+	@Resource(name = "mailSender")
     private JavaMailSenderImpl mailSender;
 
     //인증키 생성

@@ -16,6 +16,10 @@
 		SELECT id, pwd, email_auth_check AS emailAuthCheck FROM member WHERE id = #{id}
 	</select>
 	
+	<select id="kakaologin" parameterType="String" resultType="Member">
+		SELECT id, pwd, email_auth_check AS emailAuthCheck FROM member WHERE name = #{name}
+	</select>
+	
 	<update id="insertAuthKey" parameterType="Hashmap">
 		UPDATE member SET email_auth_key=#{authKey} WHERE id = #{id}
 	</update>
