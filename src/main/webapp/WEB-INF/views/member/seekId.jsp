@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <form method="post" action="seekId" class="seekForm">
 <div>
 	<input type="radio" id="aaa" name="abcd" onchange="setDisplay()"> 등록한 이메일로 찾기
@@ -123,4 +123,4 @@
     	}
       
       </script>
- <jsp:include page="common/footer.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />

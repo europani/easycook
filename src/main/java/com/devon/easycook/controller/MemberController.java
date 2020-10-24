@@ -51,7 +51,7 @@ public class MemberController {
 	
 	@GetMapping("/login")
 	public String loginForm() {
-		return "login";
+		return "member/login";
 	} 
 	
 	@PostMapping("/login")
@@ -69,7 +69,7 @@ public class MemberController {
 			session.setAttribute("member", member);
 			return "redirect:/";
 		} else if (passMatch) {
-			return "authNotYet";	// 수정예정
+			return "member/authNotYet";	// 수정예정
 		} else {							// 로그인실패
 			return "redirect:/member/login";
 		}
@@ -84,7 +84,7 @@ public class MemberController {
 	@GetMapping("/signup")
 	public String signup() {
 		System.out.println("회원가입을 시작합니다.");
-		return "signup";
+		return "member/signup";
 	}
 	
 	@PostMapping("/signup")
@@ -108,7 +108,7 @@ public class MemberController {
 
         memberService.insertAuthKey(map);
 		
-		return "signupOk";
+		return "member/signupOk";
 	}
 	
 	@GetMapping("/signupCheck")
@@ -121,25 +121,25 @@ public class MemberController {
         
         boolean result = memberService.checkAuthKey(map);
 		if (result) {
-			return "authen";
+			return "member/authen";
 		}
 		return "index";
 	}
 	
 	@GetMapping("/seekId")
 	public String seekIdForm() {
-		return "seekId";
+		return "member/seekId";
 	} 
 	@PostMapping("/seekId")
 	public String seekId(Model model, @ModelAttribute MemberDTO member) {
 		String id = memberService.getId(member);
 		model.addAttribute("id", id);
-		return "seekIdOk";			// 아이디 알려줌
+		return "member/seekIdOk";			// 아이디 알려줌
 	} 
 	
 	@GetMapping("/seekPwd")
 	public String seekPwdForm() {
-		return "seekPwd";
+		return "member/seekPwd";
 	} 
 	@PostMapping("/seekPwd")
 	public String seekPwd(HttpServletResponse response,
@@ -157,7 +157,7 @@ public class MemberController {
 			cookie.setMaxAge(60*10);
 			response.addCookie(cookie2);
 			
-			return "authenPwd";			// 인증번호 입력
+			return "member/authenPwd";			// 인증번호 입력
 		} else {
 			return "javascript:history.back()";
 		}
@@ -172,7 +172,7 @@ public class MemberController {
 
 		boolean result = inputKey.equals(authKey);
 		if (result) {
-			return "changePwd";			// 비밀번호 변경
+			return "member/changePwd";			// 비밀번호 변경
 		} else {
 			return "javascript:history.back()";
 		}
@@ -180,7 +180,7 @@ public class MemberController {
 	
 	@GetMapping("/changePwd")
 	public String changePwdForm() {
-		return "changePwd";
+		return "member/changePwd";
 	} 
 	@PostMapping("/changePwd")
 	public String changePwd(HttpServletRequest request, @RequestParam("pwd") String pwd) {	
@@ -230,7 +230,7 @@ public class MemberController {
 		member.setAddress3(address.substring(address.indexOf("(")));
 		model.addAttribute("info", member);
 		
-		return "modify";
+		return "member/modify";
 	} 
 	
 	@PostMapping("/modify")
@@ -250,7 +250,7 @@ public class MemberController {
 	
 	@GetMapping("/delete")
 	public String delete() {
-		return "delete";
+		return "member/delete";
 	}
 	@PostMapping("/delete")
 	public String delete(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
@@ -450,6 +450,6 @@ public class MemberController {
 		
 		model.addAttribute("kakaoName", kakaoProfile.getProperties().nickname);
 		
-		return "kakaosignup";
+		return "member/kakaosignup";
 	}
 }

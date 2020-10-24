@@ -1,4 +1,4 @@
-<jsp:include page="common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <head>
@@ -105,7 +105,7 @@
   <body>
   
     <div id="jb-container">
-    <jsp:include page="common/mypageSidebar.jsp" />
+    <jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
       <div id="jb-content">
         <h3>나의 혜택</h3>
         <hr>
@@ -169,4 +169,4 @@
 </div>
 </body>
   
- <jsp:include page="common/footer.jsp" /> 
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />

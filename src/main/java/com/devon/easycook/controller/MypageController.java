@@ -20,7 +20,7 @@ import com.devon.easycook.service.MemberService;
 import com.devon.easycook.service.MypageService;
 
 @Controller
-@RequestMapping("/mypage/*")
+@RequestMapping("/mypage")
 public class MypageController {
 	
 	@Autowired
@@ -28,7 +28,7 @@ public class MypageController {
 	
 	@GetMapping("/cart")
 	public String cart() {
-		return "cart";
+		return "mypage/cart";
 	}
 	@GetMapping("orders")
 	public String orders(Model model) {
@@ -51,20 +51,20 @@ public class MypageController {
 		System.out.println("주문내역출력 : " + orderList);
 		
 		model.addAttribute("orders", orderList);
-		return "orders";
+		return "mypage/orders";
 	}
 
 	@GetMapping("/wishlist")
 	public String wishlist() {
-		return "wishlist";
+		return "mypage/wishlist";
 	}
-	@GetMapping("/cancle")
+	@GetMapping("/cancel")
 	public String cancle() {
-		return "cancle";
+		return "mypage/cancel";
 	}
 	@GetMapping("/coupon")
 	public String coupon() {
-		return "coupon";
+		return "mypage/coupon";
 	}
 	
 	
