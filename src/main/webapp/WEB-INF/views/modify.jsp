@@ -121,7 +121,7 @@
 			<tr>
 				<th>이메일</th>
 				<td class="td1">
-					<input type="text" name="email1" value="${info.email1}" onfocus="this.value='';"> @ 
+					<input type="text" name="email1" value="${info.email1}"> @ 
 					<input type="text" name="email2" value="${info.email2}" readonly> 
 					<select name="emailBox" onchange="email_change()">
 						<option value="0" disabled selected>선택하세요</option>
@@ -201,6 +201,7 @@
 	}
 
 	document.signUpForm.tel1.value='${info.tel1}';
+	document.signUpForm.emailBox.value='${info.email2}';
 </script>
 </body>
 <jsp:include page="common/footer.jsp" /> 
