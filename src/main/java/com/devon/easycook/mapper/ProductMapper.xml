@@ -11,7 +11,7 @@
 		ORDER BY product_name 
 	</select>
 	<!-- 상품 상세 -->
-	<select id="productDetail" resultType="string">
+	<select id="productDetail" resultType="Product">
 		SELECT product_no AS productNo, category AS category, product_name AS productName,  product_detail AS productDetail, product_image AS productImage, 
 			product_price AS productPrice, product_stock AS productStock,  product_amount AS productAmount, product_time AS productTime 
 		FROM product

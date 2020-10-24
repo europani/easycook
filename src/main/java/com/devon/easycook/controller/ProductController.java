@@ -29,8 +29,9 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{productNo}")
-	public String showDetailProduct(Model model, @PathVariable("productNo") int productNo) {
+	public String showDetailProduct(@PathVariable("productNo") int productNo, Model model) {
 		ProductDTO detail = productService.productDetail(productNo);
+		
 		model.addAttribute("detail", detail);
 		return "productDetail";
 	}

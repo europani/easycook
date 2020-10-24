@@ -32,7 +32,7 @@
     						<h3><a href="#">${row.productName}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price"><span><fmt:formatNumber value="${row.productPrice}" pattern="###,###,###"/></span></p>
+		    						<p class="price"><span><fmt:formatNumber value="${row.productPrice}" pattern="###,###,###"/>원</span></p>
 		    					</div>
 	    					</div>
 	    					
