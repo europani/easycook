@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BoardController {
 	@GetMapping("/faq")
 	public String faq() {
-		return "faq";
+		return "board/faq";
 	}
 	@GetMapping("/event")
 	public String event() {
-		return "event";
+		return "board/event";
 	}
 	
 }

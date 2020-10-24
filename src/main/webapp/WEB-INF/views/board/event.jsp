@@ -1,4 +1,4 @@
-<jsp:include page="common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
@@ -8,7 +8,7 @@
 </style>
 <body>
 	<section class="ftco-section">
-	<jsp:include page="common/sidebar.jsp" />
+	<jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
 	<div class="container" style="padding-left:70px;">
 		<h2>이벤트</h2>
 		<table class="event">
@@ -38,4 +38,4 @@
 		</table>
 	</div>
 	</section>
-<jsp:include page="common/footer.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />

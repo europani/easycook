@@ -1,4 +1,4 @@
-<jsp:include page="common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 회원가입style시작 -->
@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<th>아이디</th>
-				<td class="td1"><input type="text" name="id" value="${kakaoId }"></td>
+				<td class="td1"><input type="text" name="id"></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -44,7 +44,7 @@
 			</tr>
 			<tr>
 				<th>이 름</th>
-				<td class="td1"><input type="text" name="name" value="${kakaoName }"></td>
+				<td class="td1"><input type="text" name="name"></td>
 			</tr>
 			<tr>
 				<th>이메일</th>
@@ -113,4 +113,4 @@
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 
-<jsp:include page="common/footer.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />

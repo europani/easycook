@@ -1,4 +1,4 @@
-<jsp:include page="common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <head>
@@ -85,7 +85,6 @@
     </style>
   </head>
   <body>
-    <jsp:include page="common/sidebar.jsp" />
     <div id="jb-container">
       <div id="jb-content">
         <h2>회원탈퇴</h2>
@@ -175,4 +174,4 @@ function myAccFunc(id) {
   }
 }
 </script>
- <jsp:include page="common/footer.jsp" /> 
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />

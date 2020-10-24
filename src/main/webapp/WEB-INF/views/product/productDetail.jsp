@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<jsp:include page="common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <body class="goto-here">
 	<section class="ftco-section">
 		<div class="container">
@@ -247,5 +247,5 @@
 		    
 		});
 	</script>
-</body>
-<jsp:include page="common/footer.jsp" />
+  </body>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />

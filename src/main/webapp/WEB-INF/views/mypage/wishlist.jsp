@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<jsp:include page="common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
   <section class="ftco-section ftco-cart">
-<jsp:include page="common/mypageSidebar.jsp" />
+<jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
       <div class="container"> 
       <h2>찜목록</h2>
         <hr>
@@ -155,7 +155,7 @@
    </script>
 
 
-<jsp:include page="common/footer.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 
 

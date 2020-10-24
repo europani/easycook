@@ -20,6 +20,7 @@
 #sidebar-wrapper .sidebar-heading {
   padding: 1.875rem 1.25rem;
   font-size: 1.3rem;
+  text-align: center;
 }
 
 #sidebar-wrapper .list-group {

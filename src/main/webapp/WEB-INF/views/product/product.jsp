@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:include page="common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
   <body class="goto-here">
     <section class="ftco-section">
     	<div class="container"> 
@@ -77,7 +77,7 @@
     	</div>
     </section>
   </body>
-<jsp:include page="common/footer.jsp" />
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 
 <!-- <div class="col-md-6 col-lg-3 ftco-animate">  세일들어가있는 상품

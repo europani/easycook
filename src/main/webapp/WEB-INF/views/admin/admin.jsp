@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +10,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Simple Sidebar - Start Bootstrap Template</title>
+  <title>easycook 관리자 페이지</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="../resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/easycook/resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../resources/admin/css/simple-sidebar.css" rel="stylesheet">
+  <link href="/easycook/resources/admin/css/simple-sidebar.css" rel="stylesheet">
 
 </head>
 
@@ -24,14 +26,12 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Start Bootstrap </div>
+      <div class="sidebar-heading">관리자홈</div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+        <a href="/easycook/admin/member" class="list-group-item list-group-item-action bg-light">회원관리</a>
+        <a href="/easycook/admin/product" class="list-group-item list-group-item-action bg-light">상품관리</a>
+        <a href="/easycook/admin/orders" class="list-group-item list-group-item-action bg-light">주문관리</a>
+        <a href="/easycook/admin/board" class="list-group-item list-group-item-action bg-light">게시물관리</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -49,10 +49,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/easycook/admin">관리자Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="/easycook">이지쿡</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,8 +81,8 @@
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
+  <script src="/easycook/resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>

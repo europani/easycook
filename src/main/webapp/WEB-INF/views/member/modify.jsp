@@ -1,4 +1,4 @@
-<jsp:include page="common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -91,7 +91,7 @@
 	}
     </style>
   <body>
-    <jsp:include page="common/mypageSidebar.jsp" />
+    <jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
     <div id="jb-container">
       <div id="jb-content">
         <h2>회원수정</h2>
@@ -204,4 +204,4 @@
 	document.signUpForm.emailBox.value='${info.email2}';
 </script>
 </body>
-<jsp:include page="common/footer.jsp" /> 
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />

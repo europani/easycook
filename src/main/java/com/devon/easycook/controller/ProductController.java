@@ -25,7 +25,7 @@ public class ProductController {
 	public String showAllProduct(Model model) {
 		List<ProductDTO> list = productService.productList();
 		model.addAttribute("list", list);
-		return "product";
+		return "product/product";
 	}
 	
 	@GetMapping("/{productNo}")
@@ -33,7 +33,7 @@ public class ProductController {
 		ProductDTO detail = productService.productDetail(productNo);
 		
 		model.addAttribute("detail", detail);
-		return "productDetail";
+		return "product/productDetail";
 	}
 	
 	/*
