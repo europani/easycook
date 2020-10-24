@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.devon.easycook.domain.ProductDTO;
@@ -30,7 +29,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{productNo}")
-	public String showDetailProduct(Model model, @RequestParam("productNo") int productNo) {
+	public String showDetailProduct(Model model, @PathVariable("productNo") int productNo) {
 		ProductDTO detail = productService.productDetail(productNo);
 		model.addAttribute("detail", detail);
 		return "productDetail";

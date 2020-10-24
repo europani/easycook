@@ -1,0 +1,317 @@
+[33mcommit 168665b252805c5b0d5f7894e2f4623fad397531[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: europani <europani1212@gmail.com>
+Date:   Sat Oct 24 15:52:41 2020 +0900
+
+    websocket
+
+[33mcommit 91cac30662df927471a799369888d01854551f12[m
+Author: ta99uu <71614647+ta99uu@users.noreply.github.com>
+Date:   Fri Oct 23 23:49:24 2020 +0900
+
+    jm kakao login/signup
+
+[33mcommit f97b4b3aedbbd593db67db7a616dbff65df8dd06[m
+Author: europani <europani1212@gmail.com>
+Date:   Fri Oct 23 20:25:22 2020 +0900
+
+    member done
+
+[33mcommit c669522a911b28b2c813d3ca3f91dc4368cce64d[m
+Merge: 8700ed8 ad7f891
+Author: europani <europani1212@gmail.com>
+Date:   Thu Oct 22 19:40:55 2020 +0900
+
+    Merge branch 'main' of https://github.com/europani/easycook into main
+
+[33mcommit 8700ed8396edef324ff55279c92c59d83a82d472[m
+Author: europani <europani1212@gmail.com>
+Date:   Thu Oct 22 19:39:59 2020 +0900
+
+    auth done
+
+[33mcommit ad7f891358c37d2687705f6d13b761cfcc2b4d8b[m
+Author: rmsgkr <dlrmsgkr95@gmail.com>
+Date:   Thu Oct 22 16:59:13 2020 +0900
+
+    css, foodController
+
+[33mcommit 4ff295ef19a96c0aeb49039b1ff5cba6637b5e25[m
+Author: europani <europani1212@gmail.com>
+Date:   Wed Oct 21 18:58:22 2020 +0900
+
+    email authen
+
+[33mcommit 172cad666cbe0636b3aaa7f88abf33ff0dea791a[m
+Author: potosound3 <potosound2@naver.com>
+Date:   Tue Oct 20 19:37:13 2020 +0900
+
+    footer
+
+[33mcommit ed60fc502ea5c9d8c1289473028ff98d44eb30ed[m
+Merge: 61ffd03 fd52dfb
+Author: park-sung-min <wnwkr160@naver.com>
+Date:   Tue Oct 20 19:30:46 2020 +0900
+
+    Merge branch 'main' into psm
+
+[33mcommit 61ffd0327335d4d73af96995cd607aab5abfe980[m
+Author: park-sung-min <wnwkr160@naver.com>
+Date:   Tue Oct 20 19:30:09 2020 +0900
+
+    view
+
+[33mcommit fd52dfb558d8c103782c193849dbad0394e49692[m
+Author: rmsgkr <dlrmsgkr95@gmail.com>
+Date:   Tue Oct 20 19:21:36 2020 +0900
+
+    css and mypage update
+
+[33mcommit d3e7d68624851ea0feb1a2b16de44ffe33babbbe[m
+Author: rmsgkr <dlrmsgkr95@gmail.com>
+Date:   Tue Oct 20 19:20:35 2020 +0900
+
+    css and mypage update
+
+[33mcommit 1f5c2cffb2485c3574b4fcea80faee2e0f930471[m
+Author: park-sung-min <wnwkr160@naver.com>
+Date:   Tue Oct 20 17:33:45 2020 +0900
+
+    login.jsp test
+
+[33mcommit 7dd73cc2f8600a3a1e5a8a282cf5b12e04a8e731[m
+Merge: 8ef1e84 eae6570
+Author: park-sung-min <wnwkr160@naver.com>
+Date:   Tue Oct 20 17:32:10 2020 +0900
+
+    Merge branch 'main' into psm
+
+[33mcommit 8ef1e8421ca662031bc1b9531e9ec0a6fe75128a[m
+Author: park-sung-min <wnwkr160@naver.com>
+Date:   Tue Oct 20 17:03:06 2020 +0900
+
+    change ~ing
+
+[33mcommit eae657092d6b6fb55ed09037acbc8426ce767208[m
+Author: europani <europani1212@gmail.com>
+Date:   Tue Oct 20 15:21:03 2020 +0900
+
+    singup done
+
+[33mcommit fae55750fd20e445a68e1b9e9b45697f17c6971b[m
+Author: europani <europani1212@gmail.com>
+Date:   Tue Oct 20 14:10:08 2020 +0900
+
+    signup중
+
+[33mcommit df444f011f5a5cb7066a2d4706f5c2ba99cfb288[m
+Author: europani <europani1212@gmail.com>
+Date:   Mon Oct 19 19:07:11 2020 +0900
+
+    join ~ing
+
+[33mcommit 9a92067e718e7d657879b285e8e724f4ac489d98[m
+Merge: bce98b8 516de3f
+Author: europani <europani1212@gmail.com>
+Date:   Mon Oct 19 15:17:59 2020 +0900
+
+    conflict fixed
+
+[33mcommit bce98b854295fea44924d72ee6706eba6aac1957[m
+Author: europani <europani1212@gmail.com>
+Date:   Mon Oct 19 14:54:32 2020 +0900
+
+    login, signup
+
+[33mcommit 516de3f466f1fe8a0b25da44178b4710db665f3e[m
+Author: ta99uu <wjd8297@naver.com>
+Date:   Mon Oct 19 14:50:06 2020 +0900
+
+    정민 10-19 2:48
+
+[33mcommit f45df4857c535a39a9a956c89923f78d12a180fe[m
+Author: name <phr038942@gmail.com>
+Date:   Mon Oct 19 08:57:47 2020 +0900
+
+    1018 mypage
+
+[33mcommit b124dce178376514db6c0504b39e7c8755fae32b[m
+Author: name <phr038942@gmail.com>
+Date:   Sun Oct 18 23:31:24 2020 +0900
+
+    mypage_1018
+
+[33mcommit abdbcc889446b515011dc2dfe2456a4e4fae6c44[m
+Author: name <phr038942@gmail.com>
+Date:   Sun Oct 18 23:22:50 2020 +0900
+
+    mypage 1018
+
+[33mcommit 077a121bc2abb2b1e2a98aa5f9bc47ca7051992d[m
+Author: name <phr038942@gmail.com>
+Date:   Sun Oct 18 22:59:35 2020 +0900
+
+    mypage01
+
+[33mcommit 4b65ad83b4522632c447ced5c259e0c74cbfbf69[m
+Author: name <phr038942@gmail.com>
+Date:   Sun Oct 18 22:28:02 2020 +0900
+
+    update orderList2
+
+[33mcommit ef9eedc3b90983fc40b72223d106cd2b824fb5fc[m
+Author: name <phr038942@gmail.com>
+Date:   Sun Oct 18 22:25:51 2020 +0900
+
+    update orderList
+
+[33mcommit 2369c69b96b3cc6ad85744933f02106d5919d945[m
+Merge: 185bf00 6848ce3
+Author: europani <europani1212@gmail.com>
+Date:   Sun Oct 18 21:59:15 2020 +0900
+
+    Merge branch 'main' into psi
+
+[33mcommit 185bf003f3059f8844e6e096c00f6b5ec0e17291[m
+Author: europani <europani1212@gmail.com>
+Date:   Sun Oct 18 21:57:14 2020 +0900
+
+    mybatis xml
+
+[33mcommit 6848ce3d9b54f94725f675f59cc54fbf2cb50ddb[m
+Author: rmsgkr <dlrmsgkr95@gmail.com>
+Date:   Sun Oct 18 21:51:01 2020 +0900
+
+    sidebar change
+
+[33mcommit 67c4f99abc5542f908426d4085f1240355a24536[m
+Author: europani <europani1212@gmail.com>
+Date:   Sun Oct 18 12:36:36 2020 +0900
+
+    header footer fixed
+
+[33mcommit a3b2580741061fb10df1f72511b428bc40a6582d[m
+Author: name <phr038942@gmail.com>
+Date:   Sun Oct 18 11:49:57 2020 +0900
+
+    phr-mypage틀 추가
+
+[33mcommit 343a86bb31c74c39bc9339291fe407670bf69e97[m
+Merge: 19a8668 2b497e4
+Author: ta99uu <71614647+ta99uu@users.noreply.github.com>
+Date:   Sun Oct 18 00:28:47 2020 +0900
+
+    main + jm_1 merge
+
+[33mcommit 2b497e4f5794d5985cec837dc8e44cc7311dc153[m
+Author: ta99uu <71614647+ta99uu@users.noreply.github.com>
+Date:   Sun Oct 18 00:27:42 2020 +0900
+
+    jm_1 10-18- 24:27
+
+[33mcommit 19a8668dd328aa6466d4a98cc181faf13acf9983[m
+Author: ta99uu <71614647+ta99uu@users.noreply.github.com>
+Date:   Sat Oct 17 15:05:28 2020 +0900
+
+    no.2 jm 2020-10-17
+
+[33mcommit 51b221eca54e7e90ca9a586210bf589e221e5e93[m
+Author: ta99uu <71614647+ta99uu@users.noreply.github.com>
+Date:   Sat Oct 17 01:29:00 2020 +0900
+
+    no.1 branch
+
+[33mcommit b75b6955a95c69118aca101d6dc9854222942839[m
+Author: ta99uu <71614647+ta99uu@users.noreply.github.com>
+Date:   Sat Oct 17 00:36:33 2020 +0900
+
+    upload memJoin.jsp
+
+[33mcommit 9e24ff845a9f1e1fdb18088d3385a6f57e2c29ac[m
+Author: europani <europani1212@gmail.com>
+Date:   Fri Oct 16 19:22:36 2020 +0900
+
+    main page
+
+[33mcommit dfc2e2a25a8436b855b81e5e77ee536a79c7b173[m
+Author: europani <europani1212@gmail.com>
+Date:   Fri Oct 16 17:55:13 2020 +0900
+
+    mybatis setting
+
+[33mcommit 96d3fa58e704836d423d346131adb80c19b0cfb8[m
+Author: europani <europani1212@gmail.com>
+Date:   Wed Oct 14 21:15:37 2020 +0900
+
+    servlet version up
+
+[33mcommit e4b6e52d69f3e8406a0a3d79c0fc8a523d6fc83c[m
+Author: europani <europani1212@gmail.com>
+Date:   Wed Oct 14 10:53:15 2020 +0900
+
+    junit version up
+
+[33mcommit 5d08fe4c3c8db5b22c283d56be9e193f62b224d1[m
+Author: europani <europani1212@gmail.com>
+Date:   Mon Oct 12 17:26:13 2020 +0900
+
+    path setting
+
+[33mcommit f60d35e3fbbba57ea457440a795ce3fb4387ada6[m
+Author: europani <europani1212@gmail.com>
+Date:   Thu Oct 8 21:18:49 2020 +0900
+
+    header footer
+
+[33mcommit a9224b3500d39a7539298fb18e3f334901a65e7b[m
+Author: europani <europani1212@gmail.com>
+Date:   Thu Oct 8 18:46:28 2020 +0900
+
+    view
+
+[33mcommit 45a1a4d3e62788e34b6b6e126d146de39960245b[m
+Author: europani <europani1212@gmail.com>
+Date:   Thu Oct 8 13:52:57 2020 +0900
+
+    java config
+
+[33mcommit 0c9139445be89730aba4641baeb631f8be7c2925[m
+Author: europani <europani1212@gmail.com>
+Date:   Thu Oct 8 13:47:54 2020 +0900
+
+    java config
+
+[33mcommit 9501374a336b529a5c27f34190022ff142d0279e[m
+Author: europani <europani1212@gmail.com>
+Date:   Mon Oct 5 22:38:01 2020 +0900
+
+    build
+
+[33mcommit 8a6df30b92dca8f035e9d8982d8fe293b1aa1b31[m
+Author: europani <europani1212@gmail.com>
+Date:   Mon Oct 5 22:25:13 2020 +0900
+
+    build
+
+[33mcommit b786e0f9033dc7a627a0b3a0acdeb2b526869625[m
+Author: europani <europani1212@gmail.com>
+Date:   Sun Oct 4 18:32:39 2020 +0900
+
+    build
+
+[33mcommit fdaa9f998c2ea6f420edeff18231812516f54798[m
+Author: europani <europani1212@gmail.com>
+Date:   Sat Oct 3 21:04:25 2020 +0900
+
+    project import
+
+[33mcommit 51cdc4b18256f43f00a1868ffc506e4552bc5d25[m
+Author: europani <48157259+europani@users.noreply.github.com>
+Date:   Sat Oct 3 20:57:31 2020 +0900
+
+    Update .gitignore
+
+[33mcommit 4d0a1750f876923ee74bbcae2dee738cca9cd4db[m
+Author: europani <48157259+europani@users.noreply.github.com>
+Date:   Sat Oct 3 20:47:45 2020 +0900
+
+    Initial commit

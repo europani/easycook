@@ -14,4 +14,7 @@ public class OrdersDTO {
 	private Timestamp ordersDate;
 	private int cartNo;
 	private String ordersStatus;
+	
+	private OrdersDetailDTO ordersDetail;
+	private ProductDTO product;
 }
