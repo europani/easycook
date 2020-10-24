@@ -10,6 +10,7 @@
 	</properties>
 	<typeAliases>
 		<typeAlias type="com.devon.easycook.domain.MemberDTO" alias="Member"/>
+		<typeAlias type="com.devon.easycook.domain.ProductDTO" alias="Product"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -24,5 +25,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/devon/easycook/mapper/MemberMapper.xml"/>
+		<mapper resource="com/devon/easycook/mapper/ProductMapper.xml"/>
 	</mappers>
 </configuration>

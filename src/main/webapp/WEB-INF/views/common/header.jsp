@@ -109,9 +109,9 @@
 					<img src="/easycook/resources/mart/images/logo.png" width="200" height="100"></a>
 					<ul class="nav navbar-nav" style="margin-top: 27px;">
 						<li class="dropdown"><a
-							href="/easycook/food/best">이지쿡</a>
+							href="/easycook/product">이지쿡</a>
 							<div class="dropdown-content">
-								<a href="/easycook/food/best">BEST</a>
+								<a href="/easycook/product">전체상품</a>
 								<a href="">한식</a>
 								<a href="">중식</a>
 								<a href="">일식</a>
