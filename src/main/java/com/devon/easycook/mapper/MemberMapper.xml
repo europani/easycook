@@ -13,11 +13,7 @@
 	</insert>
 	
 	<select id="login" parameterType="Hashmap" resultType="Member">
-		SELECT id, pwd, email_auth_check AS emailAuthCheck FROM member WHERE id = #{id}
-	</select>
-	
-	<select id="kakaologin" parameterType="String" resultType="Member">
-		SELECT id, pwd, email_auth_check AS emailAuthCheck FROM member WHERE name = #{name}
+		SELECT id, pwd, author, email_auth_check AS emailAuthCheck FROM member WHERE id = #{id}
 	</select>
 	
 	<update id="insertAuthKey" parameterType="Hashmap">
@@ -67,4 +63,19 @@
 	<update id="changePwd" parameterType="Hashmap">
 		UPDATE member SET pwd = #{pwd} WHERE id = #{id}
 	</update>
+	
+	<!-- ADMIN -->
+	<select id="getFullInfo" resultType="Member">
+		SELECT * FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM member 
+						) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="countMember" resultType="int">
+		SELECT count(*) FROM member
+	</select>
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.repository.MemberDAO;
+import com.devon.easycook.util.PagingVO;
 
 @Service
 public class MemberService {
@@ -17,10 +18,6 @@ public class MemberService {
 
 	public MemberDTO login(Map<String, String> map) {
 		return memberDao.login(map);
-	}
-	
-	public MemberDTO kakaologin(String nickname) {
-		return memberDao.kakaologin(nickname);
 	}
 	
 	public void signup(MemberDTO member) {
@@ -66,5 +63,14 @@ public class MemberService {
 	
 	public void delete(String id) {
 		memberDao.delete(id);
+	}
+	
+	
+	// ADMIN
+	public List<MemberDTO> getFullInfo(PagingVO vo) {
+		return memberDao.getFullInfo(vo);
+	}
+	public int countNumber() {
+		return memberDao.countMember();
 	}
 }

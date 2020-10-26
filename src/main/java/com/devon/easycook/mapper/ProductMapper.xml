@@ -23,22 +23,30 @@
 		FROM product
 		WHERE product_no = #{productNo}
 	</select>
-	<!-- 상품 카테고리별  -->
-	<!-- <select id="productCategory" resultType="Product">
-		SELECT product_no AS productNo, category AS category, product_name AS
-		productName, product_detail AS productDetail, product_image AS productImage,
-		product_price AS productPrice, product_stock AS productStock, product_amount AS
-		productAmount, product_time AS productTime
-		FROM product
 
-		<if test="category=='한식'">
-			WHERE category = #{category}
-		</if>
-
-
-
-
-		ORDER BY product_name
-	</select> -->
+	<!-- ADMIN -->
+	<select id="countByCategory" parameterType="String" resultType="int">
+		SELECT count(*)+1 FROM product WHERE category= #{category}
+	</select>
 	
+	<insert id="insertProduct" parameterType="Product">
+		INSERT INTO product VALUES (#{productNo}, #{category}, #{productName}, #{productDetail}, #{productImage}, #{productPrice}, #{productStock}, #{productAmount}, #{productTime})
+	</insert>
+	
+	<select id="countProduct" resultType="int">
+		SELECT count(*) FROM product
+	</select>
+	
+	<select id="getFullInfo" resultType="Product">
+		SELECT product_no AS productNo, category AS category, product_name AS productName,  product_detail AS productDetail, product_image AS productImage, 
+			product_price AS productPrice, product_stock AS productStock,  product_amount AS productAmount, product_time AS productTime 
+			FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM product 
+						) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
 </mapper>

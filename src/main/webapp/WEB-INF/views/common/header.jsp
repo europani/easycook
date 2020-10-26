@@ -61,7 +61,7 @@
 				<div class="col-md-6">
 					<div class="header-top-menu">
 						<ul class="nav nav-pills navbar-right">
-							<c:if test="${member.author == '1'}">
+							<c:if test="${member.author == 1}">
 							<li><a href="/easycook/admin">관리자페이지</a></li>
 							</c:if>
 							<li class="dropdown">

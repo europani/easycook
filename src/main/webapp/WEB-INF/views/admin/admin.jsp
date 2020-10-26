@@ -1,42 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>easycook 관리자 페이지</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="/easycook/resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="/easycook/resources/admin/css/simple-sidebar.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-  <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">관리자홈</div>
-      <div class="list-group list-group-flush">
-        <a href="/easycook/admin/member" class="list-group-item list-group-item-action bg-light">회원관리</a>
-        <a href="/easycook/admin/product" class="list-group-item list-group-item-action bg-light">상품관리</a>
-        <a href="/easycook/admin/orders" class="list-group-item list-group-item-action bg-light">주문관리</a>
-        <a href="/easycook/admin/board" class="list-group-item list-group-item-action bg-light">게시물관리</a>
-      </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
-
-    <!-- Page Content -->
+<jsp:include page="/WEB-INF/views/common/adminSidebar.jsp" />
+<!-- Page Content -->
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -58,17 +23,10 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
             </li>
           </ul>
         </div>
       </nav>
-
       <div class="container-fluid">
         <h1 class="mt-4">Simple Sidebar</h1>
         <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
@@ -93,5 +51,4 @@
   </script>
 
 </body>
-
 </html>

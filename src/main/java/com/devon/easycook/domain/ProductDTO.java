@@ -1,14 +1,12 @@
 package com.devon.easycook.domain;
 
-import org.apache.ibatis.type.Alias;
-
 import lombok.Data;
 
 @Data
 public class ProductDTO {
 
 	private int productNo;
-	private String category;
+	private int category;
 	private String productName;
 	private String productDetail;
 	private String productImage;

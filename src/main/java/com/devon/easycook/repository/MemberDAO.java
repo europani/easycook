@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.devon.easycook.domain.MemberDTO;
+import com.devon.easycook.util.PagingVO;
 
 @Repository
 public class MemberDAO extends AbstractMybatisDAO {
@@ -32,15 +33,6 @@ public class MemberDAO extends AbstractMybatisDAO {
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
 		try {
 			return sqlsession.selectOne(namespace + ".login", map);
-		} finally {
-			sqlsession.close();
-		}
-	}
-	
-	public MemberDTO kakaologin(String nickname) {
-		SqlSession sqlsession = getSqlSessionFactory().openSession();
-		try {
-			return sqlsession.selectOne(namespace + ".kakaologin", nickname);
 		} finally {
 			sqlsession.close();
 		}
@@ -148,6 +140,25 @@ public class MemberDAO extends AbstractMybatisDAO {
 			if (result != 0) {
 				sqlsession.commit();
 			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	// ADMIN
+	public List<MemberDTO> getFullInfo(PagingVO vo) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectList(namespace + ".getFullInfo", vo);
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	public int countMember() {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countMember");
 		} finally {
 			sqlsession.close();
 		}
