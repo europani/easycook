@@ -38,6 +38,8 @@
 					</p>
 					<p>${detail.productDetail}</p>
 					<div class="row mt-4">
+						<!-- 
+						상품 종류 정할때 쓸 수 있는 코드
 						<div class="col-md-6">
 							<div class="form-group d-flex">
 								<div class="select-wrap">
@@ -52,22 +54,35 @@
 									</select>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<div class="w-100"></div>
 						<div class="input-group col-md-6 d-flex mb-3">
+							<form name="cartForm" method="post" action="/easycook/mypage/cart/insert">
+								<input type="hidden" name="productNo" value="${detail.productNo}">
+								<select name="amount">
+									<c:forEach begin="1" end="10" var=i>
+										<option value="${i}" > ${i}</option>
+									</c:forEach>
+								</select>$nbsp;개
+								<input type="submit" value="장바구니에 담기">
+							</form>
+							<a href="/easycook/product">상품목록</a>
+							<!-- 
+							버튼 + - 버전
 							<span class="input-group-btn mr-2">
 								<button type="button" class="quantity-left-minus btn"
 									data-type="minus" data-field="">
 									<i class="ion-ios-remove"></i>
 								</button>
-							</span> <input type="text" id="quantity" name="quantity"
+							</span> 
+							<input type="text" id="quantity" name="quantity"
 								class="form-control input-number" value="1" min="1" max="100">
 							<span class="input-group-btn ml-2">
 								<button type="button" class="quantity-right-plus btn"
 									data-type="plus" data-field="">
 									<i class="ion-ios-add"></i>
 								</button>
-							</span>
+							</span> -->
 						</div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
@@ -75,8 +90,9 @@
 						</div>
 					</div>
 					<p>
-						<a href="cart.html" class="btn btn-black py-3 px-5">Add to
-							Cart</a>
+					<input type="submit" value="장바구니">
+						<!-- <a href="cart.html" class="btn btn-black py-3 px-5">
+							장바구니</a> -->
 					</p>
 				</div>
 			</div>
