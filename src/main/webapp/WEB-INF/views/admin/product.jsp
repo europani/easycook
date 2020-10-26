@@ -44,13 +44,13 @@
   <table class="w3-table-all w3-hoverable w3-centered">
     <thead>
       <tr class="w3-light-grey" style="color:#FFFF00">
-        <th width="50">No</th>
-        <th width="50">분류</th>
-        <th>상품명</th>
-        <th width="100">가격(원)</th>
-        <th width="50">재고</th>
-        <th></th>
-        <th></th>
+        <th width="5%">No</th>
+        <th width="5%">분류</th>
+        <th width="50%">상품명</th>
+        <th width="10%">가격(원)</th>
+        <th width="10%">재고</th>
+        <th width="10%"></th>
+        <th width="10%"></th>
       </tr>
     </thead>
     <c:forEach var="product" items="${product}">
@@ -67,6 +67,25 @@
   </table>
 </div>
 
+<!-- 페이징 -->
+<div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="/easycook/admin/product?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="/easycook/admin/product?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="/easycook/admin/product?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
+	</div>
 </div>
   <!-- /#wrapper -->
 

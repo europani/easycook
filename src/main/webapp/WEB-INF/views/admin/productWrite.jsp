@@ -67,7 +67,7 @@
 				</tr>
 				<tr>
 					<td width="70" align="center">상품내용</td>
-					<td width="330"><textarea name="content" rows="13" cols="40"></textarea>
+					<td width="330"><textarea name="productDetail" rows="13" cols="40"></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -77,6 +77,10 @@
 				<tr>
 					<td width="70" align="center">상품가격</td>
 					<td width="330"><input size="5" maxlength="6" name="productPrice"> (원)</td>
+				</tr>
+				<tr>
+					<td width="70" align="center">입고수량</td>
+					<td width="330"><input size="2" maxlength="3" name="productStock"></td>
 				</tr>
 				<tr>
 					<td width="70" align="center">중 량</td>

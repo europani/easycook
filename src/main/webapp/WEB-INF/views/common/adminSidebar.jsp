@@ -31,7 +31,7 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">관리자홈</div>
+      <div class="sidebar-heading">관리자페이지</div>
       <div class="list-group list-group-flush">
         <a href="/easycook/admin/member" class="list-group-item list-group-item-action bg-light">회원관리</a>
         <a href="/easycook/admin/product" class="list-group-item list-group-item-action bg-light">상품관리</a>

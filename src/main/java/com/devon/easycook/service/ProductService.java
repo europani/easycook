@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.repository.ProductDAO;
+import com.devon.easycook.util.PagingVO;
 
 @Service
 public class ProductService {
@@ -41,5 +43,13 @@ public class ProductService {
 	public int countByCategory(String category) {
 		return productDao.countByCategory(category);
 	}
-
+	public void insert(ProductDTO product) {
+		productDao.insert(product);
+	}
+	public int countNumber() {
+		return productDao.countMember();
+	}
+	public List<ProductDTO> getFullInfo(PagingVO vo) {
+		return productDao.getFullInfo(vo);
+	}
 }

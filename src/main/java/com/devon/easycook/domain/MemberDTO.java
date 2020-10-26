@@ -3,6 +3,8 @@ package com.devon.easycook.domain;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -17,6 +19,7 @@ public class MemberDTO {
 	private String agency;
 	@Setter(AccessLevel.NONE)
 	private String tel;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	private String gender;
 	private String zipcode;

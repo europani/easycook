@@ -66,6 +66,16 @@
 	
 	<!-- ADMIN -->
 	<select id="getFullInfo" resultType="Member">
-		SELECT id, name, email, tel, gender, birthday, point, reg_date AS regDate, wdr_date AS wdrDate FROM member
+		SELECT * FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM member 
+						) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="countMember" resultType="int">
+		SELECT count(*) FROM member
 	</select>
 </mapper>
