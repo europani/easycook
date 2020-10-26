@@ -20,42 +20,27 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
-	
+
 	@GetMapping("")
 	public String showAllProduct(Model model) {
 		List<ProductDTO> list = productService.productList();
 		model.addAttribute("list", list);
 		return "product/product";
 	}
-	
+
 	@GetMapping("/{productNo}")
 	public String showDetailProduct(@PathVariable("productNo") int productNo, Model model) {
 		ProductDTO detail = productService.productDetail(productNo);
-		
+
 		model.addAttribute("detail", detail);
 		return "product/productDetail";
 	}
-	
+
 	/*
-	 * @GetMapping("/{category}") public String product(Model model, @PathVariable
-	 * String category) { List<ProductDTO> list = productService.productList();
-	 * model.addAttribute("list", list); return "product"; }
-	 * 
-	 * 
-	 * @RequestMapping("/detail/{product_no}") public ModelAndView
-	 * detail(@RequestParam("product_no") int product_no, ModelAndView mv) {
-	 * mv.setViewName("detail"); mv.addObject("detail",
-	 * productService.productDetail(product_no)); return mv; }
-	 */
-	/*
-	 * // 상품 상세보기
-	 * 
-	 * @GetMapping("/detail") public String detail() { return "detail"; }
-	 * 
-	 * @PostMapping("/detail/{product_no}") public ModelAndView
-	 * detail(@RequestParam("product_no") int product_no, ModelAndView mv) {
-	 * //mv.setViewName(viewName); mv.addObject("list",
-	 * productService.productDetail(product_no)); return mv; }
+	 * @GetMapping("/{category}") public String product(@PathVariable("categoty")
+	 * String category, Model model) { ProductDTO cate =
+	 * productService.productCategory(category); model.addAttribute("list", list);
+	 * return "product"; }
 	 */
 
 }

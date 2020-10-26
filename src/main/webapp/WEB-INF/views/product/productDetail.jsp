@@ -8,7 +8,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="images/product-1.jpg" class="image-popup"><img
+					<a href="/easycook/resources/images/${detail.productImage}" class="image-popup"><img
 						src="/easycook/resources/images/${detail.productImage}"
 						class="img-fluid" alt="Colorlib Template"></a>
 				</div>
