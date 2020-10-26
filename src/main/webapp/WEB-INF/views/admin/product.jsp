@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/views/common/adminSidebar.jsp" />
+
 <!-- Page Content -->
     <div id="page-content-wrapper">
 
@@ -21,21 +24,50 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
+                상품관리
               </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/easycook/admin/product">상품목록</a>
+                <a class="dropdown-item" href="/easycook/admin/product/write">상품등록</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
             </li>
           </ul>
         </div>
       </nav>
-      <div class="container-fluid">
-        <h1 class="mt-4">Simple Sidebar</h1>
-        <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-      </div>
-    </div>
-    <!-- /#page-content-wrapper -->
 
-  </div>
+
+<div class="w3-container w3-center">
+  <h2>상품 목록</h2>
+
+  <table class="w3-table-all w3-hoverable w3-centered">
+    <thead>
+      <tr class="w3-light-grey" style="color:#FFFF00">
+        <th width="50">No</th>
+        <th width="50">분류</th>
+        <th>상품명</th>
+        <th width="100">가격(원)</th>
+        <th width="50">재고</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <c:forEach var="product" items="${product}">
+	    <tr>
+	      <td>${product.productNo}</td>
+	      <td>${product.category}</td>
+	      <td>${product.productName}</td>
+	      <td><fmt:formatNumber value="${product.productPrice}" pattern="#,###" /> </td>
+	      <td>${product.productStock}</td>
+	      <td><button class="btn btn-primary" onclick="window.location.href='http://localhost:8089/easycook/admin/product/modify/${product.productNo}'">상품수정</button></td>
+	      <td><button class="btn btn-primary" onclick="window.location.href='http://localhost:8089/easycook/admin/product/delete/${product.productNo}'">상품삭제</button></td>
+	    </tr>
+    </c:forEach>
+  </table>
+</div>
+
+</div>
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
@@ -51,4 +83,4 @@
   </script>
 
 </body>
-</html>
+</html> 

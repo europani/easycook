@@ -153,6 +153,16 @@ public class MemberDAO extends AbstractMybatisDAO {
 		}
 	}
 
+	// ADMIN
+	public List<MemberDTO> getFullInfo() {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectList(namespace + ".getFullInfo");
+		} finally {
+			sqlsession.close();
+		}
+	}
+
 
 
 //	public int getArticleCount(String boardid, String category, String sentence) {

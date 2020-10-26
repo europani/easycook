@@ -17,4 +17,18 @@
 		FROM product
 		WHERE product_no = #{productNo}
 	</select>
+
+
+
+
+
+
+
+
+
+	<!-- ADMIN -->
+	<select id="countByCategory" parameterType="String" resultType="int">
+		SELECT count(*)+1 FROM product WHERE category= #{category}
+	</select>
+
 </mapper>

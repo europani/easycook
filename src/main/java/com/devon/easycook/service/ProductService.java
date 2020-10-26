@@ -29,4 +29,17 @@ public class ProductService {
 	 * public ProductDTO productDelete(int product_no) { return }
 	 */
 	
+
+
+
+
+
+
+
+
+	// ADMIN
+	public int countByCategory(String category) {
+		return productDao.countByCategory(category);
+	}
+
 }

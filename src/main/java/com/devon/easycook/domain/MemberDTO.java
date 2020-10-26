@@ -1,6 +1,7 @@
 package com.devon.easycook.domain;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class MemberDTO {
 	private String agency;
 	@Setter(AccessLevel.NONE)
 	private String tel;
-	private String birthday;
+	private Date birthday;
 	private String gender;
 	private String zipcode;
 	@Setter(AccessLevel.NONE)

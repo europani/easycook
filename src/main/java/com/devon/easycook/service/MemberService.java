@@ -67,4 +67,10 @@ public class MemberService {
 	public void delete(String id) {
 		memberDao.delete(id);
 	}
+	
+	
+	// ADMIN
+	public List<MemberDTO> getFullInfo() {
+		return memberDao.getFullInfo();
+	}
 }

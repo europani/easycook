@@ -39,4 +39,22 @@ public class ProductDAO extends AbstractMybatisDAO {
 	 * 
 	 * public ProductDTO productDelete(int product_no) { return }
 	 */
+
+
+
+
+
+
+
+
+
+	public int countByCategory(String category) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countByCategory", category);
+		} finally {
+			sqlsession.close();
+		}
+	}
+
 }

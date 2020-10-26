@@ -13,11 +13,7 @@
 	</insert>
 	
 	<select id="login" parameterType="Hashmap" resultType="Member">
-		SELECT id, pwd, email_auth_check AS emailAuthCheck FROM member WHERE id = #{id}
-	</select>
-	
-	<select id="kakaologin" parameterType="String" resultType="Member">
-		SELECT id, pwd, email_auth_check AS emailAuthCheck FROM member WHERE name = #{name}
+		SELECT id, pwd, author, email_auth_check AS emailAuthCheck FROM member WHERE id = #{id}
 	</select>
 	
 	<update id="insertAuthKey" parameterType="Hashmap">
@@ -67,4 +63,9 @@
 	<update id="changePwd" parameterType="Hashmap">
 		UPDATE member SET pwd = #{pwd} WHERE id = #{id}
 	</update>
+	
+	<!-- ADMIN -->
+	<select id="getFullInfo" resultType="Member">
+		SELECT id, name, email, tel, gender, birthday, point, reg_date AS regDate, wdr_date AS wdrDate FROM member
+	</select>
 </mapper>
