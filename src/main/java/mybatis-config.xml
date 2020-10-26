@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias type="com.devon.easycook.domain.MemberDTO" alias="Member"/>
 		<typeAlias type="com.devon.easycook.domain.ProductDTO" alias="Product"/>
+		<typeAlias type="com.devon.easycook.domain.CartDTO" alias="Cart"/>
 		<typeAlias type="com.devon.easycook.domain.OrdersDTO" alias="Orders"/>
 		<typeAlias type="com.devon.easycook.domain.OrdersDetailDTO" alias="OrdersDetail"/>
 	</typeAliases>
@@ -29,5 +30,6 @@
 		<mapper resource="com/devon/easycook/mapper/MemberMapper.xml"/>
 		<mapper resource="com/devon/easycook/mapper/ProductMapper.xml"/>
 		<mapper resource="com/devon/easycook/mapper/MypageMapper.xml"/>
+		<mapper resource="com/devon/easycook/mapper/CartMapper.xml"/>
 	</mappers>
 </configuration>
