@@ -28,7 +28,7 @@ import com.devon.easycook.util.PagingVO;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	
+
 	@Autowired
 	MemberService memberService;
 	@Autowired
@@ -38,94 +38,110 @@ public class AdminController {
 	public String index() {
 		return "admin/admin";
 	}
-	
+
 	@GetMapping("/member")
-	public String member(PagingVO vo, Model model
-			, @RequestParam(value="nowPage", required=false)String nowPage
-			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) throws ParseException {
+	public String member(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) throws ParseException {
 		int total = memberService.countNumber();
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
 		} else if (nowPage == null) {
 			nowPage = "1";
-		} else if (cntPerPage == null) { 
+		} else if (cntPerPage == null) {
 			cntPerPage = "10";
 		}
-		
+
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
-		
+
 		List<MemberDTO> list = memberService.getFullInfo(vo);
 		model.addAttribute("infoList", list);
 		return "admin/member";
 	}
-	
+
 	// 회원별 주문내역
-	@GetMapping("/member/${id}")
+	@GetMapping("/member/{id}")
 	public String member(Model model, @PathVariable("id") String id) {
-		
-		
-		return "admin/member";
+
+		return "";
 	}
-	
+
 	@GetMapping("/product")
-	public String product(PagingVO vo, Model model
-			, @RequestParam(value="nowPage", required=false)String nowPage
-			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+	public String product(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
 		int total = productService.countNumber();
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
 		} else if (nowPage == null) {
 			nowPage = "1";
-		} else if (cntPerPage == null) { 
+		} else if (cntPerPage == null) {
 			cntPerPage = "10";
 		}
-		
+
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
-		
+
 		List<ProductDTO> list = productService.getFullInfo(vo);
 		model.addAttribute("product", list);
 		return "admin/product";
 	}
-	
+
 	@GetMapping("/product/write")
 	public String productWriteForm() {
 		return "admin/productWrite";
 	}
+
 	@PostMapping("/product/write")
-	public String productWrite(Model model, MultipartHttpServletRequest request, @ModelAttribute ProductDTO product) {
-	
-		
-		MultipartFile file = request.getFile("productImage");
-		String filename = file.getOriginalFilename();
-		String uploadFolder = "C:\\tmp";
-		
-		System.out.println(file.getSize());
-		System.out.println(file.getOriginalFilename());
-		
-		File saveFile = new File(uploadFolder, filename);
-		try {
-			file.transferTo(saveFile);
-		} catch (IOException e) {
-			e.printStackTrace();
+	public String productWrite(MultipartHttpServletRequest request, @ModelAttribute ProductDTO product) {
+		MultipartFile file = request.getFile("file");
+		if (!file.isEmpty()) {
+			String filename = file.getOriginalFilename();
+			String uploadFolder = "C:\\tmp";
+			product.setProductImage(filename);
+			
+			File saveFile = new File(uploadFolder, filename);
+			try {
+				file.transferTo(saveFile);
+				productService.insert(product);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return "redirect:/admin/product";
 	}
-	
+
 	@GetMapping("/product/write/count")
 	@ResponseBody
 	public int countByCategory(@RequestParam("category") String num) {
 		return productService.countByCategory(num);
 	}
-	
+
+	@GetMapping("/product/stock/{productNo}")
+	public String modifyStock(Model model, @PathVariable("productNo") int productNo) {
+		ProductDTO product = productService.productDetail(productNo);
+		model.addAttribute("product", product);
+		return "admin/productStock";
+	}
+
+	@GetMapping("/product/modify/{productNo}")
+	public String productModify(Model model, @PathVariable("productNo") String productNo) {
+
+		return "redirect:/admin/product";
+	}
+
+	@GetMapping("/product/delete/{productNo}")
+	public String productDelete(Model model, @PathVariable("productNo") String productNo) {
+
+		return "admin/productDelete";
+	}
+
 	@GetMapping("/orders")
 	public String orders() {
 		return "admin/orders";
 	}
-	
+
 	@GetMapping("/board")
 	public String board() {
 		return "admin/board";

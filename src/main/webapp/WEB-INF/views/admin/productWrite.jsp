@@ -72,7 +72,7 @@
 				</tr>
 				<tr>
 					<td width="70" align="center">사 진</td>
-					<td width="330"><input type="file" size="40" maxlength="30" name="productImage"></td>
+					<td width="330"><input type="file" size="40" maxlength="30" name="file"></td>
 				</tr>
 				<tr>
 					<td width="70" align="center">상품가격</td>

@@ -46,11 +46,12 @@
       <tr class="w3-light-grey" style="color:#FFFF00">
         <th width="5%">No</th>
         <th width="5%">분류</th>
-        <th width="50%">상품명</th>
+        <th width="46%">상품명</th>
         <th width="10%">가격(원)</th>
         <th width="10%">재고</th>
-        <th width="10%"></th>
-        <th width="10%"></th>
+        <th width="8%"></th>
+        <th width="8%"></th>
+        <th width="8%"></th>
       </tr>
     </thead>
     <c:forEach var="product" items="${product}">
@@ -60,8 +61,9 @@
 	      <td>${product.productName}</td>
 	      <td><fmt:formatNumber value="${product.productPrice}" pattern="#,###" /> </td>
 	      <td>${product.productStock}</td>
-	      <td><button class="btn btn-primary" onclick="window.location.href='http://localhost:8089/easycook/admin/product/modify/${product.productNo}'">상품수정</button></td>
-	      <td><button class="btn btn-primary" onclick="window.location.href='http://localhost:8089/easycook/admin/product/delete/${product.productNo}'">상품삭제</button></td>
+	      <td><button class="btn btn-primary" onclick="window.open('product/stock/${product.productNo}','재고관리','width=500,height=500,top=100,left=100');">재고관리</button></td>
+	      <td><button class="btn w3-aqua" onclick="window.location.href='<%=request.getContextPath()%>/admin/product/modify/${product.productNo}'">상품수정</button></td>
+	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/product/delete/${product.productNo}'">상품삭제</button></td>
 	    </tr>
     </c:forEach>
   </table>
@@ -99,6 +101,10 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+    
+    function popup() {
+    	;
+    }
   </script>
 
 </body>

@@ -66,7 +66,7 @@
 	
 	<!-- ADMIN -->
 	<select id="getFullInfo" resultType="Member">
-		SELECT * FROM (
+		SELECT id, name, email, tel, birthday, point, reg_date AS regDate, wdr_date AS wdrDate FROM (
 			SELECT ROWNUM RN, A.* 
 				FROM (
 						SELECT * 
