@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cartMapper">
+
+
+	<!-- 1. 장바구니에 추가하기 -->
+	<insert id="cartInsert">
+		INSERT INTO cart(cart_no, id, product_no, cart_qty)
+		VALUES(cart_seq.NEXTVAL, #{id}, #{product_no}, #{cart_qty})
+	</insert>
+	
+	
+	<!-- 2. 장바구니 목록보기 -->
+	<select id="cartList" resultType="Cart">
+		SELECT 
+			c.cart_no AS cartNo,
+			c.id AS Id,
+			p.product_no AS ProductNo,
+			m.name AS Name,
+			p.product_name AS productName,
+			c.cart_qty AS cartQty,
+			p.product_price AS productPrice,
+			(product_price * cart_qty) total
+		FROM 
+			member m, product p, cart c
+		WHERE 
+			m.id = c.id AND 
+			p.product_no = c.product_no AND
+			c.id = #{Id}
+		ORDER BY
+			c.cart_id
+	</select>
+	
+	
+	<!-- 3. 장바구니 수정 (수량 덮어쓰기)-->
+	<update id="cartModify">
+		UPDATE cart
+		SET cart_qty = #{cartQty}
+		WHERE id = #{Id} AND product_no = #{productNo}
+	</update>
+	
+	
+	<!-- 4. 장바구니 삭제 하나씩삭제도 만들자! -->
+	<delete id="cartDelete">
+		DELETE FROM cart
+		WHERE cart_no = #{cartNo}
+	</delete>
+	
+	<!-- 5. 장바구니 전체금액 -->
+	<select id="sumTotal" resultType="int">
+		SELECT 
+			NVL(SUM(product_price * cart_qty), 0) total
+		FROM 
+			product p, cart c
+		WHERE 
+			c.product_no = p.product_no AND
+			c.id = #{Id}
+	</select>
+	
+	
+	<!-- 6. 장바구니 동일상품 확인 -->
+	<select id="cartCount" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			cart
+		WHERE 
+			product_no = #{product_no} AND
+			c.id = #{Id}
+	</select>
+	
+	<!-- 7. 장바구니에 같은상품있으면 수량합산 -->
+	<update id="cartUpdate">
+		UPDATE cart
+		SET cart_qty = cart_qty + #{cartQty}
+		WHERE id = #{Id} AND product_no = #{productNo}
+	</update>
+</mapper>

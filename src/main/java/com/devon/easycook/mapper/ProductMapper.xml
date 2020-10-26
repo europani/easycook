@@ -3,28 +3,26 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="productMapper">
-	<!-- 상품 전체  -->
+	<!-- 상품 전체 -->
 	<select id="productList" resultType="Product">
-		SELECT product_no AS productNo, category AS category, product_name AS productName,  product_detail AS productDetail, product_image AS productImage, 
-			product_price AS productPrice, product_stock AS productStock,  product_amount AS productAmount, product_time AS productTime 
+		SELECT product_no AS
+		productNo, category AS category, product_name AS productName,
+		product_detail AS productDetail, product_image AS productImage,
+		product_price AS productPrice, product_stock AS productStock,
+		product_amount AS productAmount, product_time AS productTime
 		FROM product
-		ORDER BY product_name 
+		ORDER BY product_no 
 	</select>
 	<!-- 상품 상세 -->
-	<select id="productDetail" resultType="string">
-		SELECT product_no AS productNo, category AS category, product_name AS productName,  product_detail AS productDetail, product_image AS productImage, 
-			product_price AS productPrice, product_stock AS productStock,  product_amount AS productAmount, product_time AS productTime 
+	<select id="productDetail" resultType="Product">
+		SELECT product_no AS
+		productNo, category AS category, product_name AS productName,
+		product_detail AS productDetail, product_image AS productImage,
+		product_price AS productPrice, product_stock AS productStock,
+		product_amount AS productAmount, product_time AS productTime
 		FROM product
 		WHERE product_no = #{productNo}
 	</select>
-
-
-
-
-
-
-
-
 
 	<!-- ADMIN -->
 	<select id="countByCategory" parameterType="String" resultType="int">
@@ -51,5 +49,4 @@
 				)
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
-
 </mapper>
