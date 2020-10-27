@@ -81,6 +81,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/signuplist")
+	public String signuplist() {
+		System.out.println("회원가입폼 리스트입니다.");
+		return "member/signuplist";
+	}
+
 	@GetMapping("/signup")
 	public String signup() {
 		System.out.println("회원가입을 시작합니다.");
@@ -314,45 +320,28 @@ public class MemberController {
 			e.printStackTrace();
 		}
 
-		System.out.println("카카오 액세스 토큰 : " + oauthToken.getAccess_token());
-
 		// POST방식으로 key=value 데이터를 요청 (카카오쪽으로)
 		RestTemplate rt2 = new RestTemplate();
 
 		// HttpHeader 오브젝트 생성
 		HttpHeaders headers2 = new HttpHeaders();
 		headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
-
 		headers2.add("Content_type", "application/x-www-form-urlencoded;charset=utf-8");
-		System.out.println("통과1");
+
 		// HttpHeader와 HttpBody를 하나의 오브젝트에 담기
 		HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest2 = new HttpEntity<>(headers2);
 
-		System.out.println("통과2");
-
 		// Http 요청하기 - Post 방식으로 - 그리고 response 변수의 응답을 받음
-
 		ResponseEntity<String> response2 = rt2.exchange("https://kapi.kakao.com/v2/user/me", HttpMethod.POST,
 				kakaoProfileRequest2, String.class);
-
-		System.out.println(response2.getBody());
-
-		System.out.println("통과3");
-
 		ObjectMapper objectMapper2 = new ObjectMapper();
-
 		KakaoDTO kakaoProfile = null;
-
-		System.out.println("통과4");
 
 		try {
 			kakaoProfile = objectMapper2.readValue(response2.getBody(), KakaoDTO.class);
-			System.out.println("통과5");
 		} catch (JsonMappingException e) {
-
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
-
 			e.printStackTrace();
 		}
 
@@ -392,51 +381,36 @@ public class MemberController {
 		// Http 요청하기 - Post 방식으로 - 그리고 response 변수의 응답을 받음
 		ResponseEntity<String> response = rt.exchange("https://kauth.kakao.com/oauth/token", HttpMethod.POST,
 				kakaoTokenRequest, String.class);
-
 		ObjectMapper objectMapper = new ObjectMapper();
-
 		OAuthToken oauthToken = null;
 
 		try {
 			oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
 		} catch (JsonMappingException e) {
-
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
-
 			e.printStackTrace();
 		}
 
 		RestTemplate rt2 = new RestTemplate();
-
 		HttpHeaders headers2 = new HttpHeaders();
-
 		headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
-
 		headers2.add("Content_type", "application/x-www-form-urlencoded;charset=utf-8");
-
 		HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest2 = new HttpEntity<>(headers2);
-
 		ResponseEntity<String> response2 = rt2.exchange("https://kapi.kakao.com/v2/user/me", HttpMethod.POST,
 				kakaoProfileRequest2, String.class);
-
 		ObjectMapper objectMapper2 = new ObjectMapper();
-
 		KakaoDTO kakaoProfile = null;
 
 		try {
 			kakaoProfile = objectMapper2.readValue(response2.getBody(), KakaoDTO.class);
-
 		} catch (JsonMappingException e) {
-
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
-
 			e.printStackTrace();
 		}
 
 		model.addAttribute("kakaoId", kakaoProfile.getId());
-
 		model.addAttribute("kakaoName", kakaoProfile.getProperties().nickname);
 
 		return "member/kakaosignup";
@@ -467,22 +441,16 @@ public class MemberController {
 		// Http 요청하기 - Post 방식으로 - 그리고 response 변수의 응답을 받음
 		ResponseEntity<String> response = rt.exchange("https://nid.naver.com/oauth2.0/token", HttpMethod.POST,
 				naverTokenRequest, String.class);
-
 		ObjectMapper objectMapper = new ObjectMapper();
-
 		OAuthToken oauthToken = null;
 
 		try {
 			oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
 		} catch (JsonMappingException e) {
-
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
-
 			e.printStackTrace();
 		}
-
-		System.out.println("네이버 액세스 토큰 : " + oauthToken.getAccess_token());
 
 		// POST방식으로 key=value 데이터를 요청 (카카오쪽으로)
 		RestTemplate rt2 = new RestTemplate();
@@ -490,31 +458,19 @@ public class MemberController {
 		// HttpHeader 오브젝트 생성
 		HttpHeaders headers2 = new HttpHeaders();
 		headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
-
 		headers2.add("Content_type", "application/x-www-form-urlencoded;charset=utf-8");
-		System.out.println("통과1");
 		// HttpHeader와 HttpBody를 하나의 오브젝트에 담기
 		HttpEntity<MultiValueMap<String, String>> naverProfileRequest2 = new HttpEntity<>(headers2);
-
 		ResponseEntity<String> response2 = rt2.exchange("https://openapi.naver.com/v1/nid/me", HttpMethod.POST,
 				naverProfileRequest2, String.class);
-
-		System.out.println(response2.getBody());
-
 		ObjectMapper objectMapper2 = new ObjectMapper();
-
 		NaverDTO naverProfile = null;
-
-		System.out.println("통과4");
 
 		try {
 			naverProfile = objectMapper2.readValue(response2.getBody(), NaverDTO.class);
-			System.out.println("통과5");
 		} catch (JsonMappingException e) {
-
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
-
 			e.printStackTrace();
 		}
 
@@ -525,15 +481,81 @@ public class MemberController {
 		System.out.println("네이버 생일 :" + naverProfile.response.birthday);
 
 		Map<String, String> map = new HashMap<String, String>();
-
 		HttpSession session = request.getSession();
-
 		map.put("id", naverProfile.response.id);
-
 		MemberDTO member = memberService.login(map);
-
 		session.setAttribute("member", member);
 
 		return "redirect:/member/login";
+	}
+
+	@ModelAttribute
+	@GetMapping(value = "/naversignup", produces = "application/json;charset=UTF-8")
+	public String naversignup(HttpServletRequest request, String code, Model model) {
+
+		// POST방식으로 key=value 데이터를 요청 (카카오쪽으로)
+		RestTemplate rt = new RestTemplate();
+
+		// HttpHeader 오브젝트 생성
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content_type", "application/x-www-form-urlencoded:charset=utf-8");
+
+		// HttpBody 오브젝트 생성
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		params.add("grant_type", "authorization_code");
+		params.add("client_id", "EnK74f3hGUlXI4fXhp2I");
+		params.add("client_secret", "_HZFr_Rs1r");
+		params.add("code", code);
+		params.add("state", "5220");
+
+		// HttpHeader와 HttpBody를 하나의 오브젝트에 담기
+		HttpEntity<MultiValueMap<String, String>> naverTokenRequest = new HttpEntity<MultiValueMap<String, String>>(
+				params, headers);
+
+		// Http 요청하기 - Post 방식으로 - 그리고 response 변수의 응답을 받음
+		ResponseEntity<String> response = rt.exchange("https://nid.naver.com/oauth2.0/token", HttpMethod.POST,
+				naverTokenRequest, String.class);
+		ObjectMapper objectMapper = new ObjectMapper();
+		OAuthToken oauthToken = null;
+
+		try {
+			oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		RestTemplate rt2 = new RestTemplate();
+
+		// HttpHeader 오브젝트 생성
+		HttpHeaders headers2 = new HttpHeaders();
+		headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
+		headers2.add("Content_type", "application/x-www-form-urlencoded;charset=utf-8");
+		HttpEntity<MultiValueMap<String, String>> naverProfileRequest2 = new HttpEntity<>(headers2);
+		ResponseEntity<String> response2 = rt2.exchange("https://openapi.naver.com/v1/nid/me", HttpMethod.POST,
+				naverProfileRequest2, String.class);
+		NaverDTO naverProfile = null;
+		ObjectMapper objectMapper2 = new ObjectMapper();
+
+		try {
+			naverProfile = objectMapper2.readValue(response2.getBody(), NaverDTO.class);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("naverId", naverProfile.response.id);
+		model.addAttribute("naverName", naverProfile.response.name);
+
+		String email = naverProfile.response.email;
+		int num = email.indexOf("@");
+		String emailId = email.substring(0, num);
+		String emailType = email.substring(num + 1, email.length());
+		model.addAttribute("emailId", emailId);
+		model.addAttribute("emailType", emailType);
+
+		return "redirect:/member/naversignup";
 	}
 }

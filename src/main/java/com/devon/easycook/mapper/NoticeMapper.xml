@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="noticeMapper">
+
+	<select id="noticeAllList" resultType="Notice">
+   select * from notice
+   </select>
+   
+   <select id="getArticleCount" parameterType="hashmap" resultType="int">
+   select nvl(count(*),0)  from notice 
+    <if test="category!=null and category !='' ">
+    where ${category}  like '%${sentence}%'
+    </if>
+   </select>
+   
+   
+    <select id="getArticles" parameterType="hashmap" 
+       resultType="Notice">
+    
+      <if test="category==null or category == ''">   
+   select * from  ( select rownum rnum ,a.* 
+    from (select * from notice
+    order by noticeRef desc , noticeRe_step)
+   a ) where rnum  between #{start} and #{end}
+   </if>
+   
+    <if test="category!=null and category !='' "> 
+   select * from  ( select rownum rnum ,a.* 
+    from (select * from notice
+     where  ${category}  like '%${sentence}%'
+    order by noticeRef desc , noticeRe_step)
+   a ) where rnum  between #{start} and #{end}
+   </if>
+   
+   
+   
+   
+   </select>
+   
+   <update id="addReadCount" parameterType="hashmap"  >
+     update notice set noticeReadcount=noticeReadcount+1 
+         where noticeNo = #{noticeNo} 
+   </update>
+   
+   <select id="getArticle" parameterType="hashmap"  resultType="Notice">
+   select * from notice where noticeNo = #{noticeNo} 
+   </select>
+   
+   <select id="insertArticle_new"  resultType="int">
+      select NOTICE_SEQ.nextval from dual
+   
+   </select>
+   
+   <update id="insertArticle_update" parameterType="hashmap">
+      update notice set noticeRe_step=noticeRe_step+1 
+      where noticeRef= #{noticeRef} and noticeRe_step> #{noticeRe_step} 
+      
+   </update>
+   
+   <insert id="insertArticle_insert" parameterType="Notice">
+   insert into notice ( noticeNo, id, noticeTitle, noticePasswd
+ , noticeDate, noticeRef, noticeRe_step, noticeRe_level, noticeContent, noticeFilename, noticeReadcount)
+  values (#{noticeNo},#{id},#{noticeTitle},#{noticePasswd},sysdate,
+    #{noticeRef},#{noticeRe_step},#{noticeRe_level},#{noticeContent}, #{noticeFilename},0)
+   </insert>
+   
+   
+   <select id="update_passwd"   parameterType="hashmap" 
+     resultType="string">
+      select noticePasswd from notice where noticeNo =#{noticeNo}
+    </select>
+   
+    <update id="update_update"  parameterType="hashmap">
+      update notice set 
+      id=#{id},
+      noticeTitle=#{noticeTitle},
+      noticePasswd=#{noticePasswd},
+      noticeContent=#{noticeContent},
+      noticeFilename=#{noticeFilename}
+      where noticeNo=#{noticeNo}
+   </update>
+   
+   <select id="delete"   parameterType="hashmap" >
+       delete from notice where noticeNo = #{noticeNo}
+    </select>
+   
+</mapper>

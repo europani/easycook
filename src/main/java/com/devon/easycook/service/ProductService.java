@@ -1,6 +1,7 @@
 package com.devon.easycook.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,14 @@ public class ProductService {
 	}
 	public List<ProductDTO> getFullInfo(PagingVO vo) {
 		return productDao.getFullInfo(vo);
+	}
+	public void modifyStock(Map<String, Integer> map) {
+		productDao.modifyStock(map);
+	}
+	public void modify(ProductDTO product) {
+		productDao.modify(product);
+	}
+	public void delete(int productNo) {
+		productDao.delete(productNo);
 	}
 }

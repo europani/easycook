@@ -1,6 +1,7 @@
 package com.devon.easycook.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,46 @@ public class ProductDAO extends AbstractMybatisDAO {
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
 		try {
 			return sqlsession.selectList(namespace + ".getFullInfo", vo);
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public void modifyStock(Map<String, Integer> map) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".modifyStock", map);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+		
+	}
+
+	public void modify(ProductDTO product) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".modify", product);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public void delete(int productNo) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".delete", productNo);
+			if (result != 0) {
+				sqlsession.commit();
+			}
 		} finally {
 			sqlsession.close();
 		}
