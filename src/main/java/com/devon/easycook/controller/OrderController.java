@@ -90,6 +90,10 @@ public class OrderController {
 	}	
 	
 	
-	
+	// 5. 장바구니 결제 마지막단계
+	@RequestMapping("/payment")
+	public String payment() {
+		return "order/payment";
+	}
 	
 }
