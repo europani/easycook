@@ -3,7 +3,11 @@ package com.devon.easycook.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -100,7 +105,7 @@ public class AdminController {
 			String filename = file.getOriginalFilename();
 			String uploadFolder = "C:\\tmp";
 			product.setProductImage(filename);
-			
+
 			File saveFile = new File(uploadFolder, filename);
 			try {
 				file.transferTo(saveFile);
@@ -119,22 +124,62 @@ public class AdminController {
 	}
 
 	@GetMapping("/product/stock/{productNo}")
-	public String modifyStock(Model model, @PathVariable("productNo") int productNo) {
+	public String modifyStockForm(Model model, @PathVariable("productNo") int productNo) {
 		ProductDTO product = productService.productDetail(productNo);
 		model.addAttribute("product", product);
 		return "admin/productStock";
 	}
 
-	@GetMapping("/product/modify/{productNo}")
-	public String productModify(Model model, @PathVariable("productNo") String productNo) {
+	@PostMapping("/product/stock/{productNo}")
+	@ResponseBody
+	public void modifyStock(Model model, @PathVariable("productNo") int productNo,
+			@RequestParam(value = "productStock", defaultValue = "0") int productStock) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("productNo", productNo);
+		map.put("productStock", productStock);
+		productService.modifyStock(map);
+	}
 
+	@GetMapping("/product/modify/{productNo}")
+	public String productModifyForm(Model model, @PathVariable("productNo") int productNo) {
+		ProductDTO product = productService.productDetail(productNo);
+		model.addAttribute("product", product);
+		return "admin/productModify";
+	}
+
+	@PostMapping("/product/modify/{productNo}")
+	public String productModify(@PathVariable("productNo") int productNo, @ModelAttribute ProductDTO product,
+			MultipartHttpServletRequest request) {
+		product.setProductNo(productNo);
+		MultipartFile file = request.getFile("file");
+		if (!file.isEmpty()) {
+			String filename = file.getOriginalFilename();
+			String uploadFolder = "C:\\tmp";
+			product.setProductImage(filename);
+
+			File saveFile = new File(uploadFolder, filename);
+			try {
+				file.transferTo(saveFile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		productService.modify(product);
 		return "redirect:/admin/product";
 	}
 
 	@GetMapping("/product/delete/{productNo}")
-	public String productDelete(Model model, @PathVariable("productNo") String productNo) {
-
+	public String productDeleteForm(Model model, @PathVariable("productNo") int productNo) {
 		return "admin/productDelete";
+	}
+	
+	@PostMapping("/product/delete/{productNo}")
+	public String productDelete(@PathVariable("productNo") int productNo, @RequestParam("inputNo") int inputNo) {
+		if (inputNo == productNo) {
+			productService.delete(productNo);
+		} 
+		return "redirect:/admin/product";
+		
 	}
 
 	@GetMapping("/orders")

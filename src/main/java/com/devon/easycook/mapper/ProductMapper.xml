@@ -44,9 +44,25 @@
 			SELECT ROWNUM RN, A.* 
 				FROM (
 						SELECT * 
-						FROM product 
+						FROM product WHERE category != 0
 						) A
 				)
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
+	
+	<update id="modifyStock" parameterType="Hashmap">
+		UPDATE product SET product_stock = #{productStock} WHERE product_no = #{productNo}
+	</update>
+	
+	<update id="modify" parameterType="Product">
+		UPDATE product SET product_name = #{productName}, product_detail = #{productDetail}, product_price = #{productPrice}, product_amount = #{productAmount}, product_time = #{productTime}
+		<if test="productImage != null">
+			, product_image = #{productImage}
+		</if>
+			WHERE product_no = #{productNo}
+	</update>
+	
+	<update id="delete" parameterType="int">
+		UPDATE product SET category = 0, product_stock = 0 WHERE product_no = #{productNo}
+	</update>
 </mapper>

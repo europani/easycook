@@ -61,7 +61,7 @@
 	      <td>${product.productName}</td>
 	      <td><fmt:formatNumber value="${product.productPrice}" pattern="#,###" /> </td>
 	      <td>${product.productStock}</td>
-	      <td><button class="btn btn-primary" onclick="window.open('product/stock/${product.productNo}','재고관리','width=500,height=500,top=100,left=100');">재고관리</button></td>
+	      <td><button class="btn btn-primary" onclick="window.open('product/stock/${product.productNo}','재고관리','width=300,height=150,top=100,left=500');">재고관리</button></td>
 	      <td><button class="btn w3-aqua" onclick="window.location.href='<%=request.getContextPath()%>/admin/product/modify/${product.productNo}'">상품수정</button></td>
 	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/product/delete/${product.productNo}'">상품삭제</button></td>
 	    </tr>

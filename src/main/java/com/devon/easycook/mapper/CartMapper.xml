@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cartMapper">
-
+ 
 
 	<!-- 1. 장바구니에 추가하기 -->
 	<insert id="cartInsert">
@@ -67,8 +67,8 @@
 		FROM 
 			cart
 		WHERE 
-			product_no = #{product_no} AND
-			c.id = #{Id}
+			product_no = #{productNo} AND
+			id = #{Id}
 	</select>
 	
 	<!-- 7. 장바구니에 같은상품있으면 수량합산 -->
