@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,11 @@ import com.devon.easycook.repository.NoticeDAO;
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
+	
+	@GetMapping("/faq")
+	public String faq() {
+		return "board/faq";
+	}
 	
 	public String pageNum = "";
 	public String sentence = "";
