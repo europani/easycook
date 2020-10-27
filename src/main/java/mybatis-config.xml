@@ -14,6 +14,7 @@
 		<typeAlias type="com.devon.easycook.domain.CartDTO" alias="Cart"/>
 		<typeAlias type="com.devon.easycook.domain.OrdersDTO" alias="Orders"/>
 		<typeAlias type="com.devon.easycook.domain.OrdersDetailDTO" alias="OrdersDetail"/>
+		<typeAlias type="com.devon.easycook.domain.CouponDTO" alias="Coupon"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

@@ -1,37 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
 <mapper namespace="mypageMapper">
 
-<resultMap  id="OrderList" type="Orders">
-	<id property="id" column="id"/>
-	<result property="ordersDate" column="orders_date"/>
-	<result property="ordersNo" column="orders_no"/>
-	
-	<association property="ordersDetail" javaType="OrdersDetail">
-	<id property="ordersNo" column="orders_no"/>
-	<result property="detailQty" column="detail_qty"/>
-	<result property="detailSt" column="detail_st"/>
-	</association>
-	
-	<association property="product" javaType="Product">
-	<id property="productNo" column="product_no"/>
-	<result property="productName" column="product_name"/>
-	</association>
-	
+<resultMap id="OrderList" type="Orders">
+   <id property="id" column="id"/>
+   <result property="ordersDate" column="orders_date"/>
+   <result property="ordersNo" column="orders_no"/>
+   <result property="ordersStatus" column="orders_status"/>
+   
+   <association property="ordersDetail" javaType="OrdersDetail">
+   <id property="ordersNo" column="orders_no"/>
+   <result property="detailQty" column="detail_qty"/>
+   <result property="detailSt" column="detail_st"/>
+   </association>   
+   <association property="product" javaType="Product">
+   <id property="productNo" column="product_no"/>
+   <result property="productName" column="product_name"/>
+   </association>
 </resultMap>
 
+<resultMap id="CancelList" type="Orders">
+   <id property="id" column="id"/>
+   <result property="ordersDate" column="orders_date"/>
+   <result property="ordersNo" column="orders_no"/>
+   <result property="ordersStatus" column="orders_status"/>
+   
+   <association property="ordersDetail" javaType="OrdersDetail">
+   <id property="ordersNo" column="orders_no"/>
+   <result property="detailQty" column="detail_qty"/>
+   <result property="detailSt" column="detail_qty"/>
+   </association>   
+   <association property="product" javaType="Product">
+   <id property="productNo" column="product_no"/>
+   <result property="productName" column="product_name"/>
+   <result property="productPrice" column="product_price"/>
+   <result property="productImage" column="product_image"/>
+   <result property="productAmount" column="product_amount"/>
+   </association>
+</resultMap>
 
-
-
-
-
-	<select id="orders" parameterType="Hashmap" resultMap="OrderList">
-	select o.orders_date, o.orders_no, od.detail_qty, od.detail_st, p.product_name
-	FROM Orders o, orders_Detail od, product p
-	where o.orders_no = od.orders_no and od.product_no = p.product_no and o.id = #{id}
-	</select>
+   <select id="orders" parameterType="String" resultMap="OrderList">
+   select o.orders_date, o.orders_no, o.orders_status, od.detail_qty, od.detail_st, p.product_name
+   FROM Orders o, orders_Detail od, product p
+   where o.orders_no = od.orders_no and od.product_no = p.product_no and o.id = #{id}
+   order by o.orders_date desc 
+   </select>
+   
+   
+   <select id="coupon" parameterType="String" resultType="Coupon">
+   select coupon_no as couponNo, id, coupon_type as couponType, coupon_discount as couponDiscount,
+   coupon_used as couponUsed, coupon_sdate as couponSdate, coupon_edate as couponEdate, coupon_title as couponTitle
+   FROM coupon where id = #{id} order by coupon_edate desc 
+   </select>
+   
+   
+   <select id="canCancel" parameterType="int" resultMap="CancelList">
+   select o.orders_date, o.orders_no, o.orders_status, od.detail_qty, od.detail_st,
+   p.product_name, p.product_price, p.product_image, p.product_amount
+   FROM Orders o, orders_Detail od, product p
+   where o.orders_no = od.orders_no and od.product_no = p.product_no and o.orders_no = #{ordersNo}
+   </select>
+   
 
 </mapper>
-	
+   
