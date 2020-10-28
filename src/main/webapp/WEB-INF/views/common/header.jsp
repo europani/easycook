@@ -73,7 +73,7 @@
 							<a href="/easycook/mypage/modify">MYPAGE</a>
 							<div class="dropdown-content">
 								<a href="/easycook/member/modify" style="color:black;">회원정보수정</a>
-								<a href="/easycook/mypage/cart" style="color:black;">장바구니</a>
+								<a href="/easycook/order/cart" style="color:black;">장바구니</a>
 								<a href="/easycook/mypage/orders" style="color:black;">주문내역</a>
 								<a href="/easycook/mypage/wishlist" style="color:black;">위시리스트</a>
 								<a href="/easycook/mypage/cancel" style="color:black;">취소/반품</a>
@@ -138,7 +138,7 @@
 							<div class="dropdown-content">
 								<a href="/easycook/notice/list">공지사항</a>
 								<a href="/easycook/board/event">EVENT</a>
-								<a href="/easycook/board/faq">FAQ</a>
+								<a href="/easycook/notice/faq">FAQ</a>
 							</div>
 						</li>
 					</ul>
