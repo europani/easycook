@@ -36,7 +36,8 @@
         <a href="/easycook/admin/member" class="list-group-item list-group-item-action bg-light">회원관리</a>
         <a href="/easycook/admin/product" class="list-group-item list-group-item-action bg-light">상품관리</a>
         <a href="/easycook/admin/orders" class="list-group-item list-group-item-action bg-light">주문관리</a>
-        <a href="/easycook/admin/board" class="list-group-item list-group-item-action bg-light">게시물관리</a>
+        <a href="/easycook/admin/notice" class="list-group-item list-group-item-action bg-light">공지사항</a>
+        <a href="/easycook/admin/event" class="list-group-item list-group-item-action bg-light">이벤트</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->

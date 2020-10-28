@@ -1,18 +1,20 @@
 package com.devon.easycook.domain;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
-import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
 @Data
 public class EventDTO {
 
-	private int event_no;
-	private String event_title;
-	private String event_content;
-	private String event_image;
-	private Timestamp event_startdate;
-	private Timestamp event_enddate;
+	private int eventNo;
+	private String eventTitle;
+	private String eventContent;
+	private String eventImage;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date eventStartdate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date eventEnddate;
 }
