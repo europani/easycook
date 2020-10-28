@@ -4,8 +4,7 @@
 <mapper namespace="eventMapper">
 
 
-	<select id="selectTitle" resultType="Event">
-		select event_title from event;
+	<select id="eventList" resultType="Event">
+		select * from event
 	</select>
-
 </mapper>

@@ -17,10 +17,10 @@ public class EventDAO extends AbstractMybatisDAO{
 	private String namespace = "eventMapper";
 	
 	//1.eventTitle보기
-	public List<EventDTO> selectTitle(){
+	public List<EventDTO> eventList(){
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
-			return sqlsession.selectList((namespace + ".eventTitle"));
+			return sqlsession.selectList(namespace+".eventList");
 		}finally {
 			sqlsession.close();
 		}

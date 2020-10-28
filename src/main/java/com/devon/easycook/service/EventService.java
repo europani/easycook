@@ -14,7 +14,7 @@ public class EventService {
 	private EventDAO eventDao;
 	
 	//eventTitile보기
-	public List<EventDTO> selectTitle(){
-		return eventDao.selectTitle();
+	public List<EventDTO> eventList(){
+		return eventDao.eventList();
 	}
 }

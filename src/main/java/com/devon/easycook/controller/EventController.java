@@ -22,7 +22,7 @@ public class EventController {
 	
 	@GetMapping("/event")
 	public String title(Model model) {
-		List<EventDTO> title = dbPro.selectTitle();
+		List<EventDTO> title = dbPro.eventList();
 		model.addAttribute("title", title);
 		return "board/event";
 	}
