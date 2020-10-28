@@ -18,6 +18,8 @@
 		<typeAlias type="com.devon.easycook.domain.NoticeDTO" alias="Notice"/>
 
 		<typeAlias type="com.devon.easycook.domain.CouponDTO" alias="Coupon"/>
+		
+		<typeAlias type="com.devon.easycook.domain.EventDTO" alias="Event"/>
 
 	</typeAliases>
 	<environments default="development">
@@ -37,5 +39,6 @@
 		<mapper resource="com/devon/easycook/mapper/MypageMapper.xml"/>
 		<mapper resource="com/devon/easycook/mapper/CartMapper.xml"/>
 		<mapper resource="com/devon/easycook/mapper/NoticeMapper.xml"/>
+		<mapper resource="com/devon/easycook/mapper/EventMapper.xml"/>
 	</mappers>
 </configuration>

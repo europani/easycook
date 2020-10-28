@@ -9,9 +9,10 @@ import lombok.Data;
 @Data
 public class EventDTO {
 
-	private int eventNo;
-	private String eventTitle;
-	private String eventContent;
-	private Timestamp eventSdate;
-	private Timestamp eventEdate;
+	private int event_no;
+	private String event_title;
+	private String event_content;
+	private String event_image;
+	private Timestamp event_startdate;
+	private Timestamp event_enddate;
 }

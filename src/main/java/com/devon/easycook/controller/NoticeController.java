@@ -29,7 +29,7 @@ public class NoticeController {
 	
 	@GetMapping("/faq")
 	public String faq() {
-		return "board/faq";
+		return "notice/faq";
 	}
 	
 	public String pageNum = "";

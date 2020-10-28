@@ -138,7 +138,7 @@
 							<div class="dropdown-content">
 								<a href="/easycook/notice/list">공지사항</a>
 								<a href="/easycook/board/event">EVENT</a>
-								<a href="/easycook/board/faq">FAQ</a>
+								<a href="/easycook/notice/faq">FAQ</a>
 							</div>
 						</li>
 					</ul>
