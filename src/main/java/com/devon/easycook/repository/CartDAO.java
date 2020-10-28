@@ -20,11 +20,12 @@ public class CartDAO extends AbstractMybatisDAO {
 	private String namespace = "cartMapper";
 
 	// 1. 장바구니에 추가하기
-	public void cartInsert(CartDTO cart) {
+	// dto에 저장된 값을 받아서 sql 세션에 저장하고 cart/inset로 감 mapper로
+	public void cartInsert(CartDTO dto) {
 		sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
 		try {
-			result = sqlsession.insert(namespace + ".cartInsert", cart);
+			result = sqlsession.insert(namespace + ".cartInsert", dto);
 			if(result != 0) {
 				sqlsession.commit();
 			}
@@ -43,73 +44,42 @@ public class CartDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	// 3. 장바구니 수정하기 - 수량덮어쓰기
-	public void cartModify(CartDTO cart) {
-		sqlsession = getSqlSessionFactory().openSession();
-		int result = 0;
-		try {
-			result = sqlsession.update(namespace + ".cartModify", cart);
-			if(result != 0) {
-				sqlsession.commit();
-			}
-		} finally {
-			sqlsession.close();
-		}
-	}	
-	
-	// 4. 장바구니 삭제하기
-	public void cartDelete(int cartNo) {
-		sqlsession = getSqlSessionFactory().openSession();
-		int result = 0;
-		try {
-			result = sqlsession.delete(namespace + ".cartDelete", cartNo);
-			
-			  if(result != 0) {
-				  sqlsession.commit(); 
-				  }
-			 } 
-		finally {
-			sqlsession.close();
-		}
-	}
-	
-	
 	// 5. 장바구니 합계구하기
-	public int sumTotal(String Id) {
+	public int sumMoney(String Id) {
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
-			return sqlsession.selectOne(namespace + ".sumTotal", Id);
+			return sqlsession.selectOne(namespace + ".sumMoney", Id);
 		} finally {
 			sqlsession.close();
 		}
 	}
 	
-	// 6. 장바구니 동일 상품 확인
-	public int cartCount(int productNo, String Id) {
-		sqlsession = getSqlSessionFactory().openSession();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("productNo", productNo);
-		map.put("Id", Id);
-		try {
-			return sqlsession.selectOne(namespace + ".cartCount", map);
-		} finally {
-			sqlsession.close();
-		}
-	}	
-	
-	// 7. 장바구니에 같은상품있으면 수량합산
-	public void cartUpdate(CartDTO cart) {
-		sqlsession = getSqlSessionFactory().openSession();
-		int result = 0;
-		try {
-			result = sqlsession.update(namespace + ".sumTotal", cart);
-			if(result != 0) {
-				sqlsession.commit();
-			}
-		} finally {
-			sqlsession.close();
-		}
-	}	
+	/*
+	 * // 3. 장바구니 수정하기 - 수량덮어쓰기 public void cartModify(CartDTO cart) { sqlsession =
+	 * getSqlSessionFactory().openSession(); int result = 0; try { result =
+	 * sqlsession.update(namespace + ".cartModify", cart); if(result != 0) {
+	 * sqlsession.commit(); } } finally { sqlsession.close(); } }
+	 * 
+	 * // 4. 장바구니 삭제하기 public void cartDelete(int cartNo) { sqlsession =
+	 * getSqlSessionFactory().openSession(); int result = 0; try { result =
+	 * sqlsession.delete(namespace + ".cartDelete", cartNo);
+	 * 
+	 * if(result != 0) { sqlsession.commit(); } } finally { sqlsession.close(); } }
+	 * 
+	 * 
+	 * 
+	 * 
+	 * // 6. 장바구니 동일 상품 확인 public int cartCount(int productNo, String Id) {
+	 * sqlsession = getSqlSessionFactory().openSession(); Map<String, Object> map =
+	 * new HashMap<String, Object>(); map.put("productNo", productNo); map.put("Id",
+	 * Id); try { return sqlsession.selectOne(namespace + ".cartCount", map); }
+	 * finally { sqlsession.close(); } }
+	 * 
+	 * // 7. 장바구니에 같은상품있으면 수량합산 public void cartUpdate(CartDTO cart) { sqlsession =
+	 * getSqlSessionFactory().openSession(); int result = 0; try { result =
+	 * sqlsession.update(namespace + ".sumTotal", cart); if(result != 0) {
+	 * sqlsession.commit(); } } finally { sqlsession.close(); } }
+	 */
 		
 }
 	

@@ -35,12 +35,12 @@
 										<tbody>
 											<c:forEach var="row" items="${map.list}" varStatus="i">
 												<tr class="text-center">
-													<td class="product-remove"><a
-														href="/easycook/mypage/cart/delete?cartNo=${row.cartNo}"><span
+													<%-- <td class="product-remove"><a
+														href="/easycook/order/cart/delete?cartNo=${row.cartNo}"><span
 															class="ion-ios-close"></span></a></td>
 														<!-- 	이미지 넣어야함 -->
 													<td class="image-prod"><div class="img"
-															style="background-image: url(../resources/images/product-3.jpg);"></div></td>
+															style="background-image: url(../resources/images/product-3.jpg);"></div></td> --%>
 
 													<td class="product-name">
 														<h3>${row.productName}</h3> <!-- <p>Far far away, behind the word mountains, far from the countries</p> -->
@@ -64,7 +64,7 @@
 
 											<tr class="text-center">
 												<td colspan="5" align="right">배송료 : ${map.fee}원<br /> 
-												총 주문 금액 : <fmt:formatNumber value="${map.allSum}"
+												총 주문 금액 : <fmt:formatNumber value="${map.sum}"
 														pattern="###,###,###" />원
 												</td>
 											</tr>
@@ -72,8 +72,8 @@
 										</tbody>
 									</table>
 									
-									<input type="hidden" name="count" value="${map.count}">
-									<button type="submit" id="btnUpdate">수정</button>
+									<%-- <input type="hidden" name="count" value="${map.count}">
+									<button type="submit" id="btnUpdate">수정</button> --%>
 
 								</div>
 							</div>

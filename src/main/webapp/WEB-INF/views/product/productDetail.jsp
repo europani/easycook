@@ -57,7 +57,7 @@
 						</div> -->
 						<div class="w-100"></div>
 						<div class="input-group col-md-6 d-flex mb-3">
-							<form name="cartForm" method="post" action="/easycook/mypage/cart/insert">
+							<form name="cartForm" method="post" action="/easycook/order/cart/insert">
 								<input type="hidden" name="productNo" value="${detail.productNo}">
 								<select name="amount">
 									<c:forEach begin="1" end="10" var="i">

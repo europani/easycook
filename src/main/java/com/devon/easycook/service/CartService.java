@@ -25,30 +25,28 @@ public class CartService {
 		return cartDao.cartList(Id);
 	}
 	
-	// 3. 장바구니 수정하기 - 수량덮어쓰기
-	public void cartModify(CartDTO cart) {
-		cartDao.cartModify(cart);
+	// 5. 장바구니 합계구하기 
+	public int sumMoney(String Id) { 
+		return cartDao.sumMoney(Id); 
 	}
 	
-	// 4. 장바구니 삭제하기
-	public void cartDelete(int cartNo) {
-		cartDao.cartDelete(cartNo);
-	}
-
-	// 5. 장바구니 합계구하기
-	public int sumTotal(String Id) {
-		return cartDao.sumTotal(Id);
-	}
-
-	// 6. 장바구니 동일 상품 확인
-	public int countCart(int productNo, String Id) {
-		return cartDao.cartCount(productNo, Id);
-	}		
-		
-	// 7. 장바구니에 같은상품있으면 수량합산
-	public void cartUpdate(CartDTO cart) {
-		cartDao.cartUpdate(cart);
-	}
+	/*
+	 * // 3. 장바구니 수정하기 - 수량덮어쓰기 public void cartModify(CartDTO cart) {
+	 * cartDao.cartModify(cart); }
+	 * 
+	 * // 4. 장바구니 삭제하기 public void cartDelete(int cartNo) {
+	 * cartDao.cartDelete(cartNo); }
+	 * 
+	 * // 5. 장바구니 합계구하기
+	 * 
+	 * 
+	 * // 6. 장바구니 동일 상품 확인 public int countCart(int productNo, String Id) { return
+	 * cartDao.cartCount(productNo, Id); }
+	 * 
+	 * // 7. 장바구니에 같은상품있으면 수량합산 public void cartUpdate(CartDTO cart) {
+	 * cartDao.cartUpdate(cart); }
+	 */
+	 
 
 
 
