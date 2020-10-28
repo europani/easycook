@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cartMapper">
+<mapper namespace="orderMapper">
 
 	<!-- 1. 장바구니에 추가하기 담기를 누를때 -->
 	<insert id="cartInsert">
@@ -14,26 +14,26 @@
 	<!-- 2. 장바구니 목록보기 -->
 	<select id="cartList" resultType="Cart">
 		SELECT 
-			c.cart_no AS cartNo,
-			c.id AS Id,
-			p.product_no AS productNo,
-			m.name AS name,
-			p.product_name AS productName,
-			c.cart_qty AS cartQty,
-			p.product_price AS productPrice,
+			c.cart_no ,
+			c.id ,
+			p.product_no ,
+			m.name ,
+			p.product_name ,
+			p.product_image,
+			c.cart_qty ,
+			p.product_price,
 			(product_price * cart_qty) money
 		FROM 
 			member m, product p, cart c
 		WHERE 
 			m.id = c.id AND 
 			p.product_no = c.product_no AND
-			c.id = #{Id}
-		ORDER BY
-			c.cart_id
+			c.id = #{id}
+		
 	</select>
 	
 	<!-- 5. 장바구니 전체금액 -->
-	<select id="sumMoney" resultType="int">
+	<!-- <select id="sumMoney" resultType="int">
 		SELECT 
 			NVL(SUM(product_price * cart_qty), 0) money
 		FROM 
@@ -41,7 +41,7 @@
 		WHERE 
 			c.product_no = p.product_no AND
 			c.id = #{Id}
-	</select>
+	</select>  -->
 
 <!-- 	
 	3. 장바구니 수정 (수량 덮어쓰기)

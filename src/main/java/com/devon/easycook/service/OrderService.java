@@ -6,30 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devon.easycook.domain.CartDTO;
-import com.devon.easycook.repository.CartDAO;
+import com.devon.easycook.repository.OrderDAO;
 
 @Service
-public class CartService {
+public class OrderService {
 
-	@Autowired
-	private CartDAO cartDao;
+	@Autowired 
+	private OrderDAO orderDao;
 	
 	
 	// 1. 장바구니에 추가하기
 	public void cartInsert(CartDTO cart) {
-		cartDao.cartInsert(cart);
+		orderDao.cartInsert(cart);
 	}
 	
 	// 2. 장바구니 목록보기
-	public List<CartDTO> cartList(String Id) {
-		return cartDao.cartList(Id);
+	public List<CartDTO> cartList(String Id) { 
+		return orderDao.cartList(Id); 
 	}
-	
-	// 5. 장바구니 합계구하기 
-	public int sumMoney(String Id) { 
-		return cartDao.sumMoney(Id); 
-	}
-	
+	 /* 
+	 * // 5. 장바구니 합계구하기 public int sumMoney(String Id) { return
+	 * cartDao.sumMoney(Id); }
+	 */
 	/*
 	 * // 3. 장바구니 수정하기 - 수량덮어쓰기 public void cartModify(CartDTO cart) {
 	 * cartDao.cartModify(cart); }

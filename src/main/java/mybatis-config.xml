@@ -37,7 +37,7 @@
 		<mapper resource="com/devon/easycook/mapper/MemberMapper.xml"/>
 		<mapper resource="com/devon/easycook/mapper/ProductMapper.xml"/>
 		<mapper resource="com/devon/easycook/mapper/MypageMapper.xml"/>
-		<mapper resource="com/devon/easycook/mapper/CartMapper.xml"/>
+		<mapper resource="com/devon/easycook/mapper/OrderMapper.xml"/>
 		<mapper resource="com/devon/easycook/mapper/NoticeMapper.xml"/>
 		<mapper resource="com/devon/easycook/mapper/EventMapper.xml"/>
 	</mappers>

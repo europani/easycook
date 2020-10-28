@@ -33,37 +33,37 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="row" items="${map.list}" varStatus="i">
+											<c:forEach var="row" items="${list}" varStatus="i">
 												<tr class="text-center">
-													<%-- <td class="product-remove"><a
-														href="/easycook/order/cart/delete?cartNo=${row.cartNo}"><span
+													<td class="product-remove"><a
+														href="/easycook/order/cart/delete?cartNo=${row.cart_no}"><span
 															class="ion-ios-close"></span></a></td>
 														<!-- 	이미지 넣어야함 -->
-													<td class="image-prod"><div class="img"
-															style="background-image: url(../resources/images/product-3.jpg);"></div></td> --%>
+													 <td class="image-prod"><div class="img"
+															style="background-image: url(../resources/images/${row.product_image});"></div></td> 
 
 													<td class="product-name">
-														<h3>${row.productName}</h3> <!-- <p>Far far away, behind the word mountains, far from the countries</p> -->
+														<h3>${row.product_name}</h3> <!-- <p>Far far away, behind the word mountains, far from the countries</p> -->
 													</td>
 
 													<td class="price"><fmt:formatNumber
-															value="${row.productPrice}" pattern="###,###,###" />원</td>
+															value="${row.product_price}" pattern="###,###,###" />원</td>
 
 													<td class="quantity">
 														<div class="input-group mb-3">
 															<input type="text" name="quantity"
-																class="quantity form-control input-number" value="${row.cartQty}" min="1">
+																class="quantity form-control input-number" value="${row.cart_qty}" min="1">
 														</div>
 													</td>
 
-													<%-- <td class="total"><fmt:formatNumber
-															value="${map.sumTotal}" pattern="###,###,###" />원</td> --%>
+													<td class="total"><fmt:formatNumber
+															value="${row.money}" pattern="###,###,###" />원</td> 
 												</tr>
 												<!-- END TR-->
 											</c:forEach>
 
 											<tr class="text-center">
-												<td colspan="5" align="right">배송료 : ${map.fee}원<br /> 
+												<td colspan="5" align="right"> 
 												총 주문 금액 : <fmt:formatNumber value="${map.sum}"
 														pattern="###,###,###" />원
 												</td>
@@ -72,8 +72,8 @@
 										</tbody>
 									</table>
 									
-									<%-- <input type="hidden" name="count" value="${map.count}">
-									<button type="submit" id="btnUpdate">수정</button> --%>
+									<input type="hidden" name="count" value="${list.size()}">
+									<button type="submit" id="btnUpdate">수정</button>
 
 								</div>
 							</div>

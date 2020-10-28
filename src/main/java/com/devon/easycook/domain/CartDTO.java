@@ -7,16 +7,17 @@ import lombok.Data;
 @Data
 public class CartDTO {
 
-	private int cartNo; // 장바구니번호
-	private String Id; // 회원아이디
-	private int productNo; // 상품번호
-	private int cartQty; // 수량
-	
-	private String name; // 회원 이름
-	private String productName; // 상품이름
-	private int productPrice; // 상품가격
-	private int money; // 상품가격 * 수량
+	private int cart_no; // 장바구니번호
+	private String id; // 회원아이디
+	private int product_no; // 상품번호
+	private int cart_qty; // 수량
 
+	private String product_image; // 상품 이미지파일 이름
+	private String name; // 회원 이름
+	private String product_name; // 상품 이름
+	private int product_price; // 상품 가격
+	private int money; // 수량*상품 - 그상품 총금액
+	private int count;
 }
 
 //	private int cartStatus;

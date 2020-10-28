@@ -58,12 +58,8 @@
 						<div class="w-100"></div>
 						<div class="input-group col-md-6 d-flex mb-3">
 							<form name="cartForm" method="post" action="/easycook/order/cart/insert">
-								<input type="hidden" name="productNo" value="${detail.productNo}">
-								<select name="amount">
-									<c:forEach begin="1" end="10" var="i">
-										<option value="${i}">${i}</option>
-									</c:forEach>
-								</select>&nbsp;개
+								<input type="hidden" name="product_no" value="${detail.productNo}">
+								<input type="text" name="cart_qty">
 								<p><input type="submit" class="btn btn-primary py-3 px-5" value="장바구니에 담기" ></p>
 							</form>
 							

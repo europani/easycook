@@ -11,29 +11,28 @@ import org.springframework.stereotype.Repository;
 import com.devon.easycook.domain.CartDTO;
 
 @Repository
-public class CartDAO extends AbstractMybatisDAO {
-	
-	
+public class OrderDAO extends AbstractMybatisDAO {
+
 	@Autowired
 	SqlSession sqlsession;
-	
-	private String namespace = "cartMapper";
+
+	private String namespace = "orderMapper";
 
 	// 1. 장바구니에 추가하기
-	// dto에 저장된 값을 받아서 sql 세션에 저장하고 cart/inset로 감 mapper로
+	// dto에 저장된 값을 받아서 sql 세션에 저장하고 cart/cartInsert로 감 mapper로
 	public void cartInsert(CartDTO dto) {
 		sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
 		try {
 			result = sqlsession.insert(namespace + ".cartInsert", dto);
-			if(result != 0) {
+			if (result != 0) {
 				sqlsession.commit();
 			}
 		} finally {
 			sqlsession.close();
 		}
 	}
-	
+
 	// 2. 장바구니 목록 보기
 	public List<CartDTO> cartList(String Id) {
 		sqlsession = getSqlSessionFactory().openSession();
@@ -44,16 +43,13 @@ public class CartDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	// 5. 장바구니 합계구하기
-	public int sumMoney(String Id) {
-		sqlsession = getSqlSessionFactory().openSession();
-		try {
-			return sqlsession.selectOne(namespace + ".sumMoney", Id);
-		} finally {
-			sqlsession.close();
-		}
-	}
-	
+	// 5. 장바구니 합계구하기 public int sumMoney(String Id) { sqlsession =
+	/*
+	 * getSqlSessionFactory().openSession(); try { return
+	 * sqlsession.selectOne(namespace + ".sumMoney", Id); } finally {
+	 * sqlsession.close(); } }
+	 */
+
 	/*
 	 * // 3. 장바구니 수정하기 - 수량덮어쓰기 public void cartModify(CartDTO cart) { sqlsession =
 	 * getSqlSessionFactory().openSession(); int result = 0; try { result =
@@ -80,7 +76,5 @@ public class CartDAO extends AbstractMybatisDAO {
 	 * sqlsession.update(namespace + ".sumTotal", cart); if(result != 0) {
 	 * sqlsession.commit(); } } finally { sqlsession.close(); } }
 	 */
-		
-}
-	
 
+}
