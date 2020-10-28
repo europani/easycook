@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.devon.easycook.domain.NoticeDTO;
+import com.devon.easycook.util.PagingVO;
 
 @Service
 public class NoticeDAO extends AbstractMybatisDAO{
@@ -148,4 +149,63 @@ public class NoticeDAO extends AbstractMybatisDAO{
 	         sqlSession.commit();
 	         sqlSession.close();
 	      }      return x;   }
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// ADMIN
+	public List<NoticeDTO> getFullInfo(PagingVO vo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectList(namespace + ".getFullInfo", vo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public void write(NoticeDTO notice) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlSession.insert(namespace + ".write", notice);
+			if (result != 0) {
+				sqlSession.commit();
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public void modify(NoticeDTO notice) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlSession.insert(namespace + ".modify", notice);
+			if (result != 0) {
+				sqlSession.commit();
+			}
+		} finally {
+			sqlSession.close();
+		}
+		
+	}
+
+	public void delete(int noticeNo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlSession.insert(namespace + ".del", noticeNo);
+			if (result != 0) {
+				sqlSession.commit();
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 }
