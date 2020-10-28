@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="/WEB-INF/views/common/adminSidebar.jsp" />
 
 <!-- Page Content -->
@@ -27,40 +26,48 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> 상품관리 </a>
+					aria-expanded="false"> 공지사항 </a>
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="/easycook/admin/product">상품목록</a> <a
-							class="dropdown-item" href="/easycook/admin/product/write">상품등록</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
+						<a class="dropdown-item" href="/easycook/admin/notice">공지사항</a> <a
+							class="dropdown-item" href="/easycook/admin/notice/write">공지작성</a>
 					</div></li>
 			</ul>
 		</div>
 	</nav>
+	<div class="w3-container w3-center ">
+		<h2>공지사항 수정</h2>
 
-	<div class="w3-container w3-center">
-		<h2>상품 삭제</h2>
-		<div class="w3-padding w3-display-topmiddle">
-		<form method="post" action="" name="deleteForm"
-			enctype="multipart/form-data">
-			<table>
+		<form method="post" action="" name="writeForm" enctype="multipart/form-data">
+			<table class="w3-table-all" style="width:50%;">
 				<tr>
-					<td><font color="red">삭제를 위해 선택한 상품번호를 입력해주세요.</font></td>
+					<td width="70" align="center">번 호</td>
+					<td width="330">${notice.noticeNo}</td>
 				</tr>
 				<tr>
-					<td><input name="inputNo" style="width: 150px;"></td>
+					<td width="70" align="center">제 목</td>
+					<td width="330"><input type="text" size="40" maxlength="50" name="noticeTitle" value="${notice.noticeTitle}"></td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<input type="submit" value="삭제하기">
+					<td width="70" align="center">내 용</td>
+					<td width="330"><textarea name="noticeContent" rows="13" cols="40">${notice.noticeContent}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td width="70" align="center">첨부파일</td>
+					<td width="330"><input type="file" size="40" maxlength="30" name="file"><br>
+					(기존 파일: ${notice.noticeFilename})</td>
+				</tr>
+				<tr>
+					<td colspan=2 align="center">
+						<input type="submit" value="수정하기">
 						<input type="button" value="뒤로가기" OnClick="javascript:history.back()">
 					</td>
 				</tr>
 			</table>
 		</form>
-		</div>
 	</div>
+
 
 </div>
 <!-- /#wrapper -->
@@ -69,7 +76,6 @@
 <script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
 <script
 	src="/easycook/resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/easycook/resources/js/ajax.js"></script>
 
 <!-- Menu Toggle Script -->
 <script>

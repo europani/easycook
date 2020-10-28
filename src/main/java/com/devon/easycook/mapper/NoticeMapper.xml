@@ -45,7 +45,7 @@
    </update>
    
    <select id="getArticle" parameterType="hashmap"  resultType="Notice">
-   select * from notice where noticeNo = #{noticeNo} 
+   select notice_no AS noticeNo, notice_title AS noticeTitle, notice_content AS noticeContent, notice_image AS noticeFilename from notice where notice_no = #{noticeNo} 
    </select>
    
    <select id="insertArticle_new"  resultType="int">
@@ -86,4 +86,40 @@
        delete from notice where noticeNo = #{noticeNo}
     </select>
    
+   
+   
+   
+   
+   
+   <!-- ADMIN -->
+   <select id="getFullInfo" resultType="Notice">
+		SELECT notice_no AS noticeNo, notice_title AS noticeTitle, notice_content AS noticeContent, notice_date AS noticeDate, notice_count AS noticeCount 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM notice 
+						ORDER BY notice_no DESC) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<insert id="write" parameterType="Notice">
+		<if test="noticeFilename != null">
+			INSERT INTO notice VALUES (noticeSeq.nextval, #{noticeTitle}, #{noticeContent}, #{noticeFilename}, sysdate, 0)
+		</if>
+		<if test="noticeFilename == null">
+			INSERT INTO notice(notice_no, notice_title, notice_content, notice_date, notice_count) VALUES (noticeSeq.nextval, #{noticeTitle}, #{noticeContent}, sysdate, 0)
+		</if>
+	</insert>
+	<update id="modify" parameterType="Notice">
+		UPDATE notice SET notice_title = #{noticeTitle}, notice_content = #{noticeContent}
+		<if test="noticeFilename != null">
+			, notice_image = #{noticeFilename}
+		</if>
+			WHERE notice_no = #{noticeNo}
+	</update>
+	<delete id="del" parameterType="int">
+		DELETE FROM notice WHERE notice_no = #{noticeNo}
+	</delete>
 </mapper>

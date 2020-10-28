@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.devon.easycook.domain.NoticeDTO;
 import com.devon.easycook.repository.NoticeDAO;
+import com.devon.easycook.util.PagingVO;
 
 @Service
 public class NoticeService {
@@ -43,4 +44,26 @@ public class NoticeService {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	// ADMIN
+	public List<NoticeDTO> getFullInfo(PagingVO vo) {
+		return noticeDao.getFullInfo(vo);
+	}
+
+	public void write(NoticeDTO notice) {
+		noticeDao.write(notice);
+	}
+
+	public void modify(NoticeDTO notice) {
+		noticeDao.modify(notice);
+	}
+
+	public void delete(int noticeNo) {
+		noticeDao.delete(noticeNo);
+	}
 }
