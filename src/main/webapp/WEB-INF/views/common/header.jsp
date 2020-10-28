@@ -26,6 +26,11 @@
 <link rel="stylesheet" href="/easycook/resources/css/icomoon.css">
 <link rel="stylesheet" href="/easycook/resources/css/style.css">
 
+
+
+
+<link rel="stylesheet" href="/easycook/resources/notice/vendor/select2/select2.min.css">
+
 <link id="u-theme-google-font" rel="stylesheet"
    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 <link id="u-page-google-font" rel="stylesheet"
@@ -131,9 +136,9 @@
 						<li class="dropdown">
 							<a href="/easycook/board/notice">고객센터</a>
 							<div class="dropdown-content">
-								<a href="/easycook/board/notice">공지사항</a>
+								<a href="/easycook/notice/list">공지사항</a>
 								<a href="/easycook/board/event">EVENT</a>
-								<a href="/easycook/board/faq">FAQ</a>
+								<a href="/easycook/notice/faq">FAQ</a>
 							</div>
 						</li>
 					</ul>

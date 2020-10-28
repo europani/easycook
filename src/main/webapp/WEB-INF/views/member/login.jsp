@@ -13,20 +13,18 @@
       <div class="passForm">
         <input type="password" class="pw" placeholder="PW" name="pwd">
       </div>
-      <div class="bottomText">
-        Don't you have ID? <br><a href="signup">sign up</a> / 
-        <a href="https://kauth.kakao.com/oauth/authorize?client_id=0e5da3292d8e58d5694244ef5bc3539e&redirect_uri=http://localhost:8089/easycook/member/kakaosignup&response_type=code"">kakao sign up</a>
+      <div class="bottomText" style="font-size: 15px">
+        Don't you have ID? <a href="signuplist">sign up</a>
       </div>
       <div id="login" style="text-align: center" class="lgimg">
      	 <img width="223" src="/easycook/resources/images/login_btn.png" onclick="button()" />
    	  </div>
        <div id="kakao_id_login" style="text-align: center" class="lgimg">
-         <a href="https://kauth.kakao.com/oauth/authorize?client_id=0e5da3292d8e58d5694244ef5bc3539e&redirect_uri=http://localhost:8089/easycook/member/kakaologinCallback&response_type=code"> <img width="223" src="/easycook/resources/images/kakao_login_btn_medium_narrow.png" /></a>
-       </div>
-       <div id="naver_id_login" style="text-align: center">
-         <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=38SdDQt0VXvmWJ3wviN6&redirect_url=http://localhost:8089/easycook/member/naverCallback&state=8297"> <img width="223" src="/easycook/resources/images/naver_btn.png" /></a>
-       </div>
- 	   
+   		<a href="https://kauth.kakao.com/oauth/authorize?client_id=0e5da3292d8e58d5694244ef5bc3539e&redirect_uri=http://localhost:8089/easycook/member/kakaologinCallback&response_type=code"> <img width="223" src="/easycook/resources/images/kakao_login_btn_medium_narrow.png" /></a>
+ 	   </div>
+ 	   <div id="naver_id_login" style="text-align: center">
+   		<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=38SdDQt0VXvmWJ3wviN6&redirect_url=http://localhost:8089/easycook/member/naverCallback&state=8297"> <img width="223" src="/easycook/resources/images/naver_btn.png" /></a>
+ 	   </div>
     </form>
     <script>
       function button() {

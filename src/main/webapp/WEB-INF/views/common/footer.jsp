@@ -65,5 +65,8 @@
    <script src="/easycook/resources/mart/js/owl.carousel.min.js"></script>
    <script src="/easycook/resources/mart/js/wow.min.js"></script>
    <script src="/easycook/resources/mart/js/custom.js"></script>
+   
+   
+
 </body>
 </html>
