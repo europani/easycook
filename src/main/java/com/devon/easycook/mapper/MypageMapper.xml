@@ -4,6 +4,7 @@
    
 <mapper namespace="mypageMapper">
 
+<!-- 주문목록 resultMap 설정  -->
 <resultMap id="OrderList" type="Orders">
    <id property="id" column="id"/>
    <result property="ordersDate" column="orders_date"/>
@@ -21,7 +22,9 @@
    </association>
 </resultMap>
 
-<resultMap id="CancelList" type="Orders">
+
+<!-- 취소/반품신청가능 목록용 resultMap 설정  -->
+<resultMap id="cancelRequire" type="Orders">
    <id property="id" column="id"/>
    <result property="ordersDate" column="orders_date"/>
    <result property="ordersNo" column="orders_no"/>
@@ -30,7 +33,7 @@
    <association property="ordersDetail" javaType="OrdersDetail">
    <id property="ordersNo" column="orders_no"/>
    <result property="detailQty" column="detail_qty"/>
-   <result property="detailSt" column="detail_qty"/>
+   <result property="detailSt" column="detail_st"/>
    </association>   
    <association property="product" javaType="Product">
    <id property="productNo" column="product_no"/>
@@ -41,27 +44,109 @@
    </association>
 </resultMap>
 
-   <select id="orders" parameterType="String" resultMap="OrderList">
-   select o.orders_date, o.orders_no, o.orders_status, od.detail_qty, od.detail_st, p.product_name
-   FROM Orders o, orders_Detail od, product p
-   where o.orders_no = od.orders_no and od.product_no = p.product_no and o.id = #{id}
-   order by o.orders_date desc 
+
+	<!-- 주문목록 확인하기  -->
+   <select id="OrderList" parameterType="String" resultMap="OrderList">
+   select 
+   	o.orders_date,
+    o.orders_no,
+    o.orders_status,
+    od.detail_qty,
+    od.detail_st,
+    p.product_name
+   FROM
+    Orders o, orders_Detail od, product p
+   where 
+    o.orders_no = od.orders_no and
+    od.product_no = p.product_no
+    and o.id = #{id}
+   order by
+    o.orders_date desc 
+   </select>
+   
+   <!-- 날짜따른 주문목록 확인하기 -->
+   <select id="ordersDate" parameterType="HashMap" resultMap="OrderList">
+   select 
+   	o.orders_date,
+    o.orders_no,
+    o.orders_status,
+    od.detail_qty,
+    od.detail_st,
+    p.product_name
+   FROM
+    Orders o, orders_Detail od, product p
+   where 
+    o.orders_no = od.orders_no and
+    od.product_no = p.product_no and
+    o.id = #{id} and
+    <choose>
+    	<when test="fromDate !=null and toDate != null">
+    	where to_char(o.orders_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate}
+    	</when>
+ <!--   <when test="fromDate !=null and toDate == null">
+    	where to_char(o.orders_date, 'yyyy-mm-dd') >= #{fromDate}
+    	</when>
+    	<when test="fromDate ==null and toDate != null">
+    	where to_char(o.orders_date, 'yyyy-mm-dd') < #{toDate}
+    	</when> -->
+    </choose>
+   order by
+    o.orders_date desc 
    </select>
    
    
+   	<!-- 쿠폰목록 확인하기  -->
    <select id="coupon" parameterType="String" resultType="Coupon">
-   select coupon_no as couponNo, id, coupon_type as couponType, coupon_discount as couponDiscount,
-   coupon_used as couponUsed, coupon_sdate as couponSdate, coupon_edate as couponEdate, coupon_title as couponTitle
-   FROM coupon where id = #{id} order by coupon_edate desc 
+   select
+    coupon_no as couponNo,
+    id,
+    coupon_type as couponType, 
+    coupon_discount as couponDiscount,
+    coupon_used as couponUsed, 
+    coupon_sdate as couponSdate, 
+    coupon_edate as couponEdate, 
+    coupon_title as couponTitle
+   FROM coupon
+   where id = #{id} 
+   order by coupon_edate desc 
    </select>
    
    
-   <select id="canCancel" parameterType="int" resultMap="CancelList">
-   select o.orders_date, o.orders_no, o.orders_status, od.detail_qty, od.detail_st,
-   p.product_name, p.product_price, p.product_image, p.product_amount
-   FROM Orders o, orders_Detail od, product p
-   where o.orders_no = od.orders_no and od.product_no = p.product_no and o.orders_no = #{ordersNo}
+   	<!-- 사용가능 쿠폰 확인하기 -->
+   <select id="couponCount" parameterType="String" resultType="int">
+   select count(coupon_no)
+   FROM coupon
+   where coupon_type = 0 and id = #{id}
+   </select>  
+   	<!-- 사용가능 포인트 확인하기  -->
+   <select id="myPoint" parameterType="String" resultType="int">
+   select point FROM member where id = #{id}
    </select>
+   
+   
+   <!-- 취소/반품가능 목록 확인하기  -->
+   <select id="cancelRequire" parameterType="int" resultMap="cancelRequire">
+   select 
+   	o.orders_date, 
+   	o.orders_no, 
+   	o.orders_status, 
+   	od.detail_qty, 
+   	od.detail_st,
+    p.product_name, 
+    p.product_price, 
+    p.product_image, 
+    p.product_amount
+   FROM 
+   	Orders o, orders_Detail od, product p
+   where 
+   	o.orders_no = od.orders_no and
+   	od.product_no = p.product_no and 
+   	o.orders_no = #{ordersNo}
+   </select>
+   
+   
+   
+   
    
 
 </mapper>

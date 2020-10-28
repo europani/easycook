@@ -58,7 +58,6 @@
          padding: 30px 20px 30px;
         float: left;
         background-color: #F8F8F8;
-        text-align: center;
       }
       .btn-search {   /* 나중에 추가할 버튼양식 */
        display: inline-block;
@@ -118,12 +117,13 @@
            <li>
               <span>이미지예정</span><br/>
               <span>쿠폰</span><br/>
-              -장
+              ${couponCount }장
            </li>
            <div class="vertical-line"/>
            <li>
               <span>이미지예정</span><br/>
-              <span>적립금</span><br/>-원
+              <span>적립금</span><br/>
+              ${myPoint }원
            </li>
         </ul>
         <br>
@@ -132,10 +132,16 @@
         <br><br>
        
         <hr><br>
-        <div id="content-detail">
-        <label for="InputCoupon">쿠폰등록 </label>&nbsp;&nbsp;&nbsp;
-      <input type="text" id="InputCoupon" name="InputCoupon" >&nbsp;&nbsp; 
-      <button class="btn-search">쿠폰등록</button>
+               <div id="content-detail">
+      <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
+      <input type="date" id="UserCheckIn" name="UserCheckIn"
+                  min="2020-10-01" max="2020-12-31" name="date"
+                  contenteditable="false">&nbsp;&nbsp;~&nbsp;&nbsp;
+      <label for="UserCheckOut"></label> 
+      <input type="date" id="UserCheckOut" name="UserCheckOut" 
+                  min="2020-08-01" max="2020-12-31" name="date"
+                   contenteditable="false">&nbsp;&nbsp;
+               <button class="btn-search">조회하기</button>
       </div>
       <br><br><br><br>
          <br><hr><br>

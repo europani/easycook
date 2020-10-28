@@ -85,8 +85,50 @@
         font-size: 15px;     
            border-bottom: 1px solid #ddd;
       }
-    
-    
+            .payment-content2 {
+        width: 85%;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: right;
+      }
+            /* 테이블 */
+      .paymentCustomer{
+        border-collapse: collapse;
+        width: 85%;
+      }      
+      .paymentCustomer th {
+	   background: #f6f6f6;
+	   padding-left : 15px;
+       font-weight: bold;
+       font-size: 16px;
+       vertical-align: middle;
+       border-top : 1px solid #999999;
+       border-bottom: 1px solid #dbdbdb;
+       height: 65px;
+      }
+      .paymentCustomer td {
+       padding-left : 15px;       
+       vertical-align: middle;     
+       font-size: 15px;
+       border-top : 1px solid #999999;     
+       border-bottom: 1px solid #dbdbdb;
+       height: 65px;
+      }  
+       .btn-payment {   /* 나중에 추가할 버튼양식 */
+       display: inline-block;
+       position : absolute;
+       margin-left: 40rem;
+       width: 120px;
+       height: 50px;
+       line-height: 30px;
+       background-color: rgba(0,0,0,0.1);
+       font-size: 20px;
+       font-weight : border;
+       color: black;
+       vertical-align: top;
+       margin-top : 15px;
+       text-align: center;
+      } 
     </style>
 <body>
     <div id="jb-container">
@@ -94,33 +136,31 @@
    <div id="jb-content">
    <h2>반품신청</h2>
    <br>
-   <h5>주문일 : ${oDate } | 주문번호 : ${oNum }</h5>
+   <h5>주문일 : ${ordersDate } | 주문번호 : ${orderNum }</h5>
    <div id="content-detail2">
     <table id="order-table">
       <thead>
          <tr> 
-         <th colspan="3">상품</th> 
+         <th colspan="2">상품</th> 
          <th>총결제금액</th>
          <th>수량</th>  
          <th>상품금액</th>
          </tr>
       </thead>
       <tbody>
-   <c:forEach var="canCancel" items="${canCancelList }">   
+   <c:forEach var="canCancel" items="${cancelRequire }">   
          <tr>
          <td>${canCancel.product.productImage } 이경로로 사진불러올것</td>
-         <td>${canCancel.product.productName } </td>
-         <td>${canCancel.product.productAmount} g </td>
-         <td>${canCancel.ordersDetail.detailSt }</td>
+         <td>${canCancel.product.productName }, ${canCancel.product.productAmount} g</td>
+         <td>${canCancel.ordersDetail.detailSt }  </td>
          <td>
-            <select name="QtyChoice">
-            <c:forEach var="Qty" items="${canCancel.ordersDetail.detailQty }"
-             begin="0" end="${canCancel.ordersDetail.detailQty }" step="1">
-             <option value="${Qty }">
+            <select>
+            <c:forEach var="qty" items="${qtyList }" begin="1">
+             <option value="${qty }">
             </c:forEach>
             </select>
          </td>
-         <td>${canCancel.product.productPrice } </td>
+         <td>${canCancel.product.productPrice }</td>
          </tr>
    </c:forEach>
       </tbody>
@@ -128,9 +168,37 @@
    <br><hr><br>
    <h3>반품사유</h3>
    <br>
-   <input type="checkbox">
-   
+   <select>
+    <option value="0">선택해주세요 </option>
+   	<option value="1">배송에 문제가 있음 </option>
+   	<option value="2">상품에 결함이 있음 </option>
+   </select>
 </div>
+   <div class="payment-content2">
+         <h4 >환불정보</h4>
+         <hr><br>
+      <table class="paymentCustomer">
+      <colgroup>
+      	<col style="width:20%">
+      	<col style="width:80%">
+      </colgroup>
+      	<tbody>
+      	<tr>
+      		<th>상품 취소 금액</th>
+      		<td>들고오기</td>
+      	</tr>
+      	<tr>
+      		<th>할인 금액</th>
+      		<td>들고오기</td>
+      	</tr>
+      	<tr>
+      		<th>총 환불예정금액</th>
+      		<td>들고오기</td>
+      	</tr>
+      	</tbody>   
+      </table>
+    </div>
+    <button class="btn-payment">신청하기</button>     	   
 </div>
       <div id="jb-bottom">
         <br/>

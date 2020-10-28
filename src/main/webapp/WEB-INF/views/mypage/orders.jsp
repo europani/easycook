@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- datepicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+
     <title>CSS</title>
     <style>
       #jb-container {
@@ -98,19 +102,18 @@
         <hr>
         <br>
         <div id="content-detail">
+        
+      <form name="searchFrm">
       <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
-      <input type="date" id="UserCheckIn" name="UserCheckIn"
-                  min="2020-10-01" max="2020-12-31" name="date"
-                  contenteditable="false">&nbsp;&nbsp;~&nbsp;&nbsp;
+      <input type="text" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
       <label for="UserCheckOut"></label> 
-      <input type="date" id="UserCheckOut" name="UserCheckOut" 
-                  min="2020-08-01" max="2020-12-31" name="date"
-                   contenteditable="false">&nbsp;&nbsp;
-               <button class="btn-search">조회하기</button>
+      <input type="text" name="toDate" id="toDate">&nbsp;&nbsp;
+      <button type="button" id="btnSearch" class="btn-search">조회하기</button>
+      </form>
+        
       </div>         
       <br><br><br><br>
          <br><hr><br>
-         
         <div id="content-detail2">
          <h5 >주문목록/배송조회 내역 총 -건</h5>
         <br><br>
@@ -133,10 +136,10 @@
           <td>${orders.ordersNo }</td>
           <td>${orders.product.productName }</td>
           <td>${orders.ordersDetail.detailQty }</td>
-          <td> ${orders.ordersDetail.detailSt }</td>
+          <td>${orders.ordersDetail.detailSt }</td>
           <td>
           ${orders.ordersStatus }
-         <form method="post" action="<%=request.getContextPath() %>/mypage/canCancel" >
+         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
          <c:if test="${orders.ordersStatus eq '주문완료'}">
          <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
          <input type="submit" class="btn-cancle" value='주문취소'>         
@@ -163,8 +166,79 @@
         <br/>
       </div>
 </div>
-<script>
 </body>
+<!-- datepicker -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script>
+
+$(document).ready(function () {
+	
+	if (${fromDate !=null && fromDate != "" && toDate != null && toDate != ""}) {
+		$("#fromDate").val("${fromDate}");
+		$("#toDate").val("${toDate}");
+	}
+	
+	$("#btnSearch").click(function () {
+		goSearch();
+	})
+	
+});
+
+
+
+$("#datepicker").datepicker({
+	
+	dateFormat: 'yy-mm-dd', showOtherMonths : true, showMonthAfterYear : true,
+	changeYear: true, changeMonth: true, showOn: "both", bottonText : "선택", yearSuffix: "년",
+	monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+    dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
+    dayNamesShort: ['일','월','화','수','목','금','토'],
+    dayNamesMin: ['일','월','화','수','목','금','토'],
+    minDate: "-10Y", maxDate: "today"	//today안되면 +1D로..
+    
+});
+$('#datepicker').datepicker('setDate', 'today');
+
+
+$(fuction(){
+	
+	$.datepicker.setDefaults({
+	
+	dateFormat: 'yy-mm-dd', showOtherMonths : true, showMonthAfterYear : true,
+	changeYear: true, changeMonth: true, showOn: "both", bottonText : "선택", yearSuffix: "년",
+	monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+    dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
+    dayNamesShort: ['일','월','화','수','목','금','토'],
+    dayNamesMin: ['일','월','화','수','목','금','토'],
+    minDate: "-10Y", maxDate: "today"	//today안되면 +1D로..
+    
+	});
+	
+	// input을 datepicker로 설정
+	$("#fromDate").datepicker();
+	$("#toDate").datepicker();
+	
+	// from의 초기값을 일주일전으로 설정
+	$('#fromDate').datepicker('setDate', '-1M');
+	// to의 조건값을 오늘로 설정
+	$('#toDate').datepicker('setDate', '-1D');
+	
+})
+
+
+function goSearch() {
+	
+	var frm = document.searchFrm;
+	frm.method = "GET";
+	frm.action = "ordersTest.action";
+	frm.submit();
+	
+}
+
+</script>
 
   
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

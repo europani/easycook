@@ -20,12 +20,20 @@ public class MypageDAO extends AbstractMybatisDAO{
    public List<OrdersDTO> orders(String id) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
-         return sqlsession.selectList(namespace + ".orders", id);
+         return sqlsession.selectList(namespace + ".OrderList", id);
       } finally {
          sqlsession.close();
       }
    }
    
+   public List<OrdersDTO> ordersDate(Map<String, String> map) {
+	      SqlSession sqlsession = getSqlSessionFactory().openSession();
+	      try {
+	         return sqlsession.selectList(namespace + ".ordersDate", map);
+	      } finally {
+	         sqlsession.close();
+	      }
+	   }
    
    public List<CouponDTO> coupon(String id) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
@@ -36,14 +44,34 @@ public class MypageDAO extends AbstractMybatisDAO{
       }
    }
    
+   public int couponCount(String id) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	   try {
+		   return sqlsession.selectOne(namespace + ".couponCount", id);
+		} finally {
+			sqlsession.close();
+		}
+   }
    
-   public List<OrdersDTO> canCancel(int ordersNo) {
+   public int myPoint(String id) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	   try {
+		   return sqlsession.selectOne(namespace + ".myPoint", id);
+		} finally {
+			sqlsession.close();
+		}
+	}
+   
+   public List<OrdersDTO> cancelRequire(int ordersNo) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
-         return sqlsession.selectList(namespace + ".canCancel", ordersNo);
+         return sqlsession.selectList(namespace + ".cancelRequire", ordersNo);
       } finally {
          sqlsession.close();
       }
    }
+
+
+
    
 }
