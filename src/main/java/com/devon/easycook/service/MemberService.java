@@ -73,4 +73,11 @@ public class MemberService {
 	public int countNumber() {
 		return memberDao.countMember();
 	}
+
+	public List<MemberDTO> getDelInfo(PagingVO vo) {
+		return memberDao.getDelInfo(vo);
+	}
+	public int countDelNumber() {
+		return memberDao.countDelMember();
+	}
 }

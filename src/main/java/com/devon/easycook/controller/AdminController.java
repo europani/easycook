@@ -29,6 +29,7 @@ import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.service.EventService;
 import com.devon.easycook.service.MemberService;
+import com.devon.easycook.service.MypageService;
 import com.devon.easycook.service.NoticeService;
 import com.devon.easycook.service.OrderService;
 import com.devon.easycook.service.ProductService;
@@ -48,6 +49,8 @@ public class AdminController {
 	EventService eventService;
 	@Autowired
 	OrderService orderService;
+	@Autowired
+	MypageService mypageService;
 	
 
 	@GetMapping("")
@@ -81,6 +84,28 @@ public class AdminController {
 	public String member(Model model, @PathVariable("id") String id) {
 
 		return "";
+	}
+	
+	@GetMapping("/member/delete")
+	public String memberDelList(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+		int total = memberService.countDelNumber();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		
+		List<MemberDTO> list = memberService.getDelInfo(vo);
+		model.addAttribute("infoList", list);
+		
+		return "admin/memberDelete";
 	}
 
 	@GetMapping("/product")
@@ -217,8 +242,7 @@ public class AdminController {
 	
 	@GetMapping("/orders/{orderNo}")
 	public String ordersDetail(Model model, @PathVariable("orderNo") int orderNo) {
-		List<OrdersDetailDTO> order = orderService.getOrder(orderNo);
-		model.addAttribute("orderNo", orderNo);
+		List<OrdersDetailDTO> order = orderService.getOrder(orderNo); ///////
 		model.addAttribute("order", order);
 		return "admin/orderDetail";
 	}

@@ -27,7 +27,8 @@
                 회원관리
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">탈퇴회원</a>
+              	<a class="dropdown-item" href="/easycook/admin/member">회원목록</a>
+                <a class="dropdown-item" href="/easycook/admin/member/delete">탈퇴회원</a>
               </div>
             </li>
           </ul>
