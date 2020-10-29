@@ -70,7 +70,7 @@
 			SELECT ROWNUM RN, A.* 
 				FROM (
 						SELECT * 
-						FROM member 
+						FROM member
 						) A
 				)
 		WHERE RN BETWEEN #{start} AND #{end}
@@ -78,4 +78,20 @@
 	<select id="countMember" resultType="int">
 		SELECT count(*) FROM member
 	</select>
+	
+	<select id="getDelInfo" resultType="Member">
+		SELECT id, name, email, tel, birthday, point, reg_date AS regDate, wdr_date AS wdrDate FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM member
+						WHERE wdr_date IS NOT NULL
+						) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="countDelMember" resultType="int">
+		SELECT count(*) FROM member WHERE wdr_date IS NOT NULL
+	</select>
+	
 </mapper>

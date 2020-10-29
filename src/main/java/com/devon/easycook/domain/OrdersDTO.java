@@ -1,6 +1,7 @@
 package com.devon.easycook.domain;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
 
@@ -14,7 +15,13 @@ public class OrdersDTO {
 	private Timestamp ordersDate;
 	private int cartNo;
 	private String ordersStatus;
+	private int ordersTotal;
 	
 	private OrdersDetailDTO ordersDetail;
 	private ProductDTO product;
+	
+	
+	// 날짜조회용
+	private Date fromDate;
+	private Date toDate;
 }

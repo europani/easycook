@@ -1,5 +1,6 @@
 package com.devon.easycook.repository;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.devon.easycook.domain.CartDTO;
+import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.OrdersDetailDTO;
+import com.devon.easycook.util.PagingVO;
 
 @Repository
 public class OrderDAO extends AbstractMybatisDAO {
@@ -86,5 +90,49 @@ public class OrderDAO extends AbstractMybatisDAO {
 	 * sqlsession.update(namespace + ".sumTotal", cart); if(result != 0) {
 	 * sqlsession.commit(); } } finally { sqlsession.close(); } }
 	 */
+
+
+
+	
+	
+	
+	// ADMIN
+
+	public int countOrder() {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countOrder");
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public List<OrdersDTO> getFullInfo(PagingVO vo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectList(namespace + ".getFullInfo", vo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<OrdersDetailDTO> getOrder(int orderNo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectList(namespace + ".getOrder", orderNo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Timestamp getOrderDate(int orderNo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectOne(namespace + ".getOrderDate", orderNo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 
 }

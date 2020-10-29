@@ -26,6 +26,15 @@ public class MypageDAO extends AbstractMybatisDAO{
       }
    }
    
+   public List<OrdersDTO> ordersDetail(int ordersNo) {
+	      SqlSession sqlsession = getSqlSessionFactory().openSession();
+	      try {
+	         return sqlsession.selectList(namespace + ".ordersDetailList", ordersNo);
+	      } finally {
+	         sqlsession.close();
+	      }
+	}
+   
    public List<OrdersDTO> ordersDate(Map<String, String> map) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
@@ -73,5 +82,16 @@ public class MypageDAO extends AbstractMybatisDAO{
 
 
 
+
+
    
+   // ADMIN
+   public List<OrdersDTO> getOrder(int orderNo) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	      try {
+	         return sqlsession.selectList(namespace + ".getOrder", orderNo);
+	      } finally {
+	         sqlsession.close();
+	      }
+	}
 }

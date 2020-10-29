@@ -16,11 +16,15 @@ public class MypageService {
    @Autowired
    private MypageDAO mypageDAO;
    
-   public List<OrdersDTO> Orders(String id) {
-      System.out.println("서비스 : " + id);
+   public List<OrdersDTO> orders(String id) {
       return mypageDAO.orders(id);
       
    }
+   
+   public List<OrdersDTO> ordersDetail(int ordersNo) {
+		return mypageDAO.ordersDetail(ordersNo);
+	}
+
    
    public List<OrdersDTO> ordersDate(Map<String, String> map) {
 	  System.out.println("서비스 : " + map);
@@ -28,7 +32,7 @@ public class MypageService {
 	      
    }
   
-   public List<CouponDTO> Coupon(String id) {
+   public List<CouponDTO> coupon(String id) {
       return mypageDAO.coupon(id); 
    }
    
@@ -46,6 +50,11 @@ public class MypageService {
    }
 
 
+
    
+   // ADMIN
+   public List<OrdersDTO> getOrder(int orderNo) {
+		return mypageDAO.getOrder(orderNo);
+	}
    
 }

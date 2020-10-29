@@ -36,7 +36,7 @@
       </nav>
 
 <div class="w3-container w3-center">
-  <h2>회원 목록</h2>
+  <h2>탈퇴회원 목록</h2>
 
   <table class="w3-table-all w3-hoverable w3-centered">
     <thead>

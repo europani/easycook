@@ -14,12 +14,32 @@
    <association property="ordersDetail" javaType="OrdersDetail">
    <id property="ordersNo" column="orders_no"/>
    <result property="detailQty" column="detail_qty"/>
-   <result property="detailSt" column="detail_st"/>
    </association>   
    <association property="product" javaType="Product">
    <id property="productNo" column="product_no"/>
    <result property="productName" column="product_name"/>
    </association>
+</resultMap>
+
+
+<!-- 주문목록에서 각상품 상세보기 페이지 설정 -->
+<resultMap type="Orders" id="ordersDetailList">
+	<id property="ordersNo" column="orders_no"/>
+	<result property="ordersTotal" column="orders_total"/>
+
+	<association property="ordersDetail" javaType="OrdersDetail">
+	<id property="ordersNo" column="orders_no"/>
+	<result property="productNo" column="product_no"/>
+	<result property="detailQty" column="detail_qty"/>
+	</association>
+
+	<association property="product" javaType="Product">
+	<id property="productNo" column="product_no"/>
+	<result property="productName" column="product_name"/>
+	<result property="productImage" column="product_image"/>	
+	<result property="productPrice" column="pro	duct_price"/>
+	<result property="productAmount" column="product_amount"/>
+	</association>
 </resultMap>
 
 
@@ -33,7 +53,6 @@
    <association property="ordersDetail" javaType="OrdersDetail">
    <id property="ordersNo" column="orders_no"/>
    <result property="detailQty" column="detail_qty"/>
-   <result property="detailSt" column="detail_st"/>
    </association>   
    <association property="product" javaType="Product">
    <id property="productNo" column="product_no"/>
@@ -45,6 +64,9 @@
 </resultMap>
 
 
+
+
+
 	<!-- 주문목록 확인하기  -->
    <select id="OrderList" parameterType="String" resultMap="OrderList">
    select 
@@ -52,7 +74,6 @@
     o.orders_no,
     o.orders_status,
     od.detail_qty,
-    od.detail_st,
     p.product_name
    FROM
     Orders o, orders_Detail od, product p
@@ -64,6 +85,24 @@
     o.orders_date desc 
    </select>
    
+   
+   <!-- 상세주문목록 확인하기(상품별) -->
+   <select id="ordersDetailList" parameterType="int" resultMap="ordersDetailList">
+   select
+     p.product_no,
+     p.product_name, 
+     p.product_image, 
+     p.product_price, 
+     od.DETAIL_QTY,
+     o.orders_total
+   from
+    product p, orders_detail od, orders o
+   where
+    p.product_no = od.product_no and o.orders_no = #{ordersNo} and o.orders_no = od.orders_no 
+   </select>
+   
+   
+   
    <!-- 날짜따른 주문목록 확인하기 -->
    <select id="ordersDate" parameterType="HashMap" resultMap="OrderList">
    select 
@@ -71,7 +110,6 @@
     o.orders_no,
     o.orders_status,
     od.detail_qty,
-    od.detail_st,
     p.product_name
    FROM
     Orders o, orders_Detail od, product p
@@ -79,17 +117,17 @@
     o.orders_no = od.orders_no and
     od.product_no = p.product_no and
     o.id = #{id} and
-    <choose>
-    	<when test="fromDate !=null and toDate != null">
-    	where to_char(o.orders_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate}
+    to_char(o.orders_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate}
+<!-- <choose>
+    	<when test="fromDate !=null and toDate != null">  
     	</when>
- <!--   <when test="fromDate !=null and toDate == null">
+ <when test="fromDate !=null and toDate == null">
     	where to_char(o.orders_date, 'yyyy-mm-dd') >= #{fromDate}
     	</when>
     	<when test="fromDate ==null and toDate != null">
     	where to_char(o.orders_date, 'yyyy-mm-dd') < #{toDate}
-    	</when> -->
-    </choose>
+    	</when>
+    </choose> -->
    order by
     o.orders_date desc 
    </select>
@@ -131,7 +169,6 @@
    	o.orders_no, 
    	o.orders_status, 
    	od.detail_qty, 
-   	od.detail_st,
     p.product_name, 
     p.product_price, 
     p.product_image, 
@@ -149,5 +186,14 @@
    
    
 
+
+
+	<!-- ADMIN -->
+	<select id="getOrder" parameterType="int" resultMap="OrderList">
+	   SELECT o.orders_date, o.orders_no, o.orders_status, od.detail_qty, p.product_name
+	   		FROM Orders o, orders_Detail od, product p
+	   		WHERE o.orders_no = od.orders_no and od.product_no = p.product_no and o.orders_no = #{orderNo}
+	   		ORDER BY o.orders_date desc 
+   	</select>
 </mapper>
    
