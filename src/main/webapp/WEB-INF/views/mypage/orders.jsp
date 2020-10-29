@@ -122,8 +122,6 @@
        <tr>
           <th>주문일</th>
           <th>주문번호</th>
-         <!--  <th>상품명</th> -->
-         <!--  <th>수량</th> -->
           <th>총주문금액</th>
           <th colspan="2">주문정보</th>
         </tr>
@@ -134,12 +132,13 @@
         <tr>
           <td>${orders.ordersDate }</td>
           <td>${orders.ordersNo }</td>
-          <%-- <td>${orders.product.productName }</td> --%>
-          <%-- <td>${orders.ordersDetail.detailQty }</td> --%>
-          <td>${orders.ordersDetail.detailSt }</td>
+          <td>${orders.ordersTotal }</td>
           <td>
           ${orders.ordersStatus }
           <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
+          </td>
+          
+          <td>
          <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
          <c:if test="${orders.ordersStatus eq '주문완료'}">
          <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
@@ -150,6 +149,7 @@
          </c:if>
           </form>  
          </td>
+         
         </tr>
         </c:if>
         <c:if test="${orders.ordersNo == null }">

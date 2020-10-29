@@ -4,7 +4,7 @@
    
 <mapper namespace="mypageMapper">
 
-<!-- 주문목록 resultMap 설정  -->
+<!-- 주문목록 날짜별보기 resultMap 설정  -->
 <resultMap id="OrderList" type="Orders">
    <id property="id" column="id"/>
    <result property="ordersDate" column="orders_date"/>
@@ -15,10 +15,6 @@
    <id property="ordersNo" column="orders_no"/>
    <result property="detailQty" column="detail_qty"/>
    </association>   
-   <association property="product" javaType="Product">
-   <id property="productNo" column="product_no"/>
-   <result property="productName" column="product_name"/>
-   </association>
 </resultMap>
 
 
@@ -86,6 +82,22 @@
    </select>
    
    
+   
+   	<!-- 주문목록 확인하기  -->
+   <select id="myOrderList" parameterType="String" resultType="Orders">
+   select 
+   	orders_date as ordersDate,
+    orders_no as ordersNo,
+    orders_status as ordersStatus
+   FROM
+    Orders
+   where 
+    id = #{id}
+   order by
+    orders_date desc 
+   </select>
+   
+   
    <!-- 상세주문목록 확인하기(상품별) -->
    <select id="ordersDetailList" parameterType="int" resultMap="ordersDetailList">
    select
@@ -104,20 +116,16 @@
    
    
    <!-- 날짜따른 주문목록 확인하기 -->
-   <select id="ordersDate" parameterType="HashMap" resultMap="OrderList">
+   <select id="ordersDate" parameterType="HashMap" resultType="Orders">
    select 
-   	o.orders_date,
-    o.orders_no,
-    o.orders_status,
-    od.detail_qty,
-    p.product_name
+   	orders_date as ordersDate,
+    orders_no as ordersNo,
+    orders_status as ordersStatus
    FROM
-    Orders o, orders_Detail od, product p
+    Orders
    where 
-    o.orders_no = od.orders_no and
-    od.product_no = p.product_no and
-    o.id = #{id} and
-    to_char(o.orders_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate}
+    id = #{id} and
+    to_char(orders_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate}
 <!-- <choose>
     	<when test="fromDate !=null and toDate != null">  
     	</when>
@@ -129,7 +137,7 @@
     	</when>
     </choose> -->
    order by
-    o.orders_date desc 
+    orders_date desc
    </select>
    
    
