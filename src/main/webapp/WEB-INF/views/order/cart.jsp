@@ -33,6 +33,7 @@
 											</tr>
 										</thead>
 										<tbody>
+										<c:set var="total" value="0"/>
 											<c:forEach var="row" items="${list}" varStatus="i">
 												<tr class="text-center">
 													<td class="product-remove"><a
@@ -59,12 +60,13 @@
 													<td class="total"><fmt:formatNumber
 															value="${row.money}" pattern="###,###,###" />원</td> 
 												</tr>
+												<c:set var="total" value="${total+row.money}"/>
 												<!-- END TR-->
 											</c:forEach>
-
+											<c:out value="${total}"/>	
 											<tr class="text-center">
 												<td colspan="5" align="right"> 
-												총 주문 금액 : <fmt:formatNumber value="${map.sum}"
+												총 주문 금액 : <fmt:formatNumber value="${total}"
 														pattern="###,###,###" />원
 												</td>
 											</tr>
