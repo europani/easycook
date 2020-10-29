@@ -7,7 +7,7 @@
   <body class="goto-here">
     <section class="ftco-section">
     	<div class="container"> 
-    	<h2>전체  [ 상품 : ${conunt}개 ]</h2>
+    	<h2>전체  [ 상품 : ${list.size()}개 ]</h2>
            <hr>
            <br>
     		<div class="row justify-content-center">

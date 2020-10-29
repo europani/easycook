@@ -8,11 +8,11 @@
 	<section class="ftco-section ftco-cart">
 		<jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
 		<div class="container">
-			<h2>장바구니</h2>
+			<h2>장바구니 [ ${list.size()}개 ]</h2>
 			<hr>
 			<br />
 			<c:choose>
-				<c:when test="${map.count == 0}">
+				<c:when test="${list.size()} == null">
          			장바구니가 비어있습니다.
          		</c:when>
 				<c:otherwise>
@@ -39,12 +39,12 @@
 													<td class="product-remove"><a
 														href="/easycook/order/cart/delete?cartNo=${row.cart_no}"><span
 															class="ion-ios-close"></span></a></td>
-														<!-- 	이미지 넣어야함 -->
+														
 													 <td class="image-prod"><div class="img"
 															style="background-image: url(../resources/images/${row.product_image});"></div></td> 
 
 													<td class="product-name">
-														<h3>${row.product_name}</h3> <!-- <p>Far far away, behind the word mountains, far from the countries</p> -->
+														<h3>${row.product_name}</h3>
 													</td>
 
 													<td class="price"><fmt:formatNumber
@@ -73,8 +73,9 @@
 											<!-- END TR-->
 										</tbody>
 									</table>
-									
+									<form name="headerForm" method="post" action="/easycook">
 									<input type="hidden" name="count" value="${list.size()}">
+									</form>
 									<button type="submit" id="btnUpdate">수정</button>
 
 								</div>
