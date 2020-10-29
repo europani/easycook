@@ -78,4 +78,29 @@
 		SET cart_qty = cart_qty + #{cartQty}
 		WHERE id = #{Id} AND product_no = #{productNo}
 	</update>  -->
+
+
+
+
+	<!-- ADMIN -->
+	<select id="countOrder" resultType="int">
+		SELECT count(*) from orders
+	</select>
+	
+	<select id="getFullInfo" resultType="Orders">
+		SELECT orders_no AS ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo, orders_status AS ordersStatus 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM orders 
+						ORDER BY orders_no DESC) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="getOrder" parameterType="int" resultType="OrdersDetail">
+		SELECT orders_no AS ordersNo, product_no AS productNo, detail_qty AS detailQty, detail_st AS detailSt, detail_refund AS detailRefund
+			FROM orders_detail WHERE orders_no = #{orderNo} 
+	</select>
 </mapper>

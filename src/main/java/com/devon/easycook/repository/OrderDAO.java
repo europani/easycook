@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.devon.easycook.domain.CartDTO;
+import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.util.PagingVO;
 
 @Repository
 public class OrderDAO extends AbstractMybatisDAO {
@@ -76,5 +78,40 @@ public class OrderDAO extends AbstractMybatisDAO {
 	 * sqlsession.update(namespace + ".sumTotal", cart); if(result != 0) {
 	 * sqlsession.commit(); } } finally { sqlsession.close(); } }
 	 */
+
+
+
+	
+	
+	
+	// ADMIN
+
+	public int countOrder() {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countOrder");
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public List<OrdersDTO> getFullInfo(PagingVO vo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectList(namespace + ".getFullInfo", vo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public OrdersDTO getOrder(int orderNo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectOne(namespace + ".getOrder", orderNo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 
 }
