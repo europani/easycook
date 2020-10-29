@@ -1,5 +1,6 @@
 package com.devon.easycook.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,9 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.devon.easycook.domain.CouponDTO;
@@ -24,6 +28,7 @@ import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.service.MemberService;
 import com.devon.easycook.service.MypageService;
+import com.devon.easycook.service.OrderService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -34,23 +39,42 @@ public class MypageController {
    
    @GetMapping("/orders")
    public String orders(Model model) {   
-      
+	   
       // 나중에 session으로 id 받을것
       String id = "haram511";            
       
-      List<OrdersDTO> orderList = mypageService.Orders(id);
+      List<OrdersDTO> orderList = mypageService.orders(id);
       
       model.addAttribute("orderList", orderList);
    
       return "mypage/orders";
+      
    }
    
-   @RequestMapping(value = "/ordersTest.action")
-   public ModelAndView ordersListTest(HttpServletRequest request, ModelAndView mv) {
+	@GetMapping("/{ordersNo}")
+	public String ordersDetail(@PathVariable("ordersNo") int ordersNo, Model model) {
+		List<OrdersDTO> detail = mypageService.ordersDetail(ordersNo);
+
+		model.addAttribute("detail", detail);
+		return "mypage/ordersDetail";
+	}
+   
+   
+   @RequestMapping(value = "/ordersTest.action", method = RequestMethod.POST)
+   @ResponseBody
+   public ModelAndView ordersListTest(String fromDate, String toDate, ModelAndView mv) {
 	   
-	   String fromDate = request.getParameter("fromDate");
-	   String toDate = request.getParameter("toDate");
-	   System.out.println("날짜 잘들어가라 제발 : " + fromDate + ", 그리고 이것도" + toDate);
+	   // ModelAndView 초기화 ㄱㄱ
+	   mv.clear();
+	   System.out.println("ordersListTest 실행");
+	   System.out.println(fromDate);
+	   System.out.println(toDate);
+	   
+		/*
+		 * SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		 * String fromDatetoString = transFormat.format(fromDate); String toDatetoString
+		 * = transFormat.format(fromDate);
+		 */
 	   
 	   // 나중에 session으로 id 받을것
 	   String id = "haram511";
@@ -65,9 +89,23 @@ public class MypageController {
 	   mv.addObject("orderListDate", orderListDate);
 	   mv.addObject("fromDate", fromDate);
 	   mv.addObject("toDate", toDate);
-	   mv.setViewName("mypage/orders");
+	   System.out.println(orderListDate);
+	   mv.setViewName("mypage/orders2");
 	   return mv;
 	   
+   }
+   
+   @GetMapping("/orders2")
+   public String orders2(Model model) {   
+      
+      // 나중에 session으로 id 받을것
+      String id = "haram511";            
+      
+      List<OrdersDTO> orderList = mypageService.orders(id);
+      
+      model.addAttribute("orderList", orderList);
+   
+      return "mypage/orders2";
    }
    
    
@@ -119,7 +157,7 @@ public class MypageController {
       // 나중에 @RequestParam등으로 id 받을것
       String id = "haram511";      
       
-      List<CouponDTO> couponList = mypageService.Coupon(id);
+      List<CouponDTO> couponList = mypageService.coupon(id);
       int couponCount = mypageService.couponCount(id);
       int myPoint = mypageService.myPoint(id);
       
