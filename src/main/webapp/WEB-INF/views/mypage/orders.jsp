@@ -139,7 +139,7 @@
           <td>${orders.ordersDetail.detailSt }</td>
           <td>
           ${orders.ordersStatus }
-          <button onclick="window.open('mypage/orders/ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
+          <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
          <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
          <c:if test="${orders.ordersStatus eq '주문완료'}">
          <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
