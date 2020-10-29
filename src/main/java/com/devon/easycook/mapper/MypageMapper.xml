@@ -125,22 +125,13 @@
    select 
    	orders_date as ordersDate,
     orders_no as ordersNo,
-    orders_status as ordersStatus
+    orders_status as ordersStatus,
+    orders_total as ordersTotal
    FROM
     Orders
    where 
     id = #{id} and
     to_char(orders_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate}
-<!-- <choose>
-    	<when test="fromDate !=null and toDate != null">  
-    	</when>
- <when test="fromDate !=null and toDate == null">
-    	where to_char(o.orders_date, 'yyyy-mm-dd') >= #{fromDate}
-    	</when>
-    	<when test="fromDate ==null and toDate != null">
-    	where to_char(o.orders_date, 'yyyy-mm-dd') < #{toDate}
-    	</when>
-    </choose> -->
    order by
     orders_date desc
    </select>

@@ -73,12 +73,6 @@ public class MypageController {
 	   System.out.println(fromDate);
 	   System.out.println(toDate);
 	   
-		/*
-		 * SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		 * String fromDatetoString = transFormat.format(fromDate); String toDatetoString
-		 * = transFormat.format(fromDate);
-		 */
-	   
 	   // 나중에 session으로 id 받을것
 	   String id = "haram511";
 	   
@@ -86,28 +80,47 @@ public class MypageController {
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
+	   SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+//	   String fromDatetoString = transFormat.format(fromDate);
+//	   String toDatetoString= transFormat.format(fromDate);
 	   
+
 	   List<OrdersDTO> orderListDate = mypageService.ordersDate(dateMap);
+
 	   
-	   mv.addObject("orderListDate", orderListDate);
-	   mv.addObject("fromDate", fromDate);
-	   mv.addObject("toDate", toDate);
+		/*
+		 * int count = 0; List<String> oDate = new ArrayList<String>(); List<Integer>
+		 * oNo = new ArrayList<Integer>(); List<String> oStatus = new
+		 * ArrayList<String>(); List<Integer> oTotal = new ArrayList<Integer>(); for
+		 * (OrdersDTO dto : orderListDate) {
+		 * 
+		 * String ordersDatetoString = transFormat.format(dto.getOrdersDate());
+		 * oDate.add(ordersDatetoString); oNo.add(dto.getOrdersNo());
+		 * oStatus.add(dto.getOrdersStatus()); oTotal.add(dto.getOrdersTotal());
+		 * count++; }		   
+	   System.out.println(oDate + "," + oNo + "," + oStatus);	   
+	   mv.addObject("ordersDate", oDate);	 mv.addObject("ordersNo", oNo);
+	   mv.addObject("ordersStatus", oStatus); mv.addObject("ordersTotal", oTotal);
+	   mv.addObject("count", count); */	
 	   System.out.println(orderListDate);
+	   mv.addObject("fromDate", fromDate);  mv.addObject("toDate", toDate);
+	   mv.addObject("orderListDate", orderListDate);
 	   mv.setViewName("common/ajaxtest");
 	   return mv;
 	   
    }
    
    @GetMapping("/orders2")
-   public String orders2(Model model) {   
-      
+   public String orders2(ModelAndView mv) {   
+      System.out.println("orders2컨트롤러");
       // 나중에 session으로 id 받을것
       String id = "haram511";            
       
       List<OrdersDTO> orderList = mypageService.orders(id);
       
-      model.addAttribute("orderList", orderList);
-   
+      mv.addObject("orderList", orderList);
+      System.out.println("orders2 orderList" + orderList);
+      mv.setViewName("mypage/orders2");
       return "mypage/orders2";
    }
    
