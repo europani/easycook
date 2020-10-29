@@ -55,15 +55,6 @@ public class OrderController {
 		List<CartDTO> list = orderService.cartList(Id);
 		model.addAttribute("list", list);
 		return "order/cart";
-
-//	  int fee = sumMoney >= 50000 ? 0 : 2500;
-
-		// HashMap에 값들 저장
-//	  map.put("sumMoney", sumMoney); // 상품금액합계
-//	  map.put("fee",fee); // 배송비 map.put("sum", sumMoney + fee); // 총 금액 map.put("list", list);
-		// 장바구니 목록 map.put("count", list.size()); // 레코드 개수
-
-		// 모델엔 뷰에 이동할 페이지의 이름과 데이터 저장 mv.setViewName("order/cart");
 	}
 
 	/*
@@ -87,4 +78,12 @@ public class OrderController {
 	 * 
 	 */
 
+	 
+	  
+		// 5. 장바구니 결제 마지막단계
+		@RequestMapping("/payment")
+		public String payment() {
+			return "order/payment";
+		}
+	
 }
