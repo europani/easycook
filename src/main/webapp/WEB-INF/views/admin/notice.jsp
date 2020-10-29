@@ -56,7 +56,7 @@
 	      <td>${notice.noticeTitle}</td>
 	      <td>${notice.noticeContent}</td>
 	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${notice.noticeDate}"/></td>
-	      <td>${notice.noticeReadCount}</td>
+	      <td>${notice.noticeCount}</td>
 	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/notice/modify/${notice.noticeNo}'">글수정</button></td>
 	      <td><button class="btn btn-primary" onclick="window.open('notice/delete/${notice.noticeNo}','공지삭제','width=300,height=150,top=100,left=500');">글삭제</button></td>
 	    </tr>

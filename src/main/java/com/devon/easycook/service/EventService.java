@@ -16,12 +16,14 @@ public class EventService {
 	
 	//eventTitile보기
 	public List<EventDTO> eventList(){
-		return eventDao.eventList();
-	}
+		return eventDao.allEvent();	}
 
 	
 	
-	
+	 //상세
+	 public EventDTO eventDetail(int eventNo) throws Exception {
+	     return eventDao.eventDetail(eventNo);
+	  }
 	
 	
 	// ADMIN

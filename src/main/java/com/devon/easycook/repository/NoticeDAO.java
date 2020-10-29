@@ -50,12 +50,13 @@ public class NoticeDAO extends AbstractMybatisDAO{
 		map.put("sentence", sentence);
 		try {
 			return sqlSession.selectList(namespace + ".getArticles", map);
+			
 		} finally {
 			sqlSession.close();
 		}
 	}
 	
-	public NoticeDTO getArticle(int noticeNo, boolean noticeReadCount) throws Exception {
+	public NoticeDTO getArticle(int noticeNo, boolean noticeCount) throws Exception {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		map.clear();
 		map.put("noticeNo", noticeNo);
@@ -63,7 +64,7 @@ public class NoticeDAO extends AbstractMybatisDAO{
 		NoticeDTO article = new NoticeDTO();
 		int result = 0;
 		try {
-			if(noticeReadCount)
+			if(noticeCount)
 				result = sqlSession.update(namespace + ".addReadCount", map);
 			System.out.println(result);
 			article = (NoticeDTO) sqlSession.selectOne(namespace + ".getArticle", map);
@@ -75,81 +76,47 @@ public class NoticeDAO extends AbstractMybatisDAO{
 		return article;
 	}
 	
-	public void insertArticle(NoticeDTO article) throws Exception {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int noticeNo = article.getNoticeNo();
-		int noticeRef = article.getNoticeRef();
-		int noticeRe_step = article.getNoticeRe_step();
-		int noticeRe_level = article.getNoticeRe_level();
-		try {
-			map.clear();
-			int number = sqlSession.selectOne(namespace + ".insertArticle_new");
-			if(number != 0)
-				number = number + 1;
-			else
-				number = 1;
-			if(noticeNo != 0) {
-				map.put("noticeRef", noticeRef);
-				map.put("noticeRe_step", noticeRe_step);
-				sqlSession.update(namespace + ".insertArticle_update", map);
-				sqlSession.commit();
-				noticeRe_step = noticeRe_step + 1;
-				noticeRe_level = noticeRe_level + 1;
-			} else {
-				noticeRef = number;
-				noticeRe_step = 0;
-				noticeRe_level = 0;
-			}
-			article.setNoticeNo(number);
-			article.setNoticeRef(noticeRef);
-			article.setNoticeRe_step(noticeRe_step);
-			article.setNoticeRe_level(noticeRe_level);
-			
-			System.out.println("insert:" + article);
-			int result = sqlSession.insert(namespace + ".insertArticle_insert", article);
-			System.out.println("insert Ok:" + result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sqlSession.commit();
-			sqlSession.close();
-		}
-	}
+	/*
+	 * public void insertArticle(NoticeDTO article) throws Exception { SqlSession
+	 * sqlSession = getSqlSessionFactory().openSession(); int noticeNo =
+	 * article.getNoticeNo(); int noticeRef = article.getNoticeRef(); int
+	 * noticeRe_step = article.getNoticeRestep(); int noticeRe_level =
+	 * article.getNoticeRelevel(); try { map.clear(); int number =
+	 * sqlSession.selectOne(namespace + ".insertArticle_new"); if(number != 0)
+	 * number = number + 1; else number = 1; if(noticeNo != 0) {
+	 * map.put("noticeRef", noticeRef); map.put("noticeRe_step", noticeRe_step);
+	 * sqlSession.update(namespace + ".insertArticle_update", map);
+	 * sqlSession.commit(); noticeRe_step = noticeRe_step + 1; noticeRe_level =
+	 * noticeRe_level + 1; } else { noticeRef = number; noticeRe_step = 0;
+	 * noticeRe_level = 0; } article.setNoticeNo(number);
+	 * article.setNoticeRef(noticeRef); article.setNoticeRestep(noticeRe_step);
+	 * article.setNoticeRelevel(noticeRe_level);
+	 * 
+	 * System.out.println("insert:" + article); int result =
+	 * sqlSession.insert(namespace + ".insertArticle_insert", article);
+	 * System.out.println("insert Ok:" + result); } catch (Exception e) {
+	 * e.printStackTrace(); } finally { sqlSession.commit(); sqlSession.close(); } }
+	 */
 	
-	public int updateArticle(NoticeDTO article) throws Exception {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		map.clear();
-		map.put("noticeNo", article.getNoticeNo());
-		int x = -1;
-		try {
-			String dbpasswd = (String)
-					sqlSession.selectOne(namespace + ".update_passwd", map);
-			if(dbpasswd.contentEquals(article.getNoticePasswd())) {
-				x = sqlSession.update(namespace + ".update_update", article);
-			}
-		} finally {
-			sqlSession.commit();
-			sqlSession.close();
-		}
-		return x;
-	}
+	/*
+	 * public int updateArticle(NoticeDTO article) throws Exception { SqlSession
+	 * sqlSession = getSqlSessionFactory().openSession(); map.clear();
+	 * map.put("noticeNo", article.getNoticeNo()); int x = -1; try { String dbpasswd
+	 * = (String) sqlSession.selectOne(namespace + ".update_passwd", map);
+	 * if(dbpasswd.contentEquals(article.getNoticePasswd())) { x =
+	 * sqlSession.update(namespace + ".update_update", article); } } finally {
+	 * sqlSession.commit(); sqlSession.close(); } return x; }
+	 */
 	
-	public int deleteArticle(int noticeNo, String noticePasswd) 
-	         throws Exception {
-	      SqlSession sqlSession = getSqlSessionFactory().openSession();
-	      map.clear();
-	      map.put("noticeNo", noticeNo);
-	      int x = -1;
-	      try {
-	   String dbpasswd = (String) sqlSession.selectOne(namespace
-	         + ".update_passwd", map);
-	   if (dbpasswd.equals(noticePasswd)) {
-	      x = sqlSession.delete(namespace + ".delete", map);
-	         }      } finally {
-	         sqlSession.commit();
-	         sqlSession.close();
-	      }      return x;   }
-	
+	/*
+	 * public int deleteArticle(int noticeNo, String noticePasswd) throws Exception
+	 * { SqlSession sqlSession = getSqlSessionFactory().openSession(); map.clear();
+	 * map.put("noticeNo", noticeNo); int x = -1; try { String dbpasswd = (String)
+	 * sqlSession.selectOne(namespace + ".update_passwd", map); if
+	 * (dbpasswd.equals(noticePasswd)) { x = sqlSession.delete(namespace +
+	 * ".delete", map); } } finally { sqlSession.commit(); sqlSession.close(); }
+	 * return x; }
+	 */
 	
 	
 	

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
 
 <style>
 	#table{font-size:20px;
@@ -16,11 +19,11 @@
 	
 </style>
 <p class="w3-left" style="padding-left: 30px;"></p>
-<div class="w3-container">
+<div class="w3-container" style="height:800px;">
 	<jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
-	<p class="text-right">
+	<%-- <p class="text-right">
 		<a class="btn btn-default" href="<%=request.getContextPath()%>/notice/writeUploadForm">글쓰기</a>
-	</p>
+	</p> --%>
 	<c:if test="${count == 0 }">
 		<table class="w3-table-all">
 			<tr class="w3-grey">
@@ -47,23 +50,13 @@
 
 					<c:set var="number" value="${number-1 }" />
 
-					<td width="250"><c:if test="${article.noticeRe_level>0 }">
-							<img src="<%=request.getContextPath() %>/images/level.gif"
-								width="${5*article.noticeRe_level}" height="16">
-							<img src="<%=request.getContextPath()%>/images/re.gif">
-						</c:if> <c:if test="${article.noticeRe_level==0 }">
-							<img src="<%=request.getContextPath()%>/images/level.gif"
-								width="0" height="16">
-						</c:if> <a
-						href="<%=request.getContextPath() %>/notice/content/${article.noticeNo}">${article.noticeTitle}</a>
-
-						<c:if test="${article.getNoticeReadCount() >= 20}">
-							<img src="<%=request.getContextPath()%>/images/hot.gif"
-								border="0" height="16">
-						</c:if></td>
-					<td align="center" width="100">${article.id}</td>
-					<td align="center" width="150">${article.noticeDate}</td>
-					<td align="center" width="50">${article.noticeReadCount}</td>
+					<td width="250">
+						<a href="<%=request.getContextPath() %>/board/content/${article.noticeNo}">${article.noticeTitle}</a>
+					</td>
+					<td align="center" width="100">관리자</td>
+					<td align="center" width="150">
+					<fmt:formatDate value="${article.noticeDate}" pattern="yyyy-MM-dd HH:mm"/></td>
+					<td align="center" width="50">${article.noticeCount}</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -72,7 +65,7 @@
 		<div class="text-center">
 			<ul class="pagination">
 			<li><c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="<%=request.getContextPath() %>/notice/list?pageNum=${i}">
+				<a href="<%=request.getContextPath() %>/board/list?pageNum=${i}">
 					<c:if test="${i==currentPage}">
 						<font color='red'>${i}</font>
 					</c:if> <c:if test="${i!=currentPage}">${i}</c:if>
@@ -83,7 +76,7 @@
 			</ul>
 			<c:if test="${startPage > bottomLine }">
 				<a
-					href="<%=request.getContextPath() %>/notice/list?pageNum=${startPage - bottomLine}">
+					href="<%=request.getContextPath() %>/board/list?pageNum=${startPage - bottomLine}">
 					[이전] </a>
 			</c:if>
 			
@@ -92,7 +85,7 @@
 			
 			<c:if test="${endPage < pageCount}">
 				<a
-					href="<%=request.getContextPath() %>/notice/list?pageNum=${startPage + bottomLine}">
+					href="<%=request.getContextPath() %>/board/list?pageNum=${startPage + bottomLine}">
 					[다음] </a>
 			</c:if>
 
@@ -103,11 +96,10 @@
 			<div class="text-center">
 				<form name="searchForm" method="post">
 					<select name="category" size="1">
-						<option value="id">이 름</option>
-						<option value="noticeTitle">제 목</option>
-						<option value="noticeContent">내 용</option>
-					</select> <input size="16" name="sentence"> <input type="submit"
-						value="찾기">
+						<option value="notice_Title">제 목</option>
+						<option value="notice_Content">내 용</option>
+					</select> <input size="16" name="sentence"> 
+					<input type="submit" value="찾기">
 				</form>
 			</div>
 		</div>
