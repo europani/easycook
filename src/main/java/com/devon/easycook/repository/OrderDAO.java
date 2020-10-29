@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.devon.easycook.domain.CartDTO;
 import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.util.PagingVO;
 
 @Repository
@@ -104,10 +105,10 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	public OrdersDTO getOrder(int orderNo) {
+	public List<OrdersDetailDTO> getOrder(int orderNo) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try {
-			return sqlSession.selectOne(namespace + ".getOrder", orderNo);
+			return sqlSession.selectList(namespace + ".getOrder", orderNo);
 		} finally {
 			sqlSession.close();
 		}

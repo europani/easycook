@@ -25,6 +25,7 @@ import com.devon.easycook.domain.EventDTO;
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.NoticeDTO;
 import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.service.EventService;
 import com.devon.easycook.service.MemberService;
@@ -216,7 +217,8 @@ public class AdminController {
 	
 	@GetMapping("/orders/{orderNo}")
 	public String ordersDetail(Model model, @PathVariable("orderNo") int orderNo) {
-		OrdersDTO order = orderService.getOrder(orderNo);
+		List<OrdersDetailDTO> order = orderService.getOrder(orderNo);
+		model.addAttribute("orderNo", orderNo);
 		model.addAttribute("order", order);
 		return "admin/orderDetail";
 	}

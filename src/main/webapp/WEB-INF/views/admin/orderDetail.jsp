@@ -40,23 +40,16 @@
 <div class="w3-container w3-center">
   <h2>주문 내역</h2>
 
-  <table class="w3-table-all w3-hoverable w3-centered">
-    <thead>
+  <table class="w3-table-all w3-bordered w3-centered">
       <tr class="w3-light-grey" style="color:#FFFF00">
-        <th>No</th>
-        <th>ID</th>
-        <th>주문일</th>
-        <th>배송상태</th>
-        <th></th>
+        <td>No : ${orderNo}</td>
       </tr>
-    </thead>
     <c:forEach var="order" items="${order}">
-	    <tr></a>
-	      <td>${infoList.ordersNo}</td>
-	      <td>${infoList.id}</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${infoList.ordersDate}"/></td>
-	      <td>${infoList.ordersStatus}</td>
-	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/orders/${infoList.ordersNo}'">주문상세보기</button></td>
+	    <tr>
+	      <td>${order.productNo}</td>
+	      <td>${order.detailQty}</td>
+	      <td>${order.detailSt}</td>
+	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/orders/${order.ordersNo}'">주문상세보기</button></td>
 	    </tr>
     </c:forEach>
   </table>

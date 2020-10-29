@@ -44,7 +44,7 @@
 
 	</select>
 
-
+<!-- 
 	<select id="sumMoney" resultType="int">
 		SELECT
 		NVL(SUM(product_price * cart_qty), 0) AS sumMoney
@@ -55,13 +55,13 @@
 		c.id = #{Id}
 	</select>
 	
-	7. 장바구니에 같은상품있으면 수량합산
+	 7. 장바구니에 같은상품있으면 수량합산
 	<update id="cartUpdate">
 		UPDATE cart
 		SET cart_qty = cart_qty + #{cartQty}
 		WHERE id = #{Id} AND product_no = #{productNo}
-	</update>  -->
-
+	</update>
+ -->
 	<!-- 3. 장바구니 수정 (수량 덮어쓰기) <update id="cartModify"> UPDATE cart SET cart_qty 
 		= #{cartQty} WHERE id = #{Id} AND product_no = #{productNo} </update> 4. 
 		장바구니 삭제 하나씩삭제도 만들자! <delete id="cartDelete"> DELETE FROM cart WHERE cart_no 
@@ -100,7 +100,7 @@
 	</select>
 
 	<select id="getOrder" parameterType="int" resultType="OrdersDetail">
-		SELECT orders_no AS ordersNo, product_no AS productNo, detail_qty AS detailQty, detail_st AS detailSt, detail_refund AS detailRefund
+		SELECT product_no AS productNo, detail_qty AS detailQty, detail_st AS detailSt, detail_refund AS detailRefund
 			FROM orders_detail WHERE orders_no = #{orderNo} 
 	</select>
 	

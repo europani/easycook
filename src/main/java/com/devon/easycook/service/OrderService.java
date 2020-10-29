@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.devon.easycook.domain.CartDTO;
 import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.repository.OrderDAO;
 import com.devon.easycook.util.PagingVO;
 
@@ -60,7 +61,7 @@ public class OrderService {
 		return orderDao.getFullInfo(vo);
 	}
 
-	public OrdersDTO getOrder(int orderNo) {
+	public List<OrdersDetailDTO> getOrder(int orderNo) {
 		return orderDao.getOrder(orderNo);
 	}
 	
