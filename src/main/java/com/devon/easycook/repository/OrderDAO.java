@@ -1,6 +1,7 @@
 package com.devon.easycook.repository;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.devon.easycook.domain.CartDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.OrdersDetailDTO;
+import com.devon.easycook.domain.RefundDTO;
 import com.devon.easycook.util.PagingVO;
 
 @Repository
@@ -130,6 +132,82 @@ public class OrderDAO extends AbstractMybatisDAO {
 		int result = 0;
 		try {
 			result = sqlSession.update(namespace + ".changeStatus", map);
+			if (result != 0) {
+				sqlSession.commit();
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int countCancel() {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countCancel");
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public List<OrdersDTO> getCancelInfo(PagingVO vo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectList(namespace + ".getCancelInfo", vo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public List<OrdersDTO> memberOrderlist(String id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectList(namespace + ".memberOrderlist", id);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int memberSum(String id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectOne(namespace + ".memberSum", id);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Date memberLastest(String id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectOne(namespace + ".memberLastest", id);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int countRefund() {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countRefund");
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public List<RefundDTO> getRefundInfo(PagingVO vo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectList(namespace + ".getRefundInfo", vo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public void refundStatus(HashMap<String, Object> map) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlSession.update(namespace + ".refundStatus", map);
 			if (result != 0) {
 				sqlSession.commit();
 			}

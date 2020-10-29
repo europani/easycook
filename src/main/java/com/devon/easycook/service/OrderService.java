@@ -1,6 +1,7 @@
 package com.devon.easycook.service;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.devon.easycook.domain.CartDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.OrdersDetailDTO;
+import com.devon.easycook.domain.RefundDTO;
 import com.devon.easycook.repository.OrderDAO;
 import com.devon.easycook.util.PagingVO;
 
@@ -74,6 +76,38 @@ public class OrderService {
 
 	public void changeStatus(HashMap<String, Object> map) {
 		orderDao.changeStatus(map);
+	}
+
+	public int countCancel() {
+		return orderDao.countCancel();
+	}
+
+	public List<OrdersDTO> getCancelInfo(PagingVO vo) {
+		return orderDao.getCancelInfo(vo);
+	}
+
+	public List<OrdersDTO> memberOrderlist(String id) {
+		return orderDao.memberOrderlist(id);
+	}
+
+	public int memberSum(String id) {
+		return orderDao.memberSum(id);
+	}
+
+	public Date memberLastest(String id) {
+		return orderDao.memberLastest(id);
+	}
+
+	public int countRefund() {
+		return orderDao.countRefund();
+	}
+
+	public List<RefundDTO> getRefundInfo(PagingVO vo) {
+		return orderDao.getRefundInfo(vo);
+	}
+
+	public void refundStatus(HashMap<String, Object> map) {
+		orderDao.refundStatus(map);
 	}
 	
 	

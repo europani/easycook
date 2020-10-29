@@ -41,15 +41,15 @@
   <table class="w3-table-all w3-hoverable w3-centered">
     <thead>
       <tr class="w3-light-grey" style="color:#FFFF00">
-        <th>ID</th>
-        <th>이름</th>
-        <th>이메일</th>
-        <th>전화번호</th>
-        <th>생일</th>
-        <th>포인트</th>
-        <th>가입일</th>
-        <th>탈퇴일</th>
-        <th></th>
+        <th width="10%">ID</th>
+        <th width="7%">이름</th>
+        <th width="10%">이메일</th>
+        <th width="15%">전화번호</th>
+        <th width="10%">생일</th>
+        <th width="8%">포인트</th>
+        <th width="15%">가입일</th>
+        <th width="15%">탈퇴일</th>
+        <th width="10%"></th>
       </tr>
     </thead>
     <c:forEach var="infoList" items="${infoList}">

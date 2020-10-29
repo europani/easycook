@@ -45,7 +45,7 @@
       <tr class="w3-light-grey" style="color:#FFFF00">
         <th width="10%">No</th>
         <th width="20%">ID</th>
-        <th width="25%">주문일자</th>
+        <th width="25%">주문일</th>
         <th width="10%">결제금액</th>
         <th width="20%">배송상태</th>
         <th width="15%"></th>

@@ -11,6 +11,11 @@
    <result property="ordersNo" column="orders_no"/>
    <result property="ordersStatus" column="orders_status"/>
    
+   <association property="product" javaType="Product">
+	<id property="productNo" column="product_no"/>
+	<result property="productName" column="product_name"/>
+	<result property="productPrice" column="product_price"/>
+   </association>
    <association property="ordersDetail" javaType="OrdersDetail">
    <id property="ordersNo" column="orders_no"/>
    <result property="detailQty" column="detail_qty"/>
@@ -198,7 +203,7 @@
 
 	<!-- ADMIN -->
 	<select id="getOrder" parameterType="int" resultMap="OrderList">
-	   SELECT o.orders_date, o.orders_no, o.orders_status, od.detail_qty, p.product_name
+	   SELECT o.orders_date, o.orders_no, o.orders_status, od.detail_qty, p.product_no, p.product_name, p.product_price
 	   		FROM Orders o, orders_Detail od, product p
 	   		WHERE o.orders_no = od.orders_no and od.product_no = p.product_no and o.orders_no = #{orderNo}
 	   		ORDER BY o.orders_date desc 

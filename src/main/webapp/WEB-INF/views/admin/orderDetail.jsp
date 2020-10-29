@@ -27,10 +27,10 @@
                 주문관리
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="orders">주문내역</a>
-                <a class="dropdown-item" href="ordersCancel">주문취소내역</a>
+                <a class="dropdown-item" href="/easycook/admin/orders">주문내역</a>
+                <a class="dropdown-item" href="/easycook/admin/ordersCancel">주문취소내역</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="refund">환불내역</a>
+                <a class="dropdown-item" href="refund">반품내역</a>
               </div>
             </li>
           </ul>
@@ -53,9 +53,9 @@
       <tr class="w3-light-grey">
       	<td width="10%">상품번호</td>
       	<td width="40%">상품명</td>
-      	<td width="15%">상품가격</td>
+      	<td width="15%">상품가격(원)</td>
 	    <td width="15%">주문수량</td>
-	    <td width="20%">소계</td>
+	    <td width="20%">소계(원)</td>
       </tr>
     <c:forEach var="order" items="${order}">
 	    <tr class="w3-write">

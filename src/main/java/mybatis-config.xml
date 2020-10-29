@@ -14,13 +14,12 @@
 		<typeAlias type="com.devon.easycook.domain.CartDTO" alias="Cart"/>
 		<typeAlias type="com.devon.easycook.domain.OrdersDTO" alias="Orders"/>
 		<typeAlias type="com.devon.easycook.domain.OrdersDetailDTO" alias="OrdersDetail"/>
-
 		<typeAlias type="com.devon.easycook.domain.NoticeDTO" alias="Notice"/>
-
 		<typeAlias type="com.devon.easycook.domain.CouponDTO" alias="Coupon"/>
-		
 		<typeAlias type="com.devon.easycook.domain.EventDTO" alias="Event"/>
-
+		<typeAlias type="com.devon.easycook.domain.RefundDTO" alias="Refund"/>
+		<typeAlias type="com.devon.easycook.domain.WishlistDTO" alias="Wishlist"/>
+		<typeAlias type="com.devon.easycook.domain.ReviewDTO" alias="Review"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

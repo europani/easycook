@@ -38,27 +38,42 @@
       </nav>
 
 <div class="w3-container w3-center">
-  <h2>주문 내역</h2>
+  <h2>반품 내역</h2>
 
   <table class="w3-table-all w3-hoverable w3-centered">
     <thead>
       <tr class="w3-light-grey" style="color:#FFFF00">
-        <th width="10%">No</th>
-        <th width="20%">ID</th>
-        <th width="25%">주문일자</th>
-        <th width="10%">결제금액</th>
-        <th width="20%">배송상태</th>
-        <th width="15%"></th>
+        <th width="10%">주문번호</th>
+        <th width="10%">상품번호</th>
+        <th width="15%">ID</th>
+        <th width="5%">수량</th>
+        <th width="10%">사유</th>
+        <th width="20%">반품일자</th>
+        <th width="15%">반품상태</th>
+        <th width="10%"></th>
       </tr>
     </thead>
-    <c:forEach var="infoList" items="${orders}">
+    <c:forEach var="infoList" items="${refund}">
 	    <tr></a>
-	      <td width="10%">${infoList.ordersNo}</td>
-	      <td width="15%">${infoList.id}</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${infoList.ordersDate}"/></td>
-	      <td><fmt:formatNumber pattern="###,###,###" value="${infoList.ordersTotal}" /> </td>
-	      <td>${infoList.ordersStatus}</td>
-	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/orders/${infoList.ordersNo}'">주문상세보기</button></td>
+	      <td>${infoList.ordersNo}</td>
+	      <td>${infoList.productNo}</td>
+	      <td>${infoList.id}</td>
+	      <td>${infoList.refundQty}</td>
+	      <td>${infoList.refundReason}</td>
+	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${infoList.refundDate}"/></td>
+	      <td>${infoList.refundStatus}</td>
+	      <td>
+	      	<form method="post" action="refund/${infoList.ordersNo}/${infoList.productNo}">
+			  <c:if test="${infoList.refundStatus eq '반품신청'}">
+			  	<input type="hidden" name="status" value="반품신청">  	
+			  	<button class="btn btn-primary" onclick="submit()">반품수락</button>
+			  </c:if>
+			  <c:if test="${infoList.refundStatus eq '처리중'}">
+			  	<input type="hidden" name="status" value="처리중">
+			  	<button class="btn btn-primary" onclick="submit()">완료전환</button>
+			  </c:if>
+  			</form>
+	      </td>
 	    </tr>
     </c:forEach>
   </table>

@@ -2,9 +2,9 @@ package com.devon.easycook.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +26,8 @@ import com.devon.easycook.domain.EventDTO;
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.NoticeDTO;
 import com.devon.easycook.domain.OrdersDTO;
-import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.ProductDTO;
+import com.devon.easycook.domain.RefundDTO;
 import com.devon.easycook.service.EventService;
 import com.devon.easycook.service.MemberService;
 import com.devon.easycook.service.MypageService;
@@ -83,8 +83,15 @@ public class AdminController {
 	// 회원별 주문내역
 	@GetMapping("/member/{id}")
 	public String member(Model model, @PathVariable("id") String id) {
-
-		return "";
+		List<OrdersDTO> list = orderService.memberOrderlist(id);
+		int sum = orderService.memberSum(id);
+		Date date = orderService.memberLastest(id);	
+		
+		model.addAttribute("list", list);
+		model.addAttribute("id", id);
+		model.addAttribute("sum", sum);
+		model.addAttribute("date", date);
+		return "admin/memberOrder";
 	}
 	
 	@GetMapping("/member/delete")
@@ -264,6 +271,62 @@ public class AdminController {
 	}
 	
 	
+	@GetMapping("/ordersCancel")
+	public String ordersCancel(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+		int total = orderService.countCancel();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "10";
+		}
+
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+
+		List<OrdersDTO> list = orderService.getCancelInfo(vo);
+		model.addAttribute("orders", list);
+		
+		return "admin/orders";
+	}
+	
+	@GetMapping("/refund")
+	public String refund(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+		int total = orderService.countRefund();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "10";
+		}
+
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+
+		List<RefundDTO> list = orderService.getRefundInfo(vo);
+		model.addAttribute("refund", list);
+		
+		return "admin/refund";
+	}
+	
+	@PostMapping("/refund/{orderNo}/{productNo}")
+	public String refundStatus(@PathVariable("orderNo") int orderNo, @PathVariable("productNo") int productNo,
+					@RequestParam("status") String status) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("orderNo", orderNo);
+		map.put("productNo", productNo);
+		map.put("status", status);
+		
+		orderService.refundStatus(map);
+		
+		return "redirect:/admin/refund";
+	}
 	
 
 	@GetMapping("/notice")

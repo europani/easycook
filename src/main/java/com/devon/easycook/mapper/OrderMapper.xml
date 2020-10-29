@@ -89,6 +89,10 @@
 		SELECT count(*) from orders
 	</select>
 	
+	<select id="countCancel" resultType="int">
+		SELECT count(*) from orders WHERE ORDERS_STATUS = '주문취소'
+	</select>
+	
 	<select id="getFullInfo" resultType="Orders">
 		SELECT orders_no AS ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo, orders_status AS ordersStatus, orders_total AS ordersTotal 
 		FROM (
@@ -102,7 +106,7 @@
 	</select>
 	
 	<select id="getOrderInfo" resultType="Orders">
-		SELECT orders_no AS ordersNo, orders_date AS ordersDate, orders_status AS ordersStatus, orders_total FROM orders WHERE orders_no = #{orderNo}
+		SELECT orders_no AS ordersNo, orders_date AS ordersDate, orders_status AS ordersStatus, orders_total AS ordersTotal FROM orders WHERE orders_no = #{orderNo}
 	</select>
 	
 	<update id="changeStatus" parameterType="Hashmap">
@@ -114,9 +118,54 @@
 		</if>
 	</update>
 
-
-
-
+	<select id="getCancelInfo" resultType="Orders">
+		SELECT orders_no AS ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo, orders_status AS ordersStatus, orders_total AS ordersTotal 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM orders
+						WHERE orders_status = '주문취소'
+						ORDER BY orders_no DESC) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="memberOrderlist" parameterType="String" resultType="Orders">
+		SELECT orders_no AS ordersNo, orders_date AS ordersDate, orders_status AS ordersStatus, orders_total AS ordersTotal
+			FROM orders WHERE id = #{id}
+	</select>
+	
+	<select id="memberSum" resultType="int">
+		SELECT NVL(SUM(orders_total), 0) FROM orders WHERE id = #{id}
+	</select>
+	<select id="memberLastest" resultType="Date">
+		SELECT MAX(orders_date) FROM orders WHERE id = #{id}
+	</select>
+	
+	<select id="countRefund" resultType="int">
+		SELECT count(*) from refund
+	</select>
+	
+	<select id="getRefundInfo" resultType="Refund">
+		SELECT orders_no AS ordersNo, product_no AS productNo, id, refund_qty AS refundQty, refund_date AS refundDate, refund_status AS refundStatus, refund_reason AS refundReason 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM refund
+						ORDER BY refund_date DESC) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<update id="refundStatus" parameterType="Hashmap">
+		<if test="status == '반품신청'">
+			UPDATE refund SET refund_status = '처리중' WHERE orders_no = #{orderNo} AND product_no = #{productNo}
+		</if>
+		<if test="status == '처리중'">
+			UPDATE refund SET refund_status = '반품완료' WHERE orders_no = #{orderNo} AND product_no = #{productNo}
+		</if>
+	</update>
 
 
 </mapper>
