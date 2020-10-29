@@ -103,12 +103,12 @@
         <br>
         <div id="content-detail">
         
-      <form name="searchFrm">
+      <form id="searchFrm" name="searchFrm">
       <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
-      <input type="text" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
+      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
       <label for="UserCheckOut"></label> 
-      <input type="text" name="toDate" id="toDate">&nbsp;&nbsp;
-      <button type="button" id="btnSearch" class="btn-search">조회하기</button>
+      <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
+      <button id="btnSearch" class="btn-search">조회하기</button>
       </form>
         
       </div>         
@@ -122,24 +122,55 @@
        <tr>
           <th>주문일</th>
           <th>주문번호</th>
-         <!--  <th>상품명</th> -->
-         <!--  <th>수량</th> -->
+          <th>상품명</th>
+          <th>수량</th>
           <th>총주문금액</th>
-          <th colspan="2">주문정보</th>
+          <th>주문상태</th>
         </tr>
       </thead>
         <tbody>
+<%--         <c:if test="${fromDate == null | toDate == null}"><!-- 날짜조회기능 안썼을경우 -->
         <c:forEach var="orders" items="${orderList }">
-        <c:if test="${orders.ordersNo != null }">        
+        <c:if test="${orders.ordersNo != null}">        
         <tr>
           <td>${orders.ordersDate }</td>
           <td>${orders.ordersNo }</td>
-          <%-- <td>${orders.product.productName }</td> --%>
-          <%-- <td>${orders.ordersDetail.detailQty }</td> --%>
+          <td>${orders.product.productName }</td>
+          <td>${orders.ordersDetail.detailQty }</td>
           <td>${orders.ordersDetail.detailSt }</td>
           <td>
           ${orders.ordersStatus }
-          <button onclick="window.open('mypage/orders/ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
+         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
+         <c:if test="${orders.ordersStatus eq '주문완료'}">
+         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
+         <input type="submit" class="btn-cancle" value='주문취소'>         
+         </c:if>
+         <c:if test="${orders.ordersStatus eq '배송완료'}">
+          <input type="button" class="btn-cancle" onclick="cancelPls(${orders.ordersNo})" value="반품신청"/>
+         </c:if><!-- 조회데이터 출력 끝 -->
+          </form>  
+         </td>
+        </tr>
+        </c:if>
+        <c:if test="${orders.ordersNo == null }">
+        <tr>
+        <td colspan="6">주문 내역이 없습니다.</td>
+        </tr>
+        </c:if>
+        </c:forEach>  
+        </c:if> --%>
+<%--         <c:if test="${fromDate != null && toDate != null}">
+        <!-- 날짜조회기능 썼을경우, 날짜조회데이터 출력시작 --> --%>
+        <c:forEach var="orders" items="${orderListDate }">
+        <c:if test="${orders.ordersNo != null}">        
+        <tr>
+          <td>${orders.ordersDate }</td>
+          <td>${orders.ordersNo }</td>
+          <td>${orders.product.productName }</td>
+          <td>${orders.ordersDetail.detailQty }</td>
+          <td>${orders.ordersDetail.detailSt }</td>
+          <td>
+          ${orders.ordersStatus }
          <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
          <c:if test="${orders.ordersStatus eq '주문완료'}">
          <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
@@ -157,7 +188,8 @@
         <td colspan="6">주문 내역이 없습니다.</td>
         </tr>
         </c:if>
-        </c:forEach>     
+        </c:forEach>
+<%--         </c:if><!-- 날짜조회데이터 출력 끝 -->    --%>
         </tbody>
       </table>
         </div>        
@@ -168,13 +200,34 @@
       </div>
 </div>
 
+
+
+<script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
+<script src="/easycook/resources/js/ajax.js"></script>
 <script type="text/javascript">
 
-
+$('#btnSearch').on('click', function(){
+	alert($("#searchFrm").serialize())
+	$.ajax({
+		url : "ordersTest.action",
+		type: "POST",
+		data: $("#searchFrm").serialize(),
+		success: function (data) {
+			$('#result').text(data);
+		},
+		error: function () {
+			alert("안된다...");
+		}
+		
+	});
+	
+	
+});
 
 </script>
-</body>
 
+
+</body>
 
 
   

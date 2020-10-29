@@ -14,4 +14,5 @@ public class ProductDTO {
 	private int productStock;
 	private int productAmount;
 	private int productTime;
+	
 }
