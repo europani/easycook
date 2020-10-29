@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
+
+        <tbody id = "ordertable">
 <c:forEach var="orders" items="${orderListDate }">
 	<%-- <div>${orders.ordersNo }</div> --%>
 	<c:if test="${orders.ordersNo != null}">      
@@ -19,8 +24,9 @@
          <input type="submit" class="btn-cancle" value='주문취소'>         
          </c:if>
          <c:if test="${orders.ordersStatus eq '배송완료'}">
-          <input type="button" class="btn-cancle" onclick="cancelPls(${orders.ordersNo})" value="반품신청"/>
-         </c:if>
+         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
+         <input type="submit" class="btn-cancle" value="반품신청"/>
+         </c:if>	
           </form>  
          </td>
         </tr>
@@ -31,3 +37,4 @@
         </tr>
      </c:if>
 </c:forEach>
+      </tbody>

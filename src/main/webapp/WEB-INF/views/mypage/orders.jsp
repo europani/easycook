@@ -167,9 +167,26 @@
         <br/>
       </div>
 </div>
-
+<script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-
+/* $('#btnSearch22').on('click', function(){
+	alert($("#searchgogo").serialize())
+	$.ajax({
+		url : "ordersTest.action",
+		type: "POST",
+		data: $("#searchgogo").serialize(),
+		success: function (data) {
+			alert(data)
+			$('#content-detail2').append(data);
+		},
+		error: function () {
+			alert("안된다...");
+		}
+		
+	});
+	
+	
+}); */
 
 
 </script>

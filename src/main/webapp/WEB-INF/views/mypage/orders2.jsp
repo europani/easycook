@@ -69,11 +69,11 @@
        text-align: center;
       }
       
-      #order-table {
+      #ordertable {
         border-collapse: collapse;
         width: 100%;
       }
-      #order-table th {
+      #ordertable th {
       border-bottom: 1px solid #ddd;
       background: #f6f6f6;
       padding: 15px 20px; 
@@ -83,7 +83,7 @@
        border-bottom: 1px solid #e0e0e0;
        background: #f6f6f6;
       }
-      #order-table td {
+      #ordertable td {
            padding: 15px 20px; 
         vertical-align: middle;     
         font-size: 15px;     
@@ -108,7 +108,7 @@
       <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
       <label for="UserCheckOut"></label> 
       <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
-      <input type="button"  id="btnSearch22" class="btn-search">조회하기</button>
+      <input type="button"  id="btnSearch22" class="btn-search" value="조회하기"></button>
       </form>
         
       </div>         
@@ -117,79 +117,76 @@
         <div id="content-detail2">
          <h5 >주문목록/배송조회 내역 총 -건</h5>
         <br><br>
-         <table id="order-table">
+        <table id="ordertable">
          <thead>
-       <tr>
-          <th>주문일</th>
-          <th>주문번호</th>
-          <th>총주문금액</th>
-          <th colspan="2">주문정보</th>
-        </tr>
-      </thead>
-        <tbody>
-<%--         <c:if test="${fromDate == null | toDate == null}"><!-- 날짜조회기능 안썼을경우 -->
-        <c:forEach var="orders" items="${orderList }">
+	       <tr>
+	          <th>주문일</th>
+	          <th>주문번호</th>
+	          <th>총주문금액</th>
+	          <th colspan="2">주문정보</th>
+	        </tr>
+      	 </thead>
+         <tbody id = "testajax">
+       <c:forEach var="orders" items="${orderList }">
         <c:if test="${orders.ordersNo != null}">        
-        <tr>
-          <td>${orders.ordersDate }</td>
-          <td>${orders.ordersNo }</td>
-          <td>${orders.product.productName }</td>
-          <td>${orders.ordersDetail.detailQty }</td>
-          <td>${orders.ordersDetail.detailSt }</td>
-          <td>
-          ${orders.ordersStatus }
-         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
-         <c:if test="${orders.ordersStatus eq '주문완료'}">
-         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
-         <input type="submit" class="btn-cancle" value='주문취소'>         
-         </c:if>
-         <c:if test="${orders.ordersStatus eq '배송완료'}">
-          <input type="button" class="btn-cancle" onclick="cancelPls(${orders.ordersNo})" value="반품신청"/>
-         </c:if><!-- 조회데이터 출력 끝 -->
-          </form>  
-         </td>
-        </tr>
+	        <tr>
+	          <td>${orders.ordersDate }</td>
+	          <td>${orders.ordersNo }</td>
+	          <td>${orders.ordersTotal }</td>
+	          <td>
+	          ${orders.ordersStatus }
+	 		 <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
+	          </td>
+	          <td>
+	         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
+	         <c:if test="${orders.ordersStatus eq '주문완료'}">
+	         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
+	         <input type="submit" class="btn-cancle" value='주문취소'>         
+	         </c:if>
+	         <c:if test="${orders.ordersStatus eq '배송완료'}">
+	          <input type="button" class="btn-cancle" onclick="cancelPls(${orders.ordersNo})" value="반품신청"/>
+	         </c:if>
+	          </form>    
+	         </td>
+	        </tr>
         </c:if>
         <c:if test="${orders.ordersNo == null }">
-        <tr>
-        <td colspan="6">주문 내역이 없습니다.</td>
-        </tr>
-        </c:if>
-        </c:forEach>  
-        </c:if> --%>
-<%--         <c:if test="${fromDate != null && toDate != null}">
-        <!-- 날짜조회기능 썼을경우, 날짜조회데이터 출력시작 --> --%>
-        <c:forEach var="orders" items="${orderListDate }">
-        <c:if test="${orders.ordersNo != null}">      
-        <tr>
-          <td>${orders.ordersDate }</td>
-          <td>${orders.ordersNo }</td>
-          <td>${orders.ordersTotal }</td>
-          <td>
-          ${orders.ordersStatus }
-          <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
-          </td>
-          <td>
-         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
-         <c:if test="${orders.ordersStatus eq '주문완료'}">
-         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
-         <input type="submit" class="btn-cancle" value='주문취소'>         
-         </c:if>
-         <c:if test="${orders.ordersStatus eq '배송완료'}">
-          <input type="button" class="btn-cancle" onclick="cancelPls(${orders.ordersNo})" value="반품신청"/>
-         </c:if>
-          </form>  
-         </td>
-        </tr>
-        </c:if>
-        <c:if test="${orders.ordersNo == null }">
-        <tr>
-        <td colspan="6">주문 내역이 없습니다.</td>
-        </tr>
+	        <tr>
+	        <td colspan="6">주문 내역이 없습니다.</td>
+	        </tr>
         </c:if>
         </c:forEach>
-<%--         </c:if><!-- 날짜조회데이터 출력 끝 -->    --%>
-        </tbody>
+        <!-- 날짜조회기능 썼을경우, 날짜조회데이터 출력시작 -->
+ <%--        <c:forEach var="orders" items="${orderListDate }">
+        <c:if test="${orders.ordersNo != null}">      
+	        <tr>
+	          <td>${orders.ordersDate }</td>
+	          <td>${orders.ordersNo }</td>
+	          <td>${orders.ordersTotal }</td>
+	          <td>
+	          ${orders.ordersStatus }
+	          <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
+	          </td>
+	          <td>
+	         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
+	         <c:if test="${orders.ordersStatus eq '주문완료'}">
+	         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
+	         <input type="submit" class="btn-cancle" value='주문취소'>         
+	         </c:if>
+	         <c:if test="${orders.ordersStatus eq '배송완료'}">
+	          <input type="button" class="btn-cancle" onclick="cancelPls(${orders.ordersNo})" value="반품신청"/>
+	         </c:if>
+	          </form>  
+	         </td>
+	        </tr>
+        </c:if>
+        <c:if test="${orders.ordersNo == null }">
+	        <tr>
+	        <td colspan="6">주문 내역이 없습니다.</td>
+	        </tr>
+        </c:if>
+        </c:forEach>
+        </tbody> --%>
       </table>
         </div>        
       </div> 
@@ -202,17 +199,19 @@
 
 
 <script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery.min.js"></script> -->
 <script type="text/javascript">
 
 $('#btnSearch22').on('click', function(){
-	alert($("#searchgogo").serialize())
+	/* alert($("#searchgogo").serialize()) */
+	$( '#ordertable > tbody').empty();
 	$.ajax({
 		url : "ordersTest.action",
 		type: "POST",
 		data: $("#searchgogo").serialize(),
 		success: function (data) {
-			alert(data)
-			$('#content-detail2').append(data);
+			/* alert(data) */
+			$('#ordertable').append(data);
 		},
 		error: function () {
 			alert("안된다...");
@@ -222,6 +221,33 @@ $('#btnSearch22').on('click', function(){
 	
 	
 });
+
+//$('#btnSearch22').on('click', function(){
+/*	alert($("#searchgogo").serialize())
+	$.ajax({
+		url : "ordersTest.action",
+		type: "POST",
+		data: $("#searchgogo").serialize(),
+		success: function (data) {
+			alert(data)
+			var results = data.testajax;
+            var str = '<TR>';
+			$.each(results, function (i) {
+				str += '<TD>' + results[i].oDate + '</TD><TD>'
+				+ results[i].oNo + '</TD><TD>'
+				+ results[i].oStatus + '</TD><TD>'
+				+ results[i].oTotal + '</TD><TD>';
+			});
+			$("#testajax").append(str); 
+		},
+		error: function () {
+			alert("안된다...");
+		}
+		
+	});
+	
+	
+}); */
 
 </script>
 

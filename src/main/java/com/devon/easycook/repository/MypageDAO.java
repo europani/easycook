@@ -82,8 +82,6 @@ public class MypageDAO extends AbstractMybatisDAO{
 
 
 
-
-
    
    // ADMIN
    public List<OrdersDTO> getOrder(int orderNo) {
