@@ -242,7 +242,7 @@ public class AdminController {
 	
 	@GetMapping("/orders/{orderNo}")
 	public String ordersDetail(Model model, @PathVariable("orderNo") int orderNo) {
-		List<OrdersDetailDTO> order = orderService.getOrder(orderNo); ///////
+		List<OrdersDTO> order = mypageService.getOrder(orderNo);
 		model.addAttribute("order", order);
 		return "admin/orderDetail";
 	}

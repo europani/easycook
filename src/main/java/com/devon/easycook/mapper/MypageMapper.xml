@@ -185,5 +185,14 @@
    
    
 
+
+
+	<!-- ADMIN -->
+	<select id="getOrder" parameterType="String" resultMap="OrderList">
+	   SELECT o.orders_date, o.orders_no, o.orders_status, od.detail_qty, od.detail_st, p.product_name
+	   		FROM Orders o, orders_Detail od, product p
+	   		WHERE o.orders_no = od.orders_no and od.product_no = p.product_no and o.orders_no = #{orderNo}
+	   		ORDER BY o.orders_date desc 
+   	</select>
 </mapper>
    

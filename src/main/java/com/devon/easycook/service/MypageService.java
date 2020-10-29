@@ -52,5 +52,9 @@ public class MypageService {
 
 
    
+   // ADMIN
+   public List<OrdersDTO> getOrder(int orderNo) {
+		return mypageDAO.getOrder(orderNo);
+	}
    
 }
