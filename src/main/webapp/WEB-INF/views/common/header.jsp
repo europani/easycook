@@ -145,8 +145,8 @@
                   style="margin-top: 27px;">
                   <li><a href="#" class="search-btn"><i
                         class="fa fa-search" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><span> Cart -$0&nbsp;</span> <span
-                        class="shoping-cart">0</span></a></li>
+                  <li><a href="/easycook/order/cart"><span> Cart -&nbsp;</span> <span
+                        class="shoping-cart">${count}</span></a></li>
                </ul>
 				</div>
 				<!-- /.navbar-collapse -->

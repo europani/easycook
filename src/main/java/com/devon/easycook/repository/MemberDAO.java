@@ -164,6 +164,24 @@ public class MemberDAO extends AbstractMybatisDAO {
 		}
 	}
 
+	public List<MemberDTO> getDelInfo(PagingVO vo) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectList(namespace + ".getDelInfo", vo);
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public int countDelMember() {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countDelMember");
+		} finally {
+			sqlsession.close();
+		}
+	}
+
 
 
 //	public int getArticleCount(String boardid, String category, String sentence) {

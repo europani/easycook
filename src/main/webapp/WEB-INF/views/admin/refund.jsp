@@ -24,11 +24,13 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                회원관리
+                주문관리
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              	<a class="dropdown-item" href="/easycook/admin/member">회원목록</a>
-                <a class="dropdown-item" href="/easycook/admin/member/delete">탈퇴회원</a>
+                <a class="dropdown-item" href="/easycook/admin/orders">주문내역</a>
+                <a class="dropdown-item" href="/easycook/admin/ordersCancel">주문취소내역</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/easycook/admin/refund">반품내역</a>
               </div>
             </li>
           </ul>
@@ -36,33 +38,42 @@
       </nav>
 
 <div class="w3-container w3-center">
-  <h2>회원 목록</h2>
+  <h2>반품 내역</h2>
 
   <table class="w3-table-all w3-hoverable w3-centered">
     <thead>
       <tr class="w3-light-grey" style="color:#FFFF00">
-        <th width="10%">ID</th>
-        <th width="7%">이름</th>
-        <th width="10%">이메일</th>
-        <th width="15%">전화번호</th>
-        <th width="10%">생일</th>
-        <th width="8%">포인트</th>
-        <th width="15%">가입일</th>
-        <th width="15%">탈퇴일</th>
+        <th width="10%">주문번호</th>
+        <th width="10%">상품번호</th>
+        <th width="15%">ID</th>
+        <th width="5%">수량</th>
+        <th width="10%">사유</th>
+        <th width="20%">반품일자</th>
+        <th width="15%">반품상태</th>
         <th width="10%"></th>
       </tr>
     </thead>
-    <c:forEach var="infoList" items="${infoList}">
-	    <tr>
+    <c:forEach var="infoList" items="${refund}">
+	    <tr></a>
+	      <td>${infoList.ordersNo}</td>
+	      <td>${infoList.productNo}</td>
 	      <td>${infoList.id}</td>
-	      <td>${infoList.name}</td>
-	      <td>${infoList.email}</td>
-	      <td>${infoList.tel}</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${infoList.birthday}"/></td>
-	      <td>${infoList.point}</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${infoList.regDate}"/></td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${infoList.wdrDate}"/></td>
-	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/member/${infoList.id}'">주문목록</button></td>
+	      <td>${infoList.refundQty}</td>
+	      <td>${infoList.refundReason}</td>
+	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${infoList.refundDate}"/></td>
+	      <td>${infoList.refundStatus}</td>
+	      <td>
+	      	<form method="post" action="refund/${infoList.ordersNo}/${infoList.productNo}">
+			  <c:if test="${infoList.refundStatus eq '반품신청'}">
+			  	<input type="hidden" name="status" value="반품신청">  	
+			  	<button class="btn btn-primary" onclick="submit()">반품수락</button>
+			  </c:if>
+			  <c:if test="${infoList.refundStatus eq '처리중'}">
+			  	<input type="hidden" name="status" value="처리중">
+			  	<button class="btn btn-primary" onclick="submit()">완료전환</button>
+			  </c:if>
+  			</form>
+	      </td>
 	    </tr>
     </c:forEach>
   </table>
@@ -71,7 +82,7 @@
 <!-- 페이징 -->
 <div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
-			<a href="/easycook/admin/member?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+			<a href="/easycook/admin/orders?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 			<c:choose>
@@ -79,12 +90,12 @@
 					<b>${p }</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
-					<a href="/easycook/admin/member?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+					<a href="/easycook/admin/orders?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/easycook/admin/member?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+			<a href="/easycook/admin/orders?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 		</c:if>
 	</div>
 

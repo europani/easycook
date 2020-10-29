@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- datepicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+
     <title>CSS</title>
     <style>
       #jb-container {
@@ -98,19 +102,18 @@
         <hr>
         <br>
         <div id="content-detail">
+        
+      <form name="searchFrm">
       <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
-      <input type="date" id="UserCheckIn" name="UserCheckIn"
-                  min="2020-10-01" max="2020-12-31" name="date"
-                  contenteditable="false">&nbsp;&nbsp;~&nbsp;&nbsp;
+      <input type="text" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
       <label for="UserCheckOut"></label> 
-      <input type="date" id="UserCheckOut" name="UserCheckOut" 
-                  min="2020-08-01" max="2020-12-31" name="date"
-                   contenteditable="false">&nbsp;&nbsp;
-               <button class="btn-search">조회하기</button>
+      <input type="text" name="toDate" id="toDate">&nbsp;&nbsp;
+      <button type="button" id="btnSearch" class="btn-search">조회하기</button>
+      </form>
+        
       </div>         
       <br><br><br><br>
          <br><hr><br>
-         
         <div id="content-detail2">
          <h5 >주문목록/배송조회 내역 총 -건</h5>
         <br><br>
@@ -119,10 +122,8 @@
        <tr>
           <th>주문일</th>
           <th>주문번호</th>
-          <th>상품명</th>
-          <th>수량</th>
           <th>총주문금액</th>
-          <th>주문상태</th>
+          <th colspan="2">주문정보</th>
         </tr>
       </thead>
         <tbody>
@@ -131,12 +132,14 @@
         <tr>
           <td>${orders.ordersDate }</td>
           <td>${orders.ordersNo }</td>
-          <td>${orders.product.productName }</td>
-          <td>${orders.ordersDetail.detailQty }</td>
-          <td> ${orders.ordersDetail.detailSt }</td>
+          <td>${orders.ordersTotal }</td>
           <td>
           ${orders.ordersStatus }
-         <form method="post" action="<%=request.getContextPath() %>/mypage/canCancel" >
+          <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
+          </td>
+          
+          <td>
+         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
          <c:if test="${orders.ordersStatus eq '주문완료'}">
          <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
          <input type="submit" class="btn-cancle" value='주문취소'>         
@@ -146,6 +149,7 @@
          </c:if>
           </form>  
          </td>
+         
         </tr>
         </c:if>
         <c:if test="${orders.ordersNo == null }">
@@ -163,8 +167,32 @@
         <br/>
       </div>
 </div>
-<script>
+<script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+/* $('#btnSearch22').on('click', function(){
+	alert($("#searchgogo").serialize())
+	$.ajax({
+		url : "ordersTest.action",
+		type: "POST",
+		data: $("#searchgogo").serialize(),
+		success: function (data) {
+			alert(data)
+			$('#content-detail2').append(data);
+		},
+		error: function () {
+			alert("안된다...");
+		}
+		
+	});
+	
+	
+}); */
+
+
+</script>
 </body>
+
+
 
   
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

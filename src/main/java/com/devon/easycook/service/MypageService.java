@@ -1,6 +1,7 @@
 package com.devon.easycook.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,22 +16,44 @@ public class MypageService {
    @Autowired
    private MypageDAO mypageDAO;
    
-   public List<OrdersDTO> Orders(String id) {
-      System.out.println("서비스 : " + id);
+   public List<OrdersDTO> orders(String id) {
       return mypageDAO.orders(id);
       
    }
    
-   public List<CouponDTO> Coupon(String id) {
-      System.out.println("쿠폰서비스 : " + id);
-      return mypageDAO.coupon(id);
-      
+   public List<OrdersDTO> ordersDetail(int ordersNo) {
+		return mypageDAO.ordersDetail(ordersNo);
+	}
+
+   
+   public List<OrdersDTO> ordersDate(Map<String, String> map) {
+	  return mypageDAO.ordersDate(map);
+	      
+   }
+  
+   public List<CouponDTO> coupon(String id) {
+      return mypageDAO.coupon(id); 
    }
    
-   public List<OrdersDTO> canCancel(int ordersNo) {
-      return mypageDAO.canCancel(ordersNo);
-      
-   } 
+   public int couponCount(String id) {
+	   return mypageDAO.couponCount(id); 
+   }
    
+   public int myPoint(String id) {
+		return mypageDAO.myPoint(id);
+	} 
+   
+   public List<OrdersDTO> cancelRequire(int ordersNo) {
+      return mypageDAO.cancelRequire(ordersNo);
+      
+   }
+
+
+
+   
+   // ADMIN
+   public List<OrdersDTO> getOrder(int orderNo) {
+		return mypageDAO.getOrder(orderNo);
+	}
    
 }

@@ -36,7 +36,7 @@
       </nav>
 
 <div class="w3-container w3-center">
-  <h2>회원 목록</h2>
+  <h2>탈퇴회원 목록</h2>
 
   <table class="w3-table-all w3-hoverable w3-centered">
     <thead>
@@ -62,7 +62,7 @@
 	      <td>${infoList.point}</td>
 	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${infoList.regDate}"/></td>
 	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${infoList.wdrDate}"/></td>
-	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/member/${infoList.id}'">주문목록</button></td>
+	      <td><button class="btn btn-primary" onclick="window.location.href='http://localhost:8089/easycook/admin/member/${infoList.id}'">주문목록</button></td>
 	    </tr>
     </c:forEach>
   </table>

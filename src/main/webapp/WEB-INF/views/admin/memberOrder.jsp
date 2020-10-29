@@ -36,57 +36,40 @@
       </nav>
 
 <div class="w3-container w3-center">
-  <h2>회원 목록</h2>
-
+  <h2>회원별 주문 내역</h2>
+  <table class="w3-table-all w3-bordered w3-centered">
+  	  <tr><td colspan="4">회원 ID : <font color="red">${id}</font></td></tr>
+      <tr class="w3-light-grey" style="color:#FFFF00">
+        <td width="25%" style="text-align: right;">최근구매일자 : </td>
+        <td width="25%" style="text-align: left;">
+        	<font color="red"><fmt:formatDate pattern="yyyy-MM-dd" value="${date}" /> </font>
+        </td>
+        <td width="10%" style="text-align: right;">총구매금액 : </td>
+        <td width="40%" style="text-align: left;"><font color="red"><fmt:formatNumber pattern="###,###,###" value="${sum}" /></font>원</td>
+      </tr>
+   </table>
+   
   <table class="w3-table-all w3-hoverable w3-centered">
     <thead>
       <tr class="w3-light-grey" style="color:#FFFF00">
-        <th width="10%">ID</th>
-        <th width="7%">이름</th>
-        <th width="10%">이메일</th>
-        <th width="15%">전화번호</th>
-        <th width="10%">생일</th>
-        <th width="8%">포인트</th>
-        <th width="15%">가입일</th>
-        <th width="15%">탈퇴일</th>
-        <th width="10%"></th>
+        <th width="15%">No</th>
+        <th width="25%">주문일</th>
+        <th width="20%">결제금액</th>
+        <th width="25%">배송상태</th>
+        <th width="15%"></th>
       </tr>
     </thead>
-    <c:forEach var="infoList" items="${infoList}">
+    <c:forEach var="list" items="${list}">
 	    <tr>
-	      <td>${infoList.id}</td>
-	      <td>${infoList.name}</td>
-	      <td>${infoList.email}</td>
-	      <td>${infoList.tel}</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${infoList.birthday}"/></td>
-	      <td>${infoList.point}</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${infoList.regDate}"/></td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${infoList.wdrDate}"/></td>
-	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/member/${infoList.id}'">주문목록</button></td>
+	      <td>${list.ordersNo}</td>
+	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${list.ordersDate}"/></td>
+	      <td><fmt:formatNumber pattern="###,###,###" value="${list.ordersTotal}" /> </td>
+	      <td>${list.ordersStatus}</td>
+	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/orders/${list.ordersNo}'">주문상세보기</button></td>
 	    </tr>
     </c:forEach>
   </table>
 </div>
-
-<!-- 페이징 -->
-<div style="display: block; text-align: center;">		
-		<c:if test="${paging.startPage != 1 }">
-			<a href="/easycook/admin/member?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-			<c:choose>
-				<c:when test="${p == paging.nowPage }">
-					<b>${p }</b>
-				</c:when>
-				<c:when test="${p != paging.nowPage }">
-					<a href="/easycook/admin/member?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-				</c:when>
-			</c:choose>
-		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/easycook/admin/member?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-		</c:if>
-	</div>
 
 </div>
   <!-- /#wrapper -->
