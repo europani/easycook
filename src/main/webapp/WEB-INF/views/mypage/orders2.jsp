@@ -103,12 +103,12 @@
         <br>
         <div id="content-detail">
         
-      <form id="searchFrm" name="searchFrm">
+      <form id="searchgogo" name="searchgogo">
       <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
       <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
       <label for="UserCheckOut"></label> 
       <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
-      <button id="btnSearch" class="btn-search">조회하기</button>
+      <input type="button"  id="btnSearch22" class="btn-search">조회하기</button>
       </form>
         
       </div>         
@@ -122,10 +122,8 @@
        <tr>
           <th>주문일</th>
           <th>주문번호</th>
-          <th>상품명</th>
-          <th>수량</th>
           <th>총주문금액</th>
-          <th>주문상태</th>
+          <th colspan="2">주문정보</th>
         </tr>
       </thead>
         <tbody>
@@ -162,15 +160,16 @@
 <%--         <c:if test="${fromDate != null && toDate != null}">
         <!-- 날짜조회기능 썼을경우, 날짜조회데이터 출력시작 --> --%>
         <c:forEach var="orders" items="${orderListDate }">
-        <c:if test="${orders.ordersNo != null}">        
+        <c:if test="${orders.ordersNo != null}">      
         <tr>
           <td>${orders.ordersDate }</td>
           <td>${orders.ordersNo }</td>
-          <td>${orders.product.productName }</td>
-          <td>${orders.ordersDetail.detailQty }</td>
-          <td>${orders.ordersDetail.detailSt }</td>
+          <td>${orders.ordersTotal }</td>
           <td>
           ${orders.ordersStatus }
+          <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
+          </td>
+          <td>
          <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
          <c:if test="${orders.ordersStatus eq '주문완료'}">
          <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
@@ -203,17 +202,17 @@
 
 
 <script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
-<script src="/easycook/resources/js/ajax.js"></script>
 <script type="text/javascript">
 
-$('#btnSearch').on('click', function(){
-	alert($("#searchFrm").serialize())
+$('#btnSearch22').on('click', function(){
+	alert($("#searchgogo").serialize())
 	$.ajax({
 		url : "ordersTest.action",
 		type: "POST",
-		data: $("#searchFrm").serialize(),
+		data: $("#searchgogo").serialize(),
 		success: function (data) {
-			$('#content-detail2').text(data);
+			alert(data)
+			$('#content-detail2').append(data);
 		},
 		error: function () {
 			alert("안된다...");

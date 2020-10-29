@@ -65,7 +65,6 @@ public class MypageController {
    
    
    @RequestMapping(value = "/ordersTest.action", method = RequestMethod.POST)
-   @ResponseBody
    public ModelAndView ordersListTest(String fromDate, String toDate, ModelAndView mv) {
 	   
 	   // ModelAndView 초기화 ㄱㄱ
@@ -94,7 +93,7 @@ public class MypageController {
 	   mv.addObject("fromDate", fromDate);
 	   mv.addObject("toDate", toDate);
 	   System.out.println(orderListDate);
-	   mv.setViewName("mypage/orders2");
+	   mv.setViewName("common/ajaxtest");
 	   return mv;
 	   
    }
