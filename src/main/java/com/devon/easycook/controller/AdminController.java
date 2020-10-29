@@ -2,6 +2,7 @@ package com.devon.easycook.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -11,7 +12,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,10 +25,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.devon.easycook.domain.EventDTO;
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.NoticeDTO;
+import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.service.EventService;
 import com.devon.easycook.service.MemberService;
+import com.devon.easycook.service.MypageService;
 import com.devon.easycook.service.NoticeService;
+import com.devon.easycook.service.OrderService;
 import com.devon.easycook.service.ProductService;
 import com.devon.easycook.util.PagingVO;
 
@@ -44,6 +48,10 @@ public class AdminController {
 	NoticeService noticeService;
 	@Autowired
 	EventService eventService;
+	@Autowired
+	OrderService orderService;
+	@Autowired
+	MypageService mypageService;
 	
 
 	@GetMapping("")
@@ -77,6 +85,28 @@ public class AdminController {
 	public String member(Model model, @PathVariable("id") String id) {
 
 		return "";
+	}
+	
+	@GetMapping("/member/delete")
+	public String memberDelList(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+		int total = memberService.countDelNumber();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		
+		List<MemberDTO> list = memberService.getDelInfo(vo);
+		model.addAttribute("infoList", list);
+		
+		return "admin/memberDelete";
 	}
 
 	@GetMapping("/product")
@@ -190,9 +220,40 @@ public class AdminController {
 	}
 
 	@GetMapping("/orders")
-	public String orders() {
+	public String orders(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,
+			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+		int total = orderService.countOrder();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "10";
+		}
+
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+
+		List<OrdersDTO> list = orderService.getFullInfo(vo);
+		model.addAttribute("orders", list);
+		
 		return "admin/orders";
 	}
+	
+	@GetMapping("/orders/{orderNo}")
+	public String ordersDetail(Model model, @PathVariable("orderNo") int orderNo) {
+		List<OrdersDTO> order = mypageService.getOrder(orderNo);
+		model.addAttribute("order", order);
+		
+		Timestamp orderDate = orderService.getOrderDate(orderNo);
+		model.addAttribute("orderNo", orderNo);
+		model.addAttribute("orderDate", orderDate);
+		return "admin/orderDetail";
+	}
+	
+	
+	
 
 	@GetMapping("/notice")
 	public String notice(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,

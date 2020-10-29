@@ -97,10 +97,10 @@
 				)
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
-
-	<select id="getOrder" parameterType="int" resultType="OrdersDetail">
-		SELECT orders_no AS ordersNo, product_no AS productNo, detail_qty AS detailQty, detail_st AS detailSt, detail_refund AS detailRefund
-			FROM orders_detail WHERE orders_no = #{orderNo} 
+	
+	<select id="getOrderDate" resultType="java.sql.Timestamp">
+		SELECT orders_date FROM orders WHERE orders_no = #{orderNo}
 	</select>
+
 	
 </mapper>

@@ -24,11 +24,13 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                회원관리
+                주문관리
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              	<a class="dropdown-item" href="/easycook/admin/member">회원목록</a>
-                <a class="dropdown-item" href="/easycook/admin/member/delete">탈퇴회원</a>
+                <a class="dropdown-item" href="orders">주문내역</a>
+                <a class="dropdown-item" href="ordersCancel">주문취소내역</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="refund">환불내역</a>
               </div>
             </li>
           </ul>
@@ -36,57 +38,37 @@
       </nav>
 
 <div class="w3-container w3-center">
-  <h2>회원 목록</h2>
+  <h2>주문 내역</h2>
 
-  <table class="w3-table-all w3-hoverable w3-centered">
-    <thead>
+  <table class="w3-table-all w3-bordered w3-centered">
       <tr class="w3-light-grey" style="color:#FFFF00">
-        <th>ID</th>
-        <th>이름</th>
-        <th>이메일</th>
-        <th>전화번호</th>
-        <th>생일</th>
-        <th>포인트</th>
-        <th>가입일</th>
-        <th>탈퇴일</th>
-        <th></th>
+        <td width="25%" style="text-align: right;">주문번호 : </td>
+        <td width="25%" style="text-align: left;"><font color="red">${orderNo}</font></td>
+        <td width="10%" style="text-align: right;">주문일시 : </td>
+        <td width="40%" style="text-align: left;"><font color="red"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${orderDate}"/></font></td>
       </tr>
-    </thead>
-    <c:forEach var="infoList" items="${infoList}">
-	    <tr>
-	      <td>${infoList.id}</td>
-	      <td>${infoList.name}</td>
-	      <td>${infoList.email}</td>
-	      <td>${infoList.tel}</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${infoList.birthday}"/></td>
-	      <td>${infoList.point}</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${infoList.regDate}"/></td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${infoList.wdrDate}"/></td>
-	      <td><button class="btn btn-primary" onclick="window.location.href='http://localhost:8089/easycook/admin/member/${infoList.id}'">주문목록</button></td>
+   </table>
+   
+   <table class="w3-table w3-bordered w3-centered">
+      <tr class="w3-light-grey">
+      	<td width="10%">상품번호</td>
+      	<td width="40%">상품명</td>
+      	<td width="15%">상품가격</td>
+	    <td width="15%">주문수량</td>
+	    <td width="20%">소계</td>
+      </tr>
+    <c:forEach var="order" items="${order}">
+	    <tr class="w3-write">
+	      <td>${order.product.productNo}</td>
+	      <td>${order.product.productName}</td>
+	      <td>${order.product.productPrice}</td>
+	      <td>${order.ordersDetail.detailQty}</td>
+	      <td>${order.product.productPrice * order.ordersDetail.detailQty}</td>
 	    </tr>
     </c:forEach>
   </table>
 </div>
 
-<!-- 페이징 -->
-<div style="display: block; text-align: center;">		
-		<c:if test="${paging.startPage != 1 }">
-			<a href="/easycook/admin/member?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-			<c:choose>
-				<c:when test="${p == paging.nowPage }">
-					<b>${p }</b>
-				</c:when>
-				<c:when test="${p != paging.nowPage }">
-					<a href="/easycook/admin/member?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-				</c:when>
-			</c:choose>
-		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/easycook/admin/member?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-		</c:if>
-	</div>
 
 </div>
   <!-- /#wrapper -->

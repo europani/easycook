@@ -20,7 +20,7 @@ public class MypageDAO extends AbstractMybatisDAO{
    public List<OrdersDTO> orders(String id) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
-         return sqlsession.selectList(namespace + ".OrderList", id);
+         return sqlsession.selectList(namespace + ".myOrderList", id);
       } finally {
          sqlsession.close();
       }
@@ -85,4 +85,13 @@ public class MypageDAO extends AbstractMybatisDAO{
 
 
    
+   // ADMIN
+   public List<OrdersDTO> getOrder(int orderNo) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	      try {
+	         return sqlsession.selectList(namespace + ".getOrder", orderNo);
+	      } finally {
+	         sqlsession.close();
+	      }
+	}
 }

@@ -1,12 +1,16 @@
 package com.devon.easycook.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devon.easycook.domain.CartDTO;
+import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.repository.OrderDAO;
+import com.devon.easycook.util.PagingVO;
 
 @Service
 public class OrderService {
@@ -48,4 +52,24 @@ public class OrderService {
 
 
 
+	// ADMIN
+	
+	public int countOrder() {
+		return orderDao.countOrder();
+	}
+
+	public List<OrdersDTO> getFullInfo(PagingVO vo) {
+		return orderDao.getFullInfo(vo);
+	}
+
+	public List<OrdersDetailDTO> getOrder(int orderNo) {
+		return orderDao.getOrder(orderNo);
+	}
+
+	public Timestamp getOrderDate(int orderNo) {
+		return orderDao.getOrderDate(orderNo);
+	}
+	
+	
+	
 }
