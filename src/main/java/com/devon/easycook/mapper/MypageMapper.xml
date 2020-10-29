@@ -25,7 +25,8 @@
 
 <!-- 주문목록에서 각상품 상세보기 페이지 설정 -->
 <resultMap type="Orders" id="ordersDetailList">
-	<id property="id" column="id"/>
+	<id property="ordersNo" column="orders_no"/>
+	<result property="ordersTotal" column="orders_total"/>
 
 	<association property="ordersDetail" javaType="OrdersDetail">
 	<id property="ordersNo" column="orders_no"/>
@@ -88,14 +89,19 @@
    </select>
    
    
-   
-   <select id="ordersDetailList" parameterType="int" resultMap="">
-   
-   
-   
-   
-   
-   
+   <!-- 상세주문목록 확인하기(상품별) -->
+   <select id="ordersDetailList" parameterType="int" resultMap="ordersDetailList">
+   select
+     p.product_no,
+     p.product_name, 
+     p.product_image, 
+     p.product_price, 
+     od.DETAIL_QTY,
+     o.orders_total
+   from
+    product p, orders_detail od, orders o
+   where
+    p.product_no = od.product_no and o.orders_no = #{ordersNo} and o.orders_no = od.orders_no 
    </select>
    
    

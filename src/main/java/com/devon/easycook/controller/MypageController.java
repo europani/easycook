@@ -51,11 +51,15 @@ public class MypageController {
       
    }
    
-	@GetMapping("/{ordersNo}")
+	@GetMapping("ordersProduct/{ordersNo}")
 	public String ordersDetail(@PathVariable("ordersNo") int ordersNo, Model model) {
 		List<OrdersDTO> detail = mypageService.ordersDetail(ordersNo);
 
+		int totalpay = detail.get(0).getOrdersTotal();
 		model.addAttribute("detail", detail);
+		model.addAttribute("totalpay", totalpay);
+		
+		System.out.println(detail);
 		return "mypage/ordersDetail";
 	}
    
