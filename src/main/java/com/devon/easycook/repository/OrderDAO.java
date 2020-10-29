@@ -116,19 +116,23 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	public List<OrdersDetailDTO> getOrder(int orderNo) {
+	public OrdersDTO getOrderInfo(int orderNo) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try {
-			return sqlSession.selectList(namespace + ".getOrder", orderNo);
+			return sqlSession.selectOne(namespace + ".getOrderInfo", orderNo);
 		} finally {
 			sqlSession.close();
 		}
 	}
 
-	public Timestamp getOrderDate(int orderNo) {
+	public void changeStatus(HashMap<String, Object> map) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int result = 0;
 		try {
-			return sqlSession.selectOne(namespace + ".getOrderDate", orderNo);
+			result = sqlSession.update(namespace + ".changeStatus", map);
+			if (result != 0) {
+				sqlSession.commit();
+			}
 		} finally {
 			sqlSession.close();
 		}

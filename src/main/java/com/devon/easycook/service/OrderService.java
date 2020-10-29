@@ -1,6 +1,7 @@
 package com.devon.easycook.service;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,12 +68,12 @@ public class OrderService {
 		return orderDao.getFullInfo(vo);
 	}
 
-	public List<OrdersDetailDTO> getOrder(int orderNo) {
-		return orderDao.getOrder(orderNo);
+	public OrdersDTO getOrderInfo(int orderNo) {
+		return orderDao.getOrderInfo(orderNo);
 	}
 
-	public Timestamp getOrderDate(int orderNo) {
-		return orderDao.getOrderDate(orderNo);
+	public void changeStatus(HashMap<String, Object> map) {
+		orderDao.changeStatus(map);
 	}
 	
 	

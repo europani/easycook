@@ -43,9 +43,9 @@
   <table class="w3-table-all w3-bordered w3-centered">
       <tr class="w3-light-grey" style="color:#FFFF00">
         <td width="25%" style="text-align: right;">주문번호 : </td>
-        <td width="25%" style="text-align: left;"><font color="red">${orderNo}</font></td>
+        <td width="25%" style="text-align: left;"><font color="red">${orderInfo.ordersNo}</font></td>
         <td width="10%" style="text-align: right;">주문일시 : </td>
-        <td width="40%" style="text-align: left;"><font color="red"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${orderDate}"/></font></td>
+        <td width="40%" style="text-align: left;"><font color="red"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${orderInfo.ordersDate}"/></font></td>
       </tr>
    </table>
    
@@ -66,7 +66,21 @@
 	      <td>${order.product.productPrice * order.ordersDetail.detailQty}</td>
 	    </tr>
     </c:forEach>
+    <tr class="w3-light-grey"><td colspan="5">총 주문금액 : ${orderInfo.ordersTotal}원</td></tr>
+    
+    
   </table>
+  
+  <form method="post">
+  <c:if test="${orderInfo.ordersStatus eq '주문완료'}">
+  	<input type="hidden" name="status" value="주문완료">  	
+  	<button onclick="submit()">배송중</button>
+  </c:if>
+  <c:if test="${orderInfo.ordersStatus eq '배송중'}">
+  	<input type="hidden" name="status" value="배송중">
+  	<button onclick="submit()">배송완료</button>
+  </c:if>
+  </form>
 </div>
 
 
