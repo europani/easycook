@@ -52,8 +52,8 @@
     </thead>
     <c:forEach var="infoList" items="${orders}">
 	    <tr></a>
-	      <td>${infoList.ordersNo}</td>
-	      <td>${infoList.id}</td>
+	      <td width="10%">${infoList.ordersNo}</td>
+	      <td width="15%">${infoList.id}</td>
 	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${infoList.ordersDate}"/></td>
 	      <td>${infoList.ordersStatus}</td>
 	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/orders/${infoList.ordersNo}'">주문상세보기</button></td>

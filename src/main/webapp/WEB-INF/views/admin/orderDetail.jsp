@@ -43,19 +43,19 @@
   <table class="w3-table-all w3-bordered w3-centered">
       <tr class="w3-light-grey" style="color:#FFFF00">
         <td width="25%" style="text-align: right;">주문번호 : </td>
-        <td width="25%" style="text-align: left;">${order.ordersNo }<font color="red">${orderNo}</font></td>
-        <td width="25%" style="text-align: right;">주문일시 : </td>
-        <td width="25%" style="text-align: left;">${order.ordersDate }<font color="red"></font></td>
+        <td width="25%" style="text-align: left;"><font color="red">${orderNo}</font></td>
+        <td width="10%" style="text-align: right;">주문일시 : </td>
+        <td width="40%" style="text-align: left;"><font color="red"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${orderDate}"/></font></td>
       </tr>
    </table>
    
    <table class="w3-table w3-bordered w3-centered">
       <tr class="w3-light-grey">
       	<td width="10%">상품번호</td>
-      	<td width="50%">상품명</td>
-      	<td width="10%">상품가격</td>
-	    <td width="10%">주문수량</td>
-	    <td width="10%">소계</td>
+      	<td width="40%">상품명</td>
+      	<td width="15%">상품가격</td>
+	    <td width="15%">주문수량</td>
+	    <td width="20%">소계</td>
       </tr>
     <c:forEach var="order" items="${order}">
 	    <tr class="w3-write">
@@ -63,7 +63,7 @@
 	      <td>${order.product.productName}</td>
 	      <td>${order.product.productPrice}</td>
 	      <td>${order.ordersDetail.detailQty}</td>
-	      <td>${order.ordersDetail.detailSt}</td>
+	      <td>${order.product.productPrice * order.ordersDetail.detailQty}</td>
 	    </tr>
     </c:forEach>
   </table>

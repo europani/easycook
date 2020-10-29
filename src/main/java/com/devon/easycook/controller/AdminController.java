@@ -2,6 +2,7 @@ package com.devon.easycook.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -244,6 +245,10 @@ public class AdminController {
 	public String ordersDetail(Model model, @PathVariable("orderNo") int orderNo) {
 		List<OrdersDTO> order = mypageService.getOrder(orderNo);
 		model.addAttribute("order", order);
+		
+		Timestamp orderDate = orderService.getOrderDate(orderNo);
+		model.addAttribute("orderNo", orderNo);
+		model.addAttribute("orderDate", orderDate);
 		return "admin/orderDetail";
 	}
 	

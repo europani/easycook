@@ -1,5 +1,6 @@
 package com.devon.easycook.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,10 @@ public class OrderService {
 
 	public List<OrdersDetailDTO> getOrder(int orderNo) {
 		return orderDao.getOrder(orderNo);
+	}
+
+	public Timestamp getOrderDate(int orderNo) {
+		return orderDao.getOrderDate(orderNo);
 	}
 	
 	

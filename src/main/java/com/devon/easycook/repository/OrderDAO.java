@@ -1,5 +1,6 @@
 package com.devon.easycook.repository;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,6 +110,15 @@ public class OrderDAO extends AbstractMybatisDAO {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try {
 			return sqlSession.selectList(namespace + ".getOrder", orderNo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Timestamp getOrderDate(int orderNo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			return sqlSession.selectOne(namespace + ".getOrderDate", orderNo);
 		} finally {
 			sqlSession.close();
 		}

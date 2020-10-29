@@ -14,7 +14,6 @@
    <association property="ordersDetail" javaType="OrdersDetail">
    <id property="ordersNo" column="orders_no"/>
    <result property="detailQty" column="detail_qty"/>
-   <result property="detailSt" column="detail_st"/>
    </association>   
    <association property="product" javaType="Product">
    <id property="productNo" column="product_no"/>
@@ -54,7 +53,6 @@
    <association property="ordersDetail" javaType="OrdersDetail">
    <id property="ordersNo" column="orders_no"/>
    <result property="detailQty" column="detail_qty"/>
-   <result property="detailSt" column="detail_st"/>
    </association>   
    <association property="product" javaType="Product">
    <id property="productNo" column="product_no"/>
@@ -76,7 +74,6 @@
     o.orders_no,
     o.orders_status,
     od.detail_qty,
-    od.detail_st,
     p.product_name
    FROM
     Orders o, orders_Detail od, product p
@@ -113,7 +110,6 @@
     o.orders_no,
     o.orders_status,
     od.detail_qty,
-    od.detail_st,
     p.product_name
    FROM
     Orders o, orders_Detail od, product p
@@ -173,7 +169,6 @@
    	o.orders_no, 
    	o.orders_status, 
    	od.detail_qty, 
-   	od.detail_st,
     p.product_name, 
     p.product_price, 
     p.product_image, 
@@ -194,8 +189,8 @@
 
 
 	<!-- ADMIN -->
-	<select id="getOrder" parameterType="String" resultMap="OrderList">
-	   SELECT o.orders_date, o.orders_no, o.orders_status, od.detail_qty, od.detail_st, p.product_name
+	<select id="getOrder" parameterType="int" resultMap="OrderList">
+	   SELECT o.orders_date, o.orders_no, o.orders_status, od.detail_qty, p.product_name
 	   		FROM Orders o, orders_Detail od, product p
 	   		WHERE o.orders_no = od.orders_no and od.product_no = p.product_no and o.orders_no = #{orderNo}
 	   		ORDER BY o.orders_date desc 
