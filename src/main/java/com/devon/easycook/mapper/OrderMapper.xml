@@ -9,66 +9,69 @@
 		MERGE INTO CART
 		USING DUAL
 		ON
-		(product_no = #{product_no}
+		(product_no =
+		#{product_no}
 		AND id = #{id})
-		
+
 		WHEN MATCHED THEN
 		UPDATE
 		SET cart_qty = cart_qty + #{cart_qty}
-		WHERE product_no = #{product_no}
+		WHERE
+		product_no = #{product_no}
 		AND id = #{id}
 		WHEN NOT MATCHED THEN
-		INSERT (cart_no, id, product_no, cart_qty)
-		VALUES(cart_seq.NEXTVAL, #{id}, #{product_no}, #{cart_qty})
+		INSERT
+		(cart_no, id, product_no, cart_qty)
+		VALUES(cart_seq.NEXTVAL, #{id},
+		#{product_no}, #{cart_qty})
 	</insert>
 
 
-	<!-- 2. 장바구니 목록보기 -->
+	<!-- 2. 목록보기 -->
 	<select id="cartList" resultType="Cart">
 		SELECT
 		c.cart_no ,
 		c.id ,
 		p.product_no ,
+		
 		m.name ,
+		m.email,
+		m.tel,
+		m.point,
+		
 		p.product_name ,
 		p.product_image,
 		c.cart_qty ,
 		p.product_price,
 		(product_price * cart_qty) money
 		FROM
-		member m, product p, cart c
+		member m, product
+		p, cart c
 		WHERE
 		m.id = c.id AND
 		p.product_no = c.product_no AND
 		c.id = #{id}
 	</select>
 
-<!-- 
-	<select id="sumMoney" resultType="int">
-		SELECT
-		NVL(SUM(product_price * cart_qty), 0) AS sumMoney
-		FROM
-		product p, cart c
-		WHERE
-		c.product_no = p.product_no AND
-		c.id = #{Id}
-	</select>
-	
-	 7. 장바구니에 같은상품있으면 수량합산
-	<update id="cartUpdate">
-		UPDATE cart
-		SET cart_qty = cart_qty + #{cartQty}
-		WHERE id = #{Id} AND product_no = #{productNo}
-	</update>
- -->
+	<!-- 3. 장바구니 상품별 삭제 -->
+	<delete id="cartDelete">
+		DELETE FROM cart
+		WHERE cart_no = #{cart_no}
+	</delete>
+
+
+
+	<!-- <select id="sumMoney" resultType="int"> SELECT NVL(SUM(product_price 
+		* cart_qty), 0) AS sumMoney FROM product p, cart c WHERE c.product_no = p.product_no 
+		AND c.id = #{Id} </select> 7. 장바구니에 같은상품있으면 수량합산 <update id="cartUpdate"> 
+		UPDATE cart SET cart_qty = cart_qty + #{cartQty} WHERE id = #{Id} AND product_no 
+		= #{productNo} </update> -->
 	<!-- 3. 장바구니 수정 (수량 덮어쓰기) <update id="cartModify"> UPDATE cart SET cart_qty 
-		= #{cartQty} WHERE id = #{Id} AND product_no = #{productNo} </update> 4. 
-		장바구니 삭제 하나씩삭제도 만들자! <delete id="cartDelete"> DELETE FROM cart WHERE cart_no 
-		= #{cartNo} </delete> 6. 장바구니 동일상품 확인 <select id="cartCount" resultType="int"> 
-		SELECT count(*) FROM cart WHERE product_no = #{productNo} AND id = #{Id} 
-		</select> 7. 장바구니에 같은상품있으면 수량합산 <update id="cartUpdate"> UPDATE cart SET 
-		cart_qty = cart_qty + #{cartQty} WHERE id = #{Id} AND product_no = #{productNo} 
-		</update> -->
+		= #{cartQty} WHERE id = #{Id} AND product_no = #{productNo} </update> 6. 
+		장바구니 동일상품 확인 <select id="cartCount" resultType="int"> SELECT count(*) FROM 
+		cart WHERE product_no = #{productNo} AND id = #{Id} </select> 7. 장바구니에 같은상품있으면 
+		수량합산 <update id="cartUpdate"> UPDATE cart SET cart_qty = cart_qty + #{cartQty} 
+		WHERE id = #{Id} AND product_no = #{productNo} </update> -->
 
 
 
@@ -85,22 +88,27 @@
 	<select id="countOrder" resultType="int">
 		SELECT count(*) from orders
 	</select>
-	
+
 	<select id="getFullInfo" resultType="Orders">
-		SELECT orders_no AS ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo, orders_status AS ordersStatus 
+		SELECT orders_no AS
+		ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo,
+		orders_status AS ordersStatus
 		FROM (
-			SELECT ROWNUM RN, A.* 
-				FROM (
-						SELECT * 
-						FROM orders 
-						ORDER BY orders_no DESC) A
-				)
+		SELECT ROWNUM RN, A.*
+		FROM (
+		SELECT *
+		FROM orders
+		ORDER BY orders_no DESC) A
+		)
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 
-	<select id="getOrder" parameterType="int" resultType="OrdersDetail">
-		SELECT orders_no AS ordersNo, product_no AS productNo, detail_qty AS detailQty, detail_st AS detailSt, detail_refund AS detailRefund
-			FROM orders_detail WHERE orders_no = #{orderNo} 
+	<select id="getOrder" parameterType="int"
+		resultType="OrdersDetail">
+		SELECT orders_no AS ordersNo, product_no AS productNo,
+		detail_qty AS detailQty, detail_st AS detailSt, detail_refund AS
+		detailRefund
+		FROM orders_detail WHERE orders_no = #{orderNo}
 	</select>
-	
+
 </mapper>

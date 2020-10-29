@@ -13,6 +13,7 @@
 		FROM product
 		ORDER BY product_no 
 	</select>
+	
 	<!-- 상품 상세 -->
 	<select id="productDetail" resultType="Product">
 		SELECT product_no AS

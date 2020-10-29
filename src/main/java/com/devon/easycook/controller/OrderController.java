@@ -60,6 +60,27 @@ public class OrderController {
 		return "order/cart";
 	}
 
+	// 3. 장바구니 삭제하기
+	@RequestMapping("/cart/delete")
+	public String delete(@RequestParam int cart_no) {
+		orderService.cartDelete(cart_no);
+		return "redirect:/order/cart";
+	}
+	
+	// 4. 주문하기 버튼 클릭시
+
+	@GetMapping("/order")
+	public String orderList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(true);
+		MemberDTO member = (MemberDTO) session.getAttribute("member");
+		if (member == null) {
+			return "redirect:/member/login";
+		}
+		String Id = member.getId();
+		List<CartDTO> list = orderService.cartList(Id);
+		model.addAttribute("list", list);
+		return "order/order";
+	}
 	/*
 	 * // 3. 장바구니 수정하기 - 수량덮어쓰기
 	 * 
@@ -72,21 +93,13 @@ public class OrderController {
 	 * 
 	 * 
 	 * 
-	 * // 4. 장바구니 삭제하기
-	 * 
-	 * @RequestMapping("/cart/delete") public String delete(@RequestParam int
-	 * cartNo) {
-	 * 
-	 * cartService.cartDelete(cartNo); return "redirect:/mypage/cart"; }
 	 * 
 	 */
 
-	 
-	  
-		// 5. 장바구니 결제 마지막단계
-		@RequestMapping("/payment")
-		public String payment() {
-			return "order/payment";
-		}
-	
+	// 5. 장바구니 결제 마지막단계
+	@RequestMapping("/payment")
+	public String payment() {
+		return "order/payment";
+	}
+
 }
