@@ -43,9 +43,9 @@
   <table class="w3-table-all w3-bordered w3-centered">
       <tr class="w3-light-grey" style="color:#FFFF00">
         <td width="25%" style="text-align: right;">주문번호 : </td>
-        <td width="25%" style="text-align: left;">${orders.ordersNo }<font color="red">${orderNo}</font></td>
+        <td width="25%" style="text-align: left;">${order.ordersNo }<font color="red">${orderNo}</font></td>
         <td width="25%" style="text-align: right;">주문일시 : </td>
-        <td width="25%" style="text-align: left;">${orders.ordersDate }<font color="red"></font></td>
+        <td width="25%" style="text-align: left;">${order.ordersDate }<font color="red"></font></td>
       </tr>
    </table>
    
@@ -59,7 +59,7 @@
       </tr>
     <c:forEach var="order" items="${order}">
 	    <tr class="w3-write">
-	      <td>${order.productNo}</td>
+	      <td>${order.product.productNo}</td>
 	      <td>${order.product.productName}</td>
 	      <td>${order.product.productPrice}</td>
 	      <td>${order.ordersDetail.detailQty}</td>
