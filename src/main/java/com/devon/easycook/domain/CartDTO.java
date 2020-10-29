@@ -14,10 +14,14 @@ public class CartDTO {
 
 	private String product_image; // 상품 이미지파일 이름
 	private String name; // 회원 이름
+	private String email; // 회원 이메일
+	private String tel; // 회원 전화번호
+	private int point; // 회원 적립금
 	private String product_name; // 상품 이름
 	private int product_price; // 상품 가격
 	private int money; // 수량*상품 - 그상품 총금액
-	private int count;
+	private int count; //개수
+	
 }
 
 //	private int cartStatus;

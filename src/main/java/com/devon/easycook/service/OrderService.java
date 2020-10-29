@@ -26,8 +26,13 @@ public class OrderService {
 	}
 	
 	// 2. 장바구니 목록보기
-	public List<CartDTO> cartList(String Id) { 
-		return orderDao.cartList(Id); 
+	public List<CartDTO> cartList(String id) { 
+		return orderDao.cartList(id); 
+	}
+	
+	// 3. 장바구니 삭제하기
+	public void cartDelete(int cart_no) {
+		orderDao.cartDelete(cart_no); 
 	}
 	 /* 
 	 * // 5. 장바구니 합계구하기 public int sumMoney(String Id) { return
