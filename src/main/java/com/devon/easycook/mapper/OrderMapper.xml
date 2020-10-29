@@ -87,7 +87,7 @@
 	</select>
 	
 	<select id="getFullInfo" resultType="Orders">
-		SELECT orders_no AS ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo, orders_status AS ordersStatus 
+		SELECT orders_no AS ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo, orders_status AS ordersStatus, orders_total AS ordersTotal 
 		FROM (
 			SELECT ROWNUM RN, A.* 
 				FROM (
@@ -98,9 +98,18 @@
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
-	<select id="getOrderDate" resultType="java.sql.Timestamp">
-		SELECT orders_date FROM orders WHERE orders_no = #{orderNo}
+	<select id="getOrderInfo" resultType="Orders">
+		SELECT orders_no AS ordersNo, orders_date AS ordersDate, orders_status AS ordersStatus, orders_total FROM orders WHERE orders_no = #{orderNo}
 	</select>
+	
+	<update id="changeStatus" parameterType="Hashmap">
+		<if test="status == '주문완료'">
+			UPDATE orders SET orders_status = '배송중' WHERE orders_no = #{orderNo}
+		</if>
+		<if test="status == '배송중'">
+			UPDATE orders SET orders_status = '배송완료' WHERE orders_no = #{orderNo}
+		</if>
+	</update>
 
 	
 </mapper>

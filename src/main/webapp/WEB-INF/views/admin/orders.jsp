@@ -43,11 +43,12 @@
   <table class="w3-table-all w3-hoverable w3-centered">
     <thead>
       <tr class="w3-light-grey" style="color:#FFFF00">
-        <th>No</th>
-        <th>ID</th>
-        <th>주문일</th>
-        <th>배송상태</th>
-        <th></th>
+        <th width="10%">No</th>
+        <th width="20%">ID</th>
+        <th width="25%">주문일</th>
+        <th width="10%">결제금액</th>
+        <th width="20%">배송상태</th>
+        <th width="15%"></th>
       </tr>
     </thead>
     <c:forEach var="infoList" items="${orders}">
@@ -55,6 +56,7 @@
 	      <td width="10%">${infoList.ordersNo}</td>
 	      <td width="15%">${infoList.id}</td>
 	      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${infoList.ordersDate}"/></td>
+	      <td><fmt:formatNumber pattern="###,###,###" value="${infoList.ordersTotal}" /> </td>
 	      <td>${infoList.ordersStatus}</td>
 	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/orders/${infoList.ordersNo}'">주문상세보기</button></td>
 	    </tr>

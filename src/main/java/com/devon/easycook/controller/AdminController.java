@@ -246,10 +246,21 @@ public class AdminController {
 		List<OrdersDTO> order = mypageService.getOrder(orderNo);
 		model.addAttribute("order", order);
 		
-		Timestamp orderDate = orderService.getOrderDate(orderNo);
-		model.addAttribute("orderNo", orderNo);
-		model.addAttribute("orderDate", orderDate);
+		OrdersDTO orderInfo = orderService.getOrderInfo(orderNo);
+		model.addAttribute("orderInfo", orderInfo);
+		
 		return "admin/orderDetail";
+	}
+	
+	@PostMapping("/orders/{orderNo}")
+	public String changeStatus(@PathVariable("orderNo") int orderNo, @RequestParam("status") String status) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("orderNo", orderNo);
+		map.put("status", status);
+		
+		orderService.changeStatus(map);
+		
+		return "redirect:/admin/orders";
 	}
 	
 	
