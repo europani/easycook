@@ -27,7 +27,6 @@ public class MypageService {
 
    
    public List<OrdersDTO> ordersDate(Map<String, String> map) {
-	  System.out.println("서비스 : " + map);
 	  return mypageDAO.ordersDate(map);
 	      
    }

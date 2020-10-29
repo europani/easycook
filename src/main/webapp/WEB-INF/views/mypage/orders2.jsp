@@ -213,7 +213,7 @@ $('#btnSearch').on('click', function(){
 		type: "POST",
 		data: $("#searchFrm").serialize(),
 		success: function (data) {
-			$('#result').text(data);
+			$('#content-detail2').text(data);
 		},
 		error: function () {
 			alert("안된다...");

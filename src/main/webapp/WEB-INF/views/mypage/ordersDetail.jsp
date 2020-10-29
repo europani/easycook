@@ -6,12 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-	table {
-		margin: auto;
-	}
-	* {
-		text-align: center;
-	}
+	  table {
+        border-collapse: collapse;
+        width: 85%;
+      }      
+      th {
+	   background: #f6f6f6;
+	   padding-left : 15px;
+       font-weight: bold;
+       font-size: 16px;
+       vertical-align: middle;
+       border-top : 1px solid #999999;
+       border-bottom: 1px solid #dbdbdb;
+       height: 65px;
+      }
+      td {
+       padding-left : 15px;       
+       vertical-align: middle;     
+       font-size: 15px;
+       border-top : 1px solid #999999;     
+       border-bottom: 1px solid #dbdbdb;
+       height: 65px;
+      }
 
 </style>
 </head>

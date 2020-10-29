@@ -4,7 +4,7 @@
    
 <mapper namespace="mypageMapper">
 
-<!-- 주문목록 resultMap 설정  -->
+<!-- 주문목록 날짜별보기 resultMap 설정  -->
 <resultMap id="OrderList" type="Orders">
    <id property="id" column="id"/>
    <result property="ordersDate" column="orders_date"/>
@@ -16,10 +16,6 @@
    <result property="detailQty" column="detail_qty"/>
    <result property="detailSt" column="detail_st"/>
    </association>   
-   <association property="product" javaType="Product">
-   <id property="productNo" column="product_no"/>
-   <result property="productName" column="product_name"/>
-   </association>
 </resultMap>
 
 
@@ -70,22 +66,17 @@
 
 
 	<!-- 주문목록 확인하기  -->
-   <select id="OrderList" parameterType="String" resultMap="OrderList">
+   <select id="OrderList" parameterType="String" resultType="Orders">
    select 
-   	o.orders_date,
-    o.orders_no,
-    o.orders_status,
-    od.detail_qty,
-    od.detail_st,
-    p.product_name
+   	orders_date as ordersDate,
+    orders_no as ordersNo,
+    orders_status as ordersStatus
    FROM
-    Orders o, orders_Detail od, product p
+    Orders
    where 
-    o.orders_no = od.orders_no and
-    od.product_no = p.product_no
-    and o.id = #{id}
+    id = #{id}
    order by
-    o.orders_date desc 
+    orders_date desc 
    </select>
    
    
