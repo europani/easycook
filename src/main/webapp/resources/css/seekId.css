@@ -126,3 +126,25 @@
 .btn_social{
 	padding: 5px;
 }
+
+.authenPwd_form{
+	heigth:500px;
+}
+
+.authenPwd {
+    width: 593px;
+    margin: 20px auto 40px auto;
+    height: 300px;
+}
+.btn_authen_id {
+    float: right;
+    width: 120px;
+    height: 36px;
+    margin: 15px 0 0 0;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid #3e3d3c;
+    background: #3e3d3c;
+    cursor: pointer;
+}

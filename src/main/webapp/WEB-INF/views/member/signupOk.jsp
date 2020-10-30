@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입 완료</title>
+<meta http-equiv="refresh" content="3; url=<%=request.getContextPath()%>"> 
 </head>
 <body>
 이메일을 확인해주세요.

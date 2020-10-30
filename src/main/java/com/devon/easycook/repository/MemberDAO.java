@@ -110,7 +110,9 @@ public class MemberDAO extends AbstractMybatisDAO {
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
 		try {
+			System.out.println(result);
 			result = sqlsession.update(namespace + ".changePwd", map);
+			System.out.println(result);
 			if (result != 0) {
 				sqlsession.commit();
 			}
