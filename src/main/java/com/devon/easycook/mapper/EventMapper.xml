@@ -4,10 +4,19 @@
 <mapper namespace="eventMapper">
 
 
-	<select id="selectTitle" resultType="Event">
-		select event_title from event;
+	<select id="allEvent" resultType="Event">
+		select event_no AS eventNo, event_title AS eventTitle, event_image 
+			AS eventImage, event_content AS eventContent, event_startdate AS 
+			eventStartdate, event_enddate AS eventEnddate 
+		FROM event order by event_no	
 	</select>
 
+   <!-- 상세 -->
+   <select id="eventDetail" parameterType="hashmap" resultType="Event">
+      select event_no AS eventNO, event_title AS eventTitle, event_image AS eventImage, event_startdate AS eventStartdate, event_enddate AS eventEnddate
+       from event
+       where EVENT_NO=#{eventNo}
+   </select>
 
 
 
@@ -53,4 +62,5 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM event WHERE event_no = #{eventNo}
 	</delete>
+
 </mapper>

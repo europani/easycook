@@ -4,87 +4,54 @@
 
 <mapper namespace="noticeMapper">
 
-	<select id="noticeAllList" resultType="Notice">
-   select * from notice
-   </select>
-   
+   <!-- 검색 -->
    <select id="getArticleCount" parameterType="hashmap" resultType="int">
-   select nvl(count(*),0)  from notice 
-    <if test="category!=null and category !='' ">
-    where ${category}  like '%${sentence}%'
-    </if>
+	   	select nvl(count(*),0)  from notice 
+	    <if test="category!=null and category !='' ">
+	    where ${category}  like '%${sentence}%'
+   		</if>
    </select>
-   
-   
-    <select id="getArticles" parameterType="hashmap" 
-       resultType="Notice">
-    
+   <!-- 검색한거 보여주기 -->
+    <select id="getArticles" parameterType="hashmap" resultType="Notice">
       <if test="category==null or category == ''">   
-   select * from  ( select rownum rnum ,a.* 
-    from (select * from notice
-    order by noticeRef desc , noticeRe_step)
-   a ) where rnum  between #{start} and #{end}
-   </if>
+		   SELECT notice_no AS noticeNo, notice_title AS noticeTitle, notice_content AS noticeContent, notice_image AS noticeFilename, notice_count AS noticeCount, notice_date AS noticeDate 
+		   		FROM  ( select rownum rnum ,a.* 
+		    	FROM (select * from notice
+		    	ORDER BY ROWNUM DESC)
+		   			a ) 
+		   		WHERE rnum between #{start} and #{end}
+   		</if>
+    	<if test="category!=null and category !='' "> 
+    	SELECT notice_no AS noticeNo, notice_title AS noticeTitle, notice_content AS noticeContent, notice_image AS noticeFilename, notice_count AS noticeCount, notice_date AS noticeDate 
+		   		FROM  ( select rownum rnum ,a.* 
+		    	FROM (select * from notice
+		    	WHERE ${category}  like '%${sentence}%'
+		    	ORDER BY ROWNUM DESC)
+		   			a ) 
+		   		WHERE rnum between #{start} and #{end}
+   		</if>
+    </select>
    
-    <if test="category!=null and category !='' "> 
-   select * from  ( select rownum rnum ,a.* 
-    from (select * from notice
-     where  ${category}  like '%${sentence}%'
-    order by noticeRef desc , noticeRe_step)
-   a ) where rnum  between #{start} and #{end}
-   </if>
-   
-   
-   
-   
-   </select>
-   
+   <!-- 조회수 -->
    <update id="addReadCount" parameterType="hashmap"  >
-     update notice set noticeReadcount=noticeReadcount+1 
-         where noticeNo = #{noticeNo} 
+     update notice set notice_count=notice_count+1 
+         where notice_No = #{noticeNo} 
    </update>
    
+   <!-- content 보기 -->
    <select id="getArticle" parameterType="hashmap"  resultType="Notice">
-   select notice_no AS noticeNo, notice_title AS noticeTitle, notice_content AS noticeContent, notice_image AS noticeFilename from notice where notice_no = #{noticeNo} 
+	   select notice_no AS noticeNo, notice_title AS noticeTitle, 
+	   		notice_content AS noticeContent, notice_image AS noticeFilename, 
+	   		notice_count AS noticeCount, notice_Date AS noticeDate 
+	   FROM notice where notice_no = #{noticeNo} 
    </select>
    
-   <select id="insertArticle_new"  resultType="int">
-      select NOTICE_SEQ.nextval from dual
-   
-   </select>
-   
-   <update id="insertArticle_update" parameterType="hashmap">
-      update notice set noticeRe_step=noticeRe_step+1 
-      where noticeRef= #{noticeRef} and noticeRe_step> #{noticeRe_step} 
-      
-   </update>
-   
-   <insert id="insertArticle_insert" parameterType="Notice">
-   insert into notice ( noticeNo, id, noticeTitle, noticePasswd
- , noticeDate, noticeRef, noticeRe_step, noticeRe_level, noticeContent, noticeFilename, noticeReadcount)
-  values (#{noticeNo},#{id},#{noticeTitle},#{noticePasswd},sysdate,
-    #{noticeRef},#{noticeRe_step},#{noticeRe_level},#{noticeContent}, #{noticeFilename},0)
-   </insert>
    
    
-   <select id="update_passwd"   parameterType="hashmap" 
-     resultType="string">
-      select noticePasswd from notice where noticeNo =#{noticeNo}
-    </select>
    
-    <update id="update_update"  parameterType="hashmap">
-      update notice set 
-      id=#{id},
-      noticeTitle=#{noticeTitle},
-      noticePasswd=#{noticePasswd},
-      noticeContent=#{noticeContent},
-      noticeFilename=#{noticeFilename}
-      where noticeNo=#{noticeNo}
-   </update>
    
-   <select id="delete"   parameterType="hashmap" >
-       delete from notice where noticeNo = #{noticeNo}
-    </select>
+   
+   
    
    
    
@@ -109,7 +76,8 @@
 			INSERT INTO notice VALUES (noticeSeq.nextval, #{noticeTitle}, #{noticeContent}, #{noticeFilename}, sysdate, 0)
 		</if>
 		<if test="noticeFilename == null">
-			INSERT INTO notice(notice_no, notice_title, notice_content, notice_date, notice_count) VALUES (noticeSeq.nextval, #{noticeTitle}, #{noticeContent}, sysdate, 0)
+			INSERT INTO notice(notice_no, notice_title, notice_content, notice_date, notice_count) 
+			VALUES (noticeSeq.nextval, #{noticeTitle}, #{noticeContent}, sysdate, 0)
 		</if>
 	</insert>
 	<update id="modify" parameterType="Notice">

@@ -31,17 +31,20 @@ public class NoticeService {
 		return noticeDao.getArticle(noticeNo, noticeReadCount);
 	}
 	
-	public void insertArticle(NoticeDTO article) throws Exception {
-		noticeDao.insertArticle(article);
-	}
+	/*
+	 * public void insertArticle(NoticeDTO article) throws Exception {
+	 * noticeDao.insertArticle(article); }
+	 */
 	
-	public int updateArticle(NoticeDTO article) throws Exception {
-		return noticeDao.updateArticle(article);
-	}
+	/*
+	 * public int updateArticle(NoticeDTO article) throws Exception { return
+	 * noticeDao.updateArticle(article); }
+	 */
 	
-	public int deleteArticle(int noticeNo, String noticePasswd) throws Exception {
-		return noticeDao.deleteArticle(noticeNo, noticePasswd);
-	}
+	/*
+	 * public int deleteArticle(int noticeNo, String noticePasswd) throws Exception
+	 * { return noticeDao.deleteArticle(noticeNo, noticePasswd); }
+	 */
 	
 	
 	

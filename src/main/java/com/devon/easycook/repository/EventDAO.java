@@ -1,5 +1,6 @@
 package com.devon.easycook.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,17 +17,28 @@ public class EventDAO extends AbstractMybatisDAO{
 	SqlSession sqlsession;
 	
 	private String namespace = "eventMapper";
-	
+	HashMap<String, Object> map = new HashMap<String, Object>();
 	//1.eventTitle보기
-	public List<EventDTO> selectTitle(){
+	public List<EventDTO> allEvent(){
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
-			return sqlsession.selectList((namespace + ".eventTitle"));
+			return sqlsession.selectList(namespace+".allEvent");
 		}finally {
 			sqlsession.close();
 		}
 	}
-
+	
+	   //상세
+	   public EventDTO eventDetail(int eventNo) throws Exception{
+	      sqlsession = getSqlSessionFactory().openSession();
+	      map.clear();
+	      map.put("eventNo", eventNo);
+	      try {
+	         return (EventDTO) sqlsession.selectOne(namespace + ".eventDetail", map);
+	      } finally {
+	         sqlsession.close();
+	      }
+	   }
 	
 	
 	
