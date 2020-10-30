@@ -54,7 +54,7 @@
       </tr>
     </thead>
     <c:forEach var="infoList" items="${refund}">
-	    <tr></a>
+	    <tr>
 	      <td>${infoList.ordersNo}</td>
 	      <td>${infoList.productNo}</td>
 	      <td>${infoList.id}</td>

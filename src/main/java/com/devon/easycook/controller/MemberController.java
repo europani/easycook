@@ -558,4 +558,11 @@ public class MemberController {
 
 		return "redirect:/member/naversignup";
 	}
+	
+	@GetMapping("/idCheck")
+	@ResponseBody
+	public int idCheck(@RequestParam("id") String id) {
+		System.out.println(id);
+		return memberService.checkId(id);
+	}
 }
