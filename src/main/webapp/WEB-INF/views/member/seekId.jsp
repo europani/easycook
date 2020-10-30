@@ -21,14 +21,14 @@
 					<div class="find_id_sec">
 						<h3>회원 아이디찾기</h3>						
 						<div class="form_element radio_find_type">            
-							<input type="radio" id="aaa" name="findIdFl" value="email" checked="checked" onchange="setDisplay()">            
+							<input type="radio" id="aaa" name="findIdFl" value="email" onchange="setDisplay()">            
 							<label for="findIdEmail" class="choice_s on" >이메일</label>&nbsp;            
 							<input type="radio" id="bbb" name="findIdFl" value="cellPhone" onchange="setDisplay()">            
 							<label for="findIdPhone" class="choice_s" >휴대폰번호</label>    
 							        
 						</div>
 						
-					<div id="emailForm" class="login_input">
+					<div id="emailForm" class="login_input" style="display: none;">
 						<table>
 							<tr>
 								<td class="td1">
@@ -53,7 +53,7 @@
 						</tr>
 						<tr>
 							<td class="td1">
-								<input type="text" name="tel2" placeholder="핸드폰번호"> 
+								<input type="text" name="tel2" placeholder="핸드폰번호" onKeyup="inputPhoneNumber(this);"> 
 							</td>
 							<tr><button type="submit" class="btn_member_id">아이디 찾기</button></tr>
 						</tr>
@@ -111,6 +111,31 @@
     	    }
     	}
       
+      function inputPhoneNumber(obj) {
+    	    var number = obj.value.replace(/[^0-9]/g, "");
+    	    var phone = "";
+
+    	    if(number.length < 4) {
+    	        return number;
+    	    } else if(number.length < 7) {
+    	        phone += number.substr(0, 3);
+    	        phone += "-";
+    	        phone += number.substr(3);
+    	    } else if(number.length < 11) {
+    	        phone += number.substr(0, 3);
+    	        phone += "-";
+    	        phone += number.substr(3, 3);
+    	        phone += "-";
+    	        phone += number.substr(6);
+    	    } else {
+    	        phone += number.substr(0, 3);
+    	        phone += "-";
+    	        phone += number.substr(3, 4);
+    	        phone += "-";
+    	        phone += number.substr(7);
+    	    }
+    	    obj.value = phone;
+    	}
       </script>
 </div>
 </div>

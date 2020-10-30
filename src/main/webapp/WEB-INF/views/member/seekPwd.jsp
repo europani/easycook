@@ -35,8 +35,6 @@
 							</tr>
 						</table>
 					</div>
-					<div id="telForm" class="login_input" style="display: none;">
-					</div>
 						<!-- <p class="dn js_caution_msg1">일치하는 회원정보가 없습니다. 다시 입력해 주세요.</p> -->
 					</div>
 					<!-- //find_id_sec -->

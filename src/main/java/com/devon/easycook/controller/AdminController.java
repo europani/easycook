@@ -147,7 +147,7 @@ public class AdminController {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
-			String uploadFolder = "C:\\tmp";
+			String uploadFolder = request.getServletContext().getRealPath("/resources/product");
 			product.setProductImage(filename);
 
 			File saveFile = new File(uploadFolder, filename);
@@ -198,7 +198,7 @@ public class AdminController {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
-			String uploadFolder = "C:\\tmp";
+			String uploadFolder = request.getServletContext().getRealPath("/resources/product");
 			product.setProductImage(filename);
 
 			File saveFile = new File(uploadFolder, filename);
@@ -359,10 +359,8 @@ public class AdminController {
 	public String noticeWrite(MultipartHttpServletRequest request, @ModelAttribute NoticeDTO notice) {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
-			String path = request.getServletContext().getRealPath("/resource");
-			System.out.println(path);
 			String filename = file.getOriginalFilename();
-			String uploadFolder = "C:\\tmp";
+			String uploadFolder = request.getServletContext().getRealPath("/resources/images");
 			notice.setNoticeFilename(filename);
 
 			File saveFile = new File(uploadFolder, filename);
@@ -393,7 +391,7 @@ public class AdminController {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
-			String uploadFolder = "C:\\tmp";
+			String uploadFolder = request.getServletContext().getRealPath("/resources/images");
 			notice.setNoticeFilename(filename);
 
 			File saveFile = new File(uploadFolder, filename);
@@ -453,7 +451,7 @@ public class AdminController {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
-			String uploadFolder = "C:\\tmp";
+			String uploadFolder = request.getServletContext().getRealPath("/resources/images");
 			event.setEventImage(filename);
 
 			File saveFile = new File(uploadFolder, filename);
@@ -491,7 +489,7 @@ public class AdminController {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
-			String uploadFolder = "C:\\tmp";
+			String uploadFolder = request.getServletContext().getRealPath("/resources/images");
 			event.setEventImage(filename);
 
 			File saveFile = new File(uploadFolder, filename);
