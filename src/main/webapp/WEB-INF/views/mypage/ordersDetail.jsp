@@ -72,6 +72,7 @@
 			<th>상품명</th>
 		    <th>수량</th>
 		    <th>결제금액</th>
+		    <th width="10%"></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -82,6 +83,11 @@
 			<td>${ordersDetail.product.productName }</td>
 			<td>${ordersDetail.ordersDetail.detailQty }개</td>
 			<td>${ordersDetail.product.productPrice * ordersDetail.ordersDetail.detailQty }원 </td>
+			<td>
+				<c:if test="${ordersDetail.ordersDetail.reviewCheck == 0}">
+				<button onclick="location.href='/easycook/mypage/review?productNo=${ordersDetail.product.productNo}&ordersNo=${ordersNo}'">리뷰쓰기</button>
+				</c:if>
+			</td>
 		</tr>
 		</c:forEach>	
 		</tbody>

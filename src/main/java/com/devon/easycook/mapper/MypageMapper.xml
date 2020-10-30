@@ -32,6 +32,7 @@
 	<id property="ordersNo" column="orders_no"/>
 	<result property="productNo" column="product_no"/>
 	<result property="detailQty" column="detail_qty"/>
+	<result property="reviewCheck" column="review_check"/>
 	</association>
 
 	<association property="product" javaType="Product">
@@ -111,6 +112,7 @@
      p.product_image, 
      p.product_price, 
      od.DETAIL_QTY,
+     od.review_check,
      o.orders_total
    from
     product p, orders_detail od, orders o
@@ -229,7 +231,12 @@
 
 
 	<insert id="writeReview" parameterType="Review">
-		INSERT INTO review VAULES (REVIEWSEQ.nextval, #{productNo}, #{id}, #{reviewContent}, #{reviewImage}, sysdate, #{reviewScore})
+		<if test="reviewImage != null">
+		INSERT INTO review(review_no, product_no, id, review_content, review_image, review_date, review_score) VALUES (REVIEWSEQ.nextval, #{productNo}, #{id}, #{reviewContent}, #{reviewImage}, sysdate, #{reviewScore})
+		</if>
+		<if test="reviewImage == null">
+		INSERT INTO review(review_no, product_no, id, review_content, review_date, review_score) VALUES (REVIEWSEQ.nextval, #{productNo}, #{id}, #{reviewContent}, sysdate, #{reviewScore})
+		</if>
 	</insert>
 	
 	

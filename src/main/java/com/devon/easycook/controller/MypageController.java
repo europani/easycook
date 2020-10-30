@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,6 +66,7 @@ public class MypageController {
 		int totalpay = detail.get(0).getOrdersTotal();
 		model.addAttribute("detail", detail);
 		model.addAttribute("totalpay", totalpay);
+		model.addAttribute("ordersNo", ordersNo);
 		
 		System.out.println(detail);
 		return "mypage/ordersDetail";
@@ -265,8 +267,9 @@ public class MypageController {
 
 
    @GetMapping("/review")
-   public String reviewForm(@RequestParam("productNo") int productNo, Model model) {
+   public String reviewForm(@RequestParam("productNo") int productNo, @RequestParam("ordersNo") int ordersNo, Model model) {
 	   model.addAttribute("productNo", productNo);
+	   model.addAttribute("ordersNo", ordersNo);
 	   return "mypage/review";
    }
 
@@ -290,10 +293,10 @@ public class MypageController {
 	   MemberDTO member = (MemberDTO) session.getAttribute("member");
 	   String id = member.getId();
 	   review.setId(id);
-	   
+	   System.out.println(review.getOrdersNo());
 	   mypageService.writeReview(review);
 	   
-	   return "reditect:/mypage/orders";
+	   return "redirect:/mypage/orders";
    }
 
 }

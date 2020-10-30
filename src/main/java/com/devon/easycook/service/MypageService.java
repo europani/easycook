@@ -10,6 +10,7 @@ import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.repository.MypageDAO;
+import com.devon.easycook.repository.OrderDAO;
 
 @Service
 public class MypageService {
@@ -74,7 +75,10 @@ public class MypageService {
    
    
    public void writeReview(ReviewDTO review) {
-		mypageDAO.writeReview(review);
+		int result = mypageDAO.writeReview(review);
+		if (result != 0) {
+			new OrderDAO().updateReviewCheck(review);
+		}
 	}
    
    

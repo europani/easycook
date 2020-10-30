@@ -126,13 +126,18 @@ public class MypageDAO extends AbstractMybatisDAO{
    
    
    
-   public void writeReview(ReviewDTO review) {
+   public int writeReview(ReviewDTO review) {
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
 		try {
-			sqlsession.insert(namespace + ".writeReview", review);
+			result = sqlsession.insert(namespace + ".writeReview", review);
+			if (result != 0) {
+				sqlsession.commit();
+			}
 		} finally {
 			sqlsession.close();
 		}
+		return result;
 	}
    
    

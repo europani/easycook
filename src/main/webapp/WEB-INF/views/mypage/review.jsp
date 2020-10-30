@@ -98,11 +98,14 @@
         <hr>
         <br><br><br>	
         <div id="content-detail">
-	    <form method="post" class="sign" name="reviewForm" action="review">
+	    <form method="post" class="sign" name="reviewForm" action="review" enctype="multipart/form-data">
 			<table width="720">
 			<tr>
 				<th>상품번호</th>
-				<td class="td1"><input type="hidden" name="productNo" value="${productNo}">${productNo}</td>
+				<td class="td1">
+					<input type="hidden" name="productNo" value="${productNo}">${productNo}
+					<input type="hidden" name="ordersNo" value="${ordersNo}">
+				</td>
 			</tr>
 			<tr>
 				<th>내 용</th>
@@ -141,8 +144,6 @@
         <br>
       </div>
 <script src="/easycook/resources/js/login.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c3b575d9b62709c133865c5dc51d0cc&libraries=services"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	// Accordion 
 	function myAccFunc(id) {
