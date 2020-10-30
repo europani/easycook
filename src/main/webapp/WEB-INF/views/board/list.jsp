@@ -18,13 +18,13 @@
 	}
 	
 </style>
+<body class="goto-here">
+<section class="ftco-section">
+<jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
 <p class="w3-left" style="padding-left: 30px;"></p>
-<div class="w3-container" style="height:800px;">
-	<jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
-	<%-- <p class="text-right">
-		<a class="btn btn-default" href="<%=request.getContextPath()%>/notice/writeUploadForm">글쓰기</a>
-	</p> --%>
+
 	<c:if test="${count == 0 }">
+	
 		<table class="w3-table-all">
 			<tr class="w3-grey">
 				<td align="center">게시판에 저장된 글이 없습니다.</td>
@@ -32,7 +32,13 @@
 		</table>
 	</c:if>
 	<c:if test="${count != 0 }">
+	<div class="container" style="padding-left:70px; height:800px;">
+	<h1>공지사항</h1>
+	<hr style="border-color:#1abc9c">
 		<table class="table table-hover" id="table">
+	
+		<tbody>
+				
 			<tr id="table-tr">
 				<td align="center" width="50">번호</td>
 				<td align="center" width="250">제 목</td>
@@ -59,8 +65,9 @@
 					<td align="center" width="50">${article.noticeCount}</td>
 				</tr>
 			</c:forEach>
+			</tbody>
 		</table>
-
+</div>
 
 		<div class="text-center">
 			<ul class="pagination">
@@ -107,6 +114,7 @@
 	</c:if>
 
 </div>
+</section>
 </body>
 </html>
 

@@ -25,30 +25,31 @@
 	}
 </style>
 </head>
-<body>
+<body class="goto-here">
+<section class="ftco-section">
 <jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
-<section>
-<div class="container" id="notice" style="height:800px;">
+<div class="container" id="notice" style="width:2000px;height:500px;overflow:scroll;" >
    <table id="a" class="table table-striped">
       <tr>
-         <td colspan="3" style="background-color:red; color:#fff">${detail.eventTitle }</td>
+         <td colspan="3" style="background-color:#1abc9c; color:#fff">${detail.eventTitle }</td>
       </tr>
       <tr>
-         <td colspan="3"><img src="/easycook/resources/images/test.png"><!-- ${detail.eventImage }</td> -->
+         <td colspan="3"><img src="/easycook/resources/mart/images/test.jpg"><!-- ${detail.eventImage }</td> -->
       </tr>
       <tr>
          <td colspan="3">${detail.eventContent }</td>
       </tr>
       <tr>
-         <td><fmt:formatDate value="${detail.eventStartdate }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${event.eventEnddate }" pattern="yyyy-MM-dd"/></td>
+         <td><fmt:formatDate value="${detail.eventStartdate }" pattern="yyyy-MM-dd HH:mm"/> ~ 
+         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${event.eventEnddate}"/></td>
       </tr>
       
    </table>
-   <div id="click">
-   	<a href="<%=request.getContentLength() %>/board/event" class="btn btn-default">목록</a>
-   </div>
 </div>
 </section>
+   <div id="click">
+   	<a href="<%=request.getContextPath() %>/board/event"  class="btn btn-default">목록</a>
+   </div>
 </body>
 </html>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

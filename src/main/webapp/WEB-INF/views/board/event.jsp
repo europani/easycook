@@ -8,11 +8,12 @@
 	font-family: "Open Sans", sans-serif;
 }
 </style>
-<body> 
-	<section class="ftco-section">
-	<jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
+<body class="goto-here">
+<section class="ftco-section">
+<jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
 	<div class="container" style="padding-left:70px; height:800px;">
-		<h2>이벤트</h2>
+		<h1>이벤트</h1>
+		<hr style="border-color:#1abc9c">
 		<table class="event">
 		
 		<c:forEach var="event" items="${event}"> 

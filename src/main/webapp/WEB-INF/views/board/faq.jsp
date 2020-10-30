@@ -1,16 +1,10 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
     
-    <title>FAQ</title>
     
     <script type="text/javascript" charset="utf-8">
     // answer 항목에 Markdown 문법을 지원 합니다.
@@ -35,12 +29,11 @@
     ]
     </script>
 
-   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+   <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.js"></script>
     
-</head>
 <style>
     .faqHeader {
         font-size: 27px;
@@ -100,19 +93,19 @@
    }
     
 </style>
-<body>
-<div class="container" style="height:800px;">
+<body class="goto-here">
+<section class="ftco-section">
+<jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
 
+<div class="container" style="height:800px;">
+<h1>FAQ</h1>
+<hr style="border-color:#1abc9c">
 
 <!-- FAQ - START -->
 <div class="container">
-    <br />
-    <br />
-    <br />
     <div class="panel-group" id="accordion">
     </div>
 </div>
-
 
 <!-- FAQ - END -->
 
@@ -171,7 +164,7 @@
       $(".accordion-toggle:first").click();
    });
 </script>
-
+</section>
 </body>
 </html>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

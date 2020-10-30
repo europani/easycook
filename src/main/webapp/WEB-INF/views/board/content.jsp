@@ -25,11 +25,11 @@
 	}
 </style>
 </head>
-<body>
+<body class="goto-here">
+<section class="ftco-section">
 <jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
-<section>
-	<div class="container" id="notice" style="height:800px;">
-
+	<div class="container" id="notice" style="height:800px; padding-left:70px;">
+	
 	<table id="a" class="table table-striped">
 	<tr>
 		<td colspan="3" style="background-color:#1abc9c; color:white;">${article.noticeTitle }</td>
