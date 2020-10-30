@@ -210,6 +210,11 @@
 
 
 
+	<insert id="writeReview" parameterType="Review">
+		INSERT INTO review VAULES (REVIEWSEQ.nextval, #{productNo}, #{id}, #{reviewContent}, #{reviewImage}, sysdate, #{reviewScore})
+	</insert>
+	
+	
 	<!-- ADMIN -->
 	<select id="getOrder" parameterType="int" resultMap="OrderList">
 	   SELECT o.orders_date, o.orders_no, o.orders_status, od.detail_qty, p.product_no, p.product_name, p.product_price

@@ -1,6 +1,5 @@
 package com.devon.easycook.repository;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.ReviewDTO;
 
 @Repository
 public class MypageDAO extends AbstractMybatisDAO{
@@ -91,6 +91,22 @@ public class MypageDAO extends AbstractMybatisDAO{
 
 
 
+   
+   
+   
+   
+   
+   
+   
+   public void writeReview(ReviewDTO review) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			sqlsession.insert(namespace + ".writeReview", review);
+		} finally {
+			sqlsession.close();
+		}
+	}
+   
    
    // ADMIN
    public List<OrdersDTO> getOrder(int orderNo) {

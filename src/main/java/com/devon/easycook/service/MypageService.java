@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.repository.MypageDAO;
 
 @Service
@@ -54,6 +55,17 @@ public class MypageService {
 
 
 
+   
+   
+   
+   
+   
+   
+   
+   public void writeReview(ReviewDTO review) {
+		mypageDAO.writeReview(review);
+	}
+   
    
    // ADMIN
    public List<OrdersDTO> getOrder(int orderNo) {
