@@ -1,5 +1,6 @@
 package com.devon.easycook.repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -126,6 +127,24 @@ public class ProductDAO extends AbstractMybatisDAO {
 			if (result != 0) {
 				sqlsession.commit();
 			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public ProductDTO getToday() {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".getToday");
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public Date getDate() {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".getDate");
 		} finally {
 			sqlsession.close();
 		}

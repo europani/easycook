@@ -359,6 +359,8 @@ public class AdminController {
 	public String noticeWrite(MultipartHttpServletRequest request, @ModelAttribute NoticeDTO notice) {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
+			String path = request.getServletContext().getRealPath("/resource");
+			System.out.println(path);
 			String filename = file.getOriginalFilename();
 			String uploadFolder = "C:\\tmp";
 			notice.setNoticeFilename(filename);
