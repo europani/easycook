@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.devon.easycook.domain.CouponDTO;
+import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.ProductDTO;
@@ -40,10 +42,13 @@ public class MypageController {
    Map<String, String> dateMap = new HashMap<String, String>();
    
    @GetMapping("/orders")
-   public String orders(Model model) {   
+   public String orders(Model model, HttpServletRequest request) {   
 	   
-      // 나중에 session으로 id 받을것
-      String id = "haram511";            
+	   String id = "haram511";
+		/*
+		 * HttpSession session = request.getSession(true); MemberDTO member =
+		 * (MemberDTO) session.getAttribute("member"); String id = member.getId();
+		 */       
       
       List<OrdersDTO> orderList = mypageService.orders(id);
       

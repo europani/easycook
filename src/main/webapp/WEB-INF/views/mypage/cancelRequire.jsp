@@ -188,7 +188,11 @@
       	</tr>
       	</tbody>   
       </table>
-      <button class="btn-payment">신청하기</button>
+      <form action="<%=request.getContextPath() %>/order/cancel" method="post">
+      <input type="submit" class="btn-payment" value="신청하기">
+      <input type="hidden" name="ordersNo" id="ordersNo" value="${orderNum}">
+      <input type="hidden" name="ordersNo" id="ordersNo" value="${orderNum}">
+      </form>
     </div>     	   
 </div>
       <div id="jb-bottom">
