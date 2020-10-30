@@ -141,38 +141,38 @@
     <table id="order-table">
       <thead>
          <tr> 
-         <th colspan="2">상품</th> 
-         <th>총결제금액</th>
-         <th>수량</th>  
+         <th colspan="2">상품명</th> 
          <th>상품금액</th>
+         <th>수량</th>  
+         <th>환불예정금액</th>
          </tr>
       </thead>
       <tbody>
    <c:forEach var="canCancel" items="${cancelRequire }">   
          <tr>
          <td>${canCancel.product.productImage } 이경로로 사진불러올것</td>
-         <td>${canCancel.product.productName }, ${canCancel.product.productAmount} g</td>
-         <td>${canCancel.ordersDetail.detailSt }  </td>
+         <td>${canCancel.product.productName }</td>
+         <td id="product">${canCancel.product.productPrice }  </td>
          <td>
-            <select>
-            <c:forEach var="qty" items="${qtyList }" begin="1">
-             <option value="${qty }">
+            <select id="productSelectCount" onchange="paychangeTest(this)">
+            <c:forEach var="i" begin="0" step="1" end="${canCancel.ordersDetail.detailQty }">
+             <option value="${i }">${i }</option>
             </c:forEach>
             </select>
          </td>
-         <td>${canCancel.product.productPrice }</td>
+         <td id="totalpay">0</td>
          </tr>
    </c:forEach>
       </tbody>
    </table>
    <br><hr><br>
-   <h3>반품사유</h3>
+   <h3 align="center">반품사유</h3>
    <br>
-   <select>
+   <h5 align="center"><select >
     <option value="0">선택해주세요 </option>
    	<option value="1">배송에 문제가 있음 </option>
    	<option value="2">상품에 결함이 있음 </option>
-   </select>
+   </select></h5>
 </div>
    <div class="payment-content2">
          <h4 >환불정보</h4>
@@ -184,26 +184,69 @@
       </colgroup>
       	<tbody>
       	<tr>
-      		<th>상품 취소 금액</th>
-      		<td>들고오기</td>
-      	</tr>
-      	<tr>
-      		<th>할인 금액</th>
-      		<td>들고오기</td>
-      	</tr>
-      	<tr>
       		<th>총 환불예정금액</th>
-      		<td>들고오기</td>
+      		<td id="totalCancel">0</td>
+      	</tr>
+      	<tr>
+      		<th></th>
+      		<td></td>
       	</tr>
       	</tbody>   
       </table>
-    </div>
-    <button class="btn-payment">신청하기</button>     	   
+      <button class="btn-payment">신청하기</button>
+    </div>     	   
 </div>
       <div id="jb-bottom">
         <br/>
       </div>
 </div>
+
+
+<script type="text/javascript">
+
+function paychangeTest(count) {
+	
+	alert("자슾시작");
+	var test = document.getElementById('product').innerHTML;	
+	var test2 = document.getElementById('totalCancel').innerHTML;
+	var result = count.value * test;
+	alert(result);
+	var result2 = parseInt(result) + parseInt(test2);
+	
+	alert(result2);
+	document.getElementById('totalpay').innerHTML = result;
+	document.getElementById('totalCancel').innerHTML = result2;
+	
+/* 	var lists = new array();
+	lists.push("${canCancel.product.productPrice}");
+	alert(lists);
+	var listObject = "";
+	for (var i = 0; i < lists.length; i++) {
+		if (test = lists[i].) {
+			listObject = lists[i];
+			alert(lists[i]);
+		}
+	} */
+}
+
+
+
+/* $('#productSelectCount').onchange(function () {
+	
+	var str = ""
+	var tdarr = new Array();	// 배열선언
+	var checkbtn = $(this);
+	
+	var tr = checkBtn.parent().parent();
+	var td = tr.children();
+	alert("데이터" : tr.text());
+	var price = td.eq(2).text();
+	var finalprice = td.eq(4).text();
+	alert("들어가나? :" + price + finalprice);
+	
+}); */
+
+</script>
 </body>
 
 

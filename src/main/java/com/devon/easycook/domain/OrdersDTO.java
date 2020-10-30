@@ -24,4 +24,6 @@ public class OrdersDTO {
 	// 날짜조회용
 	private Date fromDate;
 	private Date toDate;
+	private String ordersDateforString;
+	
 }

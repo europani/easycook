@@ -10,8 +10,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- datepicker -->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 
     <title>CSS</title>
     <style>
@@ -103,12 +101,12 @@
         <br>
         <div id="content-detail">
         
-      <form name="searchFrm">
+      <form id="ordersSearch" name="ordersSearch">
       <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
-      <input type="text" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
+      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
       <label for="UserCheckOut"></label> 
-      <input type="text" name="toDate" id="toDate">&nbsp;&nbsp;
-      <button type="button" id="btnSearch" class="btn-search">조회하기</button>
+      <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
+      <input type="button"  id="SearchButton" class="btn-search" value="조회하기"></button>
       </form>
         
       </div>         
@@ -126,7 +124,7 @@
           <th colspan="2">주문정보</th>
         </tr>
       </thead>
-        <tbody>
+        <tbody id = "testajax">
         <c:forEach var="orders" items="${orderList }">
         <c:if test="${orders.ordersNo != null }">        
         <tr>
@@ -136,20 +134,19 @@
           <td>
           ${orders.ordersStatus }
           <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
-          </td>
-          
+          </td>            
           <td>
-         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >
+         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >            
          <c:if test="${orders.ordersStatus eq '주문완료'}">
-         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
-         <input type="submit" class="btn-cancle" value='주문취소'>         
+         <input type="submit" value='주문취소'>
+         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">      
          </c:if>
          <c:if test="${orders.ordersStatus eq '배송완료'}">
-          <input type="button" class="btn-cancle" onclick="cancelPls(${orders.ordersNo})" value="반품신청"/>
+         <input type="submit" value='반품신청'>
+         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
          </c:if>
-          </form>  
-         </td>
-         
+          </form>       
+         </td> 
         </tr>
         </c:if>
         <c:if test="${orders.ordersNo == null }">
@@ -169,15 +166,15 @@
 </div>
 <script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-/* $('#btnSearch22').on('click', function(){
-	alert($("#searchgogo").serialize())
+$('#SearchButton').on('click', function(){
+	/* alert($("#searchgogo").serialize()) */
+	$( '#order-table > tbody').empty();
 	$.ajax({
-		url : "ordersTest.action",
+		url : "ordersDaySearch.action",
 		type: "POST",
-		data: $("#searchgogo").serialize(),
-		success: function (data) {
-			alert(data)
-			$('#content-detail2').append(data);
+		data: $("#ordersSearch").serialize(),
+		success: function (data) {			
+			$('#order-table').append(data);
 		},
 		error: function () {
 			alert("안된다...");
@@ -186,7 +183,7 @@
 	});
 	
 	
-}); */
+});
 
 
 </script>

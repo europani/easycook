@@ -53,6 +53,15 @@ public class MypageDAO extends AbstractMybatisDAO{
       }
    }
    
+   public List<CouponDTO> couponDate(Map<String, String> map) {
+	      SqlSession sqlsession = getSqlSessionFactory().openSession();
+	      try {
+	         return sqlsession.selectList(namespace + ".couponDate", map);
+	      } finally {
+	         sqlsession.close();
+	      }
+	   }
+   
    public int couponCount(String id) {
 	   SqlSession sqlsession = getSqlSessionFactory().openSession();
 	   try {
