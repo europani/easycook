@@ -182,6 +182,15 @@ public class MemberDAO extends AbstractMybatisDAO {
 		}
 	}
 
+	public int checkId(String id) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".checkId", id);
+		} finally {
+			sqlsession.close();
+		}
+	}
+
 
 
 //	public int getArticleCount(String boardid, String category, String sentence) {
