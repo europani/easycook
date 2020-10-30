@@ -133,7 +133,7 @@
           <td>${orders.ordersTotal }</td>
           <td>
           ${orders.ordersStatus }
-          <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
+          <button onclick="location.href='ordersProduct/${orders.ordersNo}'">상세보기</button>
           </td>            
           <td>          
          <c:if test="${orders.ordersStatus eq '주문완료'}">
@@ -178,8 +178,7 @@ $('#SearchButton').on('click', function(){
 		},
 		error: function () {
 			alert("안된다...");
-		}
-		
+		}	
 	});
 	
 	
