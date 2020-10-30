@@ -97,7 +97,7 @@
    FROM
     Orders
    where 
-    id = #{id}
+    id = #{id} and orders_status != '주문취소' and orders_status != '반품'
    order by
     orders_date desc 
    </select>
@@ -205,6 +205,24 @@
    
    
    
+   <!-- refund테이블에 데이터 추가하기위한 변수들 출력 -->
+   
+   <!-- refund테이블에 데이터 추가 -->
+   <select id="returnTablePlus" parameterType="Refund">
+   INSERT INTO REFUND(orders_no,product_no,id,refund_qty,refund_date,refund_status,refund_reason)
+	VALUES(#{orders_no},#{product_no},#{id},#{refund_qty},sysdate,#{refund_status},#{refund_reason})
+   </select>	
+	
+   <select id="checkCancel" parameterType="int">
+   UPDATE orders	
+   	SET
+   orders_status = '주문취소'
+    WHERE
+   orders_no = #{orderNo}
+   </select>
+   	
+   	
+   	
    
    
 

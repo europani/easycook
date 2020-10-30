@@ -2,6 +2,8 @@ package com.devon.easycook.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Console;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,10 +43,12 @@ public class MypageController {
    Map<String, String> dateMap = new HashMap<String, String>();
    
    @GetMapping("/orders")
-   public String orders(Model model) {   
-	   
-      // 나중에 session으로 id 받을것
-      String id = "haram511";            
+   public String orders(Model model, HttpServletRequest request) {   
+
+		 HttpSession session = request.getSession(true);
+		 MemberDTO member =(MemberDTO) session.getAttribute("member");
+		 String id = member.getId();
+		       
       
       List<OrdersDTO> orderList = mypageService.orders(id);
       
@@ -68,16 +72,17 @@ public class MypageController {
    
    
    @RequestMapping(value = "/ordersDaySearch.action", method = RequestMethod.POST)
-   public ModelAndView ordersDaySearch(String fromDate, String toDate, ModelAndView mv) {
+   public ModelAndView ordersDaySearch(HttpServletRequest request,
+		   String fromDate, String toDate, ModelAndView mv) {
 	   
 	   // ModelAndView 초기화 ㄱㄱ
 	   mv.clear();
-	   System.out.println("ordersListTest 실행");
-	   System.out.println(fromDate);
-	   System.out.println(toDate);
+
 	   
 	   // 나중에 session으로 id 받을것
-	   String id = "haram511";
+		 HttpSession session = request.getSession(true);
+		 MemberDTO member =(MemberDTO) session.getAttribute("member");
+		 String id = member.getId();
 	   
 	   dateMap.clear();
 	   dateMap.put("id", id);
@@ -104,12 +109,15 @@ public class MypageController {
 	   return mv;	   
    }
       
-   
+   // 처음 반품창
    @RequestMapping("/cancelRequire")
-   public String cancelRequire(@RequestParam("ordersNo") int ordersNo, Model model) {
+   public String cancelRequire(@RequestParam("ordersNo") int ordersNo,
+		   HttpServletRequest request ,Model model) {
       
-	  // 나중에 session으로 id 받을것
-      String id = "haram511";   
+	
+	HttpSession session = request.getSession(true);
+	MemberDTO member =(MemberDTO) session.getAttribute("member");
+	String id = member.getId(); 
 
       List<OrdersDTO> cancelRequireList = mypageService.cancelRequire(ordersNo);
       
@@ -121,23 +129,74 @@ public class MypageController {
       int orderTotal = orders.getOrdersTotal();
       
       
-      List<Integer> qtyList = new ArrayList();
+/*    List<Integer> qtyList = new ArrayList();
       int x = 0;
       for (int i = 0; i < cancelRequireList.size(); i++) {
     	int qty = cancelRequireList.get(i).getOrdersDetail().getDetailQty();
     	qtyList.add(i, qty);
-	  }
+	  }*/
       
-      System.out.println(qtyList);
+//      System.out.println(qtyList);
       model.addAttribute("ordersDate", orderDate);
       model.addAttribute("orderNum", orderNum);
 //      model.addAttribute("orderTotal", orderTotal);
-      
-      model.addAttribute("qtyList", qtyList);
+//		model.addAttribute("qtyList", qtyList);
       model.addAttribute("cancelRequire", cancelRequireList);
       return "mypage/cancelRequire";
-   }  
+   }
    
+   
+   // 반품실행창
+/*   @RequestMapping("/doCancel")
+   public String doCancel(
+		   @RequestParam("ordersNo") int ordersNo,
+		   @RequestParam("cancelList") List<OrdersDTO> cancelList,
+		   @RequestParam("qty") int qty, Model model) {
+      
+	  // 나중에 session으로 id 받을것
+      String id = "haram511";
+      System.out.println("ordersNo:" + ordersNo + "qty:" + qty);
+      System.out.println(cancelList);
+      
+      for (int i = 0; i < cancelList.size(); i++) {
+    	  mypageService.doCancel(ordersNo);
+      }
+
+      List<OrdersDTO> cancelRequireList = mypageService.doCancel(ordersNo);
+      
+      
+      // 주문번호는 어차피 하나이니, 처음 list만 가져와도 ok
+      OrdersDTO orders = cancelRequireList.get(0);
+      Date orderDate = orders.getOrdersDate();
+      int orderNum = orders.getOrdersNo();
+      int orderTotal = orders.getOrdersTotal();
+      	
+      model.addAttribute("ordersDate", orderDate);
+      model.addAttribute("orderNum", orderNum);
+      model.addAttribute("cancelRequire", cancelRequireList);
+      return "mypage/cancelRequire";
+   } */
+   
+   
+   	// 주문취소 경고창  
+	@GetMapping("returnOrderQuestion/{ordersNo}")
+	public String returnOrderQuestion(@PathVariable("ordersNo") int ordersNo, Model model) {
+		model.addAttribute("ordersNo", ordersNo);
+		return "mypage/returnOrder";
+	}
+   
+	
+	// 주문취소
+	@PostMapping("/returnOrder/{ordersNo}")
+	public void returnOrder(@PathVariable("ordersNo") int ordersNo, Model model) {
+		
+		mypageService.checkCancel(ordersNo);
+		System.out.println("checkCancel 완료");
+	}
+   
+	
+	
+	
    
    @GetMapping("/wishlist")
    public String wishlist() {

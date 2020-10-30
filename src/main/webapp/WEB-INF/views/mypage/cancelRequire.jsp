@@ -134,9 +134,10 @@
     <div id="jb-container">
     <jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
    <div id="jb-content">
+   <form action="<%=request.getContextPath() %>/order/cancel" method="post">
    <h2>반품신청</h2>
    <br>
-   <h5>주문일 : ${ordersDate } | 주문번호 : ${orderNum }</h5>
+   <h5>주문일 : ${ordersDate } | 주문번호 : ${orderNum } | 상품개수 : ${cancelRequireList.size() }개</h5>
    <div id="content-detail2">
     <table id="order-table">
       <thead>
@@ -151,7 +152,7 @@
    <c:forEach var="canCancel" items="${cancelRequire }">   
          <tr>
          <td>${canCancel.product.productImage } 이경로로 사진불러올것</td>
-         <td>${canCancel.product.productName }</td>
+         <td>상품번호-${canCancel.product.productNo }, 상품명-${canCancel.product.productName }</td>
          <td id="product">${canCancel.product.productPrice }  </td>
          <td>
             <select id="productSelectCount" onchange="paychangeTest(this)">
@@ -188,7 +189,11 @@
       	</tr>
       	</tbody>   
       </table>
-      <button class="btn-payment">신청하기</button>
+      <input type="submit" class="btn-payment" value="신청하기">
+      <input type="hidden" name="ordersNo" id="ordersNo" value="${orderNum}">
+      <input type="hidden" name="cancelList" id="cancelList" value="${cancelRequire}">
+      <input type="hidden" name="qty" id="qty" value="${i}">
+      </form>
     </div>     	   
 </div>
       <div id="jb-bottom">
@@ -201,14 +206,13 @@
 
 function paychangeTest(count) {
 	
-	alert("자슾시작");
 	var test = document.getElementById('product').innerHTML;	
 	var test2 = document.getElementById('totalCancel').innerHTML;
 	var result = count.value * test;
 	alert(result);
 	var result2 = parseInt(result) + parseInt(test2);
-	
 	alert(result2);
+	
 	document.getElementById('totalpay').innerHTML = result;
 	document.getElementById('totalCancel').innerHTML = result2;
 	

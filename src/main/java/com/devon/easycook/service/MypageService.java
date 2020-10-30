@@ -53,7 +53,18 @@ public class MypageService {
       
    }
 
-
+   
+   // 주문취소절차
+	/*
+	 * public void returnTablePlus(int ordersNo) {
+	 * mypageDAO.returnTablePlus(ordersNo); }
+	 */
+   
+   
+   public void checkCancel(int ordersNo) {
+		mypageDAO.checkCancel(ordersNo);		
+	}
+   
 
    
    
@@ -71,6 +82,8 @@ public class MypageService {
    public List<OrdersDTO> getOrder(int orderNo) {
 		return mypageDAO.getOrder(orderNo);
 	}
+
+
 
 
    

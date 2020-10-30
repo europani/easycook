@@ -113,7 +113,7 @@
       <br><br><br><br>
          <br><hr><br>
         <div id="content-detail2">
-         <h5 >주문목록/배송조회 내역 총 -건</h5>
+         <h5>주문내역 총 ${orderList.size() }건</h5>
         <br><br>
          <table id="order-table">
          <thead>
@@ -135,12 +135,12 @@
           ${orders.ordersStatus }
           <button onclick="window.open('ordersProduct/${orders.ordersNo}','상세보기','width=600,height=900,top=100,left=500' );">상세보기</button>
           </td>            
-          <td>
-         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >            
+          <td>          
          <c:if test="${orders.ordersStatus eq '주문완료'}">
-         <input type="submit" value='주문취소'>
-         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">      
+         <button onclick="window.open('returnOrderQuestion/${orders.ordersNo}','주문취소','width=500,height=500,top=100,left=500' );">주문취소</button>          
          </c:if>
+         
+         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >  
          <c:if test="${orders.ordersStatus eq '배송완료'}">
          <input type="submit" value='반품신청'>
          <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
@@ -184,8 +184,6 @@ $('#SearchButton').on('click', function(){
 	
 	
 });
-
-
 </script>
 </body>
 
