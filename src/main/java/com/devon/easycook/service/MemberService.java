@@ -80,4 +80,8 @@ public class MemberService {
 	public int countDelNumber() {
 		return memberDao.countDelMember();
 	}
+
+	public int checkId(String id) {
+		return memberDao.checkId(id);
+	}
 }

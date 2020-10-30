@@ -37,6 +37,8 @@ public class MypageController {
    @Autowired
    MypageService mypageService;
    
+   Map<String, String> dateMap = new HashMap<String, String>();
+   
    @GetMapping("/orders")
    public String orders(Model model) {   
 	   
@@ -64,8 +66,8 @@ public class MypageController {
 	}
    
    
-   @RequestMapping(value = "/ordersTest.action", method = RequestMethod.POST)
-   public ModelAndView ordersListTest(String fromDate, String toDate, ModelAndView mv) {
+   @RequestMapping(value = "/ordersDaySearch.action", method = RequestMethod.POST)
+   public ModelAndView ordersDaySearch(String fromDate, String toDate, ModelAndView mv) {
 	   
 	   // ModelAndView 초기화 ㄱㄱ
 	   mv.clear();
@@ -76,20 +78,13 @@ public class MypageController {
 	   // 나중에 session으로 id 받을것
 	   String id = "haram511";
 	   
-	   Map<String, String> dateMap = new HashMap<String, String>();
+	   dateMap.clear();
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
-	   SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-//	   String fromDatetoString = transFormat.format(fromDate);
-//	   String toDatetoString= transFormat.format(fromDate);
-	   
-
 	   List<OrdersDTO> orderListDate = mypageService.ordersDate(dateMap);
-
-	   
-		/*
-		 * int count = 0; List<String> oDate = new ArrayList<String>(); List<Integer>
+	 		
+		/* int count = 0; List<String> oDate = new ArrayList<String>(); List<Integer>
 		 * oNo = new ArrayList<Integer>(); List<String> oStatus = new
 		 * ArrayList<String>(); List<Integer> oTotal = new ArrayList<Integer>(); for
 		 * (OrdersDTO dto : orderListDate) {
@@ -102,28 +97,12 @@ public class MypageController {
 	   mv.addObject("ordersDate", oDate);	 mv.addObject("ordersNo", oNo);
 	   mv.addObject("ordersStatus", oStatus); mv.addObject("ordersTotal", oTotal);
 	   mv.addObject("count", count); */	
-	   System.out.println(orderListDate);
-	   mv.addObject("fromDate", fromDate);  mv.addObject("toDate", toDate);
-	   mv.addObject("orderListDate", orderListDate);
-	   mv.setViewName("common/ajaxtest");
-	   return mv;
 	   
+	   mv.addObject("orderListDate", orderListDate);
+	   mv.setViewName("common/ordersDaySearch");
+	   return mv;	   
    }
-   
-   @GetMapping("/orders2")
-   public String orders2(ModelAndView mv) {   
-      System.out.println("orders2컨트롤러");
-      // 나중에 session으로 id 받을것
-      String id = "haram511";            
       
-      List<OrdersDTO> orderList = mypageService.orders(id);
-      
-      mv.addObject("orderList", orderList);
-      System.out.println("orders2 orderList" + orderList);
-      mv.setViewName("mypage/orders2");
-      return "mypage/orders2";
-   }
-   
    
    @RequestMapping("/cancelRequire")
    public String cancelRequire(@RequestParam("ordersNo") int ordersNo, Model model) {
@@ -138,10 +117,11 @@ public class MypageController {
       OrdersDTO orders = cancelRequireList.get(0);
       Date orderDate = orders.getOrdersDate();
       int orderNum = orders.getOrdersNo();
+      int orderTotal = orders.getOrdersTotal();
       
       
       List<Integer> qtyList = new ArrayList();
-      
+      int x = 0;
       for (int i = 0; i < cancelRequireList.size(); i++) {
     	int qty = cancelRequireList.get(i).getOrdersDetail().getDetailQty();
     	qtyList.add(i, qty);
@@ -150,6 +130,8 @@ public class MypageController {
       System.out.println(qtyList);
       model.addAttribute("ordersDate", orderDate);
       model.addAttribute("orderNum", orderNum);
+//      model.addAttribute("orderTotal", orderTotal);
+      
       model.addAttribute("qtyList", qtyList);
       model.addAttribute("cancelRequire", cancelRequireList);
       return "mypage/cancelRequire";
@@ -171,7 +153,8 @@ public class MypageController {
       System.out.println("쿠폰내역확인 ㄱㄱ");
       
       // 나중에 @RequestParam등으로 id 받을것
-      String id = "haram511";      
+      String id = "haram511";
+      
       
       List<CouponDTO> couponList = mypageService.coupon(id);
       int couponCount = mypageService.couponCount(id);
@@ -179,12 +162,34 @@ public class MypageController {
       
       System.out.println(couponList);
       
-    
+      model.addAttribute("id", id);
       model.addAttribute("couponList", couponList);   
       model.addAttribute("couponCount", couponCount);
       model.addAttribute("myPoint", myPoint);
       return "mypage/coupon";
    }
    
+/*   @RequestMapping(value = "/couponDaySearch.action", method = RequestMethod.POST)
+   public ModelAndView couponDaySearch(String fromDate, String toDate, ModelAndView mv) {
+	   
+	   // ModelAndView 초기화 ㄱㄱ
+	   mv.clear();
+	   System.out.println("couponDaySearch 실행");
+	   System.out.println(fromDate);
+	   System.out.println(toDate);
+	   
+	   // 나중에 session으로 id 받을것
+	   String id = "haram511";
+	   
+	   dateMap.clear();
+	   dateMap.put("id", id);
+	   dateMap.put("fromDate", fromDate);
+	   dateMap.put("toDate", toDate);
+	   List<CouponDTO> couponListDate = mypageService.couponDate(dateMap);
+	 			   
+	   mv.addObject("couponListDate", couponListDate);
+	   mv.setViewName("common/couponDaySearch");
+	   return mv;	   
+   }*/
    
 }

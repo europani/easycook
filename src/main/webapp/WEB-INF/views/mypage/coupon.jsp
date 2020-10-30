@@ -34,7 +34,7 @@
          margin: 0px 40px 40px 40px;
          text-align: center;
          width:300px; height:160px;
-         background:#68c195;  color:#fff; 
+         background:#606060;   color:#fff; 
          
       }
 /*       #coupon-box hr{        
@@ -71,11 +71,11 @@
        vertical-align: top;
        text-align: center;
       }
-      #order-table {
+      #coupon-table {
         border-collapse: collapse;
         width: 100%;
       }
-      #order-table th {
+      #coupon-table th {
       border-bottom: 1px solid #ddd;
       background: #f6f6f6;
       padding: 15px 20px; 
@@ -85,7 +85,7 @@
        border-bottom: 1px solid #e0e0e0;
        background: #f6f6f6;
       }
-      #order-table td {
+      #coupon-table td {
            padding: 15px 20px; 
         vertical-align: middle;     
         font-size: 15px;     
@@ -112,7 +112,7 @@
         <br>
         <div id="benefit-box">
         <div id="coupon-box">
-        <br><h4>---님의 혜택 내역입니다.</h4><br>
+        <br><h4>${id }님의 혜택 내역입니다.</h4><br>
         <ul>
            <li>
               <span>이미지예정</span><br/>
@@ -133,15 +133,13 @@
        
         <hr><br>
                <div id="content-detail">
-      <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
-      <input type="date" id="UserCheckIn" name="UserCheckIn"
-                  min="2020-10-01" max="2020-12-31" name="date"
-                  contenteditable="false">&nbsp;&nbsp;~&nbsp;&nbsp;
-      <label for="UserCheckOut"></label> 
-      <input type="date" id="UserCheckOut" name="UserCheckOut" 
-                  min="2020-08-01" max="2020-12-31" name="date"
-                   contenteditable="false">&nbsp;&nbsp;
-               <button class="btn-search">조회하기</button>
+              <form id="couponSearch" name="couponSearch">
+		      <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
+		      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
+		      <label for="UserCheckOut"></label> 
+		      <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
+		      <input type="button"  id="SearchButton" class="btn-search" value="조회하기"></button>
+		      </form>
       </div>
       <br><br><br><br>
          <br><hr><br>
@@ -153,7 +151,7 @@
       </div>
       <div id="사용가능한 쿠폰" class="coupon">
         <h2>사용가능한 쿠폰</h2>
-         <table id="order-table">
+         <table id="coupon-table">
          <thead>
        <tr>
           <th>쿠폰번호</th>
@@ -186,7 +184,7 @@
 
       <div id="사용불가능한 쿠폰" class="coupon" style="display:none">
         <h2>사용불가능한 쿠폰</h2>
-        <table id="order-table">
+        <table id="coupon-table">
          <thead>
        <tr>
           <th>쿠폰번호</th>
@@ -234,6 +232,27 @@ function openCoupon(couponUsed) {
      }
      document.getElementById(couponUsed).style.display = "block";
    }
+   
+
+//$('#SearchButton').on('click', function(){
+	/* alert($("#searchgogo").serialize()) */
+/* 	$( '#coupon-table > tbody').empty();
+	$.ajax({
+		url : "couponDaySearch.action",
+		type: "POST",
+		data: $("#couponSearch").serialize(),
+		success: function (data) {			
+			$('#content-detail2').append(data);
+		},
+		error: function () {
+			alert("안된다...");
+		}
+		
+	});
+	
+	
+}); */
+ 
 </script>
 
 

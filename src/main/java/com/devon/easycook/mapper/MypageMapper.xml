@@ -4,7 +4,7 @@
    
 <mapper namespace="mypageMapper">
 
-<!-- 주문목록 날짜별보기 resultMap 설정  -->
+<!-- 주문목록 전체보기 resultMap 설정  -->
 <resultMap id="OrderList" type="Orders">
    <id property="id" column="id"/>
    <result property="ordersDate" column="orders_date"/>
@@ -38,7 +38,7 @@
 	<id property="productNo" column="product_no"/>
 	<result property="productName" column="product_name"/>
 	<result property="productImage" column="product_image"/>	
-	<result property="productPrice" column="pro	duct_price"/>
+	<result property="productPrice" column="product_price"/>
 	<result property="productAmount" column="product_amount"/>
 	</association>
 </resultMap>
@@ -123,7 +123,7 @@
    <!-- 날짜따른 주문목록 확인하기 -->
    <select id="ordersDate" parameterType="HashMap" resultType="Orders">
    select 
-   	orders_date as ordersDate,
+   	to_char(orders_date, 'yyyy-mm-dd') as ordersDateforString,
     orders_no as ordersNo,
     orders_status as ordersStatus,
     orders_total as ordersTotal
@@ -153,14 +153,32 @@
    order by coupon_edate desc 
    </select>
    
+   <!-- 쿠폰목록 확인하기  -->
+   <select id="couponDate" parameterType="HashMap" resultType="Coupon">
+   select
+    coupon_no as couponNo,
+    id,
+    coupon_type as couponType, 
+    coupon_discount as couponDiscount,
+    coupon_used as couponUsed, 
+    coupon_sdate as couponSdate, 
+    coupon_edate as couponEdate, 
+    coupon_title as couponTitle
+   FROM coupon
+   where id = #{id} and
+   to_char(couponSdate, 'yyyy-mm-dd') >= #{fromDate} and
+   to_char(couponEdate, 'yyyy-mm-dd') <![CDATA[ < ]]>= #{toDate}
+   order by coupon_edate desc 
+   </select>
    
-   	<!-- 사용가능 쿠폰 확인하기 -->
+   
+   	<!-- 사용가능 쿠폰수 count -->
    <select id="couponCount" parameterType="String" resultType="int">
    select count(coupon_no)
    FROM coupon
    where coupon_type = 0 and id = #{id}
    </select>  
-   	<!-- 사용가능 포인트 확인하기  -->
+   	<!-- 사용가능 포인트 count  -->
    <select id="myPoint" parameterType="String" resultType="int">
    select point FROM member where id = #{id}
    </select>

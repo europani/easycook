@@ -64,6 +64,10 @@
 		UPDATE member SET pwd = #{pwd} WHERE id = #{id}
 	</update>
 	
+	<select id="checkId" parameterType="String" resultType="int">
+		SELECT count(*) FROM member WHERE id = #{id}
+	</select>
+	
 	<!-- ADMIN -->
 	<select id="getFullInfo" resultType="Member">
 		SELECT id, name, email, tel, birthday, point, reg_date AS regDate, wdr_date AS wdrDate FROM (

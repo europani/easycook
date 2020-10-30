@@ -1,99 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<form method="post" action="seekId" class="seekForm">
-<div>
-	<input type="radio" id="aaa" name="abcd" onchange="setDisplay()"> 등록한 이메일로 찾기
-		<div id="emailForm" style="display: none;">
-		<table>
-			<tr>
-				<td>이 름</td>
-				<td class="td1">
-					<input type="text" name="name" id="name1">
-				</td>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td class="td1">
-					<input type="text" name="email1">
-				</td>
-			</tr>
-		</table>
-		</div>
-</div>
-<div>
-	<input type="radio" id="bbb" name="abcd" onchange="setDisplay()"> 등록한 전화번호로 찾기
-		<div id="telForm" style="display: none;">
-		<table>
-			<tr>
-				<td>이 름</td>
-				<td class="td1">
-					<input type="text" name="name" id="name2">
-				</td>
-			</tr>
-			<tr>
-				<td>핸드폰 번호</td>
-				<td class="td1">
-					<input type="text" name="tel2""> 
-				</td>
-			</tr>
-		</table>
-		</div>
-</div>
-	<input type="button" value="제출하기" onclick="button()"> 
-	<input type="reset" value="뒤로가기">
-</form>
 
-	<!-- <form method="post" action="seekId" class="seekForm">
-		<table width="720">
-			<h2 align="center">회원가입</h2>
-			<tr height="2" bgcolor="#000000">
-				<td colspan="2"></td>
-			</tr>
-			<input type="radio" name="emailForm" onclick="email()"> 이메일로 찾기
-			<div id="emailForm">
-			<tr>
-				<th>이 름</th>
-				<td class="td1"><input type="text" name="name"></td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td class="td1">
-					<input type="text" name="email1">
-				</td>
-			</tr>
-			</div>
-			<input type="radio" name="telForm" onclick="tel()"> 전화번호로 찾기
-			<div id="telForm">
-			<tr>
-				<th>이 름</th>
-				<td class="td1"><input type="text" name="name"></td>
-			</tr>
-			<tr>
-				<th>핸드폰 번호</th>
-				<td class="td1"><select name="tel1">
-					<option value="" disabled selected>---</option>
-					<option value="010">010</option>
-					<option value="011">011</option>
-					<option value="016">016</option>
-					<option value="017">017</option>
-					<option value="018">018</option>
-					<option value="019">019</option>
-				</select> - <input type="text" name="tel2" class="JJ"> - <input
-					type="text" name="tel3" class="JJ"></td>
-			</tr>
-			</div>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="button" value="제출하기" onclick="button()"> 
-					<input type="reset" value="뒤로가기">
-				</td>
-			</tr>
-		</table>
-	</form> -->
+<link href="../resources/css/seekId.css" rel="stylesheet" type="text/css">
+<div id="container">
+        <div id="contents">
+        <!-- 본문 시작 -->
+            <div class="sub_content">
+
+                <!-- //side_cont -->
+<div class="content_box">
+	<div class="member_wrap">
+		<div class="member_tit">
+			<h2>아이디찾기</h2>
+		</div>
+		<!-- //member_tit -->
+		<div class="member_cont">
+			<form id="formFindId" method="post" action="seekId" class="seekForm">
+				<div class="find_id_box">
+					<div class="find_id_sec">
+						<h3>회원 아이디찾기</h3>						
+						<div class="form_element radio_find_type">            
+							<input type="radio" id="aaa" name="findIdFl" value="email" checked="checked" onchange="setDisplay()">            
+							<label for="findIdEmail" class="choice_s on" >이메일</label>&nbsp;            
+							<input type="radio" id="bbb" name="findIdFl" value="cellPhone" onchange="setDisplay()">            
+							<label for="findIdPhone" class="choice_s" >휴대폰번호</label>    
+							        
+						</div>
+						
+					<div id="emailForm" class="login_input">
+						<table>
+							<tr>
+								<td class="td1">
+									<input type="text" name="name" id="name1" placeholder="이름">
+								</td>
+							</tr>
+							<tr>
+								<td class="td1">
+									<input type="text" name="email1" placeholder="이메일">
+								</td>
+								<tr><button type="button" class="btn_member_id" onclick="button(); return false;">아이디 찾기</button></tr>
+							</tr>
+						</table>
+					</div>
+					
+					<div id="telForm" class="login_input" style="display: none;">
+					<table>
+						<tr>
+							<td class="td1">
+								<input type="text" name="name" id="name2" placeholder="이름">
+							</td>
+						</tr>
+						<tr>
+							<td class="td1">
+								<input type="text" name="tel2" placeholder="핸드폰번호"> 
+							</td>
+							<tr><button type="submit" class="btn_member_id">아이디 찾기</button></tr>
+						</tr>
+					</table>
+					</div>
+					
+						<!-- <p class="dn js_caution_msg1">일치하는 회원정보가 없습니다. 다시 입력해 주세요.</p> -->
+					</div>
+					<!-- //find_id_sec -->
+					<div class="btn_member_sec">
+						<ul>
+							<li><button class="btn_member_white js_btn_find_password" type="button" onclick="location.href='seekPwd'">비밀번호 찾기</button></li>
+							<li><button class="btn_comfirm js_btn_login" type="button" onclick="location.href='login'">로그인하기</button></li>
+						</ul>
+					</div>
+					<!-- //btn_member_sec -->
+				</div>
+				<!-- //find_id_box -->
+			</form>
+		</div>
+		<!-- //member_cont -->
+	</div>
+	<!-- //member_wrap -->
+</div>
+<!-- //content_box -->
 <script>
 	const emailForm = document.querySelector('#emailForm');
 	const telForm = document.querySelector('#telForm');
+	
       function button() {
 			const seekForm = document.querySelector('.seekForm');
 			if (seekForm.id.value == "") {
@@ -103,7 +92,7 @@
 			}
 			seekForm.submit();
 		}
-      
+
       function setDisplay(){
     	    if($('input:radio[id=aaa]').is(':checked')){	// email
     	        $('#emailForm').show();
@@ -123,4 +112,7 @@
     	}
       
       </script>
+</div>
+</div>
+</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

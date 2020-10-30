@@ -1,5 +1,6 @@
 package com.devon.easycook.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -61,5 +62,11 @@ public class ProductService {
 	}
 	public void delete(int productNo) {
 		productDao.delete(productNo);
+	}
+	public ProductDTO getToday() {
+		return productDao.getToday();
+	}
+	public Date getDate() {
+		return productDao.getDate();
 	}
 }
