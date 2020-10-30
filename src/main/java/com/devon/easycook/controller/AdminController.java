@@ -28,10 +28,9 @@ import com.devon.easycook.domain.NoticeDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.domain.RefundDTO;
-import com.devon.easycook.service.EventService;
+import com.devon.easycook.service.BoardService;
 import com.devon.easycook.service.MemberService;
 import com.devon.easycook.service.MypageService;
-import com.devon.easycook.service.NoticeService;
 import com.devon.easycook.service.OrderService;
 import com.devon.easycook.service.ProductService;
 import com.devon.easycook.util.PagingVO;
@@ -45,9 +44,7 @@ public class AdminController {
 	@Autowired
 	ProductService productService;
 	@Autowired
-	NoticeService noticeService;
-	@Autowired
-	EventService eventService;
+	BoardService boardService;
 	@Autowired
 	OrderService orderService;
 	@Autowired
@@ -332,7 +329,7 @@ public class AdminController {
 	@GetMapping("/notice")
 	public String notice(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,
 			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) throws Exception {
-		int total = noticeService.getArticleCount(null, null);
+		int total = boardService.getArticleCount(null, null);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -345,7 +342,7 @@ public class AdminController {
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
 
-		List<NoticeDTO> list = noticeService.getFullInfo(vo);
+		List<NoticeDTO> list = boardService.getNoticeInfo(vo);
 		model.addAttribute("notice", list);
 		
 		return "admin/notice";
@@ -370,14 +367,14 @@ public class AdminController {
 				e.printStackTrace();
 			}
 		}
-		noticeService.write(notice);
+		boardService.noticeWrite(notice);
 		
 		return "redirect:/admin/notice";
 	}
 	
 	@GetMapping("/notice/modify/{noticeNo}")
 	public String noticeModifyForm(Model model, @PathVariable("noticeNo") int noticeNo) throws Exception {
-		NoticeDTO notice = noticeService.getArticle(noticeNo, false);
+		NoticeDTO notice = boardService.getArticle(noticeNo, false);
 		model.addAttribute("notice", notice);
 		
 		return "admin/noticeModify";
@@ -401,7 +398,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 		}
-		noticeService.modify(notice);
+		boardService.noticeModify(notice);
 		
 		return "redirect:/admin/notice";
 	}
@@ -415,14 +412,14 @@ public class AdminController {
 	@PostMapping("/notice/delete/{noticeNo}")
 	@ResponseBody
 	public void noticeDelete(@PathVariable("noticeNo") int noticeNo) {
-		noticeService.delete(noticeNo);
+		boardService.noticeDelete(noticeNo);
 	}
 	
 	
 	@GetMapping("/event")
 	public String event(PagingVO vo, Model model, @RequestParam(value = "nowPage", required = false) String nowPage,
 			@RequestParam(value = "cntPerPage", required = false) String cntPerPage) throws Exception {
-		int total = eventService.countEvent();
+		int total = boardService.countEvent();
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -435,7 +432,7 @@ public class AdminController {
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
 
-		List<EventDTO> list = eventService.getFullInfo(vo);
+		List<EventDTO> list = boardService.getEventInfo(vo);
 		model.addAttribute("event", list);
 		
 		return "admin/event";
@@ -461,7 +458,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 		}
-		eventService.write(event);
+		boardService.eventWrite(event);
 		
 		return "redirect:/admin/event";
 	}
@@ -469,7 +466,7 @@ public class AdminController {
 	
 	@GetMapping("/event/modify/{eventNo}")
 	public String eventModifyForm(Model model, @PathVariable("eventNo") int eventNo) throws Exception {
-		EventDTO event = eventService.getEvent(eventNo);
+		EventDTO event = boardService.getEvent(eventNo);
 		model.addAttribute("event", event);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -499,7 +496,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 		}
-		eventService.modify(event);
+		boardService.eventModify(event);
 		
 		return "redirect:/admin/event";
 	}
@@ -513,6 +510,6 @@ public class AdminController {
 	@PostMapping("/event/delete/{eventNo}")
 	@ResponseBody
 	public void eventDelete(@PathVariable("eventNo") int eventNo) {
-		eventService.delete(eventNo);
+		boardService.eventDelete(eventNo);
 	}
 }

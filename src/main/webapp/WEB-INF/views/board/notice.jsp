@@ -57,7 +57,7 @@
 					<c:set var="number" value="${number-1 }" />
 
 					<td width="250">
-						<a href="<%=request.getContextPath() %>/board/content/${article.noticeNo}">${article.noticeTitle}</a>
+						<a href="<%=request.getContextPath() %>/notice/${article.noticeNo}">${article.noticeTitle}</a>
 					</td>
 					<td align="center" width="100">관리자</td>
 					<td align="center" width="150">
@@ -72,7 +72,7 @@
 		<div class="text-center">
 			<ul class="pagination">
 			<li><c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="<%=request.getContextPath() %>/board/list?pageNum=${i}">
+				<a href="<%=request.getContextPath() %>/list?pageNum=${i}">
 					<c:if test="${i==currentPage}">
 						<font color='red'>${i}</font>
 					</c:if> <c:if test="${i!=currentPage}">${i}</c:if>
@@ -83,7 +83,7 @@
 			</ul>
 			<c:if test="${startPage > bottomLine }">
 				<a
-					href="<%=request.getContextPath() %>/board/list?pageNum=${startPage - bottomLine}">
+					href="<%=request.getContextPath() %>/list?pageNum=${startPage - bottomLine}">
 					[이전] </a>
 			</c:if>
 			
@@ -92,7 +92,7 @@
 			
 			<c:if test="${endPage < pageCount}">
 				<a
-					href="<%=request.getContextPath() %>/board/list?pageNum=${startPage + bottomLine}">
+					href="<%=request.getContextPath() %>/list?pageNum=${startPage + bottomLine}">
 					[다음] </a>
 			</c:if>
 

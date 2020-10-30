@@ -18,11 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.devon.easycook.domain.EventDTO;
 import com.devon.easycook.domain.NoticeDTO;
-import com.devon.easycook.repository.EventDAO;
-import com.devon.easycook.repository.NoticeDAO;
+import com.devon.easycook.service.BoardService;
 
 @Controller
-@RequestMapping("/board")
 public class BoardController {
 	public String pageNum = "";
 	public String sentence = "";
@@ -31,29 +29,9 @@ public class BoardController {
 
 	public ModelAndView mv = new ModelAndView();
 	
-	
 	@Autowired
-	EventDAO dbPro;
-	@Autowired
-	NoticeDAO notice;
+	BoardService boardService;
 
-	@GetMapping("/event")
-	public String event(Model model) {
-		List<EventDTO> event = dbPro.allEvent();
-		model.addAttribute("event", event);
-		return "board/event";
-	}
-	
-	//상세
-	@GetMapping("/econtent/{eventNo}")
-	public String eventDetail(@PathVariable("eventNo") int eventNo, Model model) throws Exception {
-		EventDTO detail = dbPro.eventDetail(eventNo);
-		System.out.println(detail);
-		model.addAttribute("detail", detail);
-		return "board/econtent";
-	}
-	
-	//notice 부분///////////////////////
 	
 	@ModelAttribute
 	public void headProcess(HttpServletRequest request, HttpServletResponse res) {
@@ -83,7 +61,7 @@ public class BoardController {
 			pageNum = "1";
 	}
 	
-	@RequestMapping("/list")
+	@RequestMapping("/notice")
 	public ModelAndView list() throws Exception {
 
 		int pageSize = 10;
@@ -95,9 +73,9 @@ public class BoardController {
 		int number = 0;
 		List articleList = null;
 
-		count = notice.getArticleCount(category, sentence);
+		count = boardService.getArticleCount(category, sentence);
 		if (count > 0) {
-			articleList = notice.getArticles(startRow, endRow, category, sentence);
+			articleList = boardService.getArticles(startRow, endRow, category, sentence);
 		}
 		number = count - (currentPage - 1) * pageSize;
 
@@ -127,25 +105,33 @@ public class BoardController {
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("startPage", startPage);
 		mv.addObject("endPage", endPage);
-		mv.setViewName("board/list");
+		mv.setViewName("board/notice");
 		
 
 		return mv;
 	}
-	@RequestMapping("/content/{noticeNo}")
+	@RequestMapping("/notice/{noticeNo}")
 	public String content(@PathVariable("noticeNo") int noticeNo, Model m) throws Exception {
 
-		NoticeDTO article = notice.getArticle(noticeNo, true);
-		System.out.println("========article"+article);
+		NoticeDTO article = boardService.getArticle(noticeNo, true);
 
 		m.addAttribute("article", article);
-		/*
-		 * m.addAttribute("noticeRe_step", article.getNoticeRestep());
-		 * m.addAttribute("noticeRe_level", article.getNoticeRelevel());
-		 */
-		return "board/content";
+		return "board/noticeDetail";
 	}
 	
+	@GetMapping("/event")
+	public String event(Model model) {
+		List<EventDTO> event = boardService.eventList();
+		model.addAttribute("event", event);
+		return "board/event";
+	}
+	
+	@GetMapping("/event/{eventNo}")
+	public String eventDetail(@PathVariable("eventNo") int eventNo, Model model) throws Exception {
+		EventDTO detail = boardService.eventDetail(eventNo);
+		model.addAttribute("detail", detail);
+		return "board/eventDetail";
+	}
 	
 	
 	@GetMapping("/faq")

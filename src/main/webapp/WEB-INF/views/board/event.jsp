@@ -19,8 +19,8 @@
 		<c:forEach var="event" items="${event}"> 
 			<tr>
 				<td style="padding-top: 0px;padding-bottom: 20px;">
-				<a href="<%=request.getContextPath() %>/board/econtent/${event.eventNo}">
-				<img src="/aa/mart/images/event.png"></a></td><!-- ${event.eventImage} -->
+				<a href="<%=request.getContextPath() %>/event/${event.eventNo}">
+				<img src="<%=request.getContextPath() %>/resources/upload/${event.eventImage}" width="250" height="250"></a></td>
 				<td style="padding-left: 40px; padding-bottom: 50px;">
 					<h3>
 						이벤트명 : <small>${event.eventTitle }</small>

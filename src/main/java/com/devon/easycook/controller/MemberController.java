@@ -202,7 +202,6 @@ public class MemberController {
 		try {
 		 	MemberDTO member = (MemberDTO) session.getAttribute("member");
 			id = member.getId();
-			System.out.println(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -220,7 +219,6 @@ public class MemberController {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("pwd", CypPwd);
-		System.out.println("check");
 		memberService.changePwd(map);
 		return "redirect:/";
 	}
