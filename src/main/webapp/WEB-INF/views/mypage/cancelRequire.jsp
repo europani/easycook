@@ -117,7 +117,7 @@
        .btn-payment {   /* 나중에 추가할 버튼양식 */
        display: inline-block;
        position : absolute;
-       margin-left: 40rem;
+       margin-left: 26rem;
        width: 120px;
        height: 50px;
        line-height: 30px;
@@ -141,7 +141,7 @@
     <table id="order-table">
       <thead>
          <tr> 
-         <th colspan="2">상품명</th> 
+         <th colspan="2" style="text-align: center">상품명</th> 
          <th>상품금액</th>
          <th>수량</th>  
          <th>환불예정금액</th>
@@ -166,9 +166,8 @@
       </tbody>
    </table>
    <br><hr><br>
-   <h3 align="center">반품사유</h3>
-   <br>
-   <h5 align="center"><select >
+   <h5 align="center">반품사유 : 
+   <select >
     <option value="0">선택해주세요 </option>
    	<option value="1">배송에 문제가 있음 </option>
    	<option value="2">상품에 결함이 있음 </option>
@@ -186,10 +185,6 @@
       	<tr>
       		<th>총 환불예정금액</th>
       		<td id="totalCancel">0</td>
-      	</tr>
-      	<tr>
-      		<th></th>
-      		<td></td>
       	</tr>
       	</tbody>   
       </table>

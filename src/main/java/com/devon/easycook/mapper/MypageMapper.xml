@@ -38,7 +38,7 @@
 	<id property="productNo" column="product_no"/>
 	<result property="productName" column="product_name"/>
 	<result property="productImage" column="product_image"/>	
-	<result property="productPrice" column="pro	duct_price"/>
+	<result property="productPrice" column="product_price"/>
 	<result property="productAmount" column="product_amount"/>
 	</association>
 </resultMap>
