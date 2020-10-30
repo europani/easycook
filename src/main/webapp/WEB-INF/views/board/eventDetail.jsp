@@ -34,7 +34,7 @@
          <td colspan="3" style="background-color:#1abc9c; color:#fff">${detail.eventTitle }</td>
       </tr>
       <tr>
-         <td colspan="3"><img src="/easycook/resources/mart/images/test.jpg"><!-- ${detail.eventImage }</td> -->
+         <td colspan="3"><img src="<%=request.getContextPath() %>/resources/upload/${detail.eventImage }">
       </tr>
       <tr>
          <td colspan="3">${detail.eventContent }</td>

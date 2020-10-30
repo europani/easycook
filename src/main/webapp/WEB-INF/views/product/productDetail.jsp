@@ -8,10 +8,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="/easycook/resources/images/${detail.productImage}"
+					<a href="<%=request.getContextPath() %>/resources/product/${detail.productImage}"
 						class="image-popup"><img
-						src="/easycook/resources/images/${detail.productImage}"
-						class="img-fluid" alt="Colorlib Template"></a>
+						src="<%=request.getContextPath() %>/resources/product/${detail.productImage}"
+						class="img-fluid" ></a>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 					<h3>${detail.productName}</h3>

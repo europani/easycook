@@ -135,9 +135,9 @@
 						<li class="dropdown">
 							<a href="/easycook/board/list">고객센터</a>
 							<div class="dropdown-content">
-								<a href="/easycook/board/list">공지사항</a>
-								<a href="/easycook/board/event">EVENT</a>
-								<a href="/easycook/board/faq">FAQ</a>
+								<a href="/easycook/notice">공지사항</a>
+								<a href="/easycook/event">EVENT</a>
+								<a href="/easycook/faq">FAQ</a>
 							</div>
 						</li>
 					</ul>

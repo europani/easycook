@@ -25,7 +25,7 @@
     			<c:forEach var="row" items="${list}">
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="/easycook/product/${row.productNo}" class="img-prod"><img class="img-fluid" src="/easycook/resources/images/${row.productImage}" alt="Colorlib Template">
+    					<a href="/easycook/product/${row.productNo}" class="img-prod"><img class="img-fluid" src="<%=request.getContextPath() %>/resources/product/${row.productImage}">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">

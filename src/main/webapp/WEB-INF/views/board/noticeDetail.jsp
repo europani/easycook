@@ -42,7 +42,7 @@
 	</tr>
 	<tr>
 	<td  colspan="3" style="text-align:center;"> 
-	<img src="<%=request.getContextPath() %>/webapp/uploadFolder/${article.noticeFilename}" 
+	<img src="<%=request.getContextPath() %>/resources/upload/${article.noticeFilename}" 
 			style="height:500;width:500px;"></td>
 	</tr>
 	<tr>

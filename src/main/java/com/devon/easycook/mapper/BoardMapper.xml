@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
 
-<mapper namespace="noticeMapper">
-
-   <!-- 검색 -->
+	<!-- 검색 -->
    <select id="getArticleCount" parameterType="hashmap" resultType="int">
 	   	select nvl(count(*),0)  from notice 
 	    <if test="category!=null and category !='' ">
@@ -46,12 +45,19 @@
 	   FROM notice where notice_no = #{noticeNo} 
    </select>
    
-   
-   
-   
-   
-   
-   
+   <select id="eventList" resultType="Event">
+		select event_no AS eventNo, event_title AS eventTitle, event_image 
+			AS eventImage, event_content AS eventContent, event_startdate AS 
+			eventStartdate, event_enddate AS eventEnddate 
+		FROM event order by event_no	
+	</select>
+
+   <!-- 상세 -->
+   <select id="eventDetail" parameterType="hashmap" resultType="Event">
+      select event_no AS eventNO, event_title AS eventTitle, event_image AS eventImage, event_startdate AS eventStartdate, event_enddate AS eventEnddate
+       from event
+       where EVENT_NO=#{eventNo}
+   </select>
    
    
    
@@ -59,7 +65,7 @@
    
    
    <!-- ADMIN -->
-   <select id="getFullInfo" resultType="Notice">
+   <select id="getNoticeInfo" resultType="Notice">
 		SELECT notice_no AS noticeNo, notice_title AS noticeTitle, notice_content AS noticeContent, notice_date AS noticeDate, notice_count AS noticeCount 
 		FROM (
 			SELECT ROWNUM RN, A.* 
@@ -71,7 +77,7 @@
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
-	<insert id="write" parameterType="Notice">
+	<insert id="noticeWrite" parameterType="Notice">
 		<if test="noticeFilename != null">
 			INSERT INTO notice VALUES (noticeSeq.nextval, #{noticeTitle}, #{noticeContent}, #{noticeFilename}, sysdate, 0)
 		</if>
@@ -80,14 +86,57 @@
 			VALUES (noticeSeq.nextval, #{noticeTitle}, #{noticeContent}, sysdate, 0)
 		</if>
 	</insert>
-	<update id="modify" parameterType="Notice">
+	<update id="noticeModify" parameterType="Notice">
 		UPDATE notice SET notice_title = #{noticeTitle}, notice_content = #{noticeContent}
 		<if test="noticeFilename != null">
 			, notice_image = #{noticeFilename}
 		</if>
 			WHERE notice_no = #{noticeNo}
 	</update>
-	<delete id="del" parameterType="int">
+	<delete id="noticeDelete" parameterType="int">
 		DELETE FROM notice WHERE notice_no = #{noticeNo}
 	</delete>
+	
+	<select id="countEvent" resultType="int">
+		SELECT nvl(count(*),0) FROM event
+	</select>
+
+	<select id="getEventInfo" resultType="Event">
+		SELECT event_no AS eventNo, event_title AS eventTitle, event_content AS eventContent, event_startdate AS eventStartdate, event_enddate AS eventEnddate 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM event 
+						ORDER BY event_no DESC) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<insert id="eventWrite" parameterType="Event">
+		<if test="eventImage != null">
+			INSERT INTO event VALUES (eventSeq.nextval, #{eventTitle}, #{eventContent}, #{eventImage}, #{eventStartdate}, #{eventEnddate})
+		</if>
+		<if test="eventImage == null">
+			INSERT INTO event(event_no, event_title, event_content, event_startdate, event_enddate) VALUES (eventSeq.nextval, #{eventTitle}, #{eventContent}, #{eventStartdate}, #{eventEnddate})
+		</if>
+	</insert>
+	
+	<select id="getEvent" parameterType="int" resultType="Event">
+		SELECT event_no AS eventNo, event_title AS eventTitle, event_content AS eventContent, event_image AS eventImage, event_startdate AS eventStartdate, event_enddate AS eventEnddate 
+			FROM event WHERE event_no = #{eventNo}
+	</select>
+	
+	<update id="eventModify" parameterType="Event">
+		UPDATE event SET event_title = #{eventTitle}, event_content = #{eventContent}, event_startdate = #{eventStartdate}, event_enddate = #{eventEnddate}
+		<if test="eventImage != null">
+			, event_image = #{eventImage}
+		</if>
+			WHERE event_no = #{eventNo}
+	</update>
+	
+	<delete id="eventDelete" parameterType="int">
+		DELETE FROM event WHERE event_no = #{eventNo}
+	</delete>
+
 </mapper>
