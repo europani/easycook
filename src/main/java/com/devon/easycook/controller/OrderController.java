@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.devon.easycook.domain.CartDTO;
+import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.service.OrderService;
 
@@ -62,13 +63,12 @@ public class OrderController {
 
 	// 3. 장바구니 삭제하기
 	@RequestMapping("/cart/delete")
-	public String delete(@RequestParam int cart_no) {
-		orderService.cartDelete(cart_no);
+	public String delete(@RequestParam int cartNo) {
+		orderService.cartDelete(cartNo);
 		return "redirect:/order/cart";
 	}
 	
-	// 4. 주문하기 버튼 클릭시
-
+	// 4. 주문하기 
 	@GetMapping("/order")
 	public String orderList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(true);
@@ -78,9 +78,14 @@ public class OrderController {
 		}
 		String Id = member.getId();
 		List<CartDTO> list = orderService.cartList(Id);
+		List<CouponDTO> list2 = orderService.couponList(Id);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("list2", list2);
 		return "order/order";
 	}
+	
+	
 	/*
 	 * // 3. 장바구니 수정하기 - 수량덮어쓰기
 	 * 

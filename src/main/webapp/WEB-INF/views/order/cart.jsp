@@ -14,7 +14,7 @@
 			<hr>
 			<br />
 			<c:choose>
-				<c:when test="${list.size()} == null">
+				<c:when test="${list.size()==0}">
          			장바구니가 비어있습니다.
          		</c:when>
 				<c:otherwise>
@@ -49,11 +49,11 @@
 																	<span
 																		onclick="document.getElementById('id01').style.display='none'"
 																		class="w3-button w3-large w3-display-topright">&times;</span>
-																	<h3>${row.product_name}를 장바구니에서 삭제하시겠습니까?</h3>
+																	<h3>${row.productName}를 장바구니에서 삭제하시겠습니까?</h3>
 																</header>
 																<div class="w3-container">
 																	
-																	<p><h3><a href="/easycook/order/cart/delete?cart_no=${row.cart_no}">
+																	<p><h3><a href="/easycook/order/cart/delete?cart_no=${row.cartNo}">
 																	<span>Yes</span></a></h3></p>
 																</div>
 															</div>
@@ -62,20 +62,20 @@
 													</td>
 
 													<td class="image-prod"><div class="img"
-															style="background-image: url(../resources/images/${row.product_image});"></div></td>
+															style="background-image: url(../resources/images/${row.productImage});"></div></td>
 
 													<td class="product-name">
-														<h3>${row.product_name}</h3>
+														<h3>${row.productName}</h3>
 													</td>
 
 													<td class="price"><fmt:formatNumber
-															value="${row.product_price}" pattern="###,###,###" />원</td>
+															value="${row.productPrice}" pattern="###,###,###" />원</td>
 
 													<td class="quantity">
 														<div class="input-group mb-3">
 															<input type="text" name="quantity"
 																class="quantity form-control input-number"
-																value="${row.cart_qty}" min="1">
+																value="${row.cartQty}" min="1">
 														</div>
 													</td>
 
