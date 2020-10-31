@@ -87,6 +87,14 @@
 				<c:if test="${ordersDetail.ordersDetail.reviewCheck == 0}">
 				<button onclick="location.href='/easycook/mypage/review?productNo=${ordersDetail.product.productNo}&ordersNo=${ordersNo}'">리뷰쓰기</button>
 				</c:if>
+				&nbsp;
+				<form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >  
+		         <c:if test="${ordersDetail.ordersStatus eq '배송완료'}">
+		         <input type="submit" value='반품신청'>
+		         <input type="hidden" name="productNo" id="productNo" value="${ordersDetail.product.productNo}">
+		         <input type="hidden" name="ordersNo" id="ordersNo" value="${orderNum}">
+		         </c:if>
+          		</form> 
 			</td>
 		</tr>
 		</c:forEach>	

@@ -66,9 +66,7 @@ public class MypageController {
 		int totalpay = detail.get(0).getOrdersTotal();
 		model.addAttribute("detail", detail);
 		model.addAttribute("totalpay", totalpay);
-		model.addAttribute("ordersNo", ordersNo);
-		
-		System.out.println(detail);
+		model.addAttribute("orderNum", ordersNo);
 		return "mypage/ordersDetail";
 	}
    
@@ -113,69 +111,33 @@ public class MypageController {
       
    // 처음 반품창
    @RequestMapping("/cancelRequire")
-   public String cancelRequire(@RequestParam("ordersNo") int ordersNo,
+   public String cancelRequire(@RequestParam("productNo") int productNo,
+		   @RequestParam("ordersNo") int ordersNo,
 		   HttpServletRequest request ,Model model) {
-      
 	
 	HttpSession session = request.getSession(true);
 	MemberDTO member =(MemberDTO) session.getAttribute("member");
 	String id = member.getId(); 
 
-      List<OrdersDTO> cancelRequireList = mypageService.cancelRequire(ordersNo);
-      
+	System.out.println(productNo + ", " + ordersNo);
+    
+	Map<String, Object> refundCheckMap = new HashMap<String, Object>();
+	refundCheckMap.put("productNo", productNo);
+	refundCheckMap.put("ordersNo", ordersNo);
+	System.out.println(refundCheckMap);
+    OrdersDTO cancelRequireList = mypageService.cancelRequire(refundCheckMap);
+    System.out.println("cancelRequireList" + cancelRequireList); 
       
       // 주문번호는 어차피 하나이니, 처음 list만 가져와도 ok
-      OrdersDTO orders = cancelRequireList.get(0);
-      Date orderDate = orders.getOrdersDate();
-      int orderNum = orders.getOrdersNo();
-      int orderTotal = orders.getOrdersTotal();
       
-      
-/*    List<Integer> qtyList = new ArrayList();
-      int x = 0;
-      for (int i = 0; i < cancelRequireList.size(); i++) {
-    	int qty = cancelRequireList.get(i).getOrdersDetail().getDetailQty();
-    	qtyList.add(i, qty);
-	  }*/
-      
-      
-      model.addAttribute("ordersDate", orderDate);
-      model.addAttribute("orderNum", orderNum);
+      model.addAttribute("productNum", productNo);
+      model.addAttribute("orderNum", ordersNo);
       model.addAttribute("cancelRequire", cancelRequireList);
       return "mypage/cancelRequire";
    }
    
    
-   // 반품실행창
-/*   @RequestMapping("/doCancel")
-   public String doCancel(
-		   @RequestParam("ordersNo") int ordersNo,
-		   @RequestParam("cancelList") List<OrdersDTO> cancelList,
-		   @RequestParam("qty") int qty, Model model) {
-      
-	  // 나중에 session으로 id 받을것
-      String id = "haram511";
-      System.out.println("ordersNo:" + ordersNo + "qty:" + qty);
-      System.out.println(cancelList);
-      
-      for (int i = 0; i < cancelList.size(); i++) {
-    	  mypageService.doCancel(ordersNo);
-      }
 
-      List<OrdersDTO> cancelRequireList = mypageService.doCancel(ordersNo);
-      
-      
-      // 주문번호는 어차피 하나이니, 처음 list만 가져와도 ok
-      OrdersDTO orders = cancelRequireList.get(0);
-      Date orderDate = orders.getOrdersDate();
-      int orderNum = orders.getOrdersNo();
-      int orderTotal = orders.getOrdersTotal();
-      	
-      model.addAttribute("ordersDate", orderDate);
-      model.addAttribute("orderNum", orderNum);
-      model.addAttribute("cancelRequire", cancelRequireList);
-      return "mypage/cancelRequire";
-   } */
    
    
    	// 주문취소 경고창  
@@ -186,13 +148,7 @@ public class MypageController {
 	}
    
 	
-	// 주문취소
-	@PostMapping("/returnOrder/{ordersNo}")
-	public void returnOrder(@PathVariable("ordersNo") int ordersNo, Model model) {
-		
-		mypageService.checkCancel(ordersNo);
-		System.out.println("checkCancel 완료");
-	}
+
    
 	
 	

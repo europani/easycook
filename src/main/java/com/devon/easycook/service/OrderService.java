@@ -12,6 +12,7 @@ import com.devon.easycook.domain.CartDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.RefundDTO;
+import com.devon.easycook.repository.MypageDAO;
 import com.devon.easycook.repository.OrderDAO;
 import com.devon.easycook.util.PagingVO;
 
@@ -59,6 +60,26 @@ public class OrderService {
 	 
 
 
+	
+	
+	
+	
+	
+	   public void checkCancel(int ordersNo) {
+		int result = orderDao.checkCancel(ordersNo);	
+		if (result == 1) {
+			orderDao.checkRefund(ordersNo);
+		}
+		}
+
+	
+	public void doCancel(RefundDTO refund) {
+		int result = orderDao.makeRefundTable(refund);
+		if (result == 1) {
+			orderDao.checkRefund(refund.getOrdersNo());
+		}
+	}
+	
 
 	// ADMIN
 	

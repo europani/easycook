@@ -80,44 +80,18 @@ public class MypageDAO extends AbstractMybatisDAO{
 		}
 	}
    
-   public List<OrdersDTO> cancelRequire(int ordersNo) {
+   public OrdersDTO cancelRequire(Map<String, Object> refundCheckMap) {
+	   System.out.println(refundCheckMap);
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
-         return sqlsession.selectList(namespace + ".cancelRequire", ordersNo);
+         return sqlsession.selectOne(namespace + ".cancelRequire", refundCheckMap);
       } finally {
          sqlsession.close();
       }
    }
 
 
-   // 반품절차
-   // 1. 먼저 return(환불) 테이블에 ordersNo정보 추가
-   // 2. return테이블에 insert가 제대로 되었다면, detail_refund 컬럼 update(0->1)
-   // ****반품이 아닌 주문취소시엔, return테이블 추가없이 바로 checkCancel 진행
-   public void returnTablePlus(int ordersNo) {
-	   SqlSession sqlsession = getSqlSessionFactory().openSession();
-	   int result = 0;
-	   try {
-		   result = sqlsession.insert(namespace + ".returnTablePlus", ordersNo);
-		   if (result != 0) {
-				sqlsession.commit();
-			}
-	   } finally {
-	         sqlsession.close();
-	   }
-	}
-   public void checkCancel(int ordersNo) {
-	   SqlSession sqlsession = getSqlSessionFactory().openSession();
-	   int result = 0;
-	   try {
-	         result = sqlsession.update(namespace + ".checkCancel", ordersNo);
-	         if (result != 0) {
-					sqlsession.commit();
-				}
-	   } finally {
-	         sqlsession.close();
-	   }
-   }
+
 
    
    

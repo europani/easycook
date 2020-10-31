@@ -49,22 +49,17 @@ public class MypageService {
 		return mypageDAO.myPoint(id);
 	} 
    
-   public List<OrdersDTO> cancelRequire(int ordersNo) {
-      return mypageDAO.cancelRequire(ordersNo);
+   public OrdersDTO cancelRequire(Map<String, Object> refundCheckMap) {
+	   System.out.println(refundCheckMap);
+      return mypageDAO.cancelRequire(refundCheckMap);
       
    }
 
    
-   // 주문취소절차
-	/*
-	 * public void returnTablePlus(int ordersNo) {
-	 * mypageDAO.returnTablePlus(ordersNo); }
-	 */
+
    
    
-   public void checkCancel(int ordersNo) {
-		mypageDAO.checkCancel(ordersNo);		
-	}
+
    
 
    
