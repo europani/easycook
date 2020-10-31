@@ -741,12 +741,12 @@ a.carousel-control.right > span{
 .product-title h3{
     margin: 0;
     padding: 0;
-    text-align: left;
+    text-align: center;
     color: #fff;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 18px;
-    float: left;
+    
     padding: 10px;
     padding-left: 15px;
 }
@@ -852,7 +852,6 @@ a.carousel-control.right > span{
     OFFER SECTION
  */
 .offer-section{
-	margin-top:200px;
     display: block;
     padding: 170px 0 130px;
     position: relative;
