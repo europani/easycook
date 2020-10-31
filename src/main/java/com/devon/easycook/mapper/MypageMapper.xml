@@ -55,6 +55,7 @@
    <id property="ordersNo" column="orders_no"/>
    <result property="detailQty" column="detail_qty"/>
    </association>   
+   
    <association property="product" javaType="Product">
    <id property="productNo" column="product_no"/>
    <result property="productName" column="product_name"/>

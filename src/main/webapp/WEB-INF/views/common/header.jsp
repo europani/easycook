@@ -69,7 +69,7 @@
 							<li><a href="/easycook/admin">관리자페이지</a></li>
 							</c:if>
 							<li class="dropdown">
-							<a href="/easycook/mypage/modify">MYPAGE</a>
+							<a href="/easycook/mypage/coupon">MYPAGE</a>
 							<div class="dropdown-content">
 								<a href="/easycook/member/modify" style="color:black;">회원정보수정</a>
 								<a href="/easycook/order/cart" style="color:black;">장바구니</a>

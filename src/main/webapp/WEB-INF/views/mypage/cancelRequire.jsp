@@ -131,68 +131,67 @@
       } 
     </style>
 <body>
-    <div id="jb-container">
+   <div id="jb-container">
     <jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
    <div id="jb-content">
-   <form action="<%=request.getContextPath() %>/order/cancel" method="post">
-   <h2>반품신청</h2>
-   <br>
-   <h5>주문일 : ${ordersDate } | 주문번호 : ${orderNum } | 상품개수 : ${cancelRequireList.size() }개</h5>
-   <div id="content-detail2">
-    <table id="order-table">
-      <thead>
-         <tr> 
-         <th colspan="2" style="text-align: center">상품명</th> 
-         <th>상품금액</th>
-         <th>수량</th>  
-         <th>환불예정금액</th>
-         </tr>
-      </thead>
-      <tbody>
-   <c:forEach var="canCancel" items="${cancelRequire }">   
-         <tr>
-         <td>${canCancel.product.productImage } 이경로로 사진불러올것</td>
-         <td>상품번호-${canCancel.product.productNo }, 상품명-${canCancel.product.productName }</td>
-         <td id="product">${canCancel.product.productPrice }  </td>
-         <td>
-            <select id="productSelectCount" onchange="paychangeTest(this)">
-            <c:forEach var="i" begin="0" step="1" end="${canCancel.ordersDetail.detailQty }">
-             <option value="${i }">${i }</option>
-            </c:forEach>
-            </select>
-         </td>
-         <td id="totalpay">0</td>
-         </tr>
-   </c:forEach>
-      </tbody>
-   </table>
+	   <form action="<%=request.getContextPath() %>/order/cancel" method="post">
+	   <h2>반품신청</h2>
+	   <br>
+	   <h5>주문일 : ${ordersDate } | 주문번호 : ${orderNum } | 상품개수 : ${cancelRequireList.size() }개</h5>
+	   <div id="content-detail2">
+	    <table id="order-table">
+	      <thead>
+	         <tr> 
+	         <th colspan="2" style="text-align: center">상품명</th> 
+	         <th>상품금액</th>
+	         <th>수량</th>  
+	         <th>환불예정금액</th>
+	         </tr>
+	      </thead>
+	      <tbody>
+	   		<c:forEach var="canCancel" items="${cancelRequire }">   
+	         <tr>
+	         <td>${canCancel.product.productImage } 이경로로 사진불러올것</td>
+	         <td>상품번호-${canCancel.product.productNo }, 상품명-${canCancel.product.productName }</td>
+	         <td id="product">${canCancel.product.productPrice }  </td>
+	         <td>
+	            <select id="productSelectCount" onchange="paychangeTest(this)">
+	            <c:forEach var="i" begin="0" step="1" end="${canCancel.ordersDetail.detailQty }">
+	             <option value="${i }">${i }</option>
+	            </c:forEach>
+	            </select>
+	         </td>
+	         <td id="totalpay">0</td>
+	         </tr>
+	   		</c:forEach>
+	      </tbody>
+	   </table>
    <br><hr><br>
-   <h5 align="center">반품사유 : 
-   <select >
-    <option value="0">선택해주세요 </option>
-   	<option value="1">배송에 문제가 있음 </option>
-   	<option value="2">상품에 결함이 있음 </option>
-   </select></h5>
+   <h5 align="center">반품사유 :
+	   <input list="refundReasons" name="refundReason">
+		  <datalist id="refundReasons">
+		    <option value="오배송">상품이 잘못 배송됨</option>
+		    <option value="하자">상품에 하자가 있음</option>
+		    <option value="변심">단순변심</option>
+		  </datalist>
+   </h5>
 </div>
    <div class="payment-content2">
          <h4 >환불정보</h4>
          <hr><br>
-      <table class="paymentCustomer">
-      <colgroup>
-      	<col style="width:20%">
-      	<col style="width:80%">
-      </colgroup>
-      	<tbody>
-      	<tr>
-      		<th>총 환불예정금액</th>
-      		<td id="totalCancel">0</td>
-      	</tr>
-      	</tbody>   
-      </table>
+      	 <table class="paymentCustomer">
+	      <colgroup>
+	      	<col style="width:20%">
+	      	<col style="width:80%">
+	      </colgroup>
+	      	 <tbody>
+		      	<tr>
+		      		<th>총 환불예정금액</th>
+		      		<td id="totalCancel">0</td>
+		      	</tr>
+	      	</tbody>   
+      	 </table>
       <input type="submit" class="btn-payment" value="신청하기">
-      <input type="hidden" name="ordersNo" id="ordersNo" value="${orderNum}">
-      <input type="hidden" name="cancelList" id="cancelList" value="${cancelRequire}">
-      <input type="hidden" name="qty" id="qty" value="${i}">
       </form>
     </div>     	   
 </div>

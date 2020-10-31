@@ -136,11 +136,9 @@ public class MypageController {
     	qtyList.add(i, qty);
 	  }*/
       
-//      System.out.println(qtyList);
+      
       model.addAttribute("ordersDate", orderDate);
       model.addAttribute("orderNum", orderNum);
-//      model.addAttribute("orderTotal", orderTotal);
-//		model.addAttribute("qtyList", qtyList);
       model.addAttribute("cancelRequire", cancelRequireList);
       return "mypage/cancelRequire";
    }
