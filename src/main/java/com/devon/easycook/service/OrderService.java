@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devon.easycook.domain.CartDTO;
+import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.RefundDTO;
@@ -34,8 +35,13 @@ public class OrderService {
 	}
 	
 	// 3. 장바구니 삭제하기
-	public void cartDelete(int cart_no) {
-		orderDao.cartDelete(cart_no); 
+	public void cartDelete(int cartNo) {
+		orderDao.cartDelete(cartNo); 
+	}
+	
+	// 4. 쿠폰 목록보기
+	public List<CouponDTO> couponList(String id) { 
+		return orderDao.couponList(id); 
 	}
 	 /* 
 	 * // 5. 장바구니 합계구하기 public int sumMoney(String Id) { return

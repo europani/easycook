@@ -7,7 +7,7 @@
   <body class="goto-here">
     <section class="ftco-section">
     	<div class="container"> 
-    	<h2>전체  [ 상품 : ${list.size()}개 ]</h2>
+    	<h2>전체  [ 상품 : <c:if test="${list.size() == null}">0</c:if>${list.size()}개 ]</h2>
            <hr>
            <br>
     		<div class="row justify-content-center">
@@ -21,7 +21,9 @@
     			</div>
     		</div>
     		
-    			
+    			<c:if test="${list.size() == null && isSearch == 1}">
+    				<div style="font-size: 15px; text-align: center;">검색된 상품이 없습니다.</div>
+    			</c:if>
     			<c:forEach var="row" items="${list}">
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">

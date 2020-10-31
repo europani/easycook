@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.devon.easycook.domain.CartDTO;
+import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.RefundDTO;
@@ -51,11 +52,11 @@ public class OrderDAO extends AbstractMybatisDAO {
 	}
 
 	// 3. 장바구니 삭제하기
-	public void cartDelete(int cart_no) {
+	public void cartDelete(int cartNo) {
 		sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
 		try {
-			result = sqlsession.delete(namespace + ".cartDelete", cart_no);
+			result = sqlsession.delete(namespace + ".cartDelete", cartNo);
 			if (result != 0) {
 				sqlsession.commit();
 			}
@@ -64,6 +65,15 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
+	// 4. 쿠폰 목록 보기 
+	public List<CouponDTO> couponList(String id) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectList(namespace + ".couponList", id);
+		} finally {
+			sqlsession.close();
+		}
+	}
 	// 5. 장바구니 합계구하기 public int sumMoney(String Id) { sqlsession =
 	/*
 	 * getSqlSessionFactory().openSession(); try { return

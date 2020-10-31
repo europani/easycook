@@ -105,7 +105,8 @@
 					<select name="category" size="1">
 						<option value="notice_Title">제 목</option>
 						<option value="notice_Content">내 용</option>
-					</select> <input size="16" name="sentence"> 
+					</select> 
+					<input size="16" name="sentence"> 
 					<input type="submit" value="찾기">
 				</form>
 			</div>
