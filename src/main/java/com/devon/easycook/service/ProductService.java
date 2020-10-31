@@ -18,6 +18,16 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDao;
 	
+	//상품 검색
+	public int getProductSearch(String sentence) throws Exception {
+		return productDao.getProductSearch(sentence);
+	}
+	
+	//상품 검색 결과 
+	public List<ProductDTO> getProductSearchitem(String sentence) throws Exception {
+		return productDao.getProductSearchitem(sentence);
+	}
+	
 	// 상품목록
 	public List<ProductDTO> productList() {
 		return productDao.productList();

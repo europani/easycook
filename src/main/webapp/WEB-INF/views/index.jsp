@@ -14,11 +14,10 @@
 		<div class="container">
 			<div class="row subscribe-from">
 				<div class="col-md-12">
-					<form class="form-inline col-md-12 wow fadeInDown animated">
+					<form class="form-inline col-md-12 wow fadeInDown animated" name="searchForm" method="POST" action="product">
 						<div class="form-group">
-							<input type="email" class="form-control subscribe" id="email"
-								placeholder="Search...">
-							<button class="suscribe-btn">
+							<input class="form-control subscribe" name="sentence">
+							<button class="suscribe-btn" type="submit">
 								<i class="pe-7s-search"></i>
 							</button>
 						</div>

@@ -1,6 +1,7 @@
 package com.devon.easycook.repository;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,11 +16,37 @@ import com.devon.easycook.util.PagingVO;
 @Repository
 public class ProductDAO extends AbstractMybatisDAO {
 	
+	HashMap<String, Object> map = new HashMap<String, Object>();
+	
 	
 	@Autowired
 	SqlSession sqlsession;
 	private String namespace = "productMapper";
 	
+	//상품 검색
+	public int getProductSearch(String sentence) throws Exception {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			map.put("sentence", sentence);
+			return sqlsession.selectOne(namespace + ".getProductSearch", map);
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	//상품 검색 결과
+	public List<ProductDTO> getProductSearchitem(String sentence) throws Exception {
+		sqlsession = getSqlSessionFactory().openSession();
+		map.clear();
+		map.put("sentence", sentence);
+		try {
+			return sqlsession.selectList(namespace + ".getProductSearchitem", map);
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	//상품 목록
 	public List<ProductDTO> productList() {
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
@@ -29,6 +56,7 @@ public class ProductDAO extends AbstractMybatisDAO {
 		}
 	}
 	
+	//상품 상세
 	public ProductDTO productDetail(int productNo) {
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
