@@ -15,7 +15,7 @@ public class ReviewDTO {
 	private String reviewContent;
 	private String reviewImage;
 	private Timestamp reviewDate;
-	private int reviewScore;
+	private Double reviewScore;
 	
 	
 	private int ordersNo;

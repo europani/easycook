@@ -7,8 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.ProductDTO;
+import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.repository.ProductDAO;
 import com.devon.easycook.util.PagingVO;
 
@@ -37,9 +37,13 @@ public class ProductService {
 
 
 
+	public ReviewDTO reviewCal(int productNo) {
+		return productDao.reviewCal(productNo);
+	}
 
-
-
+	public List<ReviewDTO> getReview(int productNo) {
+		return productDao.getReview(productNo);
+	}
 
 	// ADMIN
 	public int countByCategory(String category) {

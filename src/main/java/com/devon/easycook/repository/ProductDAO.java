@@ -8,8 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.ProductDTO;
+import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.util.PagingVO;
 
 @Repository
@@ -49,7 +49,23 @@ public class ProductDAO extends AbstractMybatisDAO {
 
 
 
-
+	public ReviewDTO reviewCal(int productNo) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".reviewCal", productNo);
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	public List<ReviewDTO> getReview(int productNo) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectList(namespace + ".getReview", productNo);
+		} finally {
+			sqlsession.close();
+		}
+	}
 
 	// ADMIN
 	public int countByCategory(String category) {
