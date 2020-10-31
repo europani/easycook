@@ -50,6 +50,7 @@
 <resultMap id="cancelRequire" type="Orders">
    <id property="id" column="id"/>
    <result property="ordersNo" column="orders_no"/>
+   <result property="discountPercent" column="discount_percent"/>
    
    <association property="ordersDetail" javaType="OrdersDetail">
    <id property="ordersNo" column="orders_no"/>
@@ -191,6 +192,7 @@
    <select id="cancelRequire" parameterType="HashMap" resultMap="cancelRequire">
    select  
    	o.orders_no,
+   	o.discount_percent,
    	od.detail_qty,
     p.product_name,
     p.product_price,

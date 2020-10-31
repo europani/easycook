@@ -152,7 +152,7 @@
 	         <tr>
 	         <td>${cancelRequire.product.productImage } 이경로로 사진불러올것</td>
 	         <td>상품명-${cancelRequire.product.productName }</td>
-	         <td id="product">${cancelRequire.product.productPrice }  </td>
+	         <td id="product">${productPrice }  </td>
 	         <td>
 	            <select name="refundQty" id="productSelectCount" onchange="paychangeTest(this)">
 	            <c:forEach var="refundQty" begin="0" step="1" end="${cancelRequire.ordersDetail.detailQty }">

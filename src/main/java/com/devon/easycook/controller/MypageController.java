@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.service.MypageService;
 
@@ -46,9 +47,9 @@ public class MypageController {
    @GetMapping("/orders")
    public String orders(Model model, HttpServletRequest request) {   
 
-		 HttpSession session = request.getSession(true);
-		 MemberDTO member =(MemberDTO) session.getAttribute("member");
-		 String id = member.getId();
+	  HttpSession session = request.getSession(true);
+	  MemberDTO member =(MemberDTO) session.getAttribute("member");
+	  String id = member.getId();
 		       
       
       List<OrdersDTO> orderList = mypageService.orders(id);
@@ -80,29 +81,16 @@ public class MypageController {
 
 	   
 	   // 나중에 session으로 id 받을것
-		 HttpSession session = request.getSession(true);
-		 MemberDTO member =(MemberDTO) session.getAttribute("member");
-		 String id = member.getId();
+	   HttpSession session = request.getSession(true);
+	   MemberDTO member =(MemberDTO) session.getAttribute("member");
+	   String id = member.getId();
 	   
 	   dateMap.clear();
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
 	   List<OrdersDTO> orderListDate = mypageService.ordersDate(dateMap);
-	 		
-		/* int count = 0; List<String> oDate = new ArrayList<String>(); List<Integer>
-		 * oNo = new ArrayList<Integer>(); List<String> oStatus = new
-		 * ArrayList<String>(); List<Integer> oTotal = new ArrayList<Integer>(); for
-		 * (OrdersDTO dto : orderListDate) {
-		 * 
-		 * String ordersDatetoString = transFormat.format(dto.getOrdersDate());
-		 * oDate.add(ordersDatetoString); oNo.add(dto.getOrdersNo());
-		 * oStatus.add(dto.getOrdersStatus()); oTotal.add(dto.getOrdersTotal());
-		 * count++; }		   
-	   System.out.println(oDate + "," + oNo + "," + oStatus);	   
-	   mv.addObject("ordersDate", oDate);	 mv.addObject("ordersNo", oNo);
-	   mv.addObject("ordersStatus", oStatus); mv.addObject("ordersTotal", oTotal);
-	   mv.addObject("count", count); */	
+	 	
 	   
 	   mv.addObject("orderListDate", orderListDate);
 	   mv.setViewName("common/ordersDaySearch");
@@ -119,19 +107,29 @@ public class MypageController {
 	MemberDTO member =(MemberDTO) session.getAttribute("member");
 	String id = member.getId(); 
 
-	System.out.println(productNo + ", " + ordersNo);
+
     
 	Map<String, Object> refundCheckMap = new HashMap<String, Object>();
 	refundCheckMap.put("productNo", productNo);
 	refundCheckMap.put("ordersNo", ordersNo);
-	System.out.println(refundCheckMap);
+
     OrdersDTO cancelRequireList = mypageService.cancelRequire(refundCheckMap);
-    System.out.println("cancelRequireList" + cancelRequireList); 
+    int productPrice = cancelRequireList.getProduct().getProductPrice();
+    System.out.println("할인쿠폰 check전" + productPrice);
+    // 구매시 할인쿠폰 사용여부 check
+    int discountPercent = cancelRequireList.getDiscountPercent();
+    if (discountPercent != 0) {
+    	int productPriceAfterDiscount = productPrice * (100-discountPercent)/100;
+    	productPrice = productPriceAfterDiscount;
+    	System.out.println("할인쿠폰 check후" + productPrice);
+	}
+    
       
       // 주문번호는 어차피 하나이니, 처음 list만 가져와도 ok
       
       model.addAttribute("productNum", productNo);
       model.addAttribute("orderNum", ordersNo);
+      model.addAttribute("productPrice", productPrice);
       model.addAttribute("cancelRequire", cancelRequireList);
       return "mypage/cancelRequire";
    }
@@ -165,11 +163,12 @@ public class MypageController {
    
    
    @GetMapping("/coupon")
-   public String coupon(Model model) {
-      System.out.println("쿠폰내역확인 ㄱㄱ");
+   public String coupon(HttpServletRequest request, Model model) {
+
       
-      // 나중에 @RequestParam등으로 id 받을것
-      String id = "haram511";
+      HttpSession session = request.getSession(true);
+	  MemberDTO member =(MemberDTO) session.getAttribute("member");
+	  String id = member.getId(); 
       
       
       List<CouponDTO> couponList = mypageService.coupon(id);
