@@ -12,8 +12,11 @@ public class ReviewDTO {
 	private int reviewNo;
 	private int productNo;
 	private String id;
-	private String reviewTitle;
 	private String reviewContent;
+	private String reviewImage;
 	private Timestamp reviewDate;
 	private int reviewScore;
+	
+	
+	private int ordersNo;
 }

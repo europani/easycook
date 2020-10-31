@@ -1,5 +1,7 @@
 package com.devon.easycook.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,30 +10,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.OrdersDTO;
-import com.devon.easycook.domain.OrdersDetailDTO;
-import com.devon.easycook.domain.ProductDTO;
-import com.devon.easycook.service.MemberService;
+import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.service.MypageService;
-import com.devon.easycook.service.OrderService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -65,6 +66,7 @@ public class MypageController {
 		int totalpay = detail.get(0).getOrdersTotal();
 		model.addAttribute("detail", detail);
 		model.addAttribute("totalpay", totalpay);
+		model.addAttribute("ordersNo", ordersNo);
 		
 		System.out.println(detail);
 		return "mypage/ordersDetail";
@@ -250,4 +252,49 @@ public class MypageController {
 	   return mv;	   
    }*/
    
+
+
+
+
+
+
+
+
+
+
+
+
+   @GetMapping("/review")
+   public String reviewForm(@RequestParam("productNo") int productNo, @RequestParam("ordersNo") int ordersNo, Model model) {
+	   model.addAttribute("productNo", productNo);
+	   model.addAttribute("ordersNo", ordersNo);
+	   return "mypage/review";
+   }
+
+   @PostMapping("/review")
+   public String review(MultipartHttpServletRequest request, @ModelAttribute ReviewDTO review) {
+	   MultipartFile file = request.getFile("file");
+		if (!file.isEmpty()) {
+			String filename = file.getOriginalFilename();
+			String uploadFolder = request.getServletContext().getRealPath("/resources/images");
+			review.setReviewImage(filename);
+
+			File saveFile = new File(uploadFolder, filename);
+			try {
+				file.transferTo(saveFile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	   HttpSession session = request.getSession();
+	   MemberDTO member = (MemberDTO) session.getAttribute("member");
+	   String id = member.getId();
+	   review.setId(id);
+	   System.out.println(review.getOrdersNo());
+	   mypageService.writeReview(review);
+	   
+	   return "redirect:/mypage/orders";
+   }
+
 }

@@ -12,4 +12,5 @@ public class OrdersDetailDTO {
 	private int detailQty;
 	private int detailSt;
 	private int detailRefund;
+	private int reviewCheck;
 }

@@ -82,7 +82,9 @@
 
 
 
-
+	<update id="updateReviewCheck" parameterType="Review">
+		update orders_detail set REVIEW_CHECK = 1 WHERE orders_no = #{ordersNo} AND product_no = #{productNo}
+	</update>
 
 	<!-- ADMIN -->
 	<select id="countOrder" resultType="int">

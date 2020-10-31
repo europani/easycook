@@ -14,6 +14,7 @@ import com.devon.easycook.domain.CartDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.RefundDTO;
+import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.util.PagingVO;
 
 @Repository
@@ -97,6 +98,22 @@ public class OrderDAO extends AbstractMybatisDAO {
 
 	
 	
+	
+	
+	
+	
+  public void updateReviewCheck(ReviewDTO review) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	   int result = 0;
+	   try {
+	         result = sqlsession.update(namespace + ".updateReviewCheck", review);
+	         if (result != 0) {
+				sqlsession.commit();
+			}
+	   } finally {
+	         sqlsession.close();
+	   }
+	}
 	
 	// ADMIN
 
