@@ -76,7 +76,7 @@
 							
 						<form name="cartForm" method="post"
 								action="/easycook/order/cart/insert">
-								<input type="hidden" name="product_no" value="${detail.productNo}"> 
+								<input type="hidden" name="productNo" value="${detail.productNo}"> 
 								
 							<span class="input-group-btn mr-2">
 								<button type="button" class="quantity-left-minus btn"
@@ -84,7 +84,7 @@
 									<i class="ion-ios-remove"></i>
 								</button>
 							</span> 
-							<input type="text" id="quantity" name="cart_qty"
+							<input type="text" id="quantity" name="cartQty"
 								class="form-control input-number" value="1" min="1" max="10">
 							<span class="input-group-btn ml-2">
 								<button type="button" class="quantity-right-plus btn"
