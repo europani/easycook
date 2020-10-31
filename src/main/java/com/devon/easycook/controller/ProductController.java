@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.devon.easycook.domain.ProductDTO;
+import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.service.ProductService;
 
 @Controller
@@ -79,8 +80,12 @@ public class ProductController {
 	@GetMapping("/{productNo}")
 	public String showDetailProduct(@PathVariable("productNo") int productNo, Model model) {
 		ProductDTO detail = productService.productDetail(productNo);
+		List<ReviewDTO> review = productService.getReview(productNo);
+		ReviewDTO cal = productService.reviewCal(productNo);
 
 		model.addAttribute("detail", detail);
+		model.addAttribute("review", review);
+		model.addAttribute("cal", cal);
 		return "product/productDetail";
 	}
 

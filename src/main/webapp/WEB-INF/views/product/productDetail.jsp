@@ -2,7 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<style>
+	* {
+	  box-sizing: border-box;
+	}
+	
+	.fa {
+	  font-size: 25px;
+	}
+	
+	.checked {
+	  color: orange;
+	}
+
+</style>
 <body class="goto-here">
 	<section class="ftco-section">
 		<div class="container">
@@ -61,7 +76,7 @@
 							
 						<form name="cartForm" method="post"
 								action="/easycook/order/cart/insert">
-								<input type="hidden" name="product_no" value="${detail.productNo}"> 
+								<input type="hidden" name="productNo" value="${detail.productNo}"> 
 								
 							<span class="input-group-btn mr-2">
 								<button type="button" class="quantity-left-minus btn"
@@ -69,7 +84,7 @@
 									<i class="ion-ios-remove"></i>
 								</button>
 							</span> 
-							<input type="text" id="quantity" name="cart_qty"
+							<input type="text" id="quantity" name="cartQty"
 								class="form-control input-number" value="1" min="1" max="10">
 							<span class="input-group-btn ml-2">
 								<button type="button" class="quantity-right-plus btn"
@@ -100,8 +115,45 @@
 		</div>
 	</section>
 	<section class="ftco-section">
-		<div class="container">
-		hi
+		<div class="container" style="font-size: 15px;">
+			<p style="text-align: center; font-size: 40px; color: #1abc9c;">Reviews</p><br>
+			<fmt:parseNumber var="score" value="${cal.reviewScore}" integerOnly="true" />
+			<span class="heading">상품평점</span>
+			<span class="fa fa-star ${score - 1 >= 0? 'checked' : ''}"></span>
+			<span class="fa fa-star ${score - 2 >= 0? 'checked' : ''}"></span>
+			<span class="fa fa-star ${score - 3 >= 0? 'checked' : ''}"></span>
+			<span class="fa fa-star ${score - 4 >= 0? 'checked' : ''}"></span>
+			<span class="fa fa-star ${score - 5 >= 0? 'checked' : ''}"></span>
+			<p><font style="font-size: 20px;"><fmt:formatNumber pattern="#.##">${cal.reviewScore}</fmt:formatNumber></font> average based on ${cal.reviewNo} reviews.</p>
+			<hr style="border:3px solid #f1f1f1">
+			
+			
+				<c:forEach var="review" items="${review}">
+				<table>
+				<tr> 
+					<td>구매자 : ${review.id}</td>				
+				</tr>
+				<tr> 
+					<td>
+						<c:if test="${review.reviewScore == 5}">★★★★★</c:if>
+						<c:if test="${review.reviewScore == 4}">★★★★☆</c:if>
+						<c:if test="${review.reviewScore == 3}">★★★☆☆</c:if>
+						<c:if test="${review.reviewScore == 2}">★★☆☆☆</c:if>
+						<c:if test="${review.reviewScore == 1}">★☆☆☆☆</c:if>
+						<c:if test="${review.reviewScore == 0}">☆☆☆☆☆</c:if>
+					</td>
+				<tr> 
+					<td><fmt:formatDate value="${review.reviewDate}" pattern="yyyy-MM-dd"/></td>				
+				</tr>		
+				<tr> 
+					<td><img width="100" height="100" src="<%=request.getContextPath() %>/resources/upload/${review.reviewImage}"></td>				
+				</tr>
+				<tr> 
+					<td>${review.reviewContent}</td>				
+				</tr>			
+				<hr>	
+				</table>
+				</c:forEach>
 		</div>
 	</section>
 		<script>

@@ -46,6 +46,21 @@
 		WHERE product_no = #{productNo}
 	</select>
 
+	
+	
+	
+	
+	
+	
+	<select id="reviewCal" parameterType="int" resultType="Review">
+		SELECT count(*) AS reviewNo, NVL(avg(review_score), 0) AS reviewScore FROM review where product_no = #{productNo}
+	</select>
+	
+	<select id="getReview" parameterType="int" resultType="Review">
+		SELECT id, review_content AS reviewContent, review_image AS reviewImage, review_date AS reviewDate, review_score AS reviewScore
+			FROM review WHERE product_no = #{productNo}
+	</select>
+	
 	<!-- ADMIN -->
 	<select id="countByCategory" parameterType="String" resultType="int">
 		SELECT count(*)+1 FROM product WHERE category= #{category}
