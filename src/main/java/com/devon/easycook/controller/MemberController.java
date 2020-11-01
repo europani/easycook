@@ -240,7 +240,7 @@ public class MemberController {
 		member.setTel2(tel.substring(tel.indexOf("-") + 1, tel.lastIndexOf("-")));
 		member.setTel3(tel.substring(tel.lastIndexOf("-") + 1));
 		member.setAddress1(address.substring(0, address.indexOf(",")));
-		member.setAddress2(address.substring(address.indexOf(",") + 1, address.indexOf("(") - 1));
+		member.setAddress2(address.substring(address.indexOf(",") + 1, address.indexOf("(")));
 		member.setAddress3(address.substring(address.indexOf("(")));
 		model.addAttribute("info", member);
 
@@ -257,11 +257,8 @@ public class MemberController {
 		boolean passMatch = passEncoder.matches(member.getPwd(), dbPwd);
 		if (passMatch) {
 			memberService.modify(member);
-
-			return "redirect:/";
-		} else {
-			return "redirect:/member/modify";
-		}
+		} 
+		return "redirect:/member/modify";
 	}
 
 	@GetMapping("/delete")

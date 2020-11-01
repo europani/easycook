@@ -53,7 +53,7 @@
 	
 </table>
 <div id="click">
-	<a href="<%=request.getContextPath() %>/board/notice"  class="btn btn-default">목록</a>
+	<a href="<%=request.getContextPath() %>/notice"  class="btn btn-default">목록</a>
 </div>
 </div>
 </section>
