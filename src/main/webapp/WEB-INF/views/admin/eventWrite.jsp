@@ -35,7 +35,14 @@
       </nav>
 	<div class="w3-container w3-center ">
 		<h2>이벤트 등록</h2>
-
+		<table class="w3-table-all" style="width:50%;">
+			<tr>
+				<td>
+					<input type="radio" name="type" onclick="eventType()"> 일반이벤트 &nbsp;&nbsp;&nbsp;
+					<input type="radio" name="type" id="coupon" onclick="eventType()"> 쿠폰이벤트
+				</td>
+				</tr>
+		</table>
 		<form method="post" action="write" name="writeForm" enctype="multipart/form-data">
 			<table class="w3-table-all" style="width:50%;">
 				<tr>
@@ -58,6 +65,10 @@
 				<tr>
 					<td width="70" align="center">종료일</td>
 					<td width="330"><input type="date" name="eventEnddate"></td>
+				</tr>
+				<tr class="couponForm" style="display:none;">
+					<td width="70" align="center">쿠폰번호</td>
+					<td width="330"><input type="text" size="40" maxlength="50" name="couponNo" disabled></td>
 				</tr>
 				<tr>
 					<td colspan=2 align="center">
@@ -85,6 +96,16 @@
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
 	});
+	
+	function eventType() {
+		if($('input:radio[id=coupon]').is(':checked')){	// 쿠폰이벤트
+	        $('.couponForm').show();
+	        $('input[name=couponNo]').attr("disabled", false);
+	    } else {
+	    	$('.couponForm').hide();
+	        $('input[name=couponNo]').attr("disabled", true);
+	    }
+	}
 </script>
 
 </body>

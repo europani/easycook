@@ -17,4 +17,5 @@ public class EventDTO {
 	private Date eventStartdate;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date eventEnddate;
+	private int couponNo;
 }

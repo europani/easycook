@@ -71,8 +71,97 @@
 			</a>
 		</div>
 	</section>
+	
+		<!--------------------------------Best4 ---------------------->
+	<section class="best-seller-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="titie-section wow fadeInDown animated ">
+						<h1>BEST4</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
+					data-wow-delay="0.2s">
+					<div class="product-item">
+						<img src="<%=request.getContextPath() %>/resources/product/product1.jpg" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-cart"></i>detail</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>비빔밥</h3>
+							</a>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
+					data-wow-delay="0.4s">
+					<div class="product-item">
+						<img src="<%=request.getContextPath() %>/resources/product/product19.jpg" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-cart"></i>detail</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>라멘</h3>
+							</a>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
+					data-wow-delay="0.6s">
+					<div class="product-item">
+						<img src="<%=request.getContextPath() %>/resources/product/product10.jpg" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-cart"></i>detail</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>햄박스테이크</h3>
+							</a>
+						</div>
+					</div>
+				</div> 
+				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
+					data-wow-delay="0.8s">
+					<div class="product-item">
+						<img src="<%=request.getContextPath() %>/resources/product/product11.jpg" class="img-responsive"
+							width="255" height="322" alt="">
+						<div class="product-hover">
+							<div class="product-meta">
+								<a href="#"><i class="pe-7s-cart"></i>detail</a>
+							</div>
+						</div>
+						<div class="product-title">
+							<a href="#">
+								<h3>폭립</h3>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ============================================================================= -->
 
-	<!-- 핫딜 -->
+<!-- 	
+		<핫딜> 
 
 	<section class="ftco-section img" style="background-image: url((/easycook/resources/mart/css/images/timeback.jpg);">
        <div class="container">
@@ -92,7 +181,7 @@
           </div>
         </div>         
        </div>
-    </section>
+    </section> -->
 	
 
 
@@ -101,6 +190,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 wow fadeInDown animated ">
+					<h1>EVENT</h1>
 					<h1>TIME SALE</h1>
 					<h2>Up to 35% off</h2>
 				</div>
@@ -109,105 +199,7 @@
 	</section>
 	<!-- ============================================================================= -->
 
-	<!--------------------------------Best4 ---------------------->
-	<section class="best-seller-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="titie-section wow fadeInDown animated ">
-						<h1>BEST3</h1>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
-					data-wow-delay="0.2s">
-					<div class="product-item">
-						<img src="/easycook/resources/images/food1.jpg" class="img-responsive"
-							width="255" height="322" alt="">
-						<div class="product-hover">
-							<div class="product-meta">
-								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
-									class="pe-7s-shuffle"></i></a> <a href="#"><i
-									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
-									to Cart</a>
-							</div>
-						</div>
-						<div class="product-title">
-							<a href="#">
-								<h3>Blue Tshirt</h3> <span>$26</span>
-							</a>
-						</div>
-					</div>
-				</div>
-				
-				
-				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
-					data-wow-delay="0.4s">
-					<div class="product-item">
-						<img src="/easycook/resources/images/food2.jpg" class="img-responsive"
-							width="255" height="322" alt="">
-						<div class="product-hover">
-							<div class="product-meta">
-								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
-									class="pe-7s-shuffle"></i></a> <a href="#"><i
-									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
-									to Cart</a>
-							</div>
-						</div>
-						<div class="product-title">
-							<a href="#">
-								<h3>WOMAN shirt</h3> <span>$31</span>
-							</a>
-						</div>
-					</div>
-				</div>
-				
-				
-				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
-					data-wow-delay="0.6s">
-					<div class="product-item">
-						<img src="/easycook/resources/images/food3.jpg" class="img-responsive"
-							width="255" height="322" alt="">
-						<div class="product-hover">
-							<div class="product-meta">
-								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
-									class="pe-7s-shuffle"></i></a> <a href="#"><i
-									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
-									to Cart</a>
-							</div>
-						</div>
-						<div class="product-title">
-							<a href="#">
-								<h3>YELLOW Tshirt</h3> <span>$21</span>
-							</a>
-						</div>
-					</div>
-				</div> 
-				<div class="col-md-3 col-sm-6 wow fadeInDown animated"
-					data-wow-delay="0.8s">
-					<div class="product-item">
-						<img src="/easycook/resources/images/food3.jpg" class="img-responsive"
-							width="255" height="322" alt="">
-						<div class="product-hover">
-							<div class="product-meta">
-								<a href="#"><i class="pe-7s-like"></i></a> <a href="#"><i
-									class="pe-7s-shuffle"></i></a> <a href="#"><i
-									class="pe-7s-clock"></i></a> <a href="#"><i class="pe-7s-cart"></i>Add
-									to Cart</a>
-							</div>
-						</div>
-						<div class="product-title">
-							<a href="#">
-								<h3>Cool lingerie</h3> <span>$56</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- ============================================================================= -->
+
 
 	<!--------------------------------여기에 상품 적용할것 ---------------------->
 	

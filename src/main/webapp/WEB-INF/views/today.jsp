@@ -27,7 +27,7 @@
 			<div class="row text-">
 				<div class="col-md-8 pl-5 heading-section ftco-animate deal-of-the-day ftco-animate">
 					<span class="subheading"></span>
-					<h3 class="mb-auto">오늘의 핫딜!!</h3>
+					<h2 class="mb-auto">Deal of the day</h2>
 					<p>매일 달라지는 할인 메뉴를 확인하세요</p>
 					<h3><a href="#">${detail.productName}</a></h3>
 					<span class="price">50% OFF</a></span>
