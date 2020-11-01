@@ -49,7 +49,7 @@
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<!-- 찜하기 -->
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    							<a href="/easycook/mypage/wishlistAdd/${row.productNo}" class="heart d-flex justify-content-center align-items-center ">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a>
     							</div>

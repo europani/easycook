@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.domain.ReviewDTO;
+import com.devon.easycook.domain.WishlistDTO;
 
 @Repository
 public class MypageDAO extends AbstractMybatisDAO{
@@ -80,8 +82,31 @@ public class MypageDAO extends AbstractMybatisDAO{
 		}
 	}
    
+   public void wishlistInput(Map<String, Object> wishlistMap) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	   int result = 0;
+	   try {
+		   result = sqlsession.insert(namespace + ".wishlistInput", wishlistMap);
+		   if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	  
+   }
+   
+   public List<WishlistDTO> wishlist(String id) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	   try {
+		   return sqlsession.selectList(namespace + ".wishlist", id);
+		} finally {
+			sqlsession.close();
+		}
+	  
+   }
+   
    public OrdersDTO cancelRequire(Map<String, Object> refundCheckMap) {
-	   System.out.println(refundCheckMap);
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
          return sqlsession.selectOne(namespace + ".cancelRequire", refundCheckMap);

@@ -67,6 +67,20 @@
 </resultMap>
 
 
+<!-- 위시리스트 데이터 불러오는 resultMap 설정  -->
+<resultMap type="wishlist" id="myWishlist">
+	<id property="productNo" column="product_no"/>
+	<result property="id" column="id"/>
+
+	<association property="product" javaType="Product">
+	<id property="productNo" column="product_no"/>
+ 	<result property="productName" column="product_name"/>
+ 	<result property="productDetail" column="product_detail"/>
+    <result property="productPrice" column="product_price"/>
+    <result property="productImage" column="product_image"/>
+    <result property="productAmount" column="product_amount"/>
+	</association>
+</resultMap>
 
 
 
@@ -188,6 +202,29 @@
    </select>
    
    
+   <!-- wishlist 추가하기 -->
+   <select id="wishlistInput">
+   Insert into WISHLIST(id, product_no)
+   	VALUES (#{id}, #{productNo})
+   </select>
+   
+   
+   <!-- wishlist 목록 출력 -->
+   <select id="wishlist" parameterType="String" resultMap="myWishlist">
+   SELECT
+   	w.id,
+   	p.product_no,
+   	p.product_name,
+   	p.product_detail,
+   	p.product_price,
+   	p.product_image,
+   	p.product_amount
+   FROM
+   	wishlist w, product p
+   WHERE
+   	w.id = #{id} and w.product_no = p.product_no
+   </select>
+   
    <!-- 취소/반품가능 목록 확인하기  -->
    <select id="cancelRequire" parameterType="HashMap" resultMap="cancelRequire">
    select  
@@ -205,6 +242,11 @@
     o.orders_no = od.orders_no and
    	od.product_no = p.product_no
    </select>
+   
+   
+   
+   
+   
    
    
    

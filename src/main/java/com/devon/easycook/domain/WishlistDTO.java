@@ -9,4 +9,6 @@ public class WishlistDTO {
 
 	private String id;
 	private int productNo;
+	
+	private ProductDTO product;
 }

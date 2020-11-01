@@ -33,6 +33,7 @@ import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.domain.ReviewDTO;
+import com.devon.easycook.domain.WishlistDTO;
 import com.devon.easycook.service.MypageService;
 
 @Controller
@@ -133,10 +134,7 @@ public class MypageController {
       model.addAttribute("cancelRequire", cancelRequireList);
       return "mypage/cancelRequire";
    }
-   
-   
-
-   
+     
    
    	// 주문취소 경고창  
 	@GetMapping("returnOrderQuestion/{ordersNo}")
@@ -145,17 +143,40 @@ public class MypageController {
 		return "mypage/returnOrder";
 	}
    
-	
-
    
-	
-	
-	
+   @GetMapping("/wishlistAdd/{productNo}")
+   public String wishlistAdd(@PathVariable("productNo") int productNo,
+		   HttpServletRequest request) {
+	   	  
+	  HttpSession session = request.getSession(true);
+	  MemberDTO member =(MemberDTO) session.getAttribute("member");
+	  String id = member.getId();
+	  
+	  Map<String, Object> wishlistMap = new HashMap<String, Object>();
+	  wishlistMap.put("id", id);
+	  wishlistMap.put("productNo", productNo);
+	  System.out.println("wishlistMap" + wishlistMap);
+	  mypageService.wishlistInput(wishlistMap);
+	  
+
+      return "mypage/wishlistAddSuccess";
+   }
    
    @GetMapping("/wishlist")
-   public String wishlist() {
+   public String wishlist(HttpServletRequest request ,Model model) {
+	   	  
+	  HttpSession session = request.getSession(true);
+	  MemberDTO member =(MemberDTO) session.getAttribute("member");
+	  String id = member.getId();
+	  List<WishlistDTO> myWishlist = mypageService.wishlist(id);
+	  myWishlist.get(0).getProductNo();
+	  myWishlist.get(0).getProduct().getProductNo();
+	  System.out.println("wishlist ok:" + myWishlist);
+	  model.addAttribute("myWishlist", myWishlist);
       return "mypage/wishlist";
    }
+   
+   
    @GetMapping("/cancel")
    public String cancle() {
       return "mypage/cancel";

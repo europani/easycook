@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
   <section class="ftco-section ftco-cart">
 <jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
@@ -17,13 +18,13 @@
                            <th>&nbsp;</th>
                            <th>상품목록</th>
                            <th>&nbsp;</th>
+                           <th>중량</th>
                            <th>가격</th>
-                           <th>수량</th>
-                           <th>총액</th>
                         </tr>
                      </thead>
                      <tbody>
-                        <tr class="text-center">
+                     <c:forEach var="list" items="${myWishlist }">
+                        <tr class="text-center">                     
                            <td class="product-remove"><a href="#"><span
                                  class="ion-ios-close"></span></a></td>
 
@@ -31,77 +32,13 @@
                                  style="background-image: url(../resources/images/product-1.jpg);"></div></td>
 
                            <td class="product-name">
-                              <h3>Bell Pepper</h3>
-                              <p>Far far away, behind the word mountains, far from the
-                                 countries</p>
+                              <h3>${list.product.productName }</h3>
+                              <p>${list.product.productDetail }</p>
                            </td>
-
-                           <td class="price">$4.90</td>
-
-                           <td class="quantity">
-                              <div class="input-group mb-3">
-                                 <input type="text" name="quantity"
-                                    class="quantity form-control input-number" value="1" min="1"
-                                    max="100">
-                              </div>
-                           </td>
-
-                           <td class="total">$4.90</td>
+						   <td class="total">${list.product.productAmount }</td>
+                           <td class="price">${list.product.productPrice }</td>             
                         </tr>
-                        <!-- END TR-->
-
-                        <tr class="text-center">
-                           <td class="product-remove"><a href="#"><span
-                                 class="ion-ios-close"></span></a></td>
-
-                           <td class="image-prod"><div class="img"
-                                 style="background-image: url(../resources/images/product-2.jpg);"></div></td>
-
-                           <td class="product-name">
-                              <h3>Bell Pepper</h3>
-                              <p>Far far away, behind the word mountains, far from the
-                                 countries</p>
-                           </td>
-
-                           <td class="price">$15.70</td>
-
-                           <td class="quantity">
-                              <div class="input-group mb-3">
-                                 <input type="text" name="quantity"
-                                    class="quantity form-control input-number" value="1" min="1"
-                                    max="100">
-                              </div>
-                           </td>
-
-                           <td class="total">$15.70</td>
-                        </tr>
-                        <!-- END TR-->
-
-                        <tr class="text-center">
-                           <td class="product-remove"><a href="#"><span
-                                 class="ion-ios-close"></span></a></td>
-
-                           <td class="image-prod"><div class="img"
-                                 style="background-image: url(../resources/images/product-3.jpg);"></div></td>
-
-                           <td class="product-name">
-                              <h3>Bell Pepper</h3>
-                              <p>Far far away, behind the word mountains, far from the
-                                 countries</p>
-                           </td>
-
-                           <td class="price">$15.70</td>
-
-                           <td class="quantity">
-                              <div class="input-group mb-3">
-                                 <input type="text" name="quantity"
-                                    class="quantity form-control input-number" value="1" min="1"
-                                    max="100">
-                              </div>
-                           </td>
-
-                           <td class="total">$15.70</td>
-                        </tr>
+                        </c:forEach>
                         <!-- END TR-->
                      </tbody>
                   </table>
@@ -118,7 +55,7 @@
       </div>
    </section>
    <script>
-      $(document).ready(function(){
+/*       $(document).ready(function(){
 
       var quantitiy=0;
          $('.quantity-right-plus').click(function(e){
@@ -151,7 +88,7 @@
                   }
           });
           
-      });
+      }); */
    </script>
 
 
