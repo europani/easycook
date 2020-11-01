@@ -1,6 +1,7 @@
 package com.devon.easycook.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.devon.easycook.domain.EventDTO;
+import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.NoticeDTO;
 import com.devon.easycook.service.BoardService;
 
@@ -131,6 +135,20 @@ public class BoardController {
 		EventDTO detail = boardService.eventDetail(eventNo);
 		model.addAttribute("detail", detail);
 		return "board/eventDetail";
+	}
+	
+	@GetMapping("/event/coupon")
+	@ResponseBody
+	public int giveCoupon(@RequestParam("couponNo") int couponNo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO) session.getAttribute("member");
+		String id = member.getId();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("couponNo", couponNo);
+		map.put("id", id);
+		
+		return boardService.giveCoupon(map);
 	}
 	
 	

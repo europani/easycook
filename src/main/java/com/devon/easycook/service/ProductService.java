@@ -83,4 +83,5 @@ public class ProductService {
 	public Date getDate() {
 		return productDao.getDate();
 	}
+
 }

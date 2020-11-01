@@ -54,15 +54,19 @@
 
    <!-- 상세 -->
    <select id="eventDetail" parameterType="hashmap" resultType="Event">
-      select event_no AS eventNO, event_title AS eventTitle, event_image AS eventImage, event_startdate AS eventStartdate, event_enddate AS eventEnddate
+      select event_no AS eventNO, event_title AS eventTitle, event_content AS eventContent, event_image AS eventImage, event_startdate AS eventStartdate, event_enddate AS eventEnddate, coupon_no AS couponNo
        from event
        where EVENT_NO=#{eventNo}
    </select>
    
    
+   <select id="checkUserCoupon" parameterType="hashmap" resultType="int">
+   		SELECT count(*) FROM ucoupon WHERE id = #{id} AND coupon_no = #{couponNo}
+   </select>
    
-   
-   
+   <insert id="giveCoupon" parameterType="hashmap">
+   		INSERT INTO ucoupon VALUES (ucouponseq.nextval, #{id}, 0, #{couponNo})
+   </insert>
    
    <!-- ADMIN -->
    <select id="getNoticeInfo" resultType="Notice">
@@ -115,10 +119,10 @@
 	
 	<insert id="eventWrite" parameterType="Event">
 		<if test="eventImage != null">
-			INSERT INTO event VALUES (eventSeq.nextval, #{eventTitle}, #{eventContent}, #{eventImage}, #{eventStartdate}, #{eventEnddate})
+			INSERT INTO event VALUES (eventSeq.nextval, #{eventTitle}, #{eventContent}, #{eventImage}, #{eventStartdate}, #{eventEnddate}, #{couponNo})
 		</if>
 		<if test="eventImage == null">
-			INSERT INTO event(event_no, event_title, event_content, event_startdate, event_enddate) VALUES (eventSeq.nextval, #{eventTitle}, #{eventContent}, #{eventStartdate}, #{eventEnddate})
+			INSERT INTO event(event_no, event_title, event_content, event_startdate, event_enddate, coupon_no) VALUES (eventSeq.nextval, #{eventTitle}, #{eventContent}, #{eventStartdate}, #{eventEnddate}, #{couponNo})
 		</if>
 	</insert>
 	
@@ -128,7 +132,7 @@
 	</select>
 	
 	<update id="eventModify" parameterType="Event">
-		UPDATE event SET event_title = #{eventTitle}, event_content = #{eventContent}, event_startdate = #{eventStartdate}, event_enddate = #{eventEnddate}
+		UPDATE event SET event_title = #{eventTitle}, event_content = #{eventContent}, event_startdate = #{eventStartdate}, event_enddate = #{eventEnddate}, coupon_no=#{couponNo}
 		<if test="eventImage != null">
 			, event_image = #{eventImage}
 		</if>
@@ -138,5 +142,33 @@
 	<delete id="eventDelete" parameterType="int">
 		DELETE FROM event WHERE event_no = #{eventNo}
 	</delete>
+	
+	
+	<select id="getCouponNo" resultType="int">
+		SELECT coupon_no FROM coupon WHERE coupon_discount != -1
+	</select>
+	
+	<select id="getCouponList" resultType="Coupon">
+		SELECT coupon_no AS couponNo, coupon_title AS couponTitle, coupon_discount AS couponDiscount, coupon_sdate AS couponSdate, coupon_edate AS couponEdate
+			FROM coupon
+	</select>
+	
+	<select id="getCoupon" resultType="Coupon">
+		 SELECT coupon_no AS couponNo, coupon_title AS couponTitle, coupon_discount AS couponDiscount, coupon_sdate AS couponSdate, coupon_edate AS couponEdate
+			FROM coupon
+			WHERE coupon_no = #{couponNo}
+	</select>
+	
+	<insert id="insertCoupon">
+		INSERT INTO coupon VALUES (couponseq.nextval, #{couponTitle}, #{couponDiscount}, #{couponSdate}, #{couponEdate})
+	</insert>
+	
+	<update id="modifyCoupon">
+		UPDATE coupon SET coupon_title = #{couponTitle}, coupon_discount=#{couponDiscount}, coupon_sdate=#{couponSdate}, coupon_edate=#{couponEdate} WHERE coupon_no=#{couponNo} 
+	</update>
+	
+	<update id="deleteCoupon">
+		UPDATE coupon SET coupon_title='', coupon_discount=-1, coupon_sdate='', coupon_edate='' WHERE coupon_no=#{couponNo}
+	</update>
 
 </mapper>

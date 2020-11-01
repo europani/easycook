@@ -1,6 +1,8 @@
 package com.devon.easycook.domain;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -10,7 +12,9 @@ public class CouponDTO {
 	private int couponNo;
 	private String couponTitle;
 	private int couponDiscount;
-	private Timestamp couponSdate;
-	private Timestamp couponEdate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date couponSdate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date couponEdate;
 	
 }

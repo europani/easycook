@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.EventDTO;
 import com.devon.easycook.domain.NoticeDTO;
 import com.devon.easycook.util.PagingVO;
@@ -215,4 +216,96 @@ public class BoardDAO extends AbstractMybatisDAO {
 		}
 	}
 
+	
+	public List<Integer> getCouponNo() {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectList(namespace + ".getCouponNo");
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public List<CouponDTO> getCouponList() {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectList(namespace + ".getCouponList");
+		}finally {
+			sqlsession.close();
+		}
+	}
+
+	public CouponDTO getCoupon(int couponNo) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".getCoupon", couponNo);
+		}finally {
+			sqlsession.close();
+		}
+	}
+	
+	public void couponWrite(CouponDTO coupon) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.insert(namespace + ".insertCoupon", coupon);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+		
+	}
+
+	public void couponModify(CouponDTO coupon) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".modifyCoupon", coupon);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public void couponDelete(int couponNo) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlSession.update(namespace + ".deleteCoupon", couponNo);
+			if (result != 0) {
+				sqlSession.commit();
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public int checkUserCoupon(HashMap<String, Object> map) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".checkUserCoupon", map);
+		}finally {
+			sqlsession.close();
+		}
+	}
+
+	public int giveCoupon(HashMap<String, Object> map) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.insert(namespace + ".giveCoupon", map);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+			return result;
+		}finally {
+			sqlsession.close();
+		}
+	}
+
+	
 }

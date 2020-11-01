@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.EventDTO;
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.NoticeDTO;
@@ -357,7 +358,7 @@ public class AdminController {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
-			String uploadFolder = request.getServletContext().getRealPath("/resources/images");
+			String uploadFolder = request.getServletContext().getRealPath("/resources/upload");
 			notice.setNoticeFilename(filename);
 
 			File saveFile = new File(uploadFolder, filename);
@@ -388,7 +389,7 @@ public class AdminController {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
-			String uploadFolder = request.getServletContext().getRealPath("/resources/images");
+			String uploadFolder = request.getServletContext().getRealPath("/resources/upload");
 			notice.setNoticeFilename(filename);
 
 			File saveFile = new File(uploadFolder, filename);
@@ -439,7 +440,10 @@ public class AdminController {
 	}
 	
 	@GetMapping("/event/write")
-	public String eventWriteForm() {
+	public String eventWriteForm(Model model) {
+		List<Integer> couponNo = boardService.getCouponNo();
+		
+		model.addAttribute("couponNo", couponNo);
 		return "admin/eventWrite";
 	}
 	
@@ -448,7 +452,7 @@ public class AdminController {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
-			String uploadFolder = request.getServletContext().getRealPath("/resources/images");
+			String uploadFolder = request.getServletContext().getRealPath("/resources/upload");
 			event.setEventImage(filename);
 
 			File saveFile = new File(uploadFolder, filename);
@@ -486,7 +490,7 @@ public class AdminController {
 		MultipartFile file = request.getFile("file");
 		if (!file.isEmpty()) {
 			String filename = file.getOriginalFilename();
-			String uploadFolder = request.getServletContext().getRealPath("/resources/images");
+			String uploadFolder = request.getServletContext().getRealPath("/resources/upload");
 			event.setEventImage(filename);
 
 			File saveFile = new File(uploadFolder, filename);
@@ -511,5 +515,62 @@ public class AdminController {
 	@ResponseBody
 	public void eventDelete(@PathVariable("eventNo") int eventNo) {
 		boardService.eventDelete(eventNo);
+	}
+	
+	
+	
+	@GetMapping("/coupon")
+	public String coupon(Model model) throws Exception {
+		List<CouponDTO> list = boardService.getCouponList();
+		model.addAttribute("coupon", list);
+		
+		return "admin/coupon";
+	}
+	
+	@GetMapping("/coupon/write")
+	public String couponWriteForm(Model model) {
+		return "admin/couponWrite";
+	}
+	
+	@PostMapping("/coupon/write")
+	public String couponWrite(@ModelAttribute CouponDTO coupon) {
+		boardService.couponWrite(coupon);
+		
+		return "redirect:/admin/coupon";
+	}
+	
+	
+	@GetMapping("/coupon/modify/{couponNo}")
+	public String couponModifyForm(Model model, @PathVariable("couponNo") int couponNo) {
+		CouponDTO coupon = boardService.getCoupon(couponNo);
+		model.addAttribute("coupon", coupon);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String start = sdf.format(coupon.getCouponSdate());
+		String end = sdf.format(coupon.getCouponEdate());
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
+		
+		return "admin/couponModify";
+	}
+	
+	@PostMapping("/coupon/modify/{couponNo}")
+	public String couponModify(@PathVariable("couponNo") int couponNo, @ModelAttribute CouponDTO coupon) {
+		coupon.setCouponNo(couponNo);
+		boardService.couponModify(coupon);
+		
+		return "redirect:/admin/coupon";
+	}
+	
+	@GetMapping("/coupon/delete/{couponNo}")
+	public String couponDeleteForm(Model model, @PathVariable("couponNo") int couponNo) {
+		model.addAttribute("couponNo", couponNo);
+		return "admin/couponDelete";
+	}
+	
+	@PostMapping("/coupon/delete/{couponNo}")
+	@ResponseBody
+	public void couponDelete(@PathVariable("couponNo") int couponNo) {
+		boardService.couponDelete(couponNo);
 	}
 }
