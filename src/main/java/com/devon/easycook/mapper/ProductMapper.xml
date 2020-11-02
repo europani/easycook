@@ -115,4 +115,6 @@
 	<select id="getDate" resultType="Date">
 		SELECT todate+1 FROM today WHERE TO_char(todate, 'yyyy-MM-dd') = TO_char(SYSDATE, 'yyyy-MM-dd')
 	</select>
+	
+	
 </mapper>

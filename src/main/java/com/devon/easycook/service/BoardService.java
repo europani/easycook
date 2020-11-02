@@ -1,10 +1,12 @@
 package com.devon.easycook.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.EventDTO;
 import com.devon.easycook.domain.NoticeDTO;
 import com.devon.easycook.repository.BoardDAO;
@@ -86,4 +88,40 @@ public class BoardService {
 	public void eventDelete(int eventNo) {
 		boardDao.eventDelete(eventNo);
 	}
+	
+	
+	public List<Integer> getCouponNo() {
+		return boardDao.getCouponNo();
+	}
+
+	public List<CouponDTO> getCouponList() {
+		return boardDao.getCouponList();
+	}
+
+	public CouponDTO getCoupon(int couponNo) {
+		return boardDao.getCoupon(couponNo);
+	}
+
+	public void couponWrite(CouponDTO coupon) {
+		boardDao.couponWrite(coupon);
+	}
+	
+	public void couponModify(CouponDTO coupon) {
+		boardDao.couponModify(coupon);
+	}
+
+	public void couponDelete(int couponNo) {
+		boardDao.couponDelete(couponNo);
+	}
+
+	public int giveCoupon(HashMap<String, Object> map) {
+		int result = boardDao.checkUserCoupon(map);
+		if (result == 0) {
+			return boardDao.giveCoupon(map);
+		} else {
+			return 0;
+		}
+		
+	}
+
 }

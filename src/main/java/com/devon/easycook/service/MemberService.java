@@ -57,8 +57,8 @@ public class MemberService {
 		memberDao.changePwd(map);
 	}
 
-	public void modify(MemberDTO member) {
-		memberDao.modify(member);
+	public int modify(MemberDTO member) {
+		return memberDao.modify(member);
 	}
 	
 	public void delete(String id) {

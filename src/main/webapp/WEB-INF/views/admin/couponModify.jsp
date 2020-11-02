@@ -36,35 +36,24 @@
         </div>
       </nav>
 	<div class="w3-container w3-center ">
-		<h2>이벤트 등록</h2>
-
-		<form method="post" action="" name="writeForm" enctype="multipart/form-data">
+		<h2>쿠폰 수정</h2>
+		<form method="post" action="" name="writeForm" >
 			<table class="w3-table-all" style="width:50%;">
 				<tr>
-					<td width="70" align="center">번 호</td>
-					<td width="330">${event.eventNo}</td>
-				</tr>
-				<tr>
 					<td width="70" align="center">제 목</td>
-					<td width="330"><input type="text" size="40" maxlength="50" name="eventTitle" value="${event.eventTitle}"></td>
+					<td width="330"><input type="text" size="40" maxlength="50" name="couponTitle" value="${coupon.couponTitle}"></td>
 				</tr>
 				<tr>
-					<td width="70" align="center">내 용</td>
-					<td width="330"><textarea name="eventContent" rows="13" cols="40">${event.eventContent}</textarea>
-					</td>
-				</tr>
-				<tr>
-					<td width="70" align="center">첨부파일</td>
-					<td width="330"><input type="file" size="40" maxlength="30" name="file"><br>
-					(기존 파일: ${event.eventImage})</td>
+					<td width="70" align="center">할인률</td>
+					<td width="330"><input type="text" size="5" maxlength="50" name="couponDiscount" value="${coupon.couponDiscount}"> (%)</td>
 				</tr>
 				<tr>
 					<td width="70" align="center">시작일</td>
-					<td width="330"><input type="date" name="eventStartdate" value="${start}"></td>
+					<td width="330"><input type="date" name="couponSdate" value="${start}"></td>
 				</tr>
 				<tr>
 					<td width="70" align="center">종료일</td>
-					<td width="330"><input type="date" name="eventEnddate" value="${end}"></td>
+					<td width="330"><input type="date" name="couponEdate" value="${end}"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
@@ -91,7 +80,6 @@
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
 	});
-	
 </script>
 
 </body>

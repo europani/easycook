@@ -119,7 +119,7 @@ public class MemberDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	public void modify(MemberDTO member) {
+	public int modify(MemberDTO member) {
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
 		try {
@@ -127,6 +127,7 @@ public class MemberDAO extends AbstractMybatisDAO {
 			if (result != 0) {
 				sqlsession.commit();
 			}
+			return result;
 		} finally {
 			sqlsession.close();
 		}

@@ -11,7 +11,7 @@
 <body class="goto-here">
 <section class="ftco-section">
 <jsp:include page="/WEB-INF/views/common/boardSidebar.jsp" />
-	<div class="container" style="padding-left:70px; height:800px;">
+	<div class="container" style="padding-left:70px;">
 		<h1>이벤트</h1>
 		<hr style="border-color:#1abc9c">
 		<table class="event">
@@ -22,21 +22,20 @@
 				<a href="<%=request.getContextPath() %>/event/${event.eventNo}">
 				<img src="<%=request.getContextPath() %>/resources/upload/${event.eventImage}" width="250" height="250"></a></td>
 				<td style="padding-left: 40px; padding-bottom: 50px;">
-					<h3>
+					<h2>
 						이벤트명 : <small>${event.eventTitle }</small>
-					</h3>
-					<h3>
+					</h2>
+					<h2>
 						이벤트 내용 : <small>${event.eventContent }</small>
-					</h3>
-					<h3>이벤트 기간 :<small><fmt:formatDate value="${event.eventStartdate }" pattern="yyyy-MM-dd"/> ~ 
+					</h2>
+					<h2>이벤트 기간 :<small><fmt:formatDate value="${event.eventStartdate }" pattern="yyyy-MM-dd"/> ~ 
 						<fmt:formatDate value="${event.eventEnddate }" pattern="yyyy-MM-dd"/></small>
-					</h3>
+					</h2>
 			</tr>
 			
 		</c:forEach>
 		</table>
-		<br><br><br>
-	
+		<hr style="border-color:#1abc9c">
 	</div>
 	</section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

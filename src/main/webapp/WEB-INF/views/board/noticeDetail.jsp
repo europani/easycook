@@ -41,17 +41,19 @@
 		<td>조회수 ${article.noticeCount}</td>
 	</tr>
 	<tr>
-	<td  colspan="3" style="text-align:center;"> 
-	<img src="<%=request.getContextPath() %>/resources/upload/${article.noticeFilename}" 
-			style="height:500;width:500px;"></td>
-	</tr>
-	<tr>
 		<td colspan="3"><p>${article.noticeContent}</p>
 	</tr>
+	<c:if test="${article.noticeFilename != null}">
+	<tr>
+		<td colspan="3" style="text-align:center;"> 
+		<img src="<%=request.getContextPath() %>/resources/upload/${article.noticeFilename}" 
+				style="height:500px;width:500px;"></td>
+	</tr>
+	</c:if>
 	
 </table>
 <div id="click">
-	<a href="<%=request.getContextPath() %>/board/list"  class="btn btn-default">목록</a>
+	<a href="<%=request.getContextPath() %>/notice"  class="btn btn-default">목록</a>
 </div>
 </div>
 </section>

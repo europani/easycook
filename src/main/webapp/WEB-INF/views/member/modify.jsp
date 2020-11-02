@@ -94,15 +94,13 @@
     <jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
     <div id="jb-container">
       <div id="jb-content">
-        <h2>회원수정</h2>
+        <h2>회원정보수정</h2>
         <hr>
         <br><br>
-        <h3 align="left">01.기본 회원정보</h3>
         <br>	
         <div id="content-detail">
 	    <form method="post" class="sign" name="signUpForm" action="modify">
 			<table width="720">
-			<h2 align="center">회원가입</h2>
 			<tr height="2" bgcolor="#000000">
 				<td colspan="2"></td>
 			</tr>
@@ -112,7 +110,7 @@
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td class="td1"><input type="password" name="pwd" placeholder="기존비밀번호를 입력해주세요"> 영문/숫자포함 6자 이상</td>
+				<td class="td1"><input type="password" name="pwd" placeholder="기존비밀번호를 입력해주세요"></td>
 			</tr>
 			<tr>
 				<th>이 름</th>
@@ -149,8 +147,8 @@
 			<tr>
 				<th>성별</th>
 				<td class="td1">
-					<input type="radio" name="gender" value="M" checked=${info.gender=='M'? checked : ''}> 남자 
-					<input type="radio" name="gender" value="F" checked=${info.gender=='F'? checked : ''}> 여자
+					<input type="radio" name="gender" value="M" ${info.gender == 'M'? 'checked' : ''}> 남자
+					<input type="radio" name="gender" value="F" ${info.gender == 'F'? 'checked' : ''}> 여자
 				</td>
 			</tr>
 			<tr>

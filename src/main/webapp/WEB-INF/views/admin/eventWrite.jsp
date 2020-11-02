@@ -28,6 +28,8 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/easycook/admin/event">이벤트</a>
                 <a class="dropdown-item" href="/easycook/admin/event/write">이벤트작성</a>
+                <a class="dropdown-item" href="/easycook/admin/coupon">쿠폰</a>
+                <a class="dropdown-item" href="/easycook/admin/coupon/write">쿠폰작성</a>
               </div>
             </li>
           </ul>
@@ -68,10 +70,17 @@
 				</tr>
 				<tr class="couponForm" style="display:none;">
 					<td width="70" align="center">쿠폰번호</td>
-					<td width="330"><input type="text" size="40" maxlength="50" name="couponNo" disabled></td>
+					<td width="330">
+		            	<select name="couponNo">
+		            		<option disabled selected>---</option>
+			            <c:forEach var="couponNo" items="${couponNo}">
+			             	<option value="${couponNo}">${couponNo}</option>
+			            </c:forEach>
+		            	</select>
+	         		</td>
 				</tr>
 				<tr>
-					<td colspan=2 align="center">
+					<td colspan="2" align="center">
 						<input type="submit" value="글쓰기">
 						<input type="reset" value="다시작성"> 
 						<input type="button" value="뒤로가기" OnClick="javascript:history.back()">
@@ -100,10 +109,10 @@
 	function eventType() {
 		if($('input:radio[id=coupon]').is(':checked')){	// 쿠폰이벤트
 	        $('.couponForm').show();
-	        $('input[name=couponNo]').attr("disabled", false);
+	        $('select[name=couponNo]').attr("disabled", false);
 	    } else {
 	    	$('.couponForm').hide();
-	        $('input[name=couponNo]').attr("disabled", true);
+	        $('select[name=couponNo]').attr("disabled", true);
 	    }
 	}
 </script>

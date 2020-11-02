@@ -20,6 +20,8 @@
 		<typeAlias type="com.devon.easycook.domain.RefundDTO" alias="Refund"/>
 		<typeAlias type="com.devon.easycook.domain.WishlistDTO" alias="Wishlist"/>
 		<typeAlias type="com.devon.easycook.domain.ReviewDTO" alias="Review"/>
+		
+		<typeAlias type="com.devon.easycook.domain.UcouponDTO" alias="Ucoupon"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

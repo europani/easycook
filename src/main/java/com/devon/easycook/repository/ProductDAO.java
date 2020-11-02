@@ -194,4 +194,5 @@ public class ProductDAO extends AbstractMybatisDAO {
 		}
 	}
 
+
 }

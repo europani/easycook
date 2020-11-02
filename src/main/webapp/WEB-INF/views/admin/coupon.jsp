@@ -38,14 +38,14 @@
       </nav>
 
 <div class="w3-container w3-center">
-  <h2>이벤트</h2>
+  <h2>쿠폰</h2>
 
   <table class="w3-table-all w3-hoverable w3-centered">
     <thead>
       <tr class="w3-light-grey" style="color:#FFFF00">
         <th width="5%">No</th>
-        <th width="20%">제목</th>
-        <th>내용</th>
+        <th width="30%">제목</th>
+        <th width="10%">할인률(%)</th>
         <th width="10%">시작날짜</th>
         <th width="1%"></th>
         <th width="10%">종료날짜</th>
@@ -53,40 +53,20 @@
         <th width="8%"></th>
       </tr>
     </thead>
-    <c:forEach var="event" items="${event}">
+    <c:forEach var="coupon" items="${coupon}">
 	    <tr>
-	      <td>${event.eventNo}</td>
-	      <td>${event.eventTitle}</td>
-	      <td>${event.eventContent}</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${event.eventStartdate}"/></td>
+	      <td>${coupon.couponNo}</td>
+	      <td>${coupon.couponTitle}</td>
+	      <td>${coupon.couponDiscount}</td>
+	      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${coupon.couponSdate}"/></td>
 	      <td>~</td>
-	      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${event.eventEnddate}"/></td>
-	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/event/modify/${event.eventNo}'">글수정</button></td>
-	      <td><button class="btn btn-primary" onclick="window.open('event/delete/${event.eventNo}','이벤트삭제','width=300,height=150,top=100,left=500');">글삭제</button></td>
+	      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${coupon.couponEdate}"/></td>
+	      <td><button class="btn btn-primary" onclick="window.location.href='<%=request.getContextPath()%>/admin/coupon/modify/${coupon.couponNo}'">쿠폰수정</button></td>
+	      <td><button class="btn btn-primary" onclick="window.open('coupon/delete/${coupon.couponNo}','쿠폰삭제','width=300,height=150,top=100,left=500');">쿠폰삭제</button></td>
 	    </tr>
     </c:forEach>
   </table>
 </div>
-
-<!-- 페이징 -->
-<div style="display: block; text-align: center;">		
-		<c:if test="${paging.startPage != 1 }">
-			<a href="/easycook/admin/event?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-			<c:choose>
-				<c:when test="${p == paging.nowPage }">
-					<b>${p }</b>
-				</c:when>
-				<c:when test="${p != paging.nowPage }">
-					<a href="/easycook/admin/event?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-				</c:when>
-			</c:choose>
-		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/easycook/admin/event?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-		</c:if>
-	</div>
 
 </div>
   <!-- /#wrapper -->
