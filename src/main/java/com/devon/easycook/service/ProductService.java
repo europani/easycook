@@ -55,6 +55,10 @@ public class ProductService {
 		return productDao.getReview(productNo);
 	}
 
+	public List<ProductDTO> getWeather(String weather) {
+		return productDao.getWeather(weather);
+	}
+	
 	// ADMIN
 	public int countByCategory(String category) {
 		return productDao.countByCategory(category);

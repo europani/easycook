@@ -61,6 +61,11 @@
 			FROM review WHERE product_no = #{productNo}
 	</select>
 	
+	<select id="getWeather" parameterType="String" resultType="Product">
+		SELECT product_no AS productNo, product_name AS productName, product_image AS productImage, product_price AS productPrice 
+			FROM product WHERE product_no IN (SELECT product_no FROM weather WHERE weather=#{weather})
+	</select>
+	
 	<!-- ADMIN -->
 	<select id="countByCategory" parameterType="String" resultType="int">
 		SELECT count(*)+1 FROM product WHERE category= #{category}

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import com.devon.easycook.interceptor.AdminInterceptor;
+import com.devon.easycook.interceptor.LoginInterceptor;
 
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.devon.easycook.controller"})
@@ -47,9 +48,19 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
 		return new AdminInterceptor();
 	}
 	
+	@Bean
+	public LoginInterceptor loginInterceptor() {
+		return new LoginInterceptor();
+	}
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(adminInterceptor()).addPathPatterns("/admin/*");
+		registry.addInterceptor(adminInterceptor()).addPathPatterns("/admin/**");
+		registry.addInterceptor(loginInterceptor()).addPathPatterns("/event/coupon")
+			.addPathPatterns("/mypage/**").addPathPatterns("/order/**")
+			.addPathPatterns("/member/modify").addPathPatterns("/member/delete");
 	}
+	
+	
 
 }
