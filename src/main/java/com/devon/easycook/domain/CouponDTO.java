@@ -17,4 +17,8 @@ public class CouponDTO {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date couponEdate;
 	
+	private UcouponDTO ucoupon;
+	private MemberDTO member;
+	
+	
 }

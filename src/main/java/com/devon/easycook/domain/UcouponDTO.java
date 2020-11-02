@@ -9,4 +9,6 @@ public class UcouponDTO {
 	private String id;
 	private int couponUsed;
 	private int couponNo;
+	
+	
 }

@@ -26,6 +26,25 @@
 			<result property="point" column="point" />
 		</association>
 	</resultMap>
+	
+	<resultMap id="CouponList" type="Coupon">
+			<id property="couponNo" column="coupon_no" />
+			<result property="couponTitle" column="coupon_title" />
+			<result property="couponDiscount" column="coupon_discount" />
+			<result property="couponSdate" column="coupon_sdate" />
+			<result property="couponEdate" column="coupon_edate" />
+			
+		<association property="ucoupon" javaType="Ucoupon">
+			<id property="ucouponNo" column="ucoupon_no" />
+			<result property="id" column="id" />
+			<result property="couponUsed" column="ucoupon_used" />
+			<result property="couponNo" column="coupon_no" />
+		</association>
+		
+		<association property="member" javaType="Member"> 
+			<id property="id" column="id" />
+		</association>
+	</resultMap>
 
 	<!-- 1. 장바구니에 추가하기 담기를 누를때 상품번호/id 있으면 update 없으면 insert -->
 	<insert id="cartInsert" >
@@ -81,32 +100,28 @@
 	</delete>
 
 	<!-- 4. 쿠폰목록 확인하기 -->
-	<select id="couponList" resultType="Coupon">
+	<select id="couponList" resultMap="CouponList">
 		SELECT
-		coupon_no as couponNo,
-		coupon_title as couponTitle,
-		coupon_discount as couponDiscount,
-		coupon_sdate as couponSdate,
-		coupon_edate as couponEdate
-		FROM coupon c
-		WHERE id = #{id}
-		<!-- and to_char(coupon_sdate, 'yyyy/mm/dd') >= #{couponSdate} and to_char(coupon_edate, 
-			'yyyy/mm/dd') <![CDATA[ < ]]>= #{couponEdate} -->
+		c.coupon_no,
+		c.coupon_title,
+		c.coupon_discount,
+		c.coupon_sdate,
+		c.coupon_edate,
+		u.id
+		FROM coupon c, ucoupon u
+		WHERE u.id = #{id} AND 
+		c.coupon_no = u.coupon_no AND 
+		u.ucoupon_used = 0
 		ORDER BY coupon_edate desc
 	</select>
 
 
-	<!-- <select id="sumMoney" resultType="int"> SELECT NVL(SUM(product_price 
-		* cart_qty), 0) AS sumMoney FROM product p, cart c WHERE c.product_no = p.product_no 
-		AND c.id = #{Id} </select> 7. 장바구니에 같은상품있으면 수량합산 <update id="cartUpdate"> 
-		UPDATE cart SET cart_qty = cart_qty + #{cartQty} WHERE id = #{Id} AND product_no 
-		= #{productNo} </update> -->
-	<!-- 3. 장바구니 수정 (수량 덮어쓰기) <update id="cartModify"> UPDATE cart SET cart_qty 
-		= #{cartQty} WHERE id = #{Id} AND product_no = #{productNo} </update> 6. 
-		장바구니 동일상품 확인 <select id="cartCount" resultType="int"> SELECT count(*) FROM 
-		cart WHERE product_no = #{productNo} AND id = #{Id} </select> 7. 장바구니에 같은상품있으면 
-		수량합산 <update id="cartUpdate"> UPDATE cart SET cart_qty = cart_qty + #{cartQty} 
-		WHERE id = #{Id} AND product_no = #{productNo} </update> -->
+
+
+
+
+
+
 
 
 

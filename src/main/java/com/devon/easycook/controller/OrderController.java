@@ -84,13 +84,20 @@ public class OrderController {
 		String Id = member.getId();
 		List<CartDTO> list = orderService.cartList(Id);
 		List<CouponDTO> list2 = orderService.couponList(Id);
-		
+		System.out.println(list2);
 		model.addAttribute("list", list);
 		model.addAttribute("list2", list2);
 		return "order/order";
 	}
 	
-	
+	/*
+	 * @PostMapping("/payment") public String insert(@ModelAttribute CartDTO dto,
+	 * HttpServletRequest request) { HttpSession session = request.getSession(true);
+	 * MemberDTO member = (MemberDTO) session.getAttribute("member"); if (member ==
+	 * null) { return "redirect:/member/login"; } String Id = member.getId();
+	 * dto.setId(Id); System.out.println(Id); orderService.cartInsert(dto); // 장바구니
+	 * 테이블에 아이디 저장 return "redirect:/order/cart"; // 장바구니 목록으로 이동 }
+	 */
 	
 	/*
 	 * // 3. 장바구니 수정하기 - 수량덮어쓰기

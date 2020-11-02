@@ -184,6 +184,7 @@
 					<tr>
 						<th>주문하시는 분</th>
 						<td>${list[0].member.name}</td>
+						
 					</tr>
 					<tr>
 						<th>연락처</th>
@@ -192,6 +193,7 @@
 					<tr>
 						<th>이메일</th>
 						<td>${list[0].member.email}</td>
+						
 					</tr>
 				</tbody>
 			</table>
@@ -224,6 +226,8 @@
 							<td><c:out value="${fee}" /> 원 (※ 5만원 이상 주문시 무료)</td>
 						</c:if>
 					</tr>
+					
+					
 					<tr>
 						<th>쿠폰 사용</th>
 						<td>
@@ -271,28 +275,39 @@
 							</div> <!-- End Modal -->
 						</td>
 					</tr>
+					
+					
 					<tr>
 						<th>적립금 사용</th>
-						<td>보유 적립금 : ${list[0].member.point}</td>
+						<td><p id="point">보유 적립금 : ${list[0].member.point}</p>
+						<button type="button" class="btn btn-primary py-3 px-5" id="pointButton" value="${list[0].member.point}">적립금 모두 사용하기</button></td>
 					</tr>
+					
 					<tr>
 						<th>최종 결제 금액</th>
 						<input type="hidden" id="total" value="${total}" />
 						<input type="hidden" id="fee" value="${fee}" />
-						<input type="hidden" id="point" value="${list[0].member.point}" />
-
-						<c:set var="finalTotal"
-							value="${total + fee + list[0].member.point}" />
+						
+						<c:set var="finalTotal" value="${total + fee}" />	
 						<td><p id="finalTotal">${finalTotal}원</p></td>
+						
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		<div class="payment-content3"></div>
 		<div class="payment-pay">
-			<button
-				onclick="document.getElementById('id01').style.display='block'"
-				class="btn btn-primary py-3 px-5">결제하기</button>
+		
+		<a href="/easycook/order/paymentComplete">결제하기</a>
+		<%-- <form action="/easycook/order/paymentComplete" method="post" id="paymentForm">
+			<input type="hidden"  id="checkForm" name="check" value="${check}" />
+			<input type="hidden" name="name" value="${list[0].member.name}" />
+			<input type="hidden" name="tel" value="${list[0].member.tel}" />
+			<input type="hidden" name="email" value="${list[0].member.email}" />
+			<input type="hidden" id="finalTotalform" name="finalTotal" value="${finalTotal}" />	
+		</form>
+		<button class="btn-payment" type="submit" form="paymentForm">결제하기</button> --%>
+		
 		</div>
 
 	</div>
@@ -308,28 +323,42 @@
 			function() {
 				$('#radioButton').click(
 						function() {
-							// getter
-							var radioVal = $('input[name=coupon]:checked')
-									.val();
-							$('#couponDiscount')
-									.html(radioVal + "% 할인이 적용됩니다.");
+							var radioVal = $('input[name=coupon]:checked').val();
+							$('#couponDiscount').html(radioVal + "% 할인이 적용됩니다.");
 
-							var total = $('#total').val() - $('#total').val()
-									* (radioVal / 100);
+							var total = $('#total').val() - $('#total').val() * (radioVal / 100);
 
-							var finalTotal = parseInt($('#fee').val())
-									+ parseInt($('#point').val())
-									+ parseInt(total);
+							var finalTotal = parseInt($('#fee').val()) + parseInt(total);
+							$('#point').html("쿠폰과 중복적용되지 않습니다.");
+							
+							
 							$('#finalTotal').html(finalTotal + "원");
-
+							$('#finalTotalform').val(finalTotal);
+							
+							
+							$('#checkForm').val(1);
+							
 							$('#id01').css("display", "none");
 						});
 
-				/*  $('#radioButton2').click(function () {
-				   // setter
-				   // 선택한 부분을 세팅할 수 있다.
-				   $('input[name="coupon"]').val(['Banana']);
-				 }); */
+				$('#pointButton').click(
+						function() {
+							var pointVal = $(this).val();
+							
+							$('#point').html("적립금 "+ pointVal + "원 만큼 할인 적용 됩니다.");
+
+							var total = $('#total').val() - pointVal;
+
+							var finalTotal = parseInt($('#fee').val()) + parseInt(total);
+							$('#couponDiscount').html("적립금과 중복적용되지 않습니다.");
+							
+							$('#finalTotal').html(finalTotal + "원");
+							
+							$('#checkForm').val(2);
+							
+							$('#finalTotalform').val(finalTotal);
+							
+						});
 			});
 </script>
 
