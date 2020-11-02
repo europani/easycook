@@ -132,14 +132,14 @@
 										<c:forEach var="row" items="${list}" varStatus="i">
 											<tr class="text-center">
 												<td class="image-prod"><div class="img"
-														style="background-image: url(../resources/images/${row.productImage});"></div></td>
+														style="background-image: url(../resources/images/${row.product.productImage});"></div></td>
 
 												<td class="product-name">
-													<h3>${row.productName}</h3>
+													<h3>${row.product.productName}</h3>
 												</td>
 
 												<td class="price"><fmt:formatNumber
-														value="${row.productPrice}" pattern="###,###,###" />원</td>
+														value="${row.product.productPrice}" pattern="###,###,###" />원</td>
 
 												<td class="quantity">
 													<div class="input-group mb-3">
@@ -148,14 +148,14 @@
 															value="${row.cartQty}" min="1">
 													</div>
 												</td>
-
-												<td class="total"><fmt:formatNumber
-														value="${row.money}" pattern="###,###,###" />원</td>
+												<c:set var="money"
+													value="${row.product.productPrice * row.cartQty}" />
+												<td class="total"><fmt:formatNumber value="${money}"
+														pattern="###,###,###" />원</td>
 											</tr>
-											<c:set var="total" value="${total+row.money}" />
+											<c:set var="total" value="${total+money}" />
 											<!-- END TR-->
 										</c:forEach>
-										<c:out value="${total}" />
 										<!-- END TR-->
 									</tbody>
 								</table>
@@ -183,15 +183,15 @@
 				<tbody>
 					<tr>
 						<th>주문하시는 분</th>
-						<td>${list[0].name}</td>
+						<td>${list[0].member.name}</td>
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td>${list[0].tel}</td>
+						<td>${list[0].member.tel}</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td>${list[0].email}</td>
+						<td>${list[0].member.email}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -214,73 +214,85 @@
 					<tr>
 						<th>배송비</th>
 						<c:if test="${total >= 50000}">
-							<td>0 원</td>
+							<c:set var="fee" value="0" />
+							<td><c:out value="${fee}" /> 원</td>
 						</c:if>
+
+
 						<c:if test="${total < 50000}">
-							<td>2500 원 (※ 5만원 이상 주문시 무료)</td>
+							<c:set var="fee" value="2500" />
+							<td><c:out value="${fee}" /> 원 (※ 5만원 이상 주문시 무료)</td>
 						</c:if>
 					</tr>
 					<tr>
 						<th>쿠폰 사용</th>
-						<td>쿠폰명(할인적용된금액)
+						<td>
+							<p id="couponDiscount">[ 적용된 쿠폰이 없습니다. ]</p>
 							<button
 								onclick="document.getElementById('id01').style.display='block'"
-								class="btn btn-primary py-3 px-5">사용가능한 쿠폰 확인하기</button>
+								class="btn btn-primary py-3 px-5">사용가능한 쿠폰 확인</button>
 
 							<div id="id01" class="w3-modal w3-animate-opacity">
 								<div class="w3-modal-content w3-card-4">
 									<header class="w3-container w3-teal">
 										<br> <br> <span
 											onclick="document.getElementById('id01').style.display='none'"
-											class="w3-button w3-large w3-display-topright">&times;</span>
-										<h3 align="center">${list[0].name}님이 보유중인 쿠폰</h3>
+											class="w3-button w3-large w3-display-right">&times;</span>
+										<h3 align="center">${list[0].member.name}님이보유중인쿠폰</h3>
 									</header>
-									
+
 									<div class="w3-container">
 										<c:choose>
-											<c:when test="${list2.size() == null}">
-         										<p><b>사용가능한 쿠폰이 없습니다.</b></p>
-         									</c:when> 
+											<c:when test="${list2.size() == null }">
+												<p>
+													<b>사용가능한 쿠폰이 없습니다.</b>
+												</p>
+											</c:when>
 											<c:otherwise>
-												<c:forEach var="row2" items="${list2}" varStatus="i">
-													
-													${row2.couponTitle}
-													${row2.couponSdate} ~ ${row2.couponEdate}
-													<c:if test="${row2.couponType == 0}">
-													${row2.couponDiscount}% 할인 
+												<ul>
+													<c:forEach var="row2" items="${list2}" varStatus="i">
+														<li><input type="radio" name="coupon"
+															value="${row2.couponDiscount}"> [
+															${row2.couponTitle} ] ${row2.couponDiscount}% 할인
+															(${row2.couponSdate} ~ ${row2.couponEdate}) <%--<c:if test="${row2.couponType == 0}">
 													</c:if>
 													<c:if test="${row2.couponType == 1}">
 													${row2.couponDiscount}원 할인 
-													</c:if>
-													<br>
-												</c:forEach>
+													</c:if> --%></li>
+													</c:forEach>
+												</ul>
+												<button type="button" name="button" id="radioButton">쿠폰
+													적용</button>
+												<!-- <button type="button" name="button" id="radioButton2">set radio Value</button> -->
 											</c:otherwise>
 										</c:choose>
 									</div>
 								</div>
 							</div> <!-- End Modal -->
 						</td>
-
 					</tr>
 					<tr>
 						<th>적립금 사용</th>
-						<td>보유 적립금 : ${list[0].point}</td>
+						<td>보유 적립금 : ${list[0].member.point}</td>
 					</tr>
 					<tr>
 						<th>최종 결제 금액</th>
-						<td>들고오기</td>
+						<input type="hidden" id="total" value="${total}" />
+						<input type="hidden" id="fee" value="${fee}" />
+						<input type="hidden" id="point" value="${list[0].member.point}" />
+
+						<c:set var="finalTotal"
+							value="${total + fee + list[0].member.point}" />
+						<td><p id="finalTotal">${finalTotal}원</p></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="payment-content3">
-			<!-- <dl>
-     	<dt>최종 결제 금액</dt>
-     	<dd>00000원 <input type="button" class="btn-cancle" ></dd></dl> -->
-			최종결제금액&nbsp;&nbsp;&nbsp;<strong>00000원</strong>
-		</div>
+		<div class="payment-content3"></div>
 		<div class="payment-pay">
-			<button class="btn-payment">결제하기</button>
+			<button
+				onclick="document.getElementById('id01').style.display='block'"
+				class="btn btn-primary py-3 px-5">결제하기</button>
 		</div>
 
 	</div>
@@ -289,5 +301,36 @@
 	</div>
 </body>
 
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$('#radioButton').click(
+						function() {
+							// getter
+							var radioVal = $('input[name=coupon]:checked')
+									.val();
+							$('#couponDiscount')
+									.html(radioVal + "% 할인이 적용됩니다.");
+
+							var total = $('#total').val() - $('#total').val()
+									* (radioVal / 100);
+
+							var finalTotal = parseInt($('#fee').val())
+									+ parseInt($('#point').val())
+									+ parseInt(total);
+							$('#finalTotal').html(finalTotal + "원");
+
+							$('#id01').css("display", "none");
+						});
+
+				/*  $('#radioButton2').click(function () {
+				   // setter
+				   // 선택한 부분을 세팅할 수 있다.
+				   $('input[name="coupon"]').val(['Banana']);
+				 }); */
+			});
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

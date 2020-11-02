@@ -49,11 +49,11 @@
 																	<span
 																		onclick="document.getElementById('id01').style.display='none'"
 																		class="w3-button w3-large w3-display-topright">&times;</span>
-																	<h3>${row.productName}를 장바구니에서 삭제하시겠습니까?</h3>
+																	<h3>${row.product.productName}를 장바구니에서 삭제하시겠습니까?</h3>
 																</header>
 																<div class="w3-container">
 																	
-																	<p><h3><a href="/easycook/order/cart/delete?cart_no=${row.cartNo}">
+																	<p><h3><a href="/easycook/order/cart/delete?cartNo=${row.cartNo}">
 																	<span>Yes</span></a></h3></p>
 																</div>
 															</div>
@@ -62,14 +62,14 @@
 													</td>
 
 													<td class="image-prod"><div class="img"
-															style="background-image: url(../resources/images/${row.productImage});"></div></td>
+															style="background-image: url(../resources/images/${row.product.productImage});"></div></td>
 
 													<td class="product-name">
-														<h3>${row.productName}</h3>
+														<h3>${row.product.productName}</h3>
 													</td>
 
 													<td class="price"><fmt:formatNumber
-															value="${row.productPrice}" pattern="###,###,###" />원</td>
+															value="${row.product.productPrice}" pattern="###,###,###" />원</td>
 
 													<td class="quantity">
 														<div class="input-group mb-3">
@@ -78,14 +78,13 @@
 																value="${row.cartQty}" min="1">
 														</div>
 													</td>
-
+													<c:set var="money" value="${row.product.productPrice * row.cartQty}" />
 													<td class="total"><fmt:formatNumber
-															value="${row.money}" pattern="###,###,###" />원</td>
+															value="${money}" pattern="###,###,###" />원</td>
 												</tr>
-												<c:set var="total" value="${total+row.money}" />
+												<c:set var="total" value="${total+money}" />
 												<!-- END TR-->
 											</c:forEach>
-											<c:out value="${total}" />
 											<tr class="text-center">
 												<td colspan="4" align="right"><b>상품 합계 금액 : <fmt:formatNumber
 														value="${total}" pattern="###,###,###" />원</b>

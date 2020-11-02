@@ -3,9 +3,32 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="orderMapper">
+	
+	<!-- 장바구니 / 주문 -->
+		<resultMap id="CartList" type="Cart">
+			<id property="cartNo" column="cart_no" />
+			<result property="id" column="id" />
+			<result property="productNo" column="product_no" />
+			<result property="cartQty" column="cart_qty" />
+			
+		<association property="product" javaType="Product">
+			<id property="productNo" column="product_no" />
+			<result property="productName" column="product_name" />
+			<result property="productImage" column="product_image" />
+			<result property="productPrice" column="product_price" />
+		</association>
+		
+		<association property="member" javaType="Member"> 
+			<id property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="email" column="email" />
+			<result property="tel" column="tel" />
+			<result property="point" column="point" />
+		</association>
+	</resultMap>
 
 	<!-- 1. 장바구니에 추가하기 담기를 누를때 상품번호/id 있으면 update 없으면 insert -->
-	<insert id="cartInsert">
+	<insert id="cartInsert" >
 		MERGE INTO CART
 		USING DUAL
 		ON
@@ -14,33 +37,35 @@
 
 		WHEN MATCHED THEN
 		UPDATE
-		SET cart_qty = cart_qty + #{cartQty}
+		SET cart_qty = cart_qty +
+		#{cartQty}
 		WHERE
 		product_no = #{productNo}
 		AND id = #{id}
-		WHEN NOT MATCHED THEN
+		WHEN NOT MATCHED
+		THEN
 		INSERT
 		(cart_no, id, product_no, cart_qty)
-		VALUES(cartseq.NEXTVAL, #{id},
+		VALUES(cartseq.NEXTVAL,
+		#{id},
 		#{productNo}, #{cartQty})
 	</insert>
 
 
 	<!-- 2. 목록보기 -->
-	<select id="cartList" resultType="Cart">
+	<select id="cartList" resultMap="CartList">
 		SELECT
-		c.cart_no AS cartNo,
+		c.cart_no ,
 		c.id ,
-		p.product_no AS productNo ,
+		p.product_no ,
 		m.name ,
 		m.email,
 		m.tel,
 		m.point,
-		p.product_name  AS productName,
-		p.product_image AS productImage,
-		c.cart_qty  AS cartQty,
-		p.product_price AS productPrice,
-		(product_price * cart_qty) money
+		p.product_name ,
+		p.product_image ,
+		c.cart_qty ,
+		p.product_price 
 		FROM
 		member m, product p, cart c
 		WHERE
@@ -55,24 +80,20 @@
 		WHERE cart_no = #{cartNo}
 	</delete>
 
-	<!-- 4. 쿠폰목록 확인하기  -->
-   <select id="couponList" resultType="Coupon">
-   SELECT
-    coupon_no as couponNo,
-    id,
-    coupon_type as couponType, 
-    coupon_discount as couponDiscount,
-    coupon_used as couponUsed, 
-    coupon_sdate as couponSdate, 
-    coupon_edate as couponEdate, 
-    coupon_title as couponTitle
-   FROM coupon
-   WHERE id = #{id} 
-<!--    and
-   to_char(couponSdate, 'yyyy-mm-dd') >= #{fromDate} and
-   to_char(couponEdate, 'yyyy-mm-dd') <![CDATA[ < ]]>= #{toDate} -->
-   ORDER BY coupon_edate desc 
-   </select>
+	<!-- 4. 쿠폰목록 확인하기 -->
+	<select id="couponList" resultType="Coupon">
+		SELECT
+		coupon_no as couponNo,
+		coupon_title as couponTitle,
+		coupon_discount as couponDiscount,
+		coupon_sdate as couponSdate,
+		coupon_edate as couponEdate
+		FROM coupon c
+		WHERE id = #{id}
+		<!-- and to_char(coupon_sdate, 'yyyy/mm/dd') >= #{couponSdate} and to_char(coupon_edate, 
+			'yyyy/mm/dd') <![CDATA[ < ]]>= #{couponEdate} -->
+		ORDER BY coupon_edate desc
+	</select>
 
 
 	<!-- <select id="sumMoney" resultType="int"> SELECT NVL(SUM(product_price 
@@ -97,89 +118,109 @@
 
 
 	<update id="updateReviewCheck" parameterType="Review">
-		update orders_detail set REVIEW_CHECK = 1 WHERE orders_no = #{ordersNo} AND product_no = #{productNo}
+		update
+		orders_detail set REVIEW_CHECK = 1 WHERE orders_no = #{ordersNo} AND
+		product_no = #{productNo}
 	</update>
 
 	<!-- ADMIN -->
 	<select id="countOrder" resultType="int">
 		SELECT count(*) from orders
 	</select>
-	
+
 	<select id="countCancel" resultType="int">
-		SELECT count(*) from orders WHERE ORDERS_STATUS = '주문취소'
+		SELECT count(*) from orders
+		WHERE ORDERS_STATUS = '주문취소'
 	</select>
-	
+
 	<select id="getFullInfo" resultType="Orders">
-		SELECT orders_no AS ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo, orders_status AS ordersStatus, orders_total AS ordersTotal 
+		SELECT orders_no AS
+		ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo,
+		orders_status AS ordersStatus, orders_total AS ordersTotal
 		FROM (
-			SELECT ROWNUM RN, A.* 
-				FROM (
-						SELECT * 
-						FROM orders 
-						ORDER BY orders_no DESC) A
-				)
+		SELECT ROWNUM RN, A.*
+		FROM (
+		SELECT *
+		FROM orders
+		ORDER BY orders_no DESC) A
+		)
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
-	
+
 	<select id="getOrderInfo" resultType="Orders">
-		SELECT orders_no AS ordersNo, orders_date AS ordersDate, orders_status AS ordersStatus, orders_total AS ordersTotal FROM orders WHERE orders_no = #{orderNo}
+		SELECT orders_no AS
+		ordersNo, orders_date AS ordersDate, orders_status AS ordersStatus,
+		orders_total AS ordersTotal FROM orders WHERE orders_no = #{orderNo}
 	</select>
-	
+
 	<update id="changeStatus" parameterType="Hashmap">
 		<if test="status == '주문완료'">
-			UPDATE orders SET orders_status = '배송중' WHERE orders_no = #{orderNo}
+			UPDATE orders SET orders_status = '배송중' WHERE orders_no =
+			#{orderNo}
 		</if>
 		<if test="status == '배송중'">
-			UPDATE orders SET orders_status = '배송완료' WHERE orders_no = #{orderNo}
+			UPDATE orders SET orders_status = '배송완료' WHERE orders_no =
+			#{orderNo}
 		</if>
 	</update>
 
 	<select id="getCancelInfo" resultType="Orders">
-		SELECT orders_no AS ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo, orders_status AS ordersStatus, orders_total AS ordersTotal 
+		SELECT orders_no AS
+		ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo,
+		orders_status AS ordersStatus, orders_total AS ordersTotal
 		FROM (
-			SELECT ROWNUM RN, A.* 
-				FROM (
-						SELECT * 
-						FROM orders
-						WHERE orders_status = '주문취소'
-						ORDER BY orders_no DESC) A
-				)
+		SELECT ROWNUM RN, A.*
+		FROM (
+		SELECT *
+		FROM orders
+		WHERE orders_status = '주문취소'
+		ORDER BY orders_no DESC) A
+		)
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
-	<select id="memberOrderlist" parameterType="String" resultType="Orders">
-		SELECT orders_no AS ordersNo, orders_date AS ordersDate, orders_status AS ordersStatus, orders_total AS ordersTotal
-			FROM orders WHERE id = #{id}
+	<select id="memberOrderlist" parameterType="String"
+		resultType="Orders">
+		SELECT orders_no AS ordersNo, orders_date AS ordersDate,
+		orders_status AS ordersStatus, orders_total AS ordersTotal
+		FROM orders WHERE id = #{id}
 	</select>
-	
+
 	<select id="memberSum" resultType="int">
-		SELECT NVL(SUM(orders_total), 0) FROM orders WHERE id = #{id}
+		SELECT NVL(SUM(orders_total),
+		0) FROM orders WHERE id = #{id}
 	</select>
 	<select id="memberLastest" resultType="Date">
-		SELECT MAX(orders_date) FROM orders WHERE id = #{id}
+		SELECT MAX(orders_date)
+		FROM orders WHERE id = #{id}
 	</select>
-	
+
 	<select id="countRefund" resultType="int">
 		SELECT count(*) from refund
 	</select>
-	
+
 	<select id="getRefundInfo" resultType="Refund">
-		SELECT orders_no AS ordersNo, product_no AS productNo, id, refund_qty AS refundQty, refund_date AS refundDate, refund_status AS refundStatus, refund_reason AS refundReason 
+		SELECT orders_no AS
+		ordersNo, product_no AS productNo, id, refund_qty AS refundQty,
+		refund_date AS refundDate, refund_status AS refundStatus,
+		refund_reason AS refundReason
 		FROM (
-			SELECT ROWNUM RN, A.* 
-				FROM (
-						SELECT * 
-						FROM refund
-						ORDER BY refund_date DESC) A
-				)
+		SELECT ROWNUM RN, A.*
+		FROM (
+		SELECT *
+		FROM refund
+		ORDER BY refund_date DESC) A
+		)
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
-	
+
 	<update id="refundStatus" parameterType="Hashmap">
 		<if test="status == '반품신청'">
-			UPDATE refund SET refund_status = '처리중' WHERE orders_no = #{orderNo} AND product_no = #{productNo}
+			UPDATE refund SET refund_status = '처리중' WHERE orders_no =
+			#{orderNo} AND product_no = #{productNo}
 		</if>
 		<if test="status == '처리중'">
-			UPDATE refund SET refund_status = '반품완료' WHERE orders_no = #{orderNo} AND product_no = #{productNo}
+			UPDATE refund SET refund_status = '반품완료' WHERE orders_no =
+			#{orderNo} AND product_no = #{productNo}
 		</if>
 	</update>
 

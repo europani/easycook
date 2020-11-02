@@ -52,11 +52,13 @@ public class OrderController {
 	public String list(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(true);
 		MemberDTO member = (MemberDTO) session.getAttribute("member");
+		
 		if (member == null) {
 			return "redirect:/member/login";
 		}
 		String Id = member.getId();
 		List<CartDTO> list = orderService.cartList(Id);
+		System.out.println(list);
 		model.addAttribute("list", list);
 		return "order/cart";
 	}
@@ -84,6 +86,7 @@ public class OrderController {
 		model.addAttribute("list2", list2);
 		return "order/order";
 	}
+	
 	
 	
 	/*
