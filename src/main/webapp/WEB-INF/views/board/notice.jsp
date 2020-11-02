@@ -32,7 +32,7 @@
 		</table>
 	</c:if>
 	<c:if test="${count != 0 }">
-	<div class="container" style="padding-left:70px; height:800px;">
+	<div class="container" style="padding-left:70px;">
 	<h1>공지사항</h1>
 	<hr style="border-color:#1abc9c">
 		<table class="table table-hover" id="table">
@@ -68,51 +68,39 @@
 			</tbody>
 		</table>
 </div>
-
 		<div class="text-center">
 			<ul class="pagination">
 			<li><c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="<%=request.getContextPath() %>/list?pageNum=${i}">
+				<a href="<%=request.getContextPath() %>/notice?pageNum=${i}">
 					<c:if test="${i==currentPage}">
 						<font color='red'>${i}</font>
 					</c:if> <c:if test="${i!=currentPage}">${i}</c:if>
-
-
 				</a>
 			</c:forEach></li>
 			</ul>
 			<c:if test="${startPage > bottomLine }">
 				<a
-					href="<%=request.getContextPath() %>/list?pageNum=${startPage - bottomLine}">
+					href="<%=request.getContextPath() %>/notice?pageNum=${startPage - bottomLine}">
 					[이전] </a>
 			</c:if>
-			
-			
-			
-			
 			<c:if test="${endPage < pageCount}">
-				<a
-					href="<%=request.getContextPath() %>/list?pageNum=${startPage + bottomLine}">
+				<a href="<%=request.getContextPath() %>/notice?pageNum=${startPage + bottomLine}">
 					[다음] </a>
 			</c:if>
-
 		</div>
-
-
 		<div>
 			<div class="text-center">
 				<form name="searchForm" method="post">
 					<select name="category" size="1">
 						<option value="notice_Title">제 목</option>
 						<option value="notice_Content">내 용</option>
-					</select> <input size="16" name="sentence"> 
+					</select> 
+					<input size="16" name="sentence"> 
 					<input type="submit" value="찾기">
 				</form>
 			</div>
 		</div>
-
 	</c:if>
-
 </div>
 </section>
 </body>

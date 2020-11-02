@@ -28,6 +28,8 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/easycook/admin/event">이벤트</a>
                 <a class="dropdown-item" href="/easycook/admin/event/write">이벤트작성</a>
+                <a class="dropdown-item" href="/easycook/admin/coupon">쿠폰</a>
+                <a class="dropdown-item" href="/easycook/admin/coupon/write">쿠폰작성</a>
               </div>
             </li>
           </ul>
@@ -65,7 +67,7 @@
 					<td width="330"><input type="date" name="eventEnddate" value="${end}"></td>
 				</tr>
 				<tr>
-					<td colspan=2 align="center">
+					<td colspan="2" align="center">
 						<input type="submit" value="수정하기">
 						<input type="button" value="뒤로가기" OnClick="javascript:history.back()">
 					</td>

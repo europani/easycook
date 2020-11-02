@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.domain.ReviewDTO;
+import com.devon.easycook.domain.WishlistDTO;
 import com.devon.easycook.repository.MypageDAO;
 import com.devon.easycook.repository.OrderDAO;
 
@@ -49,22 +51,25 @@ public class MypageService {
 		return mypageDAO.myPoint(id);
 	} 
    
-   public List<OrdersDTO> cancelRequire(int ordersNo) {
-      return mypageDAO.cancelRequire(ordersNo);
+   public void wishlistInput(Map<String, Object> wishlistMap) {	   
+	   mypageDAO.wishlistInput(wishlistMap);
+   }
+   
+   public List<WishlistDTO> wishlist(String id) {	   
+	   return mypageDAO.wishlist(id);
+   }
+   
+   public OrdersDTO cancelRequire(Map<String, Object> refundCheckMap) {
+	   System.out.println(refundCheckMap);
+      return mypageDAO.cancelRequire(refundCheckMap);
       
    }
 
    
-   // 주문취소절차
-	/*
-	 * public void returnTablePlus(int ordersNo) {
-	 * mypageDAO.returnTablePlus(ordersNo); }
-	 */
+
    
    
-   public void checkCancel(int ordersNo) {
-		mypageDAO.checkCancel(ordersNo);		
-	}
+
    
 
    

@@ -27,6 +27,7 @@
 <resultMap type="Orders" id="ordersDetailList">
 	<id property="ordersNo" column="orders_no"/>
 	<result property="ordersTotal" column="orders_total"/>
+	<result property="ordersStatus" column="orders_status"/>
 
 	<association property="ordersDetail" javaType="OrdersDetail">
 	<id property="ordersNo" column="orders_no"/>
@@ -48,24 +49,38 @@
 <!-- 취소/반품신청가능 목록용 resultMap 설정  -->
 <resultMap id="cancelRequire" type="Orders">
    <id property="id" column="id"/>
-   <result property="ordersDate" column="orders_date"/>
    <result property="ordersNo" column="orders_no"/>
-   <result property="ordersStatus" column="orders_status"/>
+   <result property="discountPercent" column="discount_percent"/>
    
    <association property="ordersDetail" javaType="OrdersDetail">
    <id property="ordersNo" column="orders_no"/>
    <result property="detailQty" column="detail_qty"/>
+   <result property="productNo" column="product_no"/>
    </association>   
+   
    <association property="product" javaType="Product">
    <id property="productNo" column="product_no"/>
    <result property="productName" column="product_name"/>
    <result property="productPrice" column="product_price"/>
    <result property="productImage" column="product_image"/>
-   <result property="productAmount" column="product_amount"/>
    </association>
 </resultMap>
 
 
+<!-- 위시리스트 데이터 불러오는 resultMap 설정  -->
+<resultMap type="wishlist" id="myWishlist">
+	<id property="productNo" column="product_no"/>
+	<result property="id" column="id"/>
+
+	<association property="product" javaType="Product">
+	<id property="productNo" column="product_no"/>
+ 	<result property="productName" column="product_name"/>
+ 	<result property="productDetail" column="product_detail"/>
+    <result property="productPrice" column="product_price"/>
+    <result property="productImage" column="product_image"/>
+    <result property="productAmount" column="product_amount"/>
+	</association>
+</resultMap>
 
 
 
@@ -113,7 +128,8 @@
      p.product_price, 
      od.DETAIL_QTY,
      od.review_check,
-     o.orders_total
+     o.orders_total,
+     o.orders_status
    from
     product p, orders_detail od, orders o
    where
@@ -186,42 +202,55 @@
    </select>
    
    
+   <!-- wishlist 추가하기 -->
+   <select id="wishlistInput">
+   Insert into WISHLIST(id, product_no)
+   	VALUES (#{id}, #{productNo})
+   </select>
+   
+   
+   <!-- wishlist 목록 출력 -->
+   <select id="wishlist" parameterType="String" resultMap="myWishlist">
+   SELECT
+   	w.id,
+   	p.product_no,
+   	p.product_name,
+   	p.product_detail,
+   	p.product_price,
+   	p.product_image,
+   	p.product_amount
+   FROM
+   	wishlist w, product p
+   WHERE
+   	w.id = #{id} and w.product_no = p.product_no
+   </select>
+   
    <!-- 취소/반품가능 목록 확인하기  -->
-   <select id="cancelRequire" parameterType="int" resultMap="cancelRequire">
-   select 
-   	o.orders_date, 
-   	o.orders_no, 
-   	o.orders_status, 
-   	od.detail_qty, 
-    p.product_name, 
-    p.product_price, 
-    p.product_image, 
-    p.product_amount
+   <select id="cancelRequire" parameterType="HashMap" resultMap="cancelRequire">
+   select  
+   	o.orders_no,
+   	o.discount_percent,
+   	od.detail_qty,
+    p.product_name,
+    p.product_price,
+    p.product_image
    FROM 
    	Orders o, orders_Detail od, product p
-   where 
-   	o.orders_no = od.orders_no and
-   	od.product_no = p.product_no and 
-   	o.orders_no = #{ordersNo}
+   where
+    p.product_no = #{productNo} and
+    o.orders_no = #{ordersNo} and
+    o.orders_no = od.orders_no and
+   	od.product_no = p.product_no
    </select>
    
    
    
-   <!-- refund테이블에 데이터 추가하기위한 변수들 출력 -->
    
-   <!-- refund테이블에 데이터 추가 -->
-   <select id="returnTablePlus" parameterType="Refund">
-   INSERT INTO REFUND(orders_no,product_no,id,refund_qty,refund_date,refund_status,refund_reason)
-	VALUES(#{orders_no},#{product_no},#{id},#{refund_qty},sysdate,#{refund_status},#{refund_reason})
-   </select>	
-	
-   <select id="checkCancel" parameterType="int">
-   UPDATE orders	
-   	SET
-   orders_status = '주문취소'
-    WHERE
-   orders_no = #{orderNo}
-   </select>
+   
+   
+   
+   
+
    	
    	
    	

@@ -15,7 +15,7 @@
 	  #jb-container {
         width: 95%;
         margin: 0px auto;
-        padding: 50px 10px 10px 10px;
+        padding: 50px 10px 100px 10px;
         /* border: 1px solid #bcbcbc; */
       }
       #jb-content {
@@ -54,6 +54,22 @@
        border-bottom: 1px solid #dbdbdb;
        height: 65px;
       }
+      
+      .btn-refund {   /* 나중에 추가할 버튼양식 */
+       display: inline-block;
+       position : absolute;
+       margin-left: -6rem;
+       width: 70px;
+       height: 30px;
+       line-height: 30px;
+       background-color: rgba(0,0,0,0.1);
+       font-size: 13px;
+       font-weight : border;
+       color: white;
+       vertical-align: top;
+       margin-top : -2px;
+       text-align: center;
+      }
 
 </style>
 </head>
@@ -72,7 +88,7 @@
 			<th>상품명</th>
 		    <th>수량</th>
 		    <th>결제금액</th>
-		    <th width="10%"></th>
+		    <th width="15%"></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -82,8 +98,17 @@
 			<td>No. ${ordersDetail.product.productNo }</td>
 			<td>${ordersDetail.product.productName }</td>
 			<td>${ordersDetail.ordersDetail.detailQty }개</td>
-			<td>${ordersDetail.product.productPrice * ordersDetail.ordersDetail.detailQty }원 </td>
 			<td>
+			${ordersDetail.product.productPrice * ordersDetail.ordersDetail.detailQty }원
+			</td>
+			<td>
+				<form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >  
+			         <c:if test="${ordersDetail.ordersStatus eq '배송완료'}">
+			         <input type="submit" class="btn-refund" value='반품신청'>
+			         <input type="hidden" name="productNo" id="productNo" value="${ordersDetail.product.productNo}">
+			         <input type="hidden" name="ordersNo" id="ordersNo" value="${orderNum}">
+			         </c:if>
+	          	</form> 
 				<c:if test="${ordersDetail.ordersDetail.reviewCheck == 0}">
 				<button onclick="location.href='/easycook/mypage/review?productNo=${ordersDetail.product.productNo}&ordersNo=${ordersNo}'">리뷰쓰기</button>
 				</c:if>

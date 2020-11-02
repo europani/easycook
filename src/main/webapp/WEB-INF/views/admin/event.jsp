@@ -29,6 +29,8 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/easycook/admin/event">이벤트</a>
                 <a class="dropdown-item" href="/easycook/admin/event/write">이벤트작성</a>
+                <a class="dropdown-item" href="/easycook/admin/coupon">쿠폰</a>
+                <a class="dropdown-item" href="/easycook/admin/coupon/write">쿠폰작성</a>
               </div>
             </li>
           </ul>

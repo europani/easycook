@@ -138,14 +138,7 @@
           <td>          
          <c:if test="${orders.ordersStatus eq '주문완료'}">
          <button onclick="window.open('returnOrderQuestion/${orders.ordersNo}','주문취소','width=500,height=500,top=100,left=500' );">주문취소</button>          
-         </c:if>
-         
-         <form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >  
-         <c:if test="${orders.ordersStatus eq '배송완료'}">
-         <input type="submit" value='반품신청'>
-         <input type="hidden" name="ordersNo" id="ordersNo" value="${orders.ordersNo}">
-         </c:if>
-          </form>       
+         </c:if>      
          </td> 
         </tr>
         </c:if>

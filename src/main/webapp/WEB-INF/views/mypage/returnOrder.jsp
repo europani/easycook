@@ -15,10 +15,10 @@
 </form>
 
 <script>
-	function returnOrder() {
+	function returnOrder() {	
 		const returnForm = document.returnForm;
 		let xhttp = new XMLHttpRequest();
-		xhttp.open("POST", "/easycook/mypage/returnOrder/" + returnForm.no.value);
+		xhttp.open("POST", "/easycook/order/returnOrder/" + returnForm.no.value);
 		xhttp.send();
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {

@@ -39,12 +39,6 @@
 			}
 		};
 		
-		/* document.stockForm.submit();
-		parent.location.reload();
-		setTimeout(function() {
-			window.open("about:blank", "_self").close();
-		}, 3000); */
-		
 	}
 </script>
 </body>
