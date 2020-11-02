@@ -42,7 +42,7 @@
 		</div>	
 	</section>
 	<div class="text-center">
-		<img src="/easycook/resources/images/arrow.png" onclick="menu()" width="100" height="100">
+		<img src="/easycook/resources/images/arrow2.png" onclick="menu()" width="100" height="100">
 	</div>
 	<div class="today" style="display: none">	
 		<body class="goto-here">
@@ -76,8 +76,7 @@
 						</p>
 					</div>
 					<p class="price">
-						<span><fmt:formatNumber value="${detail.productPrice}"
-								pattern="###,###,###" />원</span>
+						<span><fmt:formatNumber value="${detail.productPrice}" pattern="###,###,###"/>원</span>
 					</p>
 					<p>${detail.productDetail}</p>
 					<div class="row mt-4">

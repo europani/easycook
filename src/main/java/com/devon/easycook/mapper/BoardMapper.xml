@@ -132,7 +132,7 @@
 	</select>
 	
 	<update id="eventModify" parameterType="Event">
-		UPDATE event SET event_title = #{eventTitle}, event_content = #{eventContent}, event_startdate = #{eventStartdate}, event_enddate = #{eventEnddate}, coupon_no=#{couponNo}
+		UPDATE event SET event_title = #{eventTitle}, event_content = #{eventContent}, event_startdate = #{eventStartdate}, event_enddate = #{eventEnddate}
 		<if test="eventImage != null">
 			, event_image = #{eventImage}
 		</if>
