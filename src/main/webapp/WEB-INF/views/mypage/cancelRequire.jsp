@@ -155,7 +155,7 @@
 	         <td id="product">${productPrice }  </td>
 	         <td>
 	            <select name="refundQty" id="productSelectCount" onchange="paychangeTest(this)">
-	            <c:forEach var="refundQty" begin="0" step="1" end="${cancelRequire.ordersDetail.detailQty }">
+	            <c:forEach var="refundQty" begin="1" step="1" end="${cancelRequire.ordersDetail.detailQty - refundQty }">
 	             <option value="${refundQty }">${refundQty }</option>
 	            </c:forEach>
 	            </select>

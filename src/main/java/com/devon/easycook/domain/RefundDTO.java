@@ -17,4 +17,6 @@ public class RefundDTO {
 	private String refundStatus;
 	private String refundReason;
 	
+	private ProductDTO product;
+	
 }

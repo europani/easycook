@@ -28,6 +28,7 @@
 	<id property="ordersNo" column="orders_no"/>
 	<result property="ordersTotal" column="orders_total"/>
 	<result property="ordersStatus" column="orders_status"/>
+	<result property="discountPercent" column="discount_percent"/>
 
 	<association property="ordersDetail" javaType="OrdersDetail">
 	<id property="ordersNo" column="orders_no"/>
@@ -83,6 +84,42 @@
 </resultMap>
 
 
+<!-- 쿠폰목록 데이터 불러오는 resultMap 설정 -->
+<resultMap type="Ucoupon" id="Coupon">
+	<id property="ucouponNo" column="ucoupon_no"/>
+	<result property="id" column="id"/>
+	<result property="couponUsed" column="ucoupon_used"/>
+	<result property="couponNo" column="coupon_no"/>
+	
+	<association property="coupon" javaType="Coupon">
+	<id property="couponNo" column="coupon_no"/>
+	<result property="couponTitle" column="coupon_title"/>
+	<result property="couponDiscount" column="coupon_discount"/>
+	<result property="couponSdate" column="coupon_sdate"/>
+	<result property="couponEdate" column="coupon_edate"/>
+	</association>
+</resultMap>
+
+
+<!-- 쿠폰목록 데이터 불러오는 resultMap 설정 -->
+<resultMap type="Refund" id="refundList">
+	<id property="ordersNo" column="orders_no"/>
+	<id property="productNo" column="product_no"/>
+	<result property="id" column="id"/>
+	<result property="refundQty" column="refund_qty"/>
+	<result property="refundDate" column="refund_date"/>
+	<result property="refundStatus" column="refund_status"/>
+	<result property="refundReason" column="refund_reason"/>
+	
+	<association property="product" javaType="Product">
+	<id property="productNo" column="product_no"/>
+ 	<result property="productName" column="product_name"/>
+	</association>
+</resultMap>
+
+
+
+
 
 	<!-- 주문목록 확인하기  -->
    <select id="OrderList" parameterType="String" resultMap="OrderList">
@@ -113,7 +150,7 @@
    FROM
     Orders
    where 
-    id = #{id} and orders_status != '주문취소' and orders_status != '반품'
+    id = #{id} and orders_status != '반품'
    order by
     orders_date desc 
    </select>
@@ -129,7 +166,8 @@
      od.DETAIL_QTY,
      od.review_check,
      o.orders_total,
-     o.orders_status
+     o.orders_status,
+     o.discount_percent
    from
     product p, orders_detail od, orders o
    where
@@ -149,6 +187,7 @@
     Orders
    where 
     id = #{id} and
+    orders_status != '반품' and
     to_char(orders_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate}
    order by
     orders_date desc
@@ -156,44 +195,45 @@
    
    
    	<!-- 쿠폰목록 확인하기  -->
-   <select id="coupon" parameterType="String" resultType="Coupon">
+   <select id="coupon" parameterType="String" resultMap="Coupon">
    select
-    uc.coupon_no as couponNo,
+    uc.ucoupon_no,
     uc.id,
-    coupon_discount as couponDiscount,
-    coupon_used as couponUsed, 
-    coupon_sdate as couponSdate, 
-    coupon_edate as couponEdate, 
-    coupon_title as couponTitle
+    uc.ucoupon_used,
+    c.coupon_discount,
+    c.coupon_sdate, 
+    c.coupon_edate, 
+    c.coupon_title
    FROM coupon c, ucoupon uc
-   where uc.id = #{id} 
+   where uc.id = #{id} and
+   uc.coupon_no = c.coupon_no 
    order by c.coupon_edate desc 
    </select>
    
-   <!-- 쿠폰목록 확인하기  -->
-   <select id="couponDate" parameterType="HashMap" resultType="Coupon">
+   <!-- 날짜따른 쿠폰목록 확인하기  -->
+   <select id="couponDate" parameterType="HashMap" resultMap="Coupon">
    select
-    coupon_no as couponNo,
-    id,
-    coupon_type as couponType, 
-    coupon_discount as couponDiscount,
-    coupon_used as couponUsed, 
-    coupon_sdate as couponSdate, 
-    coupon_edate as couponEdate, 
-    coupon_title as couponTitle
-   FROM coupon
+    uc.coupon_no,
+    uc.id,
+    uc.ucoupon_used, 
+    c.coupon_discount,
+    c.coupon_sdate, 
+    c.coupon_edate,
+    c.coupon_title
+   FROM coupon c, ucoupon uc
    where id = #{id} and
-   to_char(couponSdate, 'yyyy-mm-dd') >= #{fromDate} and
-   to_char(couponEdate, 'yyyy-mm-dd') <![CDATA[ < ]]>= #{toDate}
-   order by coupon_edate desc 
+   uc.coupon_no = c.coupon_no and
+   c.coupon_sdate >= #{fromDate} and
+   c.coupon_edate <![CDATA[ < ]]>= #{toDate}
+   order by c.coupon_edate desc 
    </select>
    
    
    	<!-- 사용가능 쿠폰수 count -->
    <select id="couponCount" parameterType="String" resultType="int">
-   select count(coupon_no)
-   FROM coupon
-   where coupon_type = 0 and id = #{id}
+   select count(ucoupon_no)
+   FROM ucoupon
+   where id = #{id} and ucoupon_used = 0
    </select>  
    	<!-- 사용가능 포인트 count  -->
    <select id="myPoint" parameterType="String" resultType="int">
@@ -243,8 +283,17 @@
    </select>
    
    
-   
-   
+   <!-- 반품내역 확인하기 -->
+   <select id="refund" parameterType="String" resultMap="refundList">
+   SELECT
+    r.id, r.orders_no, r.product_no, r.refund_qty, r.refund_date, r.refund_status,
+    p.product_name
+   FROM
+    refund r, product p
+   WHERE
+    r.id = #{id} and
+    r.product_no = p.product_no  
+   </select>
    
    
    

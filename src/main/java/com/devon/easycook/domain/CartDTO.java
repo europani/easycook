@@ -19,6 +19,7 @@ public class CartDTO {
 	private int point; // 회원 적립금
 	private String productName; // 상품 이름
 	private int productPrice; // 상품 가격
+	
 	private int money; // 수량*상품 - 그상품 총금액
 	private int count; //개수
 	

@@ -32,7 +32,9 @@ import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.ProductDTO;
+import com.devon.easycook.domain.RefundDTO;
 import com.devon.easycook.domain.ReviewDTO;
+import com.devon.easycook.domain.UcouponDTO;
 import com.devon.easycook.domain.WishlistDTO;
 import com.devon.easycook.service.MypageService;
 
@@ -67,8 +69,10 @@ public class MypageController {
 		List<OrdersDTO> detail = mypageService.ordersDetail(ordersNo);
 
 		int totalpay = detail.get(0).getOrdersTotal();
+		int discountPercent = detail.get(0).getDiscountPercent();
 		model.addAttribute("detail", detail);
 		model.addAttribute("totalpay", totalpay);
+		model.addAttribute("discountPercent", discountPercent);
 		model.addAttribute("orderNum", ordersNo);
 		return "mypage/ordersDetail";
 	}
@@ -119,14 +123,16 @@ public class MypageController {
 
     OrdersDTO cancelRequireList = mypageService.cancelRequire(refundCheckMap);
     int productPrice = cancelRequireList.getProduct().getProductPrice();
-    System.out.println("할인쿠폰 check전" + productPrice);
+    
+    
+
     // 구매시 할인쿠폰 사용여부 check
     int discountPercent = cancelRequireList.getDiscountPercent();
     if (discountPercent != 0) {
     	int productPriceAfterDiscount = productPrice * (100-discountPercent)/100;
     	productPrice = productPriceAfterDiscount;
-    	System.out.println("할인쿠폰 check후" + productPrice);
 	}
+    
     
       
       // 주문번호는 어차피 하나이니, 처음 list만 가져와도 ok
@@ -183,8 +189,16 @@ public class MypageController {
    
    
    @GetMapping("/cancel")
-   public String cancle() {
-      return "mypage/cancel";
+   public String cancle(HttpServletRequest request, Model model) {
+		  HttpSession session = request.getSession(true);
+		  MemberDTO member =(MemberDTO) session.getAttribute("member");
+//		  if (member == null) { return "redirect:/member/login"; }
+		  String id = member.getId();
+			       
+	      
+	      List<RefundDTO> refund = mypageService.refund(id);	      
+	      model.addAttribute("refund", refund);      
+	      return "mypage/cancel";
    }
    
    
@@ -198,7 +212,7 @@ public class MypageController {
 	  String id = member.getId(); 
       
       
-      List<CouponDTO> couponList = mypageService.coupon(id);
+      List<UcouponDTO> couponList = mypageService.coupon(id);
       int couponCount = mypageService.couponCount(id);
       int myPoint = mypageService.myPoint(id);
       
@@ -211,7 +225,7 @@ public class MypageController {
       return "mypage/coupon";
    }
    
-/*   @RequestMapping(value = "/couponDaySearch.action", method = RequestMethod.POST)
+   @RequestMapping(value = "/couponDaySearch.action", method = RequestMethod.POST)
    public ModelAndView couponDaySearch(String fromDate, String toDate, ModelAndView mv) {
 	   
 	   // ModelAndView 초기화 ㄱㄱ
@@ -227,12 +241,12 @@ public class MypageController {
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
-	   List<CouponDTO> couponListDate = mypageService.couponDate(dateMap);
-	 			   
+	   List<UcouponDTO> couponListDate = mypageService.couponDate(dateMap);
+	   System.out.println(couponListDate);			   
 	   mv.addObject("couponListDate", couponListDate);
 	   mv.setViewName("common/couponDaySearch");
 	   return mv;	   
-   }*/
+   }
    
 
 

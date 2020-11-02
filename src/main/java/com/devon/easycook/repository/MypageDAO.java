@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.ProductDTO;
+import com.devon.easycook.domain.RefundDTO;
 import com.devon.easycook.domain.ReviewDTO;
+import com.devon.easycook.domain.UcouponDTO;
 import com.devon.easycook.domain.WishlistDTO;
 
 @Repository
@@ -46,7 +48,7 @@ public class MypageDAO extends AbstractMybatisDAO{
 	      }
 	   }
    
-   public List<CouponDTO> coupon(String id) {
+   public List<UcouponDTO> coupon(String id) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
          return sqlsession.selectList(namespace + ".coupon", id);
@@ -55,7 +57,7 @@ public class MypageDAO extends AbstractMybatisDAO{
       }
    }
    
-   public List<CouponDTO> couponDate(Map<String, String> map) {
+   public List<UcouponDTO> couponDate(Map<String, String> map) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
 	         return sqlsession.selectList(namespace + ".couponDate", map);
@@ -114,6 +116,17 @@ public class MypageDAO extends AbstractMybatisDAO{
          sqlsession.close();
       }
    }
+   
+   public List<RefundDTO> refund(String id) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	   try {
+		   return sqlsession.selectList(namespace + ".refund", id);
+		} finally {
+			sqlsession.close();
+		}
+	  
+   }
+   
 
 
 

@@ -132,15 +132,16 @@
         <br><br>
        
         <hr><br>
-               <div id="content-detail">
+        <div id="content-detail">
+               
               <form id="couponSearch" name="couponSearch">
 		      <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
 		      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
 		      <label for="UserCheckOut"></label> 
 		      <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
-		      <input type="button"  id="SearchButton" class="btn-search" value="조회하기"></button>
+		      <input type="button" id="SearchButton" class="btn-search" value="조회하기"></button>
 		      </form>
-      </div>
+        </div>
       <br><br><br><br>
          <br><hr><br>
     
@@ -149,6 +150,7 @@
         <button class="w3-bar-item w3-button" onclick="openCoupon('사용가능한 쿠폰')">사용가능한 쿠폰</button>
        <button class="w3-bar-item w3-button" onclick="openCoupon('사용불가능한 쿠폰')">사용불가능한 쿠폰</button>
       </div>
+      <div id="	">
       <div id="사용가능한 쿠폰" class="coupon">
         <h2>사용가능한 쿠폰</h2>
          <table id="coupon-table">
@@ -156,7 +158,7 @@
        <tr>
           <th>쿠폰번호</th>
           <th>쿠폰명</th>
-          <th>혜택(0)</th>
+          <th>혜택</th>
           <th>유효기간</th>
           <th>발급일</th>
         </tr>
@@ -165,11 +167,11 @@
         <c:forEach var="coupon" items="${couponList }">
         <c:if test="${coupon.couponUsed == 0 }">
         <tr>
-          <td>${coupon.couponNo }</td>
-          <td>${coupon.couponTitle }</td>
-          <td>${coupon.couponDiscount }% 할인쿠폰</td>
-          <td>${coupon.couponEdate }</td>
-          <td>${coupon.couponSdate }</td>
+          <td>${coupon.ucouponNo }</td>
+          <td>${coupon.coupon.couponTitle }</td>
+          <td>${coupon.coupon.couponDiscount }% 할인쿠폰</td>
+          <td>${coupon.coupon.couponEdate }</td>
+          <td>${coupon.coupon.couponSdate }</td>
         </tr>    
         </c:if> 
         </c:forEach>        
@@ -184,7 +186,7 @@
        <tr>
           <th>쿠폰번호</th>
           <th>쿠폰명</th>
-          <th>혜택(1)</th>
+          <th>혜택</th>
           <th>유효기간</th>
           <th>발급일</th>
         </tr>
@@ -193,11 +195,11 @@
         <c:forEach var="coupon" items="${couponList }">
         <c:if test="${coupon.couponUsed == 1 }">
         <tr>
-          <td>${coupon.couponNo }</td>
-          <td>${coupon.couponTitle }</td>
-          <td>${coupon.couponDiscount }% 할인쿠폰</td>
-          <td>${coupon.couponEdate }</td>
-          <td>${coupon.couponSdate }</td>
+          <td>${coupon.ucouponNo }</td>
+          <td>${coupon.coupon.couponTitle }</td>
+          <td>${coupon.coupon.couponDiscount }% 할인쿠폰</td>
+          <td>${coupon.coupon.couponEdate }</td>
+          <td>${coupon.coupon.couponSdate }</td>
         </tr>   
         </c:if>  
         </c:forEach>
@@ -207,12 +209,13 @@
          
         </div>        
       </div>
-     
+</div>     
       <div id="jb-bottom">
         <br/>
       </div>
 </div>
 </body>
+<script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 function openCoupon(couponUsed) {
      var i;
@@ -224,15 +227,15 @@ function openCoupon(couponUsed) {
    }
    
 
-//$('#SearchButton').on('click', function(){
+$('#SearchButton').on('click', function(){
 	/* alert($("#searchgogo").serialize()) */
-/* 	$( '#coupon-table > tbody').empty();
+ 	$( '#qwer').empty();
 	$.ajax({
 		url : "couponDaySearch.action",
 		type: "POST",
 		data: $("#couponSearch").serialize(),
 		success: function (data) {			
-			$('#content-detail2').append(data);
+			$('#couponList').append(data);
 		},
 		error: function () {
 			alert("안된다...");
@@ -241,7 +244,7 @@ function openCoupon(couponUsed) {
 	});
 	
 	
-}); */
+});
  
 </script>
 

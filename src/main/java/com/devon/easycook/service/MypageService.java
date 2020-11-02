@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
 import com.devon.easycook.domain.ProductDTO;
+import com.devon.easycook.domain.RefundDTO;
 import com.devon.easycook.domain.ReviewDTO;
+import com.devon.easycook.domain.UcouponDTO;
 import com.devon.easycook.domain.WishlistDTO;
 import com.devon.easycook.repository.MypageDAO;
 import com.devon.easycook.repository.OrderDAO;
@@ -35,11 +37,11 @@ public class MypageService {
 	      
    }
   
-   public List<CouponDTO> coupon(String id) {
+   public List<UcouponDTO> coupon(String id) {
       return mypageDAO.coupon(id); 
    }
    
-   public List<CouponDTO> couponDate(Map<String, String> dateMap) {
+   public List<UcouponDTO> couponDate(Map<String, String> dateMap) {
 		return mypageDAO.couponDate(dateMap);
 	}
    
@@ -60,12 +62,13 @@ public class MypageService {
    }
    
    public OrdersDTO cancelRequire(Map<String, Object> refundCheckMap) {
-	   System.out.println(refundCheckMap);
       return mypageDAO.cancelRequire(refundCheckMap);
       
    }
 
-   
+   public List<RefundDTO> refund(String id){
+	   return mypageDAO.refund(id);
+   }
 
    
    
