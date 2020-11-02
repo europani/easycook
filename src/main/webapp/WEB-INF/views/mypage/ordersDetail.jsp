@@ -87,7 +87,7 @@
 			<th>상품번호</th>
 			<th>상품명</th>
 		    <th>수량</th>
-		    <th>결제금액</th>
+		    <th>상품총액</th>
 		    <th width="15%"></th>
 		</tr>
 		</thead>
@@ -116,24 +116,31 @@
 		</tr>
 		</c:forEach>	
 		</tbody>
-	</table>
-	<h2 align="center">총 결제금액 : ${totalpay }원</h2>
-	<%-- <table>
+	</table>	
+	<table>
 	      <colgroup>
 	      	<col style="width:20%">
 	      	<col style="width:80%">
 	      </colgroup>
 	      	<tbody>
+	      	<c:if test="${discountPercent != null }">
 	      	<tr>
-	      		<th>총 구매금액</th>
-	      		<td>0</td>
+	      		<th>쿠폰적용</th>
+	      		<td>${discountPercent }%</td>
 	      	</tr>
+	      	</c:if>
+	      	<c:if test="${discountPercent == null }">
+	      	<tr>
+	      		<th>쿠폰적용</th>
+	      		<td>마일리지 할인 적용</td>
+	      	</tr>
+	      	</c:if>
 	      	<tr>
 	      		<th>실 결제금액</th>
 	      		<td>${totalpay }원</td>
 	      	</tr>
 	      	</tbody>   
-	</table> --%>
+	</table>
 	
 		</div>
 	  <div id="jb-bottom">

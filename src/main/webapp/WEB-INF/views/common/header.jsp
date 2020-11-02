@@ -144,7 +144,7 @@
                      <a href="/easycook/today">핫딜</a>
                   </li>
                   <li>
-                     <a href="/easycook/weather">오늘 뭐 먹지?</a>
+                     <a href="/easycook/weatherCheck">오늘 뭐 먹지?</a>
                   </li>
                   <li class="dropdown">
                      <a href="/easycook/notice">고객센터</a>

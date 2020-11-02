@@ -17,8 +17,7 @@ public class OrdersDTO {
 	private String ordersStatus;
 	private int ordersTotal;
 	private int discountPercent;
-	
-	
+
 	
 	private OrdersDetailDTO ordersDetail;
 	private ProductDTO product;

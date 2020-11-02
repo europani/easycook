@@ -141,6 +141,7 @@ public class OrderController {
 		HttpSession session = request.getSession(true);
 		MemberDTO member =(MemberDTO) session.getAttribute("member");
 		String id = member.getId();
+		
 		refund.setId(id);	refund.setRefundStatus("반품신청");
 		System.out.println(refund);
 		orderService.doCancel(refund);

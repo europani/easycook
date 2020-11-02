@@ -5,10 +5,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.domain.ReviewDTO;
@@ -39,8 +43,17 @@ public class MenuController {
 		return "today";
 	}
 	
-	@GetMapping("/weather")
+	@GetMapping("/weatherCheck")
 	public String weather() {
+		return "weatherCheck";
+	}
+	
+	@GetMapping("/weather")
+	public String weather(@RequestParam(value = "weather") String weather, Model model) {
+		List<ProductDTO> list = productService.getWeather(weather);
+		model.addAttribute("list", list);
+			
 		return "weather";
 	}
+	
 }

@@ -95,6 +95,15 @@ public class ProductDAO extends AbstractMybatisDAO {
 		}
 	}
 
+	public List<ProductDTO> getWeather(String weather) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectList(namespace + ".getWeather", weather);
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
 	// ADMIN
 	public int countByCategory(String category) {
 		sqlsession = getSqlSessionFactory().openSession();
