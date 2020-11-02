@@ -49,7 +49,7 @@ public class MenuController {
 	}
 	
 	@GetMapping("/weather")
-	public String weather(@RequestParam(value = "weather") String weather, Model model) {
+	public String weather(@RequestParam String weather, Model model) {
 		List<ProductDTO> list = productService.getWeather(weather);
 		model.addAttribute("list", list);
 			

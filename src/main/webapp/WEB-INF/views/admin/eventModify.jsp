@@ -36,7 +36,7 @@
         </div>
       </nav>
 	<div class="w3-container w3-center ">
-		<h2>이벤트 등록</h2>
+		<h2>이벤트 수정</h2>
 
 		<form method="post" action="" name="writeForm" enctype="multipart/form-data">
 			<table class="w3-table-all" style="width:50%;">
