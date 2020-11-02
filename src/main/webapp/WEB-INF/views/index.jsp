@@ -55,7 +55,7 @@
 					<div class="carousel-caption"></div>
 				</div>
 				<div class="item ">
-					<img src="/easycook/resources/mart/images/slider.jpg" width="1648" height="600"
+					<img src="/easycook/resources/mart/images/best02.png" width="1648" height="600"
 						alt="">
 					<div class="carousel-caption"></div>
 				</div>
@@ -90,11 +90,11 @@
 							width="255" height="322" alt="">
 						<div class="product-hover">
 							<div class="product-meta">
-								<a href="#"><i class="pe-7s-cart"></i>detail</a>
+								<a href="<%=request.getContextPath() %>/product/1001"><i class="pe-7s-cart"></i>detail</a>
 							</div>
 						</div>
 						<div class="product-title">
-							<a href="#">
+							<a href="<%=request.getContextPath() %>/product/1001">
 								<h3>비빔밥</h3>
 							</a>
 						</div>
@@ -109,11 +109,11 @@
 							width="255" height="322" alt="">
 						<div class="product-hover">
 							<div class="product-meta">
-								<a href="#"><i class="pe-7s-cart"></i>detail</a>
+								<a href="<%=request.getContextPath() %>/product/3001"><i class="pe-7s-cart"></i>detail</a>
 							</div>
 						</div>
 						<div class="product-title">
-							<a href="#">
+							<a href="<%=request.getContextPath() %>/product/3001">
 								<h3>라멘</h3>
 							</a>
 						</div>
@@ -128,11 +128,11 @@
 							width="255" height="322" alt="">
 						<div class="product-hover">
 							<div class="product-meta">
-								<a href="#"><i class="pe-7s-cart"></i>detail</a>
+								<a href="<%=request.getContextPath() %>/product/4003"><i class="pe-7s-cart"></i>detail</a>
 							</div>
 						</div>
 						<div class="product-title">
-							<a href="#">
+							<a href="<%=request.getContextPath() %>/product/4003">
 								<h3>햄박스테이크</h3>
 							</a>
 						</div>
@@ -145,11 +145,11 @@
 							width="255" height="322" alt="">
 						<div class="product-hover">
 							<div class="product-meta">
-								<a href="#"><i class="pe-7s-cart"></i>detail</a>
+								<a href="<%=request.getContextPath() %>/product/4004"><i class="pe-7s-cart"></i>detail</a>
 							</div>
 						</div>
 						<div class="product-title">
-							<a href="#">
+							<a href="<%=request.getContextPath() %>/product/4004">
 								<h3>폭립</h3>
 							</a>
 						</div>
@@ -192,7 +192,11 @@
 				<div class="col-md-12 wow fadeInDown animated ">
 					<h1>EVENT</h1>
 					<h1>TIME SALE</h1>
-					<h2>Up to 35% off</h2>
+					<h2>Up to 50% off</h2>
+					<button
+                       	onclick="location.href='today'"
+                        class="btn btn-primary py-3 px-5">핫딜 보러가기
+                    </button>
 				</div>
 			</div>
 		</div>
@@ -210,21 +214,21 @@
 			<div class="row">
 				<div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.2s">
 					<div class="blog-item">
-						<a href="#"><img src="/easycook/resources/images/a11.jpg" width="350"
-							height="262" alt=""></a>
+						<img src="/easycook/resources/images/a11.jpg" width="350"
+							height="262" alt="">
 					</div>
 				</div>
 				<div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.4s">
 					<div class="blog-item">
-						<a href="#"><img src="/easycook/resources/images/a21.jpg" width="350"
-							height="262" alt=""></a>
+						<img src="/easycook/resources/images/a21.jpg" width="350"
+							height="262" alt="">
 
 					</div>
 				</div>
 				<div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.6s">
 					<div class="blog-item">
-						<a href="#"><img src="/easycook/resources/images/a31.jpg" width="350"
-							height="262" alt=""></a>
+						<img src="/easycook/resources/images/a31.jpg" width="350"
+							height="262" alt="">
 						
 						
 					</div>
