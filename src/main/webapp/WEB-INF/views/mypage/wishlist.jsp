@@ -6,9 +6,14 @@
   <section class="ftco-section ftco-cart">
 <jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
       <div class="container"> 
-      <h2>찜목록</h2>
+      <h2>찜목록 [ ${myWishlist.size()}개 ]</h2>
         <hr>
         <br>
+        <c:choose>
+				<c:when test="${list.size()==0}">
+         			장바구니가 비어있습니다.
+         		</c:when>
+         		<c:otherwise>
          <div class="row">
             <div class="col-md-12 ftco-animate">
                <div class="cart-list">
@@ -45,7 +50,12 @@
                </div>
             </div>
          </div>
+         </c:otherwise>
+      </c:choose>
       </div>
+      
+      
+      
       <div class="mouse">
                <a href="#" class="mouse-icon">
                   <div class="mouse-wheel">

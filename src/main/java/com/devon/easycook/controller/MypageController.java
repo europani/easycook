@@ -50,6 +50,7 @@ public class MypageController {
 
 	  HttpSession session = request.getSession(true);
 	  MemberDTO member =(MemberDTO) session.getAttribute("member");
+//	  if (member == null) { return "redirect:/member/login"; }
 	  String id = member.getId();
 		       
       
@@ -84,6 +85,7 @@ public class MypageController {
 	   // 나중에 session으로 id 받을것
 	   HttpSession session = request.getSession(true);
 	   MemberDTO member =(MemberDTO) session.getAttribute("member");
+//	   if (member == null) { return "redirect:/member/login"; }
 	   String id = member.getId();
 	   
 	   dateMap.clear();
@@ -106,6 +108,7 @@ public class MypageController {
 	
 	HttpSession session = request.getSession(true);
 	MemberDTO member =(MemberDTO) session.getAttribute("member");
+//	if (member == null) { return "redirect:/member/login"; }
 	String id = member.getId(); 
 
 
@@ -150,6 +153,7 @@ public class MypageController {
 	   	  
 	  HttpSession session = request.getSession(true);
 	  MemberDTO member =(MemberDTO) session.getAttribute("member");
+//	  if (member == null) { return "redirect:/member/login"; }
 	  String id = member.getId();
 	  
 	  Map<String, Object> wishlistMap = new HashMap<String, Object>();
@@ -167,6 +171,7 @@ public class MypageController {
 	   	  
 	  HttpSession session = request.getSession(true);
 	  MemberDTO member =(MemberDTO) session.getAttribute("member");
+//	  if (member == null) { return "redirect:/member/login"; }
 	  String id = member.getId();
 	  List<WishlistDTO> myWishlist = mypageService.wishlist(id);
 	  myWishlist.get(0).getProductNo();
@@ -189,6 +194,7 @@ public class MypageController {
       
       HttpSession session = request.getSession(true);
 	  MemberDTO member =(MemberDTO) session.getAttribute("member");
+//	  if (member == null) { return "redirect:/member/login"; }
 	  String id = member.getId(); 
       
       

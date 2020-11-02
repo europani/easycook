@@ -158,17 +158,16 @@
    	<!-- 쿠폰목록 확인하기  -->
    <select id="coupon" parameterType="String" resultType="Coupon">
    select
-    coupon_no as couponNo,
-    id,
-    coupon_type as couponType, 
+    uc.coupon_no as couponNo,
+    uc.id,
     coupon_discount as couponDiscount,
     coupon_used as couponUsed, 
     coupon_sdate as couponSdate, 
     coupon_edate as couponEdate, 
     coupon_title as couponTitle
-   FROM coupon
-   where id = #{id} 
-   order by coupon_edate desc 
+   FROM coupon c, ucoupon uc
+   where uc.id = #{id} 
+   order by c.coupon_edate desc 
    </select>
    
    <!-- 쿠폰목록 확인하기  -->

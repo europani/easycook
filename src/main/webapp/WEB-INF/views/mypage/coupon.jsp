@@ -167,12 +167,7 @@
         <tr>
           <td>${coupon.couponNo }</td>
           <td>${coupon.couponTitle }</td>
-          <c:if test="${coupon.couponType == 0 }">
           <td>${coupon.couponDiscount }% 할인쿠폰</td>
-          </c:if>
-          <c:if test="${coupon.couponType == 1 }">
-          <td>${coupon.couponDiscount }원 할인쿠폰</td>
-          </c:if>
           <td>${coupon.couponEdate }</td>
           <td>${coupon.couponSdate }</td>
         </tr>    
@@ -200,12 +195,7 @@
         <tr>
           <td>${coupon.couponNo }</td>
           <td>${coupon.couponTitle }</td>
-          <c:if test="${coupon.couponType == 0 }">
           <td>${coupon.couponDiscount }% 할인쿠폰</td>
-          </c:if>
-          <c:if test="${coupon.couponType == 1 }">
-          <td>${coupon.couponDiscount }원 할인쿠폰</td>
-          </c:if>
           <td>${coupon.couponEdate }</td>
           <td>${coupon.couponSdate }</td>
         </tr>   
