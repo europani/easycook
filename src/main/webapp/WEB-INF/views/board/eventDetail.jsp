@@ -57,7 +57,7 @@
 </div>
 </section>
    <div id="click">
-   	<a href="<%=request.getContextPath() %>/board/event"  class="btn btn-default">목록</a>
+   	<a href="<%=request.getContextPath() %>/event"  class="btn btn-default">목록</a>
    </div>
    
    <script>
