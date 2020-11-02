@@ -103,19 +103,38 @@
 					<col style="width: 80%">
 				</colgroup>
 				<tbody>
-					<tr>
+					<%-- <tr>
 						<th>주문하시는 분</th>
-						<td>${list[0].member.name}</td>
+						<td>${dto.member.name}</td>
 						
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td>${list[0].member.tel}</td>
+						<td>${dto.member.tel}</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td>${list[0].member.email}</td>
-						
+						<td>${dto.member.email}</td> --%>
+					</tr>
+					<tr>
+						<th>주문번호</th>
+						<td>${dto.ordersNo}</td>
+					</tr>
+					<tr>
+						<th>주문상태</th>
+						<td>${dto.ordersStatus}</td>
+					</tr>
+					<tr>
+						<th>쿠폰할인</th>
+						<td>${dto.discountCoupon}</td>
+					</tr>
+					<tr>
+						<th>적립금확인</th>
+						<td>${dto.discountPoint}</td>
+					</tr>
+					<tr>
+						<th>체크</th>
+						<td>${dto.check}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -132,8 +151,8 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>상품 합계 금액</th>
-						<td><fmt:formatNumber value="${total}" pattern="###,###,###" />원</td>
+						<th>결제 금액</th>
+						<td><fmt:formatNumber value="${dto.ordersTotal}" pattern="###,###,###" />원</td>
 					</tr>
 				</tbody>
 			</table>

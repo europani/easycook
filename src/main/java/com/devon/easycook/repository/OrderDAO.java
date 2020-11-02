@@ -26,7 +26,7 @@ public class OrderDAO extends AbstractMybatisDAO {
 
 	private String namespace = "orderMapper";
 
-	// 1. 장바구니에 추가하기
+	// 장바구니에 추가하기
 	// dto에 저장된 값을 받아서 sql 세션에 저장하고 cart/cartInsert로 감 mapper로
 	public void cartInsert(CartDTO dto) {
 		sqlsession = getSqlSessionFactory().openSession();
@@ -41,7 +41,7 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	// 2. 장바구니 목록 보기
+	// 장바구니 목록 보기
 	public List<CartDTO> cartList(String id) {
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
@@ -51,7 +51,7 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	// 3. 장바구니 삭제하기
+	// 장바구니 삭제하기
 	public void cartDelete(int cartNo) {
 		sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
@@ -65,7 +65,7 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	// 4. 쿠폰 목록 보기 
+	// 쿠폰 목록 보기 
 	public List<CouponDTO> couponList(String id) {
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
@@ -74,36 +74,30 @@ public class OrderDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
-	// 5. 장바구니 합계구하기 public int sumMoney(String Id) { sqlsession =
-	/*
-	 * getSqlSessionFactory().openSession(); try { return
-	 * sqlsession.selectOne(namespace + ".sumMoney", Id); } finally {
-	 * sqlsession.close(); } }
-	 */
-
-	/*
-	 * // 3. 장바구니 수정하기 - 수량덮어쓰기 public void cartModify(CartDTO cart) { sqlsession =
-	 * getSqlSessionFactory().openSession(); int result = 0; try { result =
-	 * sqlsession.update(namespace + ".cartModify", cart); if(result != 0) {
-	 * sqlsession.commit(); } } finally { sqlsession.close(); } }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * // 6. 장바구니 동일 상품 확인 public int cartCount(int productNo, String Id) {
-	 * sqlsession = getSqlSessionFactory().openSession(); Map<String, Object> map =
-	 * new HashMap<String, Object>(); map.put("productNo", productNo); map.put("Id",
-	 * Id); try { return sqlsession.selectOne(namespace + ".cartCount", map); }
-	 * finally { sqlsession.close(); } }
-	 * 
-	 * // 7. 장바구니에 같은상품있으면 수량합산 public void cartUpdate(CartDTO cart) { sqlsession =
-	 * getSqlSessionFactory().openSession(); int result = 0; try { result =
-	 * sqlsession.update(namespace + ".sumTotal", cart); if(result != 0) {
-	 * sqlsession.commit(); } } finally { sqlsession.close(); } }
-	 */
-
+	
+	// 주문 완료 후 주문내역에 추가
+	  public void ordersInsert(OrdersDTO dto) { 
+		  sqlsession = getSqlSessionFactory().openSession(); 
+		  int result = 0; 
+		  try { 
+			  result = sqlsession.insert(namespace + ".ordersInsert", dto); 
+			  if (result != 0) {
+				  sqlsession.commit(); 
+				  } 
+			  } finally { sqlsession.close(); } }
+		 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	

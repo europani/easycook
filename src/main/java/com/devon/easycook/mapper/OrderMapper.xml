@@ -3,8 +3,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="orderMapper">
-	
-	<!-- 장바구니 / 주문 -->
+	  
+		<!-- 장바구니 / 주문 -->
 		<resultMap id="CartList" type="Cart">
 			<id property="cartNo" column="cart_no" />
 			<result property="id" column="id" />
@@ -27,6 +27,7 @@
 		</association>
 	</resultMap>
 	
+	<!-- 쿠폰 -->
 	<resultMap id="CouponList" type="Coupon">
 			<id property="couponNo" column="coupon_no" />
 			<result property="couponTitle" column="coupon_title" />
@@ -46,7 +47,8 @@
 		</association>
 	</resultMap>
 
-	<!-- 1. 장바구니에 추가하기 담기를 누를때 상품번호/id 있으면 update 없으면 insert -->
+
+	<!-- 장바구니에 추가하기 담기를 누를때 상품번호/id 있으면 update 없으면 insert -->
 	<insert id="cartInsert" >
 		MERGE INTO CART
 		USING DUAL
@@ -71,7 +73,7 @@
 	</insert>
 
 
-	<!-- 2. 목록보기 -->
+	<!-- 장바구니 목록보기 -->
 	<select id="cartList" resultMap="CartList">
 		SELECT
 		c.cart_no ,
@@ -93,13 +95,13 @@
 		c.id = #{id}
 	</select>
 
-	<!-- 3. 장바구니 상품별 삭제 -->
+	<!-- 장바구니 상품별 삭제 -->
 	<delete id="cartDelete">
 		DELETE FROM cart
 		WHERE cart_no = #{cartNo}
 	</delete>
 
-	<!-- 4. 쿠폰목록 확인하기 -->
+	<!-- 쿠폰목록 확인하기 -->
 	<select id="couponList" resultMap="CouponList">
 		SELECT
 		c.coupon_no,
@@ -115,10 +117,24 @@
 		ORDER BY coupon_edate desc
 	</select>
 
-
-
-
-
+	<!-- 결제후 주문내역 Insert -->
+	<insert id="ordersInsert" >
+		INSERT INTO orders
+		VALUES (
+			orderseq.NEXTVAL,
+			#{id},
+			sysdate, 
+			#{cartNo},
+			'주문완료',
+			#{ordersTotal},
+			#{discountCoupon},
+			#{discountPoint}
+		)
+	</insert>
+	
+<!-- 결제후 주문상세내역 Insert 여러번 되어야함-->
+<!-- 	<insert id="ordersDetailInsert" >
+    </insert> --> 
 
 
 
@@ -280,6 +296,4 @@
 			#{orderNo} AND product_no = #{productNo}
 		</if>
 	</update>
-
-
 </mapper>

@@ -288,8 +288,8 @@
 						<input type="hidden" id="total" value="${total}" />
 						<input type="hidden" id="fee" value="${fee}" />
 						
-						<c:set var="finalTotal" value="${total + fee}" />	
-						<td><p id="finalTotal">${finalTotal}원</p></td>
+						<c:set var="ordersTotal" value="${total + fee}" />	
+						<td><p id="ordersTotal">${ordersTotal}원</p></td>
 						
 					</tr>
 				</tbody>
@@ -298,15 +298,14 @@
 		<div class="payment-content3"></div>
 		<div class="payment-pay">
 		
-		<a href="/easycook/order/paymentComplete">결제하기</a>
-		<%-- <form action="/easycook/order/paymentComplete" method="post" id="paymentForm">
-			<input type="hidden"  id="checkForm" name="check" value="${check}" />
-			<input type="hidden" name="name" value="${list[0].member.name}" />
-			<input type="hidden" name="tel" value="${list[0].member.tel}" />
-			<input type="hidden" name="email" value="${list[0].member.email}" />
-			<input type="hidden" id="finalTotalform" name="finalTotal" value="${finalTotal}" />	
+		<form action="/easycook/order/paymentComplete" method="post" id="paymentForm">
+			<input type="text" name="cartNo" value="${list[0].cartNo}" />
+			<input type="text"  id="checkForm" name="check" value="${check}" />
+			<input type="text"  id="couponForm" name="discountCoupon" value="${discountCoupon}" />
+			<input type="text"  id="pointForm" name="discountPoint" value="${discountPoint}" />
+			<input type="text" id="ordersTotalform" name="ordersTotal" value="${ordersTotal}" />	
 		</form>
-		<button class="btn-payment" type="submit" form="paymentForm">결제하기</button> --%>
+		<button class="btn-payment" type="submit" form="paymentForm">결제하기</button>
 		
 		</div>
 
@@ -328,15 +327,15 @@
 
 							var total = $('#total').val() - $('#total').val() * (radioVal / 100);
 
-							var finalTotal = parseInt($('#fee').val()) + parseInt(total);
+							var ordersTotal = parseInt($('#fee').val()) + parseInt(total);
 							$('#point').html("쿠폰과 중복적용되지 않습니다.");
 							
 							
-							$('#finalTotal').html(finalTotal + "원");
-							$('#finalTotalform').val(finalTotal);
-							
+							$('#ordersTotal').html(ordersTotal + "원");
+							$('#ordersTotalForm').val(ordersTotal);
 							
 							$('#checkForm').val(1);
+							$('#couponForm').val(radioVal);
 							
 							$('#id01').css("display", "none");
 						});
@@ -349,14 +348,15 @@
 
 							var total = $('#total').val() - pointVal;
 
-							var finalTotal = parseInt($('#fee').val()) + parseInt(total);
+							var ordersTotal = parseInt($('#fee').val()) + parseInt(total);
 							$('#couponDiscount').html("적립금과 중복적용되지 않습니다.");
 							
-							$('#finalTotal').html(finalTotal + "원");
+							$('#ordersTotal').html(ordersTotal + "원");
 							
 							$('#checkForm').val(2);
+							$('#pointForm').val(pointVal);
 							
-							$('#finalTotalform').val(finalTotal);
+							$('#ordersTotalForm').val(ordersTotal);
 							
 						});
 			});

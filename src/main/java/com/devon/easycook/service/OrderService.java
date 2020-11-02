@@ -24,45 +24,47 @@ public class OrderService {
 	private OrderDAO orderDao;
 	
 	
-	// 1. 장바구니에 추가하기
-	public void cartInsert(CartDTO cart) {
-		orderDao.cartInsert(cart);
+	// 장바구니에 추가하기
+	public void cartInsert(CartDTO dto) {
+		orderDao.cartInsert(dto);
 	}
 	
-	// 2. 장바구니 목록보기
+	// 장바구니 목록보기
 	public List<CartDTO> cartList(String id) { 
 		return orderDao.cartList(id); 
 	}
 	
-	// 3. 장바구니 삭제하기
+	// 장바구니 삭제하기
 	public void cartDelete(int cartNo) {
 		orderDao.cartDelete(cartNo); 
 	}
 	
-	// 4. 쿠폰 목록보기
+	// 쿠폰 목록보기
 	public List<CouponDTO> couponList(String id) { 
 		return orderDao.couponList(id); 
 	}
-	 /* 
-	 * // 5. 장바구니 합계구하기 public int sumMoney(String Id) { return
-	 * cartDao.sumMoney(Id); }
-	 */
-	/*
-	 * // 3. 장바구니 수정하기 - 수량덮어쓰기 public void cartModify(CartDTO cart) {
-	 * cartDao.cartModify(cart); }
-	 * 
-	 * // 4. 장바구니 삭제하기 public void cartDelete(int cartNo) {
-	 * cartDao.cartDelete(cartNo); }
-	 * 
-	 * // 5. 장바구니 합계구하기
-	 * 
-	 * 
-	 * // 6. 장바구니 동일 상품 확인 public int countCart(int productNo, String Id) { return
-	 * cartDao.cartCount(productNo, Id); }
-	 * 
-	 * // 7. 장바구니에 같은상품있으면 수량합산 public void cartUpdate(CartDTO cart) {
-	 * cartDao.cartUpdate(cart); }
-	 */
+	
+	// 주문완료 후 주문목록 추가하기
+	
+	public void ordersInsert(OrdersDTO dto) { 
+		orderDao.ordersInsert(dto); 
+	}
+	 
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
 
 

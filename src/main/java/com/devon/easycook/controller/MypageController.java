@@ -69,7 +69,7 @@ public class MypageController {
 		List<OrdersDTO> detail = mypageService.ordersDetail(ordersNo);
 
 		int totalpay = detail.get(0).getOrdersTotal();
-		int discountPercent = detail.get(0).getDiscountPercent();
+		int discountPercent = detail.get(0).getDiscountCoupon();
 		model.addAttribute("detail", detail);
 		model.addAttribute("totalpay", totalpay);
 		model.addAttribute("discountPercent", discountPercent);
@@ -127,7 +127,7 @@ public class MypageController {
     
 
     // 구매시 할인쿠폰 사용여부 check
-    int discountPercent = cancelRequireList.getDiscountPercent();
+    int discountPercent = cancelRequireList.getDiscountCoupon();
     if (discountPercent != 0) {
     	int productPriceAfterDiscount = productPrice * (100-discountPercent)/100;
     	productPrice = productPriceAfterDiscount;

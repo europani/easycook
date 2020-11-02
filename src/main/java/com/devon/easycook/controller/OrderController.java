@@ -34,7 +34,7 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 
-	// 1. 장바구니에 추가하기
+	// 장바구니에 추가하기
 	@PostMapping("/cart/insert")
 	public String insert(@ModelAttribute CartDTO dto, HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
@@ -49,7 +49,7 @@ public class OrderController {
 		return "redirect:/order/cart"; // 장바구니 목록으로 이동
 	}
 
-	// 2. 장바구니 목록보기
+	// 장바구니 목록보기
 
 	@GetMapping("/cart")
 	public String list(HttpServletRequest request, Model model) {
@@ -66,14 +66,14 @@ public class OrderController {
 		return "order/cart";
 	}
 
-	// 3. 장바구니 삭제하기
+	// 장바구니 삭제하기
 	@RequestMapping("/cart/delete")
 	public String delete(@RequestParam int cartNo) {
 		orderService.cartDelete(cartNo);
 		return "redirect:/order/cart";
 	}
 	
-	// 4. 주문하기 
+	// 주문하기 
 	@GetMapping("/order")
 	public String orderList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(true);
@@ -89,40 +89,65 @@ public class OrderController {
 		model.addAttribute("list2", list2);
 		return "order/order";
 	}
-	
-	/*
-	 * @PostMapping("/payment") public String insert(@ModelAttribute CartDTO dto,
-	 * HttpServletRequest request) { HttpSession session = request.getSession(true);
-	 * MemberDTO member = (MemberDTO) session.getAttribute("member"); if (member ==
-	 * null) { return "redirect:/member/login"; } String Id = member.getId();
-	 * dto.setId(Id); System.out.println(Id); orderService.cartInsert(dto); // 장바구니
-	 * 테이블에 아이디 저장 return "redirect:/order/cart"; // 장바구니 목록으로 이동 }
-	 */
-	
-	/*
-	 * // 3. 장바구니 수정하기 - 수량덮어쓰기
-	 * 
-	 * @RequestMapping("/cart/update") public String update(@RequestParam int[]
-	 * cartQty, @RequestParam int[] productNo, HttpSession session) { String Id =
-	 * (String) session.getAttribute("Id"); // 상품 갯수만큼 반복 for(int i=0;
-	 * i<productNo.length; i++) { CartDTO cart = new CartDTO(); cart.setId(Id);
-	 * cart.setCartQty(cartQty[i]); cart.setProductNo(productNo[i]);
-	 * cartService.cartModify(cart); } return "redirect:/mypage/cart"; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
 
-	// 5. 장바구니 결제 마지막단계
-	@RequestMapping("/payment")
-	public String payment() {
-		return "order/payment";
-	}
+	// 결제 마지막단계
+	@PostMapping("/paymentComplete") public String payment(@ModelAttribute OrdersDTO dto,
+			HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(true);
+		MemberDTO member = (MemberDTO) session.getAttribute("member");
+		String Id = member.getId();
+		dto.setId(Id);
+		dto.setCartNo(dto.getCartNo());
+		
+		if(dto.getCheck()==1) {
+			dto.setDiscountCoupon(dto.getDiscountCoupon());
+			dto.setDiscountPoint(0);
+		}
+		else if(dto.getCheck()==2) {
+			dto.setDiscountCoupon(0);
+			dto.setDiscountPoint(dto.getDiscountPoint());
+		}
+		else {
+			dto.setDiscountCoupon(0);
+			dto.setDiscountPoint(0);
+		}
+		
+		dto.setOrdersTotal(dto.getOrdersTotal());
+		orderService.ordersInsert(dto);
+		model.addAttribute("dto",dto);
+			return "order/paymentComplete"; 
+		  }
+			
+	// 결제 마지막단계
+	/*
+	 * @PostMapping("/payment") public String payment(@ModelAttribute OrdersDTO dto,
+	 * HttpServletRequest request) { return "order/payment"; }
+	 */		
+	
+	  
+	  
+	 
 
 	
 	
 	   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	// 주문취소
