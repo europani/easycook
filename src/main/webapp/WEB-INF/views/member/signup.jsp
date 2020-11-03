@@ -121,19 +121,24 @@ btn_margin{
 	<script src="https://kit.fontawesome.com/3eee069757.js"></script>
 	<script type="text/javascript">
 
- function checkPwd(){
-  var f1 = document.forms[0];
-  var pwd = f1.pwd.value;
-  var rePwd = f1.rePwd.value;
-  if(pwd!=rePwd){
-   document.getElementById('checkPwd').style.color = "red";
-   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
-  }else{
-   document.getElementById('checkPwd').style.color = "black";
-   document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
-   
-  }
-};
+	 function checkPwd(){
+		  var f1 = document.forms[0];
+		  var pwd = f1.pwd.value;
+		  var rePwd = f1.rePwd.value;
+		  if(pwd.length >= 7){
+		  if(pwd!=rePwd){
+		   document.getElementById('checkPwd').style.color = "red";
+		   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
+		  }else{
+		   document.getElementById('checkPwd').style.color = "black";
+		   document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
+		  }
+		  }else{
+		   document.getElementById('checkPwd').innerHTML = "비밀번호를 7자리이상 입력하세요.";     
+		  }
+		  
+		};
+		
 //아이디 유효성 검사(1 = 중복 / 0 != 중복)
 	$("#id").blur(function() {
 		var id = $('#id').val();
