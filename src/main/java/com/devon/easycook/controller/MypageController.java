@@ -37,6 +37,8 @@ import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.domain.UcouponDTO;
 import com.devon.easycook.domain.WishlistDTO;
 import com.devon.easycook.service.MypageService;
+import com.devon.easycook.service.OrderService;
+import com.devon.easycook.util.PagingVO;
 
 @Controller
 @RequestMapping("/mypage")
@@ -45,25 +47,51 @@ public class MypageController {
    @Autowired
    MypageService mypageService;
    
+   @Autowired
+   OrderService orderService;
+   
    // 각 마이페이지별 날짜계산용 map
    Map<String, Object> dateMap = new HashMap<String, Object>();
    
    
    
    @GetMapping("/orders")
-   public String orders(Model model, HttpServletRequest request) {   
+   public String orders(PagingVO vo,  Model model, HttpServletRequest request,
+		   @RequestParam(value = "nowPage", required = false) String nowPage,
+		   @RequestParam(value = "cntPerPage", required = false) String cntPerPage) {   
 
-	  HttpSession session = request.getSession(true);
-	  MemberDTO member =(MemberDTO) session.getAttribute("member");
-//	  if (member == null) { return "redirect:/member/login"; }
-	  String id = member.getId();
-		       
-      
-      List<OrdersDTO> orderList = mypageService.orders(id);
-      
-      model.addAttribute("orderList", orderList);
-   
-      return "mypage/orders";
+	   	  Map<String, Object> map = new HashMap<String, Object>();
+	   
+
+
+		  HttpSession session = request.getSession(true);
+		  MemberDTO member =(MemberDTO) session.getAttribute("member");
+	//	  if (member == null) { return "redirect:/member/login"; }
+		  String id = member.getId();
+		  
+	      int total = mypageService.countUserOrder(id);
+	      System.out.println(total);
+		  if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		  } else if (nowPage == null) {
+			nowPage = "1";
+		  } else if (cntPerPage == null) {
+			cntPerPage = "10";
+		  }
+		  vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		  model.addAttribute("paging", vo);
+		  int start = vo.getStart();	map.put("start", start);
+		  int end = vo.getEnd();	 map.put("end", end);
+		  
+		  map.put("id", id);       
+		  
+	      List<OrdersDTO> orderList = mypageService.orders(map);
+	      
+			
+		  model.addAttribute("orderList", orderList);
+	   
+	      return "mypage/orders";
       
    }
    
@@ -99,12 +127,13 @@ public class MypageController {
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
-	   List<OrdersDTO> ordersSearch = mypageService.ordersSearch(dateMap);
+	   List<OrdersDTO> orderListDate = mypageService.ordersSearch(dateMap);
 	 	
 	   
-	   mv.addObject("orderListDate", ordersSearch);
+	   mv.addObject("orderListDate", orderListDate);
 	   mv.setViewName("common/ordersSearch");
 	   return mv;	   
+	   
    }
       
    // 처음 반품창
@@ -263,7 +292,7 @@ public class MypageController {
 //	   if (member == null) { return "redirect:/member/login"; }
 	   String id = member.getId(); 
 	   
-	   dateMap.clear();
+	   dateMap.clear();	
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);

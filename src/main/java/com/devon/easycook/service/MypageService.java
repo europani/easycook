@@ -22,8 +22,8 @@ public class MypageService {
    @Autowired
    private MypageDAO mypageDAO;
    
-   public List<OrdersDTO> orders(String id) {
-      return mypageDAO.orders(id);
+   public List<OrdersDTO> orders(Map<String, Object> map) {
+      return mypageDAO.orders(map);
       
    }
    
@@ -37,6 +37,11 @@ public class MypageService {
 	      
    }
   
+	public int countUserOrder(String id) {
+		return mypageDAO.countUserOrder(id);
+	}
+   
+   
    public List<UcouponDTO> coupon(String id) {
       return mypageDAO.coupon(id); 
    }

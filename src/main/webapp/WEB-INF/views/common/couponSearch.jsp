@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
- <div id="couponList">
+ <div id="couponDateList">
       <div id="사용가능한 쿠폰" class="coupon">
         <h2>사용가능한 쿠폰</h2>
          <table id="coupon-table">

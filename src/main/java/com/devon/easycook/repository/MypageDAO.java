@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.devon.easycook.domain.CouponDTO;
@@ -21,10 +22,13 @@ public class MypageDAO extends AbstractMybatisDAO{
 //   HashMap<String, String> map = new HashMap<String, String>();
    
    
-   public List<OrdersDTO> orders(String id) {
+   @Autowired
+   SqlSession sqlsession;
+   
+   public List<OrdersDTO> orders(Map<String, Object> map) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
-         return sqlsession.selectList(namespace + ".myOrderList", id);
+         return sqlsession.selectList(namespace + ".myOrderList", map);
       } finally {
          sqlsession.close();
       }
@@ -47,6 +51,24 @@ public class MypageDAO extends AbstractMybatisDAO{
 	         sqlsession.close();
 	      }
 	   }
+   
+	public int countUserOrder(String id) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countUserOrder", id);
+		} finally {
+			sqlsession.close();
+		}
+	}
+   
+	public int countUserOrderDate(Map<String, Object> map) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countUserOrderDate", map);
+		} finally {
+			sqlsession.close();
+		}
+	}
    
    public List<UcouponDTO> coupon(String id) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();

@@ -28,7 +28,8 @@
 	<id property="ordersNo" column="orders_no"/>
 	<result property="ordersTotal" column="orders_total"/>
 	<result property="ordersStatus" column="orders_status"/>
-	<result property="discountPercent" column="discount_percent"/>
+	<result property="discountCoupon" column="discount_coupon"/>
+	<result property="discountPoint" column="discount_point"/>
 
 	<association property="ordersDetail" javaType="OrdersDetail">
 	<id property="ordersNo" column="orders_no"/>
@@ -51,7 +52,8 @@
 <resultMap id="cancelRequire" type="Orders">
    <id property="id" column="id"/>
    <result property="ordersNo" column="orders_no"/>
-   <result property="discountPercent" column="discount_percent"/>
+   <result property="discountCoupon" column="discount_coupon"/>
+   <result property="discountPoint" column="discount_point"/>
    
    <association property="ordersDetail" javaType="OrdersDetail">
    <id property="ordersNo" column="orders_no"/>
@@ -139,20 +141,36 @@
     o.orders_date desc 
    </select>
    
+   <!-- 페이징용 count -->
+   	<select id="countUserOrder" parameterType="String" resultType="int">
+		SELECT count(*) from orders
+		WHERE id = #{id}
+	</select>
+	
+	<!-- 페이징용 count 날짜입력시 -->
+   	<select id="countUserOrderDate" resultType="int">
+		SELECT count(*) from orders
+		WHERE id = #{id} and
+		to_char(orders_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate}
+	</select>
    
    
    	<!-- 주문목록 확인하기  -->
-   <select id="myOrderList" parameterType="String" resultType="Orders">
+   <select id="myOrderList" resultType="Orders">
    select 
    	orders_date as ordersDate,
     orders_no as ordersNo,
-    orders_status as ordersStatus
-   FROM
-    Orders
+    orders_status as ordersStatus,
+    orders_total as ordersTotal
+   FROM (
+	SELECT ROWNUM RN, A.*
+	FROM (
+	SELECT *
+	FROM orders
+	ORDER BY orders_no DESC) A)
    where 
-    id = #{id} and orders_status != '반품'
-   order by
-    orders_date desc 
+    id = #{id} and orders_status != '반품' and
+    RN BETWEEN #{start} AND #{end}
    </select>
    
    
@@ -167,7 +185,8 @@
      od.review_check,
      o.orders_total,
      o.orders_status,
-     o.discount_percent
+     o.discount_coupon,
+     o.discount_point
    from
     product p, orders_detail od, orders o
    where
@@ -179,7 +198,7 @@
    <!-- 날짜따른 주문목록 확인하기 -->
    <select id="ordersSearch" parameterType="HashMap" resultType="Orders">
    select 
-   	to_char(orders_date, 'yyyy-mm-dd') as ordersDateforString,
+   	orders_date ordersDate,
     orders_no as ordersNo,
     orders_status as ordersStatus,
     orders_total as ordersTotal
@@ -213,12 +232,12 @@
    <!-- 날짜따른 쿠폰목록 확인하기  -->
    <select id="couponSearch" parameterType="HashMap" resultMap="Coupon">
    select
-    uc.coupon_no,
+    uc.ucoupon_no,
     uc.id,
     uc.ucoupon_used, 
     c.coupon_discount,
-    to_char(c.coupon_sdate, 'yyyy-mm-dd'),
-    to_char(c.coupon_edate, 'yyyy-mm-dd'),
+    c.coupon_sdate,
+    c.coupon_edate,
     c.coupon_title
    FROM coupon c, ucoupon uc
    where id = #{id} and
@@ -268,7 +287,8 @@
    <select id="cancelRequire" parameterType="HashMap" resultMap="cancelRequire">
    select  
    	o.orders_no,
-   	o.discount_percent,
+   	o.discount_coupon,
+   	o.discount_point,
    	od.detail_qty,
     p.product_name,
     p.product_price,
