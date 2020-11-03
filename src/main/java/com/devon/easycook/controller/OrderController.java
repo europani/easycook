@@ -92,12 +92,13 @@ public class OrderController {
 	}
 
 	
-	// 결제 후 주문내역에 추가하기
+	// 결제 후 
 	@PostMapping("/paymentComplete") public String insertOrders(@ModelAttribute OrdersDTO dto,
 			@ModelAttribute OrdersDetailDTO dto2, HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		MemberDTO member = (MemberDTO) session.getAttribute("member");
 		String Id = member.getId();
+		// 1. orders에 insert
 		dto.setId(Id);
 		dto.setOrdersTotal(dto.getOrdersTotal());
 		
@@ -115,34 +116,29 @@ public class OrderController {
 		}
 		orderService.ordersInsert(dto);
 		
-
+		// 2. ordersDetail에 insert
+		int ordersNo = dto.getOrdersNo();
 		List<CartDTO> list = orderService.cartList(Id);
+		
+		for (int i = 0; i < list.size(); i++) {
+			
+          int productNo = list.get(i).getProductNo();
+          int detailQty = list.get(i).getCartQty();
+          
+          System.out.println(i+" => "+ ordersNo);
+          System.out.println(i+" => "+ productNo);
+          System.out.println(i+" => "+ detailQty);
+          //orderService.ordersDetailInsert(dto);
+       }
+
+		
 		/* list에서 뽑아오기중 */
 		/* dto2 */
 		
 		return "order/paymentComplete"; 
 	}
 	
-	
-	
-			
-			/*
-			 * @GetMapping("/paymentComplete") public String
-			 * paymentCompleteList(HttpServletRequest request, Model model) { HttpSession
-			 * session = request.getSession(true); MemberDTO member = (MemberDTO)
-			 * session.getAttribute("member");
-			 * 
-			 * if (member == null) { return "redirect:/member/login"; } String Id =
-			 * member.getId(); List<CartDTO> list = orderService.cartList(Id);
-			 * System.out.println(list); model.addAttribute("list", list); return
-			 * "order/paymentComplete"; }
-			 */
-	// 결제 마지막단계
-	/*
-	 * @PostMapping("/payment") public String payment(@ModelAttribute OrdersDTO dto,
-	 * HttpServletRequest request) { return "order/payment"; }
-	 */		
-	
+
 	  
 	  
 	 
