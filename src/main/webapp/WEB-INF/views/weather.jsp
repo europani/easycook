@@ -11,11 +11,20 @@
 	opacity: 0.8;
 	background-image: url("/easycook/resources/images/weather.jpg");
 }
+	
+.info {
+	text-align: right;
+	font-size: 25px;
+	color: write;
+	height: 40px;
+	margin-top: 5px;
+	margin-right: 5px;
+}
 </style>
 	<div class="container weatherBox">
-		<div class="location"></div>
-		<div class="temp"></div>
-		<div class="weather"></div>
+		<div class="location info"></div>
+		<div class="temp info"></div>
+		<div class="weather info"></div>
 	</div>
 <section class="ftco-section">
 	<div class="container">
