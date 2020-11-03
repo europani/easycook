@@ -167,9 +167,9 @@ public class OrderController {
 	
 	// 주문취소
 	@PostMapping("/returnOrder/{ordersNo}")
-	public void returnOrder(@PathVariable("ordersNo") int ordersNo, Model model) {
-		
-		orderService.checkCancel(ordersNo);
+	public String returnOrder(@PathVariable("ordersNo") int ordersNo, Model model) {
+		orderService.checkCancel(ordersNo);	
+		return "mypage/returnOrder";	
 	}
 	
 	// 반품실행창
