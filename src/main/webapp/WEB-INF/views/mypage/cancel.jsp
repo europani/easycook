@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,7 +128,7 @@
         <c:forEach var="refund" items="${refund }">
         <c:if test="${refund.ordersNo != null }">        
         <tr>
-          <td>${refund.refundDate }</td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${refund.refundDate }"/></td>
           <td>${refund.productNo }</td>
           <td>${refund.product.productName }</td>
           <td>${refund.refundQty }</td>

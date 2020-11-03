@@ -34,8 +34,9 @@
 	<association property="ordersDetail" javaType="OrdersDetail">
 	<id property="ordersNo" column="orders_no"/>
 	<id property="productNo" column="product_no"/>
-	<result property="detailQty" column="detail_qty"/>
+	<result property="detailQty" column="detail_qty"/>	
 	<result property="reviewCheck" column="review_check"/>
+	<result property="detailRefund" column="detail_refund"/>	
 	</association>
 
 	<association property="product" javaType="Product">
@@ -189,6 +190,7 @@
      p.product_price, 
      od.DETAIL_QTY,
      od.review_check,
+     od.detail_refund,
      o.orders_total,
      o.orders_status,
      o.discount_coupon,

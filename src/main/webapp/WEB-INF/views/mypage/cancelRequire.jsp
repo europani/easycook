@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -150,9 +151,9 @@
 	      </thead>
 	      <tbody>	   		
 	         <tr>
-	         <td><img src="${cancelRequire.product.productImage }"> 이경로로 사진불러올것</td>
+	         <td><img src="${cancelRequire.product.productImage }"></td>
 	         <td>상품명-${cancelRequire.product.productName }</td>
-	         <td id="product">${productPrice }  </td>
+	         <td id="product"><fmt:formatNumber value="${productPrice }" pattern="###,###,###"/>원</td>
 	         <td>
 	            <select name="refundQty" id="productSelectCount" onchange="paychangeTest(this)">
 	            <c:forEach var="refundQty" begin="1" step="1" end="${cancelRequire.ordersDetail.detailQty - checkRefund.refundQty }">
@@ -188,9 +189,6 @@
 		      	</tr>
 		      	<tr>
 		      		<td colspan="2" align="center"><strong> 반품 신청 후에는 취소할 수 없으니 신중히 결정해주세요!</strong></td>
-		      	</tr>
-		      	<tr>
-		      		<td colspan="2" align="center"><strong> 한번 반품신청한 상품은 다시 반품신청할 수 없습니다</strong></td>
 		      	</tr>
 	      	</tbody>   
       	 </table>

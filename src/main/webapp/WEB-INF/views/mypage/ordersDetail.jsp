@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -114,7 +115,8 @@
 			<td>${ordersDetail.product.productName }</td>
 			<td>${ordersDetail.ordersDetail.detailQty }개</td>
 			<td>
-			${ordersDetail.product.productPrice * ordersDetail.ordersDetail.detailQty }원
+			<fmt:formatDate pattern="###,###,###"
+			 value="${ordersDetail.product.productPrice * ordersDetail.ordersDetail.detailQty }"/>원
 			</td>
 			<td>
 				<c:if test="${ordersDetail.ordersDetail.reviewCheck == 0}">
@@ -122,7 +124,7 @@
 				</c:if>
 				<form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >  
 			         <c:if test="${ordersDetail.ordersStatus eq '배송완료'}">
-			         <c:if test="${ordersDetail.ordersDetail.detailRefund == 0 }">
+			         <c:if test="${ordersDetail.ordersDetail.detailRefund != 1 }">
 			         <input type="submit" class="btn-refund" value='반품신청'>
 			         <input type="hidden" name="productNo" id="productNo" value="${ordersDetail.product.productNo}">
 			         <input type="hidden" name="ordersNo" id="ordersNo" value="${orderNum}">
@@ -166,7 +168,7 @@
 	      	</c:if>
 	      	<tr>
 	      		<th>실 결제금액</th>
-	      		<td>${totalpay }원</td>
+	      		<td><fmt:formatDate pattern="###,###,###" value="${totalpay }"/>원</td>
 	      	</tr>
 	      	</tbody>   
 	</table>

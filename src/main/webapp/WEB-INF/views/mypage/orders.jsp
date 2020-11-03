@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -126,9 +127,9 @@
         <c:forEach var="orders" items="${orderList }">
 	        <c:if test="${orders.ordersNo != null }">        
 	        <tr>
-	          <td>${orders.ordersDate }</td>
+	          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${orders.ordersDate }"/></td>	          
 	          <td>${orders.ordersNo }</td>
-	          <td>${orders.ordersTotal }원</td>
+	          <td><fmt:formatNumber value="${orders.ordersTotal }" pattern="###,###,###"/>원</td>
 	          <td>
 	          ${orders.ordersStatus }
 	          <button onclick="location.href='ordersProduct/${orders.ordersNo}'">상세보기</button>

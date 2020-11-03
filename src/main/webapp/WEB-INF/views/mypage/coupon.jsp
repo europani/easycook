@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -142,7 +143,7 @@
               <img src="/easycook/resources/mart/images/memberPoint.png">
               </span><br>
               <span>보유적립금</span><br><br>
-              ${myPoint }원
+              <fmt:formatNumber value="${myPoint }" pattern="###,###,###"/>원
            </li>
         </ul>
         </div>
@@ -188,8 +189,8 @@
           <td>${coupon.ucouponNo }</td>
           <td>${coupon.coupon.couponTitle }</td>
           <td>${coupon.coupon.couponDiscount }% 할인쿠폰</td>
-          <td>${coupon.coupon.couponEdate }</td>
-          <td>${coupon.coupon.couponSdate }</td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${coupon.coupon.couponEdate }"/></td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${coupon.coupon.couponSdate }"/></td>
         </tr>    
         </c:if> 
         </c:forEach>       
@@ -216,8 +217,8 @@
           <td>${coupon.ucouponNo }</td>
           <td>${coupon.coupon.couponTitle }</td>
           <td>${coupon.coupon.couponDiscount }% 할인쿠폰</td>
-          <td>${coupon.coupon.couponEdate }</td>
-          <td>${coupon.coupon.couponSdate }</td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${coupon.coupon.couponEdate }"/></td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${coupon.coupon.couponSdate }"/></td>
         </tr>                    
         </c:if>
         </c:forEach>
