@@ -101,7 +101,7 @@
 </resultMap>
 
 
-<!-- 쿠폰목록 데이터 불러오는 resultMap 설정 -->
+<!-- 환불목록 데이터 불러오는 resultMap 설정 -->
 <resultMap type="Refund" id="refundList">
 	<id property="ordersNo" column="orders_no"/>
 	<id property="productNo" column="product_no"/>
@@ -121,7 +121,7 @@
 
 
 
-	<!-- 주문목록 확인하기  -->
+	<!--   -->
    <select id="OrderList" parameterType="String" resultMap="OrderList">
    select 
    	o.orders_date,
@@ -177,7 +177,7 @@
    
    
    <!-- 날짜따른 주문목록 확인하기 -->
-   <select id="ordersDate" parameterType="HashMap" resultType="Orders">
+   <select id="ordersSearch" parameterType="HashMap" resultType="Orders">
    select 
    	to_char(orders_date, 'yyyy-mm-dd') as ordersDateforString,
     orders_no as ordersNo,
@@ -211,14 +211,14 @@
    </select>
    
    <!-- 날짜따른 쿠폰목록 확인하기  -->
-   <select id="couponDate" parameterType="HashMap" resultMap="Coupon">
+   <select id="couponSearch" parameterType="HashMap" resultMap="Coupon">
    select
     uc.coupon_no,
     uc.id,
     uc.ucoupon_used, 
     c.coupon_discount,
-    c.coupon_sdate, 
-    c.coupon_edate,
+    to_char(c.coupon_sdate, 'yyyy-mm-dd'),
+    to_char(c.coupon_edate, 'yyyy-mm-dd'),
     c.coupon_title
    FROM coupon c, ucoupon uc
    where id = #{id} and
@@ -296,11 +296,25 @@
    </select>
    
    
-   
+   <!-- 날짜따른 반품내역 확인하기 -->
+   <select id="refundSearch" parameterType="HashMap" resultMap="refundList">
+   SELECT
+    r.id, r.orders_no, r.product_no, r.refund_qty, r.refund_date, r.refund_status,
+    p.product_name
+   FROM
+    refund r, product p
+   WHERE
+    r.id = #{id} and
+    r.product_no = p.product_no and
+    to_char(r.refund_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate} 
+   </select>
    
 
-   	
-   	
+
+
+
+
+
    	
    
    

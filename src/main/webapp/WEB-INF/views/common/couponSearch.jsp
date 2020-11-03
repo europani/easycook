@@ -27,7 +27,10 @@
           <td>${coupon.coupon.couponSdate }</td>
         </tr>    
         </c:if> 
-        </c:forEach>        
+        </c:forEach>
+        <c:if test="${couponListDate.size() == 0 }">
+        	<td colspan="5" align="center"><strong>쿠폰 내역이 없습니다.</strong></td>
+        </c:if>        
         </tbody>
       </table>
       </div>
@@ -56,6 +59,9 @@
         </tr>   
         </c:if>  
         </c:forEach>
+        <c:if test="${couponListDate.size() == 0 }">
+        	<td colspan="5" align="center"><strong>쿠폰 내역이 없습니다.</strong></td>
+        </c:if> 
         </tbody>
       </table>
       </div>

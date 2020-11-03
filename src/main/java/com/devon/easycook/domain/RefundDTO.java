@@ -1,6 +1,7 @@
 package com.devon.easycook.domain;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
 
@@ -18,5 +19,6 @@ public class RefundDTO {
 	private String refundReason;
 	
 	private ProductDTO product;
+	
 	
 }

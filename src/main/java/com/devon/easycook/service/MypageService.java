@@ -32,8 +32,8 @@ public class MypageService {
 	}
 
    
-   public List<OrdersDTO> ordersDate(Map<String, String> dateMap) {
-	  return mypageDAO.ordersDate(dateMap);
+   public List<OrdersDTO> ordersSearch(Map<String, Object> dateMap) {
+	  return mypageDAO.ordersSearch(dateMap);
 	      
    }
   
@@ -41,8 +41,8 @@ public class MypageService {
       return mypageDAO.coupon(id); 
    }
    
-   public List<UcouponDTO> couponDate(Map<String, String> dateMap) {
-		return mypageDAO.couponDate(dateMap);
+   public List<UcouponDTO> couponSearch(Map<String, Object> dateMap) {
+		return mypageDAO.couponSearch(dateMap);
 	}
    
    public int couponCount(String id) {
@@ -70,7 +70,9 @@ public class MypageService {
 	   return mypageDAO.refund(id);
    }
 
-   
+   public List<RefundDTO> refundSearch(Map<String, Object> dateMap){
+	   return mypageDAO.refundSearch(dateMap);
+   }
    
 
    

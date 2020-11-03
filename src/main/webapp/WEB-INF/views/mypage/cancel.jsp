@@ -67,11 +67,11 @@
        text-align: center;
       }
       
-      #order-table {
+      #refund-table {
         border-collapse: collapse;
         width: 100%;
       }
-      #order-table th {
+      #refund-table th {
       border-bottom: 1px solid #ddd;
       background: #f6f6f6;
       padding: 15px 20px; 
@@ -81,7 +81,7 @@
        border-bottom: 1px solid #e0e0e0;
        background: #f6f6f6;
       }
-      #order-table td {
+      #refund-table td {
            padding: 15px 20px; 
         vertical-align: middle;     
         font-size: 15px;     
@@ -113,9 +113,9 @@
       <br><br><br><br>
          <br><hr><br>
         <div id="content-detail2">
-         <h5>주문내역 총 ${refund.size() }건</h5>
+         <h5>${id }님의 반품 내역입니다.</h5>
         <br><br>
-         <table id="order-table">
+         <table id="refund-table">
          <thead>
        <tr>
           <th>반품일</th>
@@ -155,22 +155,22 @@
 </div>
 <script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
-/* $('#SearchButton').on('click', function(){
-	$( '#order-table > tbody').empty();
+ $('#SearchButton').on('click', function(){
+	$( '#refund-table > tbody').empty();
 	$.ajax({
-		url : "ordersDaySearch.action",
+		url : "refundSearch.action",
 		type: "POST",
-		data: $("#ordersSearch").serialize(),
+		data: $("#refundSearch").serialize(),
 		success: function (data) {			
-			$('#order-table').append(data);
+			$('#refund-table').append(data);
 		},
 		error: function () {
-			alert("안된다...");
+			alert("데이터를 불러오는 중 오류가 발생했습니다");
 		}	
 	});
 	
 	
-}); */
+}); 
 </script>
 </body>
 

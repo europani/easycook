@@ -39,10 +39,10 @@ public class MypageDAO extends AbstractMybatisDAO{
 	      }
 	}
    
-   public List<OrdersDTO> ordersDate(Map<String, String> map) {
+   public List<OrdersDTO> ordersSearch(Map<String, Object> map) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
-	         return sqlsession.selectList(namespace + ".ordersDate", map);
+	         return sqlsession.selectList(namespace + ".ordersSearch", map);
 	      } finally {
 	         sqlsession.close();
 	      }
@@ -57,10 +57,10 @@ public class MypageDAO extends AbstractMybatisDAO{
       }
    }
    
-   public List<UcouponDTO> couponDate(Map<String, String> map) {
+   public List<UcouponDTO> couponSearch(Map<String, Object> map) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
-	         return sqlsession.selectList(namespace + ".couponDate", map);
+	         return sqlsession.selectList(namespace + ".couponSearch", map);
 	      } finally {
 	         sqlsession.close();
 	      }
@@ -127,7 +127,18 @@ public class MypageDAO extends AbstractMybatisDAO{
 	  
    }
    
-
+   public List<RefundDTO> refundSearch(Map<String, Object> dateMap) {
+	      SqlSession sqlsession = getSqlSessionFactory().openSession();
+	      try {
+	         return sqlsession.selectList(namespace + ".refundSearch", dateMap);
+	      } finally {
+	         sqlsession.close();
+	      }
+	   }
+   
+   
+   
+   
 
 
 

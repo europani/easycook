@@ -231,7 +231,7 @@ $('#SearchButton').on('click', function(){
 	/* alert($("#searchgogo").serialize()) */
  	$( '#qwer').empty();
 	$.ajax({
-		url : "couponDaySearch.action",
+		url : "couponSearch.action",
 		type: "POST",
 		data: $("#couponSearch").serialize(),
 		success: function (data) {			

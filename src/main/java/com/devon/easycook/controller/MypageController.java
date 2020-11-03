@@ -45,7 +45,10 @@ public class MypageController {
    @Autowired
    MypageService mypageService;
    
-   Map<String, String> dateMap = new HashMap<String, String>();
+   // 각 마이페이지별 날짜계산용 map
+   Map<String, Object> dateMap = new HashMap<String, Object>();
+   
+   
    
    @GetMapping("/orders")
    public String orders(Model model, HttpServletRequest request) {   
@@ -78,8 +81,8 @@ public class MypageController {
 	}
    
    
-   @RequestMapping(value = "/ordersDaySearch.action", method = RequestMethod.POST)
-   public ModelAndView ordersDaySearch(HttpServletRequest request,
+   @RequestMapping(value = "/ordersSearch.action", method = RequestMethod.POST)
+   public ModelAndView ordersSearch(HttpServletRequest request,
 		   String fromDate, String toDate, ModelAndView mv) {
 	   
 	   // ModelAndView 초기화 ㄱㄱ
@@ -96,11 +99,11 @@ public class MypageController {
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
-	   List<OrdersDTO> orderListDate = mypageService.ordersDate(dateMap);
+	   List<OrdersDTO> ordersSearch = mypageService.ordersSearch(dateMap);
 	 	
 	   
-	   mv.addObject("orderListDate", orderListDate);
-	   mv.setViewName("common/ordersDaySearch");
+	   mv.addObject("orderListDate", ordersSearch);
+	   mv.setViewName("common/ordersSearch");
 	   return mv;	   
    }
       
@@ -165,7 +168,6 @@ public class MypageController {
 	  Map<String, Object> wishlistMap = new HashMap<String, Object>();
 	  wishlistMap.put("id", id);
 	  wishlistMap.put("productNo", productNo);
-	  System.out.println("wishlistMap" + wishlistMap);
 	  mypageService.wishlistInput(wishlistMap);
 	  
 
@@ -182,7 +184,6 @@ public class MypageController {
 	  List<WishlistDTO> myWishlist = mypageService.wishlist(id);
 	  myWishlist.get(0).getProductNo();
 	  myWishlist.get(0).getProduct().getProductNo();
-	  System.out.println("wishlist ok:" + myWishlist);
 	  model.addAttribute("myWishlist", myWishlist);
       return "mypage/wishlist";
    }
@@ -201,6 +202,32 @@ public class MypageController {
 	      return "mypage/cancel";
    }
    
+   @RequestMapping(value = "/refundSearch.action", method = RequestMethod.POST)
+   public ModelAndView refundDaySearch(
+		   HttpServletRequest request,String fromDate, String toDate, ModelAndView mv) {
+	   
+	   // ModelAndView 초기화 ㄱㄱ
+	   mv.clear();
+	   
+
+		HttpSession session = request.getSession(true);
+		MemberDTO member =(MemberDTO) session.getAttribute("member");
+	//	if (member == null) { return "redirect:/member/login"; }
+		String id = member.getId();
+	   
+	   dateMap.clear();
+	   dateMap.put("id", id);
+	   dateMap.put("fromDate", fromDate);
+	   dateMap.put("toDate", toDate);
+	   List<RefundDTO> refundSearch = mypageService.refundSearch(dateMap);		   
+	   mv.addObject("refundSearch", refundSearch);
+	   mv.setViewName("common/cancelSearch");
+	   return mv;	   
+   }
+   
+   
+   
+   
    
    @GetMapping("/coupon")
    public String coupon(HttpServletRequest request, Model model) {
@@ -216,7 +243,7 @@ public class MypageController {
       int couponCount = mypageService.couponCount(id);
       int myPoint = mypageService.myPoint(id);
       
-      System.out.println(couponList);
+
       
       model.addAttribute("id", id);
       model.addAttribute("couponList", couponList);   
@@ -225,26 +252,24 @@ public class MypageController {
       return "mypage/coupon";
    }
    
-   @RequestMapping(value = "/couponDaySearch.action", method = RequestMethod.POST)
-   public ModelAndView couponDaySearch(String fromDate, String toDate, ModelAndView mv) {
+   @RequestMapping(value = "/couponSearch.action", method = RequestMethod.POST)
+   public ModelAndView couponSearch(
+		   HttpServletRequest request,String fromDate, String toDate, ModelAndView mv) {
 	   
 	   // ModelAndView 초기화 ㄱㄱ
-	   mv.clear();
-	   System.out.println("couponDaySearch 실행");
-	   System.out.println(fromDate);
-	   System.out.println(toDate);
-	   
-	   // 나중에 session으로 id 받을것
-	   String id = "haram511";
+	   mv.clear();	   
+	   HttpSession session = request.getSession(true);
+	   MemberDTO member =(MemberDTO) session.getAttribute("member");
+//	   if (member == null) { return "redirect:/member/login"; }
+	   String id = member.getId(); 
 	   
 	   dateMap.clear();
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
-	   List<UcouponDTO> couponListDate = mypageService.couponDate(dateMap);
-	   System.out.println(couponListDate);			   
-	   mv.addObject("couponListDate", couponListDate);
-	   mv.setViewName("common/couponDaySearch");
+	   List<UcouponDTO> couponSearch = mypageService.couponSearch(dateMap);			   
+	   mv.addObject("couponListDate", couponSearch);
+	   mv.setViewName("common/couponSearch");
 	   return mv;	   
    }
    

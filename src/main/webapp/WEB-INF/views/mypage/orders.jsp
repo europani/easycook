@@ -113,7 +113,7 @@
       <br><br><br><br>
          <br><hr><br>
         <div id="content-detail2">
-         <h5>주문내역 총 ${orderList.size() }건</h5>
+         <h5>${id }님의 주문 내역입니다.</h5>
         <br><br>
          <table id="order-table">
          <thead>
@@ -163,7 +163,7 @@ $('#SearchButton').on('click', function(){
 	/* alert($("#searchgogo").serialize()) */
 	$( '#order-table > tbody').empty();
 	$.ajax({
-		url : "ordersDaySearch.action",
+		url : "ordersSearch.action",
 		type: "POST",
 		data: $("#ordersSearch").serialize(),
 		success: function (data) {			
