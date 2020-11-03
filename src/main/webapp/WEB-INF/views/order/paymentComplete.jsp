@@ -114,12 +114,12 @@
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td>${dto.member.email}</td> --%>
+						<td>${dto.member.email}</td> 
 					</tr>
 					<tr>
 						<th>주문번호</th>
 						<td>${dto.ordersNo}</td>
-					</tr>
+					</tr> --%>
 					<tr>
 						<th>주문상태</th>
 						<td>${dto.ordersStatus}</td>

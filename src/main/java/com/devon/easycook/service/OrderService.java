@@ -39,6 +39,11 @@ public class OrderService {
 		orderDao.cartDelete(cartNo); 
 	}
 	
+	// 장바구니 삭제하기
+	public void cartDeleteAll(String id) {
+		orderDao.cartDeleteAll(id); 
+	}
+	
 	// 쿠폰 목록보기
 	public List<CouponDTO> couponList(String id) { 
 		return orderDao.couponList(id); 

@@ -24,6 +24,7 @@ import com.devon.easycook.domain.CartDTO;
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.MemberDTO;
 import com.devon.easycook.domain.OrdersDTO;
+import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.RefundDTO;
 import com.devon.easycook.service.OrderService;
 
@@ -90,14 +91,15 @@ public class OrderController {
 		return "order/order";
 	}
 
-	// 결제 마지막단계
-	@PostMapping("/paymentComplete") public String payment(@ModelAttribute OrdersDTO dto,
-			HttpServletRequest request, Model model) {
+	
+	// 결제 후 주문내역에 추가하기
+	@PostMapping("/paymentComplete") public String insertOrders(@ModelAttribute OrdersDTO dto,
+			@ModelAttribute OrdersDetailDTO dto2, HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		MemberDTO member = (MemberDTO) session.getAttribute("member");
 		String Id = member.getId();
 		dto.setId(Id);
-		dto.setCartNo(dto.getCartNo());
+		dto.setOrdersTotal(dto.getOrdersTotal());
 		
 		if(dto.getCheck()==1) {
 			dto.setDiscountCoupon(dto.getDiscountCoupon());
@@ -111,13 +113,30 @@ public class OrderController {
 			dto.setDiscountCoupon(0);
 			dto.setDiscountPoint(0);
 		}
-		
-		dto.setOrdersTotal(dto.getOrdersTotal());
 		orderService.ordersInsert(dto);
-		model.addAttribute("dto",dto);
-			return "order/paymentComplete"; 
-		  }
+		
+
+		List<CartDTO> list = orderService.cartList(Id);
+		/* list에서 뽑아오기중 */
+		/* dto2 */
+		
+		return "order/paymentComplete"; 
+	}
+	
+	
+	
 			
+			/*
+			 * @GetMapping("/paymentComplete") public String
+			 * paymentCompleteList(HttpServletRequest request, Model model) { HttpSession
+			 * session = request.getSession(true); MemberDTO member = (MemberDTO)
+			 * session.getAttribute("member");
+			 * 
+			 * if (member == null) { return "redirect:/member/login"; } String Id =
+			 * member.getId(); List<CartDTO> list = orderService.cartList(Id);
+			 * System.out.println(list); model.addAttribute("list", list); return
+			 * "order/paymentComplete"; }
+			 */
 	// 결제 마지막단계
 	/*
 	 * @PostMapping("/payment") public String payment(@ModelAttribute OrdersDTO dto,

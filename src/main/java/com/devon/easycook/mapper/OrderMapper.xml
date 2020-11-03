@@ -95,10 +95,16 @@
 		c.id = #{id}
 	</select>
 
-	<!-- 장바구니 상품별 삭제 -->
+	<!-- 장바구니 개별 삭제 -->
 	<delete id="cartDelete">
 		DELETE FROM cart
 		WHERE cart_no = #{cartNo}
+	</delete>
+	
+	<!-- 장바구니 전체 삭제 -->
+	<delete id="cartDeleteAll">
+		DELETE FROM cart
+		WHERE id = #{id}
 	</delete>
 
 	<!-- 쿠폰목록 확인하기 -->
@@ -117,14 +123,13 @@
 		ORDER BY coupon_edate desc
 	</select>
 
-	<!-- 결제후 주문내역 Insert -->
+	<!-- 결제후 Orders Insert -->
 	<insert id="ordersInsert" >
 		INSERT INTO orders
 		VALUES (
 			orderseq.NEXTVAL,
 			#{id},
 			sysdate, 
-			#{cartNo},
 			'주문완료',
 			#{ordersTotal},
 			#{discountCoupon},
@@ -132,15 +137,40 @@
 		)
 	</insert>
 	
-<!-- 결제후 주문상세내역 Insert 여러번 되어야함-->
+	<!-- 결제후 OrdersDetail Insert -->
 <!-- 	<insert id="ordersDetailInsert" >
-    </insert> --> 
+		INSERT INTO orders_detail
+		VALUES (
+			#{ordersNo},
+			#{productNo},
+			#{detail_qty}, 
+			0,
+			0
+		)
+	</insert> -->
 
+	<!-- 결제 후 적립금 1% 적립 -->
+<!-- 	<update id="pointUpdate">
+		UPDATE member 
+		SET point = point + (#{ordersTotal} * 0.01)
+		WHERE id = #{id}
+	</update> -->
+	
+	<!-- 적립금 할인 결제 후 적립금 차감 -->
+<!-- 	<update id="pointUse">
+		UPDATE member 
+		SET point = point - #{discountPoint}
+		WHERE id = #{id}
+	</update> -->
 
+	<!-- 쿠폰 할인 결제 후 쿠폰 사용체크 -->
+<!-- 	<update id="couponUse">
+		UPDATE ucoupon
+		SET ucoupon_used = 1
+		WHERE id = #{id} AND coupon_no = #{couponNo}
+	</update>
 
-
-
-
+ -->
 
 
 

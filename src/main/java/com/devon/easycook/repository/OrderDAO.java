@@ -51,7 +51,7 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	// 장바구니 삭제하기
+	// 장바구니 상품별 삭제하기
 	public void cartDelete(int cartNo) {
 		sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
@@ -65,6 +65,19 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
+	// 장바구니 전체 삭제하기
+	public void cartDeleteAll(String id) {
+		sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.delete(namespace + ".cartDeleteAll", id);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
 	// 쿠폰 목록 보기 
 	public List<CouponDTO> couponList(String id) {
 		sqlsession = getSqlSessionFactory().openSession();
