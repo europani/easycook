@@ -99,21 +99,19 @@
    <h3>주문내역</h3>
         <hr>
         <br>
-        <div id="content-detail">
-        
-      <form id="ordersSearch" name="ordersSearch">
-      <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
-      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
-      <label for="UserCheckOut"></label> 
-      <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
-      <input type="button"  id="SearchButton" class="btn-search" value="조회하기"></button>
-      </form>
-        
-      </div>         
+        <div id="content-detail">       
+	      <form id="ordersSearch" name="ordersSearch">
+	      <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
+	      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
+	      <label for="UserCheckOut"></label> 
+	      <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
+	      <input type="button"  id="SearchButton" class="btn-search" value="조회하기"></button>
+	      </form>     
+      	</div>         
       <br><br><br><br>
          <br><hr><br>
         <div id="content-detail2">
-         <h5>주문내역 총 ${orderList.size() }건</h5>
+         <h5>${id }님의 주문 내역입니다.</h5>
         <br><br>
          <table id="order-table">
          <thead>
@@ -124,7 +122,7 @@
           <th colspan="2">주문정보</th>
         </tr>
       </thead>
-        <tbody id = "testajax">
+        <tbody>
         <c:forEach var="orders" items="${orderList }">
         <c:if test="${orders.ordersNo != null }">        
         <tr>
@@ -150,20 +148,44 @@
         </c:forEach>     
         </tbody>
       </table>
-        </div>        
+      		<!-- 페이징 -->
+			<div style="display: block; text-align: center;" id="paging">		
+					<c:if test="${paging.startPage != 1 }">
+						<a href="/easycook/mypage/orders?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<a href="/easycook/mypage/orders?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<a href="/easycook/mypage/orders?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+					</c:if>
+			</div>
+		</div>
+</div> 
+        
+
+            
       </div> 
-     
+
       <div id="jb-bottom">
         <br/>
       </div>
-</div>
+
 <script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 $('#SearchButton').on('click', function(){
 	/* alert($("#searchgogo").serialize()) */
 	$( '#order-table > tbody').empty();
+	$( '#paging').empty();
 	$.ajax({
-		url : "ordersDaySearch.action",
+		url : "ordersSearch.action",
 		type: "POST",
 		data: $("#ordersSearch").serialize(),
 		success: function (data) {			

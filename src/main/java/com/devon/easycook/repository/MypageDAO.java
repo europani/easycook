@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.devon.easycook.domain.CouponDTO;
@@ -21,10 +22,13 @@ public class MypageDAO extends AbstractMybatisDAO{
 //   HashMap<String, String> map = new HashMap<String, String>();
    
    
-   public List<OrdersDTO> orders(String id) {
+   @Autowired
+   SqlSession sqlsession;
+   
+   public List<OrdersDTO> orders(Map<String, Object> map) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
-         return sqlsession.selectList(namespace + ".myOrderList", id);
+         return sqlsession.selectList(namespace + ".myOrderList", map);
       } finally {
          sqlsession.close();
       }
@@ -39,14 +43,32 @@ public class MypageDAO extends AbstractMybatisDAO{
 	      }
 	}
    
-   public List<OrdersDTO> ordersDate(Map<String, String> map) {
+   public List<OrdersDTO> ordersSearch(Map<String, Object> map) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
-	         return sqlsession.selectList(namespace + ".ordersDate", map);
+	         return sqlsession.selectList(namespace + ".ordersSearch", map);
 	      } finally {
 	         sqlsession.close();
 	      }
 	   }
+   
+	public int countUserOrder(String id) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countUserOrder", id);
+		} finally {
+			sqlsession.close();
+		}
+	}
+   
+	public int countUserOrderDate(Map<String, Object> map) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countUserOrderDate", map);
+		} finally {
+			sqlsession.close();
+		}
+	}
    
    public List<UcouponDTO> coupon(String id) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
@@ -57,10 +79,10 @@ public class MypageDAO extends AbstractMybatisDAO{
       }
    }
    
-   public List<UcouponDTO> couponDate(Map<String, String> map) {
+   public List<UcouponDTO> couponSearch(Map<String, Object> map) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
-	         return sqlsession.selectList(namespace + ".couponDate", map);
+	         return sqlsession.selectList(namespace + ".couponSearch", map);
 	      } finally {
 	         sqlsession.close();
 	      }
@@ -127,7 +149,18 @@ public class MypageDAO extends AbstractMybatisDAO{
 	  
    }
    
-
+   public List<RefundDTO> refundSearch(Map<String, Object> dateMap) {
+	      SqlSession sqlsession = getSqlSessionFactory().openSession();
+	      try {
+	         return sqlsession.selectList(namespace + ".refundSearch", dateMap);
+	      } finally {
+	         sqlsession.close();
+	      }
+	   }
+   
+   
+   
+   
 
 
 

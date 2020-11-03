@@ -8,14 +8,22 @@
 	/* background-color: #1abc9c; */
 	width: 100%;
 	height: 50%;
-	opacity: 0.8;
 	background-image: url("/easycook/resources/images/weather.jpg");
+	background-size: contain;
+}
+	
+.info {
+	text-align: right;
+	font-size: 25px;
+	color: #FFFFFF;
+	height: 40px;
+	margin-top: 5px;
+	margin-right: 5px;
 }
 </style>
 	<div class="container weatherBox">
-		<div class="location"></div>
-		<div class="temp"></div>
-		<div class="weather"></div>
+		<div class="temp info"></div>
+		<div class="weather info"></div>
 	</div>
 <section class="ftco-section">
 	<div class="container">
@@ -89,7 +97,7 @@
 			let $location = data.name;
 			let $weather = data.weather[0].main;
 			
-			if($weather == "Clouds") {
+			/* if($weather == "Clouds") {
 				$weather = "구름";
 			} else if($weather == "Rain") {
 				$weather = "비";
@@ -98,11 +106,9 @@
 			} else if ($weather == "Mist") {
 				$weather = "안개";
 			} else
-				$weather = "맑음";
-				
+				$weather = "맑음"; */
 			$('.temp').append($temp + "°C");
-			$('.location').append($location);
-			$('.weather').append($weather);
+			$('.weather').append('<img src="<%=request.getContextPath() %>/resources/weather/' + $weather + '.png">');
 			
 			/* $.ajax({
 				url : '${pageContext.request.contextPath}/weatherCheck?weather='+ $weather,

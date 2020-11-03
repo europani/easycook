@@ -150,7 +150,7 @@
         <button class="w3-bar-item w3-button" onclick="openCoupon('사용가능한 쿠폰')">사용가능한 쿠폰</button>
        <button class="w3-bar-item w3-button" onclick="openCoupon('사용불가능한 쿠폰')">사용불가능한 쿠폰</button>
       </div>
-      <div id="	">
+      <div id="couponDateList">
       <div id="사용가능한 쿠폰" class="coupon">
         <h2>사용가능한 쿠폰</h2>
          <table id="coupon-table">
@@ -229,20 +229,19 @@ function openCoupon(couponUsed) {
 
 $('#SearchButton').on('click', function(){
 	/* alert($("#searchgogo").serialize()) */
- 	$( '#qwer').empty();
+ 	$( '#couponDateList').empty();
 	$.ajax({
-		url : "couponDaySearch.action",
+		url : "couponSearch.action",
 		type: "POST",
 		data: $("#couponSearch").serialize(),
 		success: function (data) {			
-			$('#couponList').append(data);
+			$('#couponDateList').append(data);
 		},
 		error: function () {
 			alert("안된다...");
 		}
 		
 	});
-	
 	
 });
  

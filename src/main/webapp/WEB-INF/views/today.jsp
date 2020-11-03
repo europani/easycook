@@ -16,6 +16,23 @@
 	.checked {
 	  color: orange;
 	}
+	
+	.spot {
+		color: #1abc9c;
+		font-size: 25px;
+	}
+	
+	span.discount {
+        text-decoration: line-through;
+    }
+    span.discountp {
+        color: #1abc9c; 
+    }
+    
+    .priz {
+    	font-size: 30px;
+    	font-weight: 400;
+    }
 
 </style>
 <body>
@@ -50,34 +67,25 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="/easycook/resources/images/${detail.productImage}"
+					<a href="<%=request.getContextPath() %>/resources/product/${detail.productImage}"
 						class="image-popup"><img
-						src="/easycook/resources/images/${detail.productImage}"
-						class="img-fluid" alt="Colorlib Template"></a>
+						src="<%=request.getContextPath() %>/resources/product/${detail.productImage}"
+						class="img-fluid" ></a>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 					<h3>${detail.productName}</h3>
+					<p class="priz">
+						<span class="discount"><fmt:formatNumber value="${detail.productPrice}" pattern="###,###,###"/>원</span>
+						<span class="discountp"><fmt:formatNumber value="${detail.productPrice / 2}" pattern="###,###,###"/>원</span>
+					</p>
 					<div class="rating d-flex">
 						<p class="text-left mr-4">
-							<a href="#" class="mr-2">5.0</a> <a href="#"><span
-								class="ion-ios-star-outline"></span></a> <a href="#"><span
-								class="ion-ios-star-outline"></span></a> <a href="#"><span
-								class="ion-ios-star-outline"></span></a> <a href="#"><span
-								class="ion-ios-star-outline"></span></a> <a href="#"><span
-								class="ion-ios-star-outline"></span></a>
+							<span class="spot">${detail.productAmount}</span> (g)
 						</p>
 						<p class="text-left mr-4">
-							<a href="#" class="mr-2" style="color: #000;">100 <span
-								style="color: #bbb;">Rating</span></a>
-						</p>
-						<p class="text-left">
-							<a href="#" class="mr-2" style="color: #000;">500 <span
-								style="color: #bbb;">Sold</span></a>
+							<span class="spot">${detail.productTime}</span> (분)
 						</p>
 					</div>
-					<p class="price">
-						<span><fmt:formatNumber value="${detail.productPrice}" pattern="###,###,###"/>원</span>
-					</p>
 					<p>${detail.productDetail}</p>
 					<div class="row mt-4">
 						<!-- 

@@ -47,10 +47,10 @@ public class ProductDAO extends AbstractMybatisDAO {
 	}
 	
 	//상품 목록
-	public List<ProductDTO> productList() {
+	public List<ProductDTO> productList(String sort) {
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
-			return sqlsession.selectList((namespace + ".productList"));
+			return sqlsession.selectList(namespace + ".productList", sort);
 		} finally {
 			sqlsession.close();
 		}
@@ -203,5 +203,12 @@ public class ProductDAO extends AbstractMybatisDAO {
 		}
 	}
 
-
+	public int todayProNo() {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".todayProNo");
+		} finally {
+			sqlsession.close();
+		}
+	}
 }

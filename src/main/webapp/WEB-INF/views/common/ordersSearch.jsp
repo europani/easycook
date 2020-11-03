@@ -3,14 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-
-
-        <tbody id = "testajax">
-		<c:forEach var="orders" items="${orderListDate }">
-		<%-- <div>${orders.ordersNo }</div> --%>
-		<c:if test="${orders.ordersNo != null}">      
+        <tbody>
+		<c:forEach var="orders" items="${orderListDate }">  
 	        <tr>
-	          <td>${orders.ordersDateforString }</td>
+	          <td>${orders.ordersDate }</td>
 	          <td>${orders.ordersNo }</td>
 	          <td>${orders.ordersTotal }원</td>
 	          <td>
@@ -25,11 +21,11 @@
 	          </form>  
 	         </td>
 	        </tr>
-        </c:if>
-        <c:if test="${orders.ordersNo == null }">
+	    </c:forEach>
+        <c:if test="${orderListDate.size() == 0 }">
         <tr>
-        <td colspan="6">주문 내역이 없습니다.</td>
+        <td colspan="5" align="center"><strong>주문 내역이 없습니다.</strong></td>
         </tr>
      	</c:if>
-		</c:forEach>
       </tbody>
+     

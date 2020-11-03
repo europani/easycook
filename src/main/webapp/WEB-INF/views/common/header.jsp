@@ -133,11 +133,11 @@
                      href="/easycook/product">이지쿡</a>
                      <div class="dropdown-content">
                         <a href="/easycook/product">전체상품</a>
-                        <a href="">한식</a>
-                        <a href="">중식</a>
-                        <a href="">일식</a>
-                        <a href="">양식</a>
-                        <a href="">샐러드</a>
+                        <a href="/easycook/product?sort=10">한식</a>
+                        <a href="/easycook/product?sort=20">중식</a>
+                        <a href="/easycook/product?sort=30">일식</a>
+                        <a href="/easycook/product?sort=40">양식</a>
+                        <a href="/easycook/product?sort=50">샐러드</a>
                      </div>
                   </li>
                   <li>

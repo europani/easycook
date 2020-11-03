@@ -29,8 +29,8 @@ public class ProductService {
 	}
 	
 	// 상품목록
-	public List<ProductDTO> productList() {
-		return productDao.productList();
+	public List<ProductDTO> productList(String sort) {
+		return productDao.productList(sort);
 	}
 	// 상품상세
 	public ProductDTO productDetail(int productNo) {
@@ -86,6 +86,9 @@ public class ProductService {
 	}
 	public Date getDate() {
 		return productDao.getDate();
+	}
+	public int todayProNo() {
+		return productDao.todayProNo();
 	}
 
 }
