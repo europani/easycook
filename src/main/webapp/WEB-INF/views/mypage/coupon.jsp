@@ -243,7 +243,6 @@ $('#SearchButton').on('click', function(){
 		
 	});
 	
-	
 });
  
 </script>
