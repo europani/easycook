@@ -50,12 +50,14 @@ public class OrderService {
 	}
 	
 	// 주문완료 후 주문목록 추가하기
-	
 	public void ordersInsert(OrdersDTO dto) { 
 		orderDao.ordersInsert(dto); 
 	}
-	 
-		
+	// 주문완료 후 주문상세내역 추가하기
+	/*
+	 * public void ordersDetailInsert(OrdersDetailDTO dto) {
+	 * orderDao.ordersDetailInsert(dto); }
+	 */
 	
 	
 	

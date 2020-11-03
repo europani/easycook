@@ -78,7 +78,8 @@ public class OrderDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
-	// 쿠폰 목록 보기 
+
+	// 쿠폰 목록 보기
 	public List<CouponDTO> couponList(String id) {
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
@@ -87,104 +88,108 @@ public class OrderDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
-	
+
 	// 주문 완료 후 주문내역에 추가
-	  public void ordersInsert(OrdersDTO dto) { 
-		  sqlsession = getSqlSessionFactory().openSession(); 
-		  int result = 0; 
-		  try { 
-			  result = sqlsession.insert(namespace + ".ordersInsert", dto); 
-			  if (result != 0) {
-				  sqlsession.commit(); 
-				  } 
-			  } finally { sqlsession.close(); } }
-		 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-	
-	
-	
-	
-	
-	
-  public void updateReviewCheck(ReviewDTO review) {
-	   SqlSession sqlsession = getSqlSessionFactory().openSession();
-	   int result = 0;
-	   try {
-	         result = sqlsession.update(namespace + ".updateReviewCheck", review);
-	         if (result != 0) {
+	public void ordersInsert(OrdersDTO dto) {
+		sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.insert(namespace + ".ordersInsert", dto);
+			if (result != 0) {
 				sqlsession.commit();
 			}
-	   } finally {
-	         sqlsession.close();
-	   }
+		} finally {
+			sqlsession.close();
+		}
 	}
-	
-  
-  
-  
-  // 반품절차
-  // 1. 먼저 return(환불) 테이블에 ordersNo정보 추가
-  // 2. return테이블에 insert가 제대로 되었다면, detail_refund 컬럼 update(0->1)
-  // ****반품이 아닌 주문취소시엔, return테이블 추가없이 바로 checkCancel 진행
 
-  public int checkCancel(int ordersNo) {
-	   SqlSession sqlsession = getSqlSessionFactory().openSession();
-	   int result = 0;
-	   try {
-	         result = sqlsession.update(namespace + ".checkCancel", ordersNo);
-	         if (result != 0) {
-					sqlsession.commit();
-				}
-	   } finally {
-	         sqlsession.close();
-	   }
-	   return result;
-  }
-  
-  public int makeRefundTable(RefundDTO refund) {
-	   SqlSession sqlsession = getSqlSessionFactory().openSession();
-	   int result = 0;
-	   try {
-		   result = sqlsession.insert(namespace + ".makeRefundTable", refund);
-		   if (result != 0) {
+	
+	// 주문 완료 후 주문상세내역에 추가
+	/*
+	 * public void ordersDetailInsert(OrdersDetailDTO dto) { sqlsession =
+	 * getSqlSessionFactory().openSession(); int result = 0; try { result =
+	 * sqlsession.insert(namespace + ".ordersDetailInsert", dto); if (result != 0) {
+	 * sqlsession.commit(); } } finally { sqlsession.close(); } }
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void updateReviewCheck(ReviewDTO review) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".updateReviewCheck", review);
+			if (result != 0) {
 				sqlsession.commit();
 			}
-	   } finally {
-	         sqlsession.close();
-	   }
-	   return result;
+		} finally {
+			sqlsession.close();
+		}
 	}
-  
-  public void checkRefund(int ordersNo) {
-	   SqlSession sqlsession = getSqlSessionFactory().openSession();
-	   int result = 0;
-	   try {
-	         result = sqlsession.update(namespace + ".checkRefund", ordersNo);
-	         if (result != 0) {
-					sqlsession.commit();
-				}
-	   } finally {
-	         sqlsession.close();
-	   }
- }
-  
-  
-  
-  
-  
+
+	// 반품절차
+	// 1. 먼저 return(환불) 테이블에 ordersNo정보 추가
+	// 2. return테이블에 insert가 제대로 되었다면, detail_refund 컬럼 update(0->1)
+	// ****반품이 아닌 주문취소시엔, return테이블 추가없이 바로 checkCancel 진행
+
+	public int checkCancel(int ordersNo) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".checkCancel", ordersNo);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+		return result;
+	}
+
+	public int makeRefundTable(RefundDTO refund) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.insert(namespace + ".makeRefundTable", refund);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+		return result;
+	}
+
+	public void checkRefund(int ordersNo) {
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".checkRefund", ordersNo);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+
 	// ADMIN
 
 	public int countOrder() {
@@ -302,6 +307,5 @@ public class OrderDAO extends AbstractMybatisDAO {
 			sqlSession.close();
 		}
 	}
-
 
 }
