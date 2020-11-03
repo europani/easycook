@@ -35,7 +35,8 @@
 							</tr>
 							<tr>
 								<td class="td1">
-									<input type="password" name="rePwd" placeholder="비밀번호 확인">
+									<input type="password" name="rePwd" placeholder="비밀번호 확인" onkeyup="checkPwd()">
+									<div id="checkPwd">동일한 암호를 입력하세요.</div>
 								</td>
 							</tr>
 							<tr>
@@ -78,6 +79,24 @@
 			}
 			form.submit();
 		}
+      
+      function checkPwd(){
+		  var f1 = document.forms[0];
+		  var pwd = f1.pwd.value;
+		  var rePwd = f1.rePwd.value;
+		  if(pwd.length >= 7){
+		  if(pwd!=rePwd){
+		   document.getElementById('checkPwd').style.color = "red";
+		   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
+		  }else{
+		   document.getElementById('checkPwd').style.color = "black";
+		   document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
+		  }
+		  }else{
+		   document.getElementById('checkPwd').innerHTML = "비밀번호를 7자리이상 입력하세요.";     
+		  }
+		  
+		};
 </script> 
 </div>
 </div>

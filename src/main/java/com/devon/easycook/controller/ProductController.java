@@ -71,9 +71,12 @@ public class ProductController {
 	}
 
 	@GetMapping("")
-	public String showAllProduct(Model model) {
-		List<ProductDTO> list = productService.productList();
+	public String showAllProduct(Model model, @RequestParam(value = "sort", required = false) String sort) {
+		List<ProductDTO> list = productService.productList(sort);
+		int todayProNo = productService.todayProNo();
 		model.addAttribute("list", list);
+		model.addAttribute("sort", sort);
+		model.addAttribute("todayProNo", todayProNo);
 		return "product/product";
 	}
 
@@ -82,10 +85,12 @@ public class ProductController {
 		ProductDTO detail = productService.productDetail(productNo);
 		List<ReviewDTO> review = productService.getReview(productNo);
 		ReviewDTO cal = productService.reviewCal(productNo);
+		int todayProNo = productService.todayProNo();
 
 		model.addAttribute("detail", detail);
 		model.addAttribute("review", review);
 		model.addAttribute("cal", cal);
+		model.addAttribute("todayProNo", todayProNo);
 		return "product/productDetail";
 	}
 

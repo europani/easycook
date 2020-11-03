@@ -21,6 +21,18 @@
 		color: #1abc9c;
 		font-size: 25px;
 	}
+	
+	span.discount {
+        text-decoration: line-through;
+    }
+    span.discountp {
+        color: #1abc9c; 
+    }
+    
+    .priz {
+    	font-size: 30px;
+    	font-weight: 400;
+    }
 
 </style>
 <body>
@@ -62,8 +74,9 @@
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 					<h3>${detail.productName}</h3>
-					<p class="price">
-						<span><fmt:formatNumber value="${detail.productPrice}" pattern="###,###,###" />원</span>
+					<p class="priz">
+						<span class="discount"><fmt:formatNumber value="${detail.productPrice}" pattern="###,###,###"/>원</span>
+						<span class="discountp"><fmt:formatNumber value="${detail.productPrice / 2}" pattern="###,###,###"/>원</span>
 					</p>
 					<div class="rating d-flex">
 						<p class="text-left mr-4">
