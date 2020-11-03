@@ -28,9 +28,6 @@
         clear: both;
         padding: 20px;
       }
-
-
-
 	  table {
         border-collapse: collapse;
         width: 85%;
@@ -55,7 +52,7 @@
        height: 65px;
       }
       
-      .btn-refund {   /* 나중에 추가할 버튼양식 */
+       .btn-review {   
        display: inline-block;
        position : absolute;
        margin-left: -6rem;
@@ -67,9 +64,27 @@
        font-weight : border;
        color: white;
        vertical-align: top;
-       margin-top : -2px;
+       margin-top : -16px;
        text-align: center;
       }
+      
+      .btn-refund {   
+       display: inline-block;
+       position : absolute;
+       margin-left: 0rem;
+       width: 70px;
+       height: 30px;
+       line-height: 30px;
+       background-color: rgba(0,0,0,0.1);
+       font-size: 13px;
+       font-weight : border;
+       color: white;
+       vertical-align: top;
+       margin-top : -16px;
+       text-align: center;
+      }
+      
+      
 
 </style>
 </head>
@@ -102,16 +117,18 @@
 			${ordersDetail.product.productPrice * ordersDetail.ordersDetail.detailQty }원
 			</td>
 			<td>
+				<c:if test="${ordersDetail.ordersDetail.reviewCheck == 0}">
+				<button class="btn-review"  onclick="location.href='/easycook/mypage/review?productNo=${ordersDetail.product.productNo}&ordersNo=${ordersNo}'">리뷰쓰기</button>
+				</c:if>
 				<form method="post" action="<%=request.getContextPath() %>/mypage/cancelRequire" >  
 			         <c:if test="${ordersDetail.ordersStatus eq '배송완료'}">
+			         <c:if test="${ordersDetail.ordersDetail.detailRefund == 0 }">
 			         <input type="submit" class="btn-refund" value='반품신청'>
 			         <input type="hidden" name="productNo" id="productNo" value="${ordersDetail.product.productNo}">
 			         <input type="hidden" name="ordersNo" id="ordersNo" value="${orderNum}">
 			         </c:if>
+			         </c:if>
 	          	</form> 
-				<c:if test="${ordersDetail.ordersDetail.reviewCheck == 0}">
-				<button onclick="location.href='/easycook/mypage/review?productNo=${ordersDetail.product.productNo}&ordersNo=${ordersNo}'">리뷰쓰기</button>
-				</c:if>
 			</td>
 		</tr>
 		</c:forEach>	
@@ -123,16 +140,28 @@
 	      	<col style="width:80%">
 	      </colgroup>
 	      	<tbody>
-	      	<c:if test="${discountPercent != null }">
+	      	<c:if test="${discountCoupon != 0 }">
 	      	<tr>
 	      		<th>쿠폰적용</th>
-	      		<td>${discountPercent }%</td>
+	      		<td>${discountCoupon }% 할인</td>
 	      	</tr>
 	      	</c:if>
-	      	<c:if test="${discountPercent == null }">
+	      	<c:if test="${discountCoupon == 0 }">
 	      	<tr>
 	      		<th>쿠폰적용</th>
-	      		<td>마일리지 할인 적용</td>
+	      		<td>적용한 쿠폰이 없습니다</td>
+	      	</tr>
+	      	</c:if>
+	      	<c:if test="${discountPoint != 0 }">
+	      	<tr>
+	      		<th>포인트적용</th>
+	      		<td>${discountPoint }원</td>
+	      	</tr>
+	      	</c:if>
+	      	<c:if test="${discountPoint == 0 }">
+	      	<tr>
+	      		<th>포인트적용</th>
+	      		<td>적용한 포인트가 없습니다</td>
 	      	</tr>
 	      	</c:if>
 	      	<tr>

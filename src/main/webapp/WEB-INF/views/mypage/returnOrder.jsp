@@ -25,7 +25,7 @@
 				opener.parent.location.reload();
 				window.close();
 			}
-		};
+		}
 	}
 
 </script>

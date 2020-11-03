@@ -29,11 +29,12 @@
         clear: both;
         padding: 20px;
       }
-      #content-detail {
-         width: 700px;
+      .search-date {
+         width: 70%;
          padding: 30px 20px 30px;
-        float: left;
-        background-color: #F8F8F8;
+         margin : auto;
+         float: center;
+         background-color: #F8F8F8;
       }
       #content-detail2 {
          text-align: left;
@@ -99,7 +100,7 @@
    <h3>주문내역</h3>
         <hr>
         <br>
-        <div id="content-detail">       
+        <div class="search-date">       
 	      <form id="ordersSearch" name="ordersSearch">
 	      <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
 	      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
@@ -108,8 +109,7 @@
 	      <input type="button"  id="SearchButton" class="btn-search" value="조회하기"></button>
 	      </form>     
       	</div>         
-      <br><br><br><br>
-         <br><hr><br>
+      <br><hr><br>
         <div id="content-detail2">
          <h5>${id }님의 주문 내역입니다.</h5>
         <br><br>
@@ -119,35 +119,34 @@
           <th>주문일</th>
           <th>주문번호</th>
           <th>총주문금액</th>
-          <th colspan="2">주문정보</th>
+          <th>주문정보</th>
         </tr>
       </thead>
         <tbody>
         <c:forEach var="orders" items="${orderList }">
-        <c:if test="${orders.ordersNo != null }">        
-        <tr>
-          <td>${orders.ordersDate }</td>
-          <td>${orders.ordersNo }</td>
-          <td>${orders.ordersTotal }</td>
-          <td>
-          ${orders.ordersStatus }
-          <button onclick="location.href='ordersProduct/${orders.ordersNo}'">상세보기</button>
-          </td>            
-          <td>          
-         <c:if test="${orders.ordersStatus eq '주문완료'}">
-         <button onclick="window.open('returnOrderQuestion/${orders.ordersNo}','주문취소','width=500,height=500,top=100,left=500' );">주문취소</button>          
-         </c:if>      
-         </td> 
-        </tr>
-        </c:if>
-        <c:if test="${orders.ordersNo == null }">
-        <tr>
-        <td colspan="6">주문 내역이 없습니다.</td>
-        </tr>
-        </c:if>
-        </c:forEach>     
+	        <c:if test="${orders.ordersNo != null }">        
+	        <tr>
+	          <td>${orders.ordersDate }</td>
+	          <td>${orders.ordersNo }</td>
+	          <td>${orders.ordersTotal }원</td>
+	          <td>
+	          ${orders.ordersStatus }
+	          <button onclick="location.href='ordersProduct/${orders.ordersNo}'">상세보기</button>
+	       	  &nbsp;&nbsp;       
+	         <c:if test="${orders.ordersStatus eq '주문완료'}">
+	         <button onclick="window.open('returnOrderQuestion/${orders.ordersNo}','주문취소','width=500,height=300,top=100,left=500' );">주문취소</button>          
+	         </c:if>      
+	         </td> 
+	        </tr>
+	        </c:if>
+        </c:forEach>
+	        <c:if test="${orderList.size() == 0 }">
+	        <tr>
+	        <td colspan="5" align="center"><strong> 주문 내역이 없습니다.</strong></td>
+	        </tr>
+	        </c:if>     
         </tbody>
-      </table>
+      </table><br>
       		<!-- 페이징 -->
 			<div style="display: block; text-align: center;" id="paging">		
 					<c:if test="${paging.startPage != 1 }">
@@ -168,11 +167,8 @@
 					</c:if>
 			</div>
 		</div>
+	</div>         
 </div> 
-        
-
-            
-      </div> 
 
       <div id="jb-bottom">
         <br/>
@@ -192,7 +188,7 @@ $('#SearchButton').on('click', function(){
 			$('#order-table').append(data);
 		},
 		error: function () {
-			alert("안된다...");
+			alert("데이터를 불러오는 중 오류가 발생했습니다");
 		}	
 	});
 	

@@ -5,7 +5,7 @@
 
  <div id="couponDateList">
       <div id="사용가능한 쿠폰" class="coupon">
-        <h2>사용가능한 쿠폰</h2>
+         <br/>
          <table id="coupon-table">
          <thead>
        <tr>
@@ -36,7 +36,7 @@
       </div>
 
       <div id="사용불가능한 쿠폰" class="coupon" style="display:none">
-        <h2>사용불가능한 쿠폰</h2>
+         <br/>
         <table id="coupon-table">
          <thead>
        <tr>

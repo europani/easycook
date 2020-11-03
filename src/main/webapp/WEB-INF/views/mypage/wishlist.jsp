@@ -2,7 +2,10 @@
    pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<body class="goto-here">
   <section class="ftco-section ftco-cart">
 <jsp:include page="/WEB-INF/views/common/mypageSidebar.jsp" />
       <div class="container"> 
@@ -10,10 +13,10 @@
         <hr>
         <br>
         <c:choose>
-				<c:when test="${list.size()==0}">
-         			장바구니가 비어있습니다.
+				<c:when test="${myWishlist.size()==0}">
+         		<h2 align="center">위시리스트가 비어있습니다.</h2>
          		</c:when>
-         		<c:otherwise>
+         <c:otherwise>
          <div class="row">
             <div class="col-md-12 ftco-animate">
                <div class="cart-list">
@@ -30,8 +33,27 @@
                      <tbody>
                      <c:forEach var="list" items="${myWishlist }">
                         <tr class="text-center">                     
-                           <td class="product-remove"><a href="#"><span
-                                 class="ion-ios-close"></span></a></td>
+                           <td class="product-remove">
+ 								<button onclick="document.getElementById('id01').style.display='block'"
+									class="ion-ios-close"></button> 
+													
+									<div id="id01" class="w3-modal w3-animate-opacity">
+										<div class="w3-modal-content w3-card-4">
+											<header class="w3-container w3-teal">
+												<span
+													onclick="document.getElementById('id01').style.display='none'"
+													class="w3-button w3-large w3-display-topright">&times;</span>
+													<h3>${list.product.productName}를 위시리스트에서 삭제하시겠습니까?</h3>
+											</header>
+											<div class="w3-container">																							
+												<p><h3><a href="/easycook/mypage/wishlist/delete?productNo=${list.product.productNo}">
+												<span>Yes</span></a></h3></p>
+											</div>
+										</div>				
+									</div>					
+                              
+                                 
+                           </td>
 
                            <td class="image-prod"><div class="img"
                                  style="background-image: url(../resources/images/product-1.jpg);"></div></td>
@@ -64,7 +86,7 @@
                </a>
       </div>
    </section>
-   <script>
+<!--    <script>
 /*       $(document).ready(function(){
 
       var quantitiy=0;
@@ -99,9 +121,9 @@
           });
           
       }); */
-   </script>
+   </script> -->
 
-
+</body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 

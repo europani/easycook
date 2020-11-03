@@ -33,7 +33,7 @@
 
 	<association property="ordersDetail" javaType="OrdersDetail">
 	<id property="ordersNo" column="orders_no"/>
-	<result property="productNo" column="product_no"/>
+	<id property="productNo" column="product_no"/>
 	<result property="detailQty" column="detail_qty"/>
 	<result property="reviewCheck" column="review_check"/>
 	</association>
@@ -154,6 +154,12 @@
 		to_char(orders_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate}
 	</select>
    
+   <!-- 반품절차(cancelRequire)시 필요, 근학쓰랑합칠것 -->
+   <select id="orderPerProduct">
+   	select count(product_no) from orders_detail
+   	where orders_no = #{ordersNo}
+   </select>
+   
    
    	<!-- 주문목록 확인하기  -->
    <select id="myOrderList" resultType="Orders">
@@ -175,7 +181,7 @@
    
    
    <!-- 상세주문목록 확인하기(상품별) -->
-   <select id="ordersDetailList" parameterType="int" resultMap="ordersDetailList">
+   <select id="ordersDetail" parameterType="int" resultMap="ordersDetailList">
    select
      p.product_no,
      p.product_name, 
@@ -196,7 +202,7 @@
    
    
    <!-- 날짜따른 주문목록 확인하기 -->
-   <select id="ordersSearch" parameterType="HashMap" resultType="Orders">
+   <select id="ordersDaySearch" parameterType="HashMap" resultType="Orders">
    select 
    	orders_date ordersDate,
     orders_no as ordersNo,
@@ -230,7 +236,7 @@
    </select>
    
    <!-- 날짜따른 쿠폰목록 확인하기  -->
-   <select id="couponSearch" parameterType="HashMap" resultMap="Coupon">
+   <select id="couponDaySearch" parameterType="HashMap" resultMap="Coupon">
    select
     uc.ucoupon_no,
     uc.id,
@@ -283,7 +289,15 @@
    	w.id = #{id} and w.product_no = p.product_no
    </select>
    
-   <!-- 취소/반품가능 목록 확인하기  -->
+   
+   <!-- wishlist 삭제 -->
+   <select id="wishlistDelete">
+   DELETE FROM wishlist
+   where product_no = #{productNo}
+   </select>
+   
+   
+   <!-- 1) 취소/반품가능 목록 확인하기  -->
    <select id="cancelRequire" parameterType="HashMap" resultMap="cancelRequire">
    select  
    	o.orders_no,
@@ -302,6 +316,14 @@
    	od.product_no = p.product_no
    </select>
    
+   <!-- 2) 반품신청 제한걸기위한, 환불신청시 기존 반품내역 확인 -->
+<!--    <select id="checkRefund" parameterType="HashMap" resultType="Refund">
+   SELECT
+    product_no as productNo, refund_qty as refundQty 
+   FROM refund
+   WHERE orders_no = #{ordersNo} and product_no = #{productNo}
+   </select> -->
+   
    
    <!-- 반품내역 확인하기 -->
    <select id="refund" parameterType="String" resultMap="refundList">
@@ -317,7 +339,7 @@
    
    
    <!-- 날짜따른 반품내역 확인하기 -->
-   <select id="refundSearch" parameterType="HashMap" resultMap="refundList">
+   <select id="refundDaySearch" parameterType="HashMap" resultMap="refundList">
    SELECT
     r.id, r.orders_no, r.product_no, r.refund_qty, r.refund_date, r.refund_status,
     p.product_name

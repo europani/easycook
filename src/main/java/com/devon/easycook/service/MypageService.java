@@ -29,25 +29,26 @@ public class MypageService {
    
    public List<OrdersDTO> ordersDetail(int ordersNo) {
 		return mypageDAO.ordersDetail(ordersNo);
-	}
+   }
 
    
-   public List<OrdersDTO> ordersSearch(Map<String, Object> dateMap) {
-	  return mypageDAO.ordersSearch(dateMap);
+   public List<OrdersDTO> ordersDaySearch(Map<String, Object> dateMap) {
+	  return mypageDAO.ordersDaySearch(dateMap);
 	      
    }
   
-	public int countUserOrder(String id) {
+   // 주문내역 페이징용
+   public int countUserOrder(String id) {
 		return mypageDAO.countUserOrder(id);
-	}
+   }
    
    
    public List<UcouponDTO> coupon(String id) {
       return mypageDAO.coupon(id); 
    }
    
-   public List<UcouponDTO> couponSearch(Map<String, Object> dateMap) {
-		return mypageDAO.couponSearch(dateMap);
+   public List<UcouponDTO> couponDaySearch(Map<String, Object> dateMap) {
+		return mypageDAO.couponDaySearch(dateMap);
 	}
    
    public int couponCount(String id) {
@@ -66,17 +67,32 @@ public class MypageService {
 	   return mypageDAO.wishlist(id);
    }
    
+   public void wishlistDelete(int productNo) {
+	   mypageDAO.wishlistDelete(productNo);
+   }
+   
    public OrdersDTO cancelRequire(Map<String, Object> refundCheckMap) {
       return mypageDAO.cancelRequire(refundCheckMap);
       
    }
-
+   
+   public RefundDTO checkRefund(Map<String, Object> refundCheckMap) {
+	      return mypageDAO.checkRefund(refundCheckMap);
+	      
+   }
+   
+   public int orderPerProduct(int ordersNo) {
+	   return mypageDAO.orderPerProduct(ordersNo);
+   }
+   
+   
+   
    public List<RefundDTO> refund(String id){
 	   return mypageDAO.refund(id);
    }
 
-   public List<RefundDTO> refundSearch(Map<String, Object> dateMap){
-	   return mypageDAO.refundSearch(dateMap);
+   public List<RefundDTO> refundDaySearch(Map<String, Object> dateMap){
+	   return mypageDAO.refundDaySearch(dateMap);
    }
    
 

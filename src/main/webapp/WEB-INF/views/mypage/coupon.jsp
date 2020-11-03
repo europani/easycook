@@ -21,28 +21,39 @@
          text-align: center;
       }
       #coupon-box{
-      /*    margin-left : 400px; */
-         border: 3px solid #F8F8F8; 
-         width: 760px;
-         /* display: table; */
+         border: 3px solid #E6E6E6; 
+         width: 80%;
+         display: table;
          display: inline-block;
       }
       #coupon-box li{     
-          font-size : 20px;   
-        float: left;
+         font-size : 20px;   
+         float: left;
          list-style: none;
-         margin: 0px 40px 40px 40px;
+         margin: 0px 40px 0px 50px;
          text-align: center;
-         width:300px; height:160px;
-         background:#606060;   color:#fff; 
+         width:260px; height:199px;
+         background:#f6f6f6;   color:black; 
          
       }
-/*       #coupon-box hr{        
-        
-      } */
       #coupon-box li a span{
          display: block;
       }    
+      .member-Info {
+        font-size : 20px; 
+        display: table-cell;
+    	width: 30%;
+    	padding: 20px 0 20px 0;
+    	text-align: center;
+    	vertical-align: middle;
+    	background: #f7f9f8;
+      }
+      .member-Info2 {     
+     	display: table-cell;
+    	width: 69%;
+    	vertical-align: middle;
+    	background: #ffffff;
+      }         
       #jb-content {
         width: 85%;
         padding: 20px;
@@ -53,11 +64,12 @@
         clear: both;
         padding: 20px;
       }
-      #content-detail {
-         width: 700px;
+      .search-date {
+         width: 70%;
          padding: 30px 20px 30px;
-        float: left;
-        background-color: #F8F8F8;
+         margin : auto;
+         float: center;
+         background-color: #F8F8F8;
       }
       .btn-search {   /* 나중에 추가할 버튼양식 */
        display: inline-block;
@@ -93,8 +105,7 @@
       }
       
       div.vertical-line{
-         width: 0px; /* Use only border style */
-         height: 170px;
+         height: 200px;
          float: left; 
          border: 1px solid #F8F8F8; /* This is default border style for <hr> tag */
          background-color: #F8F8F8;
@@ -112,27 +123,35 @@
         <br>
         <div id="benefit-box">
         <div id="coupon-box">
-        <br><h4>${id }님의 혜택 내역입니다.</h4><br>
+        <div class="member-Info">
+        <span>${id }님의</span><br/>
+              <span>혜택 내역입니다.</span><br/> 
+        </div>
+        <div class="member-Info2">
         <ul>
-           <li>
-              <span>이미지예정</span><br/>
-              <span>쿠폰</span><br/>
+           <li><br>
+              <span>
+              <img src="/easycook/resources/mart/images/memberCoupon.png">
+              </span><br>
+              <span>사용가능쿠폰</span><br><br>
               ${couponCount }장
            </li>
-           <div class="vertical-line"/>
-           <li>
-              <span>이미지예정</span><br/>
-              <span>적립금</span><br/>
+           <div class="vertical-line"></div>
+           <li><br>
+              <span>
+              <img src="/easycook/resources/mart/images/memberPoint.png">
+              </span><br>
+              <span>보유적립금</span><br><br>
               ${myPoint }원
            </li>
         </ul>
-        <br>
+        </div>
         </div>
         </div>
         <br><br>
        
         <hr><br>
-        <div id="content-detail">
+        <div class="search-date">
                
               <form id="couponSearch" name="couponSearch">
 		      <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
@@ -142,8 +161,7 @@
 		      <input type="button" id="SearchButton" class="btn-search" value="조회하기"></button>
 		      </form>
         </div>
-      <br><br><br><br>
-         <br><hr><br>
+         <br><br><hr><br>
     
         <div id="content-detail2">   
         <div class="w3-bar w3-black">
@@ -152,7 +170,7 @@
       </div>
       <div id="couponDateList">
       <div id="사용가능한 쿠폰" class="coupon">
-        <h2>사용가능한 쿠폰</h2>
+      <br/>
          <table id="coupon-table">
          <thead>
        <tr>
@@ -174,13 +192,13 @@
           <td>${coupon.coupon.couponSdate }</td>
         </tr>    
         </c:if> 
-        </c:forEach>        
+        </c:forEach>       
         </tbody>
       </table>
       </div>
 
       <div id="사용불가능한 쿠폰" class="coupon" style="display:none">
-        <h2>사용불가능한 쿠폰</h2>
+       <br/>
         <table id="coupon-table">
          <thead>
        <tr>
@@ -200,8 +218,8 @@
           <td>${coupon.coupon.couponDiscount }% 할인쿠폰</td>
           <td>${coupon.coupon.couponEdate }</td>
           <td>${coupon.coupon.couponSdate }</td>
-        </tr>   
-        </c:if>  
+        </tr>                    
+        </c:if>
         </c:forEach>
         </tbody>
       </table>

@@ -62,15 +62,13 @@ public class MypageController {
 
 	   	  Map<String, Object> map = new HashMap<String, Object>();
 	   
-
-
 		  HttpSession session = request.getSession(true);
 		  MemberDTO member =(MemberDTO) session.getAttribute("member");
 	//	  if (member == null) { return "redirect:/member/login"; }
 		  String id = member.getId();
+		
 		  
 	      int total = mypageService.countUserOrder(id);
-	      System.out.println(total);
 		  if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -83,14 +81,13 @@ public class MypageController {
 		  model.addAttribute("paging", vo);
 		  int start = vo.getStart();	map.put("start", start);
 		  int end = vo.getEnd();	 map.put("end", end);
-		  
 		  map.put("id", id);       
 		  
-	      List<OrdersDTO> orderList = mypageService.orders(map);
-	      
-			
+		  
+	      List<OrdersDTO> orderList = mypageService.orders(map);	    			
 		  model.addAttribute("orderList", orderList);
-	   
+		  model.addAttribute("id", id);
+		  
 	      return "mypage/orders";
       
    }
@@ -99,16 +96,22 @@ public class MypageController {
 	public String ordersDetail(@PathVariable("ordersNo") int ordersNo, Model model) {
 		List<OrdersDTO> detail = mypageService.ordersDetail(ordersNo);
 
+		
+		// 이세개는 0번째부터 끝까지 다 같은값이다!
 		int totalpay = detail.get(0).getOrdersTotal();
-		int discountPercent = detail.get(0).getDiscountCoupon();
+		int discountCoupon = detail.get(0).getDiscountCoupon();
+		int discountPoint = detail.get(0).getDiscountPoint();
+		
+		
 		model.addAttribute("detail", detail);
 		model.addAttribute("totalpay", totalpay);
-		model.addAttribute("discountPercent", discountPercent);
+		model.addAttribute("discountCoupon", discountCoupon);
+		model.addAttribute("discountPoint", discountPoint);
 		model.addAttribute("orderNum", ordersNo);
 		return "mypage/ordersDetail";
 	}
    
-   
+   // 주문목록 날짜따라출력
    @RequestMapping(value = "/ordersSearch.action", method = RequestMethod.POST)
    public ModelAndView ordersSearch(HttpServletRequest request,
 		   String fromDate, String toDate, ModelAndView mv) {
@@ -116,7 +119,6 @@ public class MypageController {
 	   // ModelAndView 초기화 ㄱㄱ
 	   mv.clear();
 
-	   
 	   // 나중에 session으로 id 받을것
 	   HttpSession session = request.getSession(true);
 	   MemberDTO member =(MemberDTO) session.getAttribute("member");
@@ -127,7 +129,7 @@ public class MypageController {
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
-	   List<OrdersDTO> orderListDate = mypageService.ordersSearch(dateMap);
+	   List<OrdersDTO> orderListDate = mypageService.ordersDaySearch(dateMap);
 	 	
 	   
 	   mv.addObject("orderListDate", orderListDate);
@@ -135,7 +137,8 @@ public class MypageController {
 	   return mv;	   
 	   
    }
-      
+   
+   
    // 처음 반품창
    @RequestMapping("/cancelRequire")
    public String cancelRequire(@RequestParam("productNo") int productNo,
@@ -154,21 +157,28 @@ public class MypageController {
 	refundCheckMap.put("ordersNo", ordersNo);
 
     OrdersDTO cancelRequireList = mypageService.cancelRequire(refundCheckMap);
+    
+    
     int productPrice = cancelRequireList.getProduct().getProductPrice();
-    
-    
-
-    // 구매시 할인쿠폰 사용여부 check
-    int discountPercent = cancelRequireList.getDiscountCoupon();
-    if (discountPercent != 0) {
-    	int productPriceAfterDiscount = productPrice * (100-discountPercent)/100;
-    	productPrice = productPriceAfterDiscount;
+    // 구매시 할인쿠폰 or 적립금 사용여부 check
+    int discountCoupon = cancelRequireList.getDiscountCoupon();
+    int discountPoint = cancelRequireList.getDiscountPoint();
+    // 둘중하나만 적용될것
+    if (discountCoupon != 0) {
+    	int priceAfterDiscount = productPrice * (100-discountCoupon)/100;
+    	productPrice = priceAfterDiscount;
+	}
+    if (discountPoint != 0) {
+    	int pointPerOrders = discountPoint/mypageService.orderPerProduct(ordersNo);
+    	int priceAfterDiscount = productPrice - pointPerOrders;
+    	productPrice = priceAfterDiscount;
 	}
     
     
       
       // 주문번호는 어차피 하나이니, 처음 list만 가져와도 ok
       
+    //  model.addAttribute("checkRefund", checkRefund);
       model.addAttribute("productNum", productNo);
       model.addAttribute("orderNum", ordersNo);
       model.addAttribute("productPrice", productPrice);
@@ -185,6 +195,8 @@ public class MypageController {
 	}
    
    
+	
+	// 위시리스트 추가, 목록보기, 삭제창
    @GetMapping("/wishlistAdd/{productNo}")
    public String wishlistAdd(@PathVariable("productNo") int productNo,
 		   HttpServletRequest request) {
@@ -211,11 +223,15 @@ public class MypageController {
 //	  if (member == null) { return "redirect:/member/login"; }
 	  String id = member.getId();
 	  List<WishlistDTO> myWishlist = mypageService.wishlist(id);
-	  myWishlist.get(0).getProductNo();
-	  myWishlist.get(0).getProduct().getProductNo();
 	  model.addAttribute("myWishlist", myWishlist);
       return "mypage/wishlist";
    }
+   
+	@RequestMapping("/wishlist/delete")
+	public String delete(@RequestParam int productNo) {
+		mypageService.wishlistDelete(productNo);
+		return "redirect:/mypage/wishlist";
+	}
    
    
    @GetMapping("/cancel")
@@ -227,7 +243,8 @@ public class MypageController {
 			       
 	      
 	      List<RefundDTO> refund = mypageService.refund(id);	      
-	      model.addAttribute("refund", refund);      
+	      model.addAttribute("refund", refund);
+	      model.addAttribute("id", id);
 	      return "mypage/cancel";
    }
    
@@ -248,7 +265,7 @@ public class MypageController {
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
-	   List<RefundDTO> refundSearch = mypageService.refundSearch(dateMap);		   
+	   List<RefundDTO> refundSearch = mypageService.refundDaySearch(dateMap);		   
 	   mv.addObject("refundSearch", refundSearch);
 	   mv.setViewName("common/cancelSearch");
 	   return mv;	   
@@ -296,7 +313,7 @@ public class MypageController {
 	   dateMap.put("id", id);
 	   dateMap.put("fromDate", fromDate);
 	   dateMap.put("toDate", toDate);
-	   List<UcouponDTO> couponSearch = mypageService.couponSearch(dateMap);			   
+	   List<UcouponDTO> couponSearch = mypageService.couponDaySearch(dateMap);			   
 	   mv.addObject("couponListDate", couponSearch);
 	   mv.setViewName("common/couponSearch");
 	   return mv;	   

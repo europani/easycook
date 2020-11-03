@@ -174,25 +174,25 @@ public class OrderController {
 	public void returnOrder(@PathVariable("ordersNo") int ordersNo, Model model) {
 		
 		orderService.checkCancel(ordersNo);
-		System.out.println("checkCancel 완료");
 	}
 	
-	  // 반품실행창
-	   @RequestMapping("/doCancel")
-	   public String doCancel(@ModelAttribute RefundDTO refund, HttpServletRequest request, Model model) {
+	// 반품실행창
+	@RequestMapping("/doCancel")
+	public String doCancel(
+			@ModelAttribute RefundDTO refund, HttpServletRequest request, Model model) {
 	      
-		  // 나중에 session으로 id 받을것
-		HttpSession session = request.getSession(true);
-		MemberDTO member =(MemberDTO) session.getAttribute("member");
-		String id = member.getId();
-		
-		refund.setId(id);	refund.setRefundStatus("반품신청");
-		System.out.println(refund);
-		orderService.doCancel(refund);
-		System.out.println("doCancel 완료");
-	    return "order/cancelSuccess";
+		    // 나중에 session으로 id 받을것
+			HttpSession session = request.getSession(true);
+			MemberDTO member =(MemberDTO) session.getAttribute("member");
+			String id = member.getId();
+			
+			refund.setId(id);	refund.setRefundStatus("반품신청");
+			
+			orderService.doCancel(refund);
+		    return "order/cancelSuccess";
+		    
 	   }
 	
 	
 	
-}
+	}
