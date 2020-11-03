@@ -20,10 +20,15 @@
 	margin-top: 5px;
 	margin-right: 5px;
 }
+
+#icon {
+	text-align: right;
+	margin-right: 20%;
+}
 </style>
 	<div class="container weatherBox">
 		<div class="temp info"></div>
-		<div class="weather info"></div>
+		<div class="weather" id="icon"></div>
 	</div>
 <section class="ftco-section">
 	<div class="container">
