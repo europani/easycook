@@ -270,7 +270,7 @@ public class MemberController {
 		boolean passMatch = passEncoder.matches(pwd, dbPwd);
 		if (passMatch) {
 			memberService.delete(id);
-			return "redirect:/";
+			return "member/deleteOk";
 		} else {
 			return "redirect:/member/delete";
 		}

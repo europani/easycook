@@ -12,13 +12,13 @@
                   </h1>
                   <div class="contact-info">
                      <p>
-                        <b>Main Office:</b> 쌍용교육센터
+                        <b>Main Office:</b> 이지쿡
                      </p>
                      <p>
-                        <b>Phone:</b> 112.112.112
+                        <b>Phone:</b> 02.9876.5432
                      </p>
                      <p>
-                        <b>Email:</b> ssanyoung@isyoung.com
+                        <b>Email:</b> easycook@easycook.com
                      </p>
                   </div>
                   <div class="social-media">
