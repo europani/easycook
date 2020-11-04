@@ -1,8 +1,9 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<meta charset="UTF-8">
 <style>
 .payment-container {
 	width: 95%;
@@ -89,21 +90,11 @@
 	border-bottom: 1px solid #dbdbdb;
 	height: 65px;
 }
-p{
-    text-align: center;
- }
-
-
-
-
 </style>
-	<section class="ftco-section ftco-cart">
-		
-		<div class="container">
-		<h1><p><b>주문을 완료했습니다.</b></p></h1>
-			<hr>
-			<br>
-			<h2><b>[ 주문 정보 ]</b></h2>
+<body>
+<div class="payment-container">
+		<div class="payment-content">
+			<h4>주문자 정보</h4>
 			<hr>
 			<br>
 			<table class="paymentCustomer">
@@ -112,53 +103,68 @@ p{
 					<col style="width: 80%">
 				</colgroup>
 				<tbody>
+					<tr>
+						<th>주문하시는 분</th>
+						<td>${orders.member.name}</td>
+					</tr>
+					<tr>
+						<th>연락처</th>
+						<td>${orders.member.tel}</td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td>${orders.member.email}</td> 
+					</tr>
+					<tr>
+						<th>배송지</th>
+						<td>${orders.member.address}</td> 
+					</tr>
+					<tr>
+						<th>주문번호</th>
+						<td>${orders.ordersNo}</td>
+					</tr> 
+					<tr>
+						<th>주문상태</th>
+						<td>${orders.ordersStatus}</td>
+					</tr>
 					<tr>
 						<th>주문일시</th>
 						<td>${orders.ordersDate}</td>
 					</tr>
-					<tr>
-						<th>아이디</th>
-						<td>${orders.id}</td>
-					</tr>
-				</tbody>
-			</table>
-			<br><br><br>
-			<h2><b>[ 결제정보 ]</b></h2>
-			<hr>
-			<br>
-			<table class="paymentCustomer">
-				<colgroup>
-					<col style="width: 20%">
-					<col style="width: 80%">
-				</colgroup>
-				<tbody>
-					<c:if test="${orders.check==1}">
+					<c:if test="${orders.check}==1">
 					<tr>
 						<th>쿠폰할인</th>
 						<td>${orders.discountCoupon}% 할인적용</td>
 					</tr>
 					</c:if>
-					<c:if test="${orders.check==2}">
+					<c:if test="${orders.check}==2">
 					<tr>
-						<th>적립금할인</th>
+						<th>적립금확인</th>
 						<td>${orders.discountPoint}원 할인적용</td>
 					</tr>
 					</c:if>
+					
+				</tbody>
+			</table>
+		</div>
+
+		<div class="payment-content2">
+			<h4>결제정보</h4>
+			<hr>
+			<br>
+			<table class="paymentCustomer">
+				<colgroup>
+					<col style="width: 20%">
+					<col style="width: 80%">
+				</colgroup>
+				<tbody>
 					<tr>
 						<th>결제 금액</th>
 						<td><fmt:formatNumber value="${orders.ordersTotal}" pattern="###,###,###" />원</td>
 					</tr>
 				</tbody>
 			</table>
-			<br><br>
-			<p><a href="/easycook" class="btn btn-primary py-3 px-5" style="text-align: center">홈으로</a></p>
 		</div>
-		</div>
-		
-	</section>
-	
-	
+	</div>
 </body>
-
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

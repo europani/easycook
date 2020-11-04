@@ -23,6 +23,7 @@
 			<result property="name" column="name" />
 			<result property="email" column="email" />
 			<result property="tel" column="tel" />
+			<result property="address" column="address" />
 			<result property="point" column="point" />
 		</association>
 	</resultMap>
@@ -47,17 +48,7 @@
 		</association>
 	</resultMap>
 	
-<!-- 	<resultMap id="CartItem" type="Cart">
-			<id property="cartNo" column="cart_no" />
-			<result property="id" column="id" />
-			<result property="productNo" column="product_no" />
-			<result property="cartQty" column="cart_qty" />
-			
-		<association property="orders" javaType="Orders"> 
-			<id property="id" column="id" />
-		</association>
-		
-	</resultMap> -->
+
 	<!-- 장바구니에 추가하기 담기를 누를때 상품번호/id 있으면 update 없으면 insert -->
 	<insert id="cartInsert" >
 		MERGE INTO CART
@@ -92,6 +83,7 @@
 		m.name ,
 		m.email,
 		m.tel,
+		m.address,
 		m.point,
 		p.product_name ,
 		p.product_image ,
@@ -110,12 +102,6 @@
 		DELETE FROM cart
 		WHERE cart_no = #{cartNo}
 	</delete>
-	
-	<!-- 장바구니 전체 삭제 -->
-	<delete id="cartDeleteAll">
-		DELETE FROM cart
-		WHERE id = #{id}
-	</delete>
 
 	<!-- 쿠폰목록 확인하기 -->
 	<select id="couponList" resultMap="CouponList">
@@ -129,11 +115,12 @@
 		FROM coupon c, ucoupon u
 		WHERE u.id = #{id} AND 
 		c.coupon_no = u.coupon_no AND 
-		u.ucoupon_used = 0
+		u.ucoupon_used = 0 AND 
+		sysdate between coupon_sdate and coupon_edate
 		ORDER BY coupon_edate desc
 	</select>
 
-	<!-- 결제후 Orders Insert -->
+	<!-- 1. orders 테이블에 추가 (orders) -->
 	<insert id="ordersInsert" >
 		INSERT INTO orders
 		VALUES (
@@ -160,42 +147,51 @@
 	</select>
 	
 	
-	
-	
-	<!-- 결제후 OrdersDetail Insert -->
-	<insert id="ordersDetailInsert" >
+	<!-- 2. orders_detail 추가 (orders_detail) -->
+	<insert id="ordersDetailInsert" parameterType="Hashmap">
 		INSERT INTO orders_detail
-		VALUES (
-			#{ordersNo},
-			#{productNo},
-			#{detail_qty}, 
-			0,
-			0
-		)
+		VALUES (#{ordersNo}, #{productNo}, #{detailQty}, 0, 0)
 	</insert>
 
-	<!-- 결제 후 적립금 1% 적립 -->
-<!-- 	<update id="pointUpdate">
+	<!-- 2.2.재고수량 차감 (product) -->
+	<update id="reduceStock" parameterType="Hashmap">
+		UPDATE product
+		SET product_stock = product_stock - #{detailQty}
+		WHERE product_no = #{productNo}
+	</update>
+	
+	<!-- 3. 적립금 1% 추가 (member) -->
+	<update id="pointUpdate" parameterType="Orders">
 		UPDATE member 
 		SET point = point + (#{ordersTotal} * 0.01)
 		WHERE id = #{id}
-	</update> -->
+	</update>
 	
-	<!-- 적립금 할인 결제 후 적립금 차감 -->
-<!-- 	<update id="pointUse">
+	<!-- 4. 쿠폰,적립금 사용에따라 (ucoupon or member) -->
+	<!-- 4.1 적립금 : 적립금 차감 -->
+	<update id="pointUse" parameterType="Orders">
 		UPDATE member 
 		SET point = point - #{discountPoint}
 		WHERE id = #{id}
-	</update> -->
+	</update>
 
-	<!-- 쿠폰 할인 결제 후 쿠폰 사용체크 -->
-<!-- 	<update id="couponUse">
+	<!-- 4.2 쿠폰 : 쿠폰 사용처리 -->
+	<update id="couponUse" parameterType="Orders">
 		UPDATE ucoupon
 		SET ucoupon_used = 1
 		WHERE id = #{id} AND coupon_no = #{couponNo}
 	</update>
 
- -->
+
+	<!--5. cart 비우기 (cart)-->
+	<delete id="cartDeleteAll" parameterType="String">
+		DELETE FROM cart
+		WHERE id = #{id}
+	</delete>
+
+
+	
+
 
 
 

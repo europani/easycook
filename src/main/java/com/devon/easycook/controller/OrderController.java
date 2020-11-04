@@ -1,9 +1,14 @@
 package com.devon.easycook.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -62,7 +67,6 @@ public class OrderController {
 		}
 		String Id = member.getId();
 		List<CartDTO> list = orderService.cartList(Id);
-		System.out.println(list);
 		model.addAttribute("list", list);
 		return "order/cart";
 	}
@@ -74,7 +78,7 @@ public class OrderController {
 		return "redirect:/order/cart";
 	}
 	
-	// 주문하기 
+	// 주문하기  
 	@GetMapping("/order")
 	public String orderList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(true);
@@ -85,7 +89,6 @@ public class OrderController {
 		String Id = member.getId();
 		List<CartDTO> list = orderService.cartList(Id);
 		List<CouponDTO> list2 = orderService.couponList(Id);
-		System.out.println(list2);
 		model.addAttribute("list", list);
 		model.addAttribute("list2", list2);
 		return "order/order";
@@ -94,8 +97,9 @@ public class OrderController {
 	
 	
 	// 결제 후 
-	@PostMapping("/paymentComplete") public String insertOrders(@ModelAttribute OrdersDTO dto,
-			@ModelAttribute OrdersDetailDTO dto2, HttpServletRequest request) {
+	@GetMapping("/paymentComplete") 
+	public String insertOrders(@ModelAttribute OrdersDTO dto, HttpServletRequest request, Model model) {
+		System.out.println("total : " + dto.getOrdersTotal());
 		HttpSession session = request.getSession(true);
 		MemberDTO member = (MemberDTO) session.getAttribute("member");
 		String Id = member.getId();
@@ -117,18 +121,26 @@ public class OrderController {
 		}
 		orderService.orders(dto);
 		
+		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		String today = null;
+		today = formatter.format(cal.getTime());
+		Timestamp ts = Timestamp.valueOf(today);
+		
+		dto.setOrdersDate(ts);
+		dto.setCheck(dto.getCheck());
+		model.addAttribute("orders", dto);
+		
 		return "order/paymentComplete"; 
 	}
 	
-
-	  
-	  
 	@PostMapping("/payment")
-	public String payment(HttpServletRequest request, Model model) {
+	public String payment(@ModelAttribute OrdersDTO orders, Model model) {
+		model.addAttribute("orders", orders);
+		
 		return "order/payment";
 	}
 
-	
 	
 	   
 	

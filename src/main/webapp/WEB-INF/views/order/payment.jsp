@@ -21,22 +21,13 @@ IMP.request_pay({
     buyer_email : '${param.email}',
     buyer_name : '${param.name}',
     buyer_tel : '${param.tel}',
-    m_redirect_url : '/easycook/order/paymentComplete'
 }, function(rsp) {
     if ( rsp.success ) {
         var msg = '결제가 완료되었습니다.';
-        msg += '고유ID : ' + rsp.imp_uid;
-        msg += '상점 거래ID : ' + rsp.merchant_uid;
-        msg += '결제 금액 : ' + rsp.paid_amount; 
-        msg += '카드 승인번호 : ' + rsp.apply_num; 
-     	
-        
-        /* if(${param.check}==1){
-        	
-        }
-        else if(${param.check}==2){
-        
-        } */
+        alert(msg);
+      	location.href="/easycook/order/paymentComplete?check=" + ${orders.check} + "&discountCoupon=" + ${orders.discountCoupon}
+      		+ "&couponNo=" + ${orders.couponNo} + "&discountPoint=" +  ${orders.discountPoint} + "&ordersTotal=" + ${orders.ordersTotal};
+
         // 최종금액(finalTotal), 쿠폰썼는지 확인후 ucoupon 상태 1로 전환 및 쿠폰 디스카운트, 
      	// 장바구니 삭제
      	// orders, ordersDetail 추가 
@@ -45,11 +36,14 @@ IMP.request_pay({
     } else {
         var msg = '결제에 실패하였습니다.';
         msg += '에러내용 : ' + rsp.error_msg;
+        alert(msg);
+        location.href="/easycook/";
     }
-    alert(msg);
+    
+    
 });
 </script>
 <body>
-
+	total : ${orders.ordersTotal}
 </body>
 </html>

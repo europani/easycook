@@ -196,7 +196,10 @@
 					<tr>
 						<th>이메일</th>
 						<td>${list[0].member.email}</td>
-						
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td>${list[0].member.address}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -223,9 +226,9 @@
 							<td><c:out value="${fee}" /> 원</td>
 						</c:if>
 
-
+<!-- 2500추가해야해 -->
 						<c:if test="${total < 50000}">
-							<c:set var="fee" value="2500" />
+							<c:set var="fee" value="98" />
 							<td><c:out value="${fee}" /> 원 (※ 5만원 이상 주문시 무료)</td>
 						</c:if>
 					</tr>
@@ -259,9 +262,9 @@
 												<ul>
 													<c:forEach var="row2" items="${list2}" varStatus="i">
 														<li><input type="radio" name="coupon"
-															value="${row2.couponDiscount}"> [
-															${row2.couponTitle} ] ${row2.couponDiscount}% 할인
-															(${row2.couponSdate} ~ ${row2.couponEdate}) <%--<c:if test="${row2.couponType == 0}">
+															value="${row2.couponDiscount},${row2.couponNo}"> 
+															[ ${row2.couponTitle} ] ${row2.couponDiscount}% 할인 (${row2.couponSdate} ~ ${row2.couponEdate}) 
+															<%--<c:if test="${row2.couponType == 0}">
 													</c:if>
 													<c:if test="${row2.couponType == 1}">
 													${row2.couponDiscount}원 할인 
@@ -303,9 +306,10 @@
 		
 		<form action="/easycook/order/payment" method="post" id="paymentForm">
 			<input type="text"  id="checkForm" name="check" value="${check}" />
+			<input type="text"  id="couponNo" name="couponNo" value="${couponNo}" />
 			<input type="text"  id="couponForm" name="discountCoupon" value="${discountCoupon}" />
 			<input type="text"  id="pointForm" name="discountPoint" value="${discountPoint}" />
-			<input type="hidden" id="ordersTotalForm" name="ordersTotal" value="${ordersTotal}" />	
+			<input type="text" id="ordersTotalForm" name="ordersTotal" value="${ordersTotal}" />	
 		</form>
 		<button class="btn-payment" type="submit" form="paymentForm">결제하기</button>
 		
@@ -326,16 +330,22 @@
 				$('#checkForm').val(0);
 				$('#couponForm').val(0);
 				$('#pointForm').val(0);
-				
+				$('#couponNo').val(0);
 				$('#radioButton').click(
 						function() {
-							var radioVal = $('input[name=coupon]:checked').val();
+							let couponSet = $('input[name=coupon]:checked').val();
+							
+							let radioVal = couponSet.substring(0, couponSet.indexOf(','));
+							
+							let couponNo = couponSet.substring(couponSet.indexOf(',')+1);
+							
 							$('#couponDiscount').html(radioVal + "% 할인이 적용됩니다.");
 
 							var total = $('#total').val() - $('#total').val() * (radioVal / 100);
 
 							$('#checkForm').val(1);
 							$('#couponForm').val(radioVal);
+							$('#couponNo').val(couponNo);
 							
 
 							var ordersTotal = parseInt($('#fee').val()) + parseInt(total);

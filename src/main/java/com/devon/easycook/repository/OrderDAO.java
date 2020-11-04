@@ -65,19 +65,7 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	// 장바구니 전체 삭제하기
-	public void cartDeleteAll(String id) {
-		sqlsession = getSqlSessionFactory().openSession();
-		int result = 0;
-		try {
-			result = sqlsession.delete(namespace + ".cartDeleteAll", id);
-			if (result != 0) {
-				sqlsession.commit();
-			}
-		} finally {
-			sqlsession.close();
-		}
-	}
+	
 
 	// 쿠폰 목록 보기
 	public List<CouponDTO> couponList(String id) {
@@ -124,11 +112,79 @@ public class OrderDAO extends AbstractMybatisDAO {
 
 	// 주문 완료 후 주문상세내역에 추가
 
-	public void ordersDetailInsert(OrdersDetailDTO dto) {
+	public void ordersDetailInsert(HashMap<String, Object> map) {
 		sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
 		try {
-			result = sqlsession.insert(namespace + ".ordersDetailInsert", dto);
+			result = sqlsession.insert(namespace + ".ordersDetailInsert", map);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	
+	public void pointUpdate(OrdersDTO orders) {
+		sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".pointUpdate", orders);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	
+	public void pointUse(OrdersDTO orders) {
+		sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".pointUse", orders);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	public void couponUse(OrdersDTO orders) {
+		sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".couponUse", orders);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	public void reduceStock(HashMap<String, Object> map) {
+		sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.update(namespace + ".reduceStock", map);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	// 장바구니 전체 삭제하기
+	public void cartDeleteAll(String id) {
+		sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.delete(namespace + ".cartDeleteAll", id);
 			if (result != 0) {
 				sqlsession.commit();
 			}
@@ -137,14 +193,6 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

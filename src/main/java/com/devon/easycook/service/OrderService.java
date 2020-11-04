@@ -50,30 +50,45 @@ public class OrderService {
 	}
 	
 	// 주문완료 후 주문목록 추가하기
-	public void orders(OrdersDTO dto) { 
-		
-		orderDao.ordersInsert(dto); 
+	public void orders(OrdersDTO dto) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		String id = dto.getId();
-		System.out.println(id);
+		
+		// 1. orders 테이블에 추가 (orders)
+		orderDao.ordersInsert(dto); 
+		// 2. orders_detail 추가 (orders_detail)
 		int ordersNo = orderDao.maxOrdersNo();
-		
-		System.out.println("아아아아아!!!!!!!!!!!!!!!!"+ordersNo);
 		List<CartDTO> cartList = orderDao.getCartItem(id);
-		System.out.println("아아아아아@@@@@@@@@@"+cartList);
 		
-		/*
-		 * HashMap<String, Object> map = new HashMap<String, Object>();
-		 * map.put("ordersNo", ordersNo);
-		 */
-		/*
-		 * for (int i = 0; i < cartList.size(); i++) { map.put("productNo", ordersNo);
-		 * map.put("detailQty", ordersNo); orderDao.ordersDetailInsert(map); }
-		 */
+		map.clear();
+		map.put("ordersNo", ordersNo);
+		for (int i = 0; i < cartList.size(); i++) { 
+			CartDTO cart = cartList.get(i);
+			System.out.println("productNo : " + cart.getProductNo());
+			System.out.println("cartQty : " + cart.getCartQty());
+			map.put("productNo", cart.getProductNo());
+			map.put("detailQty", cart.getCartQty()); 
+			orderDao.ordersDetailInsert(map);
+			
+		// 2.2 재고수량 차감 (product)
+			orderDao.reduceStock(map);
+		}
+		
+		
+		// 3. 적립금 1% 추가 (member)
+		orderDao.pointUpdate(dto);
+		
+		// 4. 쿠폰,적립금 사용에따라 (ucoupon or member)
+		// 4.1 쿠폰 : 쿠폰 사용처리
+		orderDao.couponUse(dto);
+		
+		// 4.2 적립금 : 적립금 차감
+		orderDao.pointUse(dto);
+		
+		// 5. cart 비우기 (cart)
+		orderDao.cartDeleteAll(id);
 		
 	}
-	
-	
-		
 	
 	
 	
