@@ -197,8 +197,28 @@ public class MypageController {
    
 	// 위시리스트 추가, 목록보기, 삭제창
 	@GetMapping("/wishlistAddRequire/{productName}/{productNo}")
-	public String wishlistAddRequire(@PathVariable("productName") String productName,
+	public String wishlistAddRequire( HttpServletRequest request, 
+			@PathVariable("productName") String productName,
 			@PathVariable("productNo") String productNo, Model model) {
+		
+		HttpSession session = request.getSession(true);
+		MemberDTO member =(MemberDTO) session.getAttribute("member");
+//		if (member == null) { return "redirect:/member/login"; }
+		String id = member.getId();
+		
+		Map<String, Object> wishlistMap = new HashMap<String, Object>();
+		wishlistMap.put("id", id);
+		wishlistMap.put("productNo", productNo);
+		
+		// id와 productNo where절에 해당되는 결과 리턴
+		boolean wishlistCheck = true;
+		WishlistDTO result = mypageService.wishlistCheck(wishlistMap);
+		
+		if (result != null) {
+			wishlistCheck = false;		
+		}
+		
+		model.addAttribute("wishlistCheck", wishlistCheck);
 		model.addAttribute("productName", productName);
 		model.addAttribute("productNo", productNo);
 		return "mypage/wishlistAddRequire";
@@ -216,9 +236,9 @@ public class MypageController {
 	  Map<String, Object> wishlistMap = new HashMap<String, Object>();
 	  wishlistMap.put("id", id);
 	  wishlistMap.put("productNo", productNo);
-	  mypageService.wishlistInput(wishlistMap);
+ 
 	  
-
+	  mypageService.wishlistInput(wishlistMap);
       return "mypage/wishlistAddRequire";
    }
    
