@@ -59,7 +59,7 @@
 		</div>	
 	</section>
 	<div class="text-center">
-		<img src="/easycook/resources/images/arrow2.png" onclick="menu()" width="100" height="100">
+		<img src="/easycook/resources/images/arrow2.png" onclick="menu()" width="100" height="100" style="margin-bottom: 50px;">
 	</div>
 	<div class="today" style="display: none">	
 		<body class="goto-here">

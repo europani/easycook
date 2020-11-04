@@ -25,6 +25,7 @@
 #icon {
 	text-align: right;
 	margin-right: 20%;
+	transform: translate(70px, -18px);
 }
 </style>
 	<div class="container weatherBox">
