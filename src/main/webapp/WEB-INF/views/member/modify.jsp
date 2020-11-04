@@ -68,7 +68,6 @@
 
 	  th,td {
 		  padding: 8px;
-		  text-align: left;
 		  border-bottom: 1px solid #ddd;
 	   }
 	  
@@ -161,7 +160,6 @@
 					<input type="text" name="address3" id="sample6_extraAddress" value="${info.address3}" class="address" readonly>
 				</td>
 			</tr>
-
 			<tr height="2" bgcolor="#000000">
 				<td colspan="2"></td>
 			</tr>
@@ -173,6 +171,7 @@
 			</tr>
 		</table>
 	</form>
+	<button onclick="location.href='/easycook/member/delete'">회원탈퇴</button>
 	      <br><br>     
        </div>
        <br><br>

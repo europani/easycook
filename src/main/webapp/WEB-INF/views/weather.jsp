@@ -10,6 +10,7 @@
 	height: 50%;
 	background-image: url("/easycook/resources/images/weather.jpg");
 	background-size: contain;
+	background-repeat: no-repeat;
 }
 	
 .info {
