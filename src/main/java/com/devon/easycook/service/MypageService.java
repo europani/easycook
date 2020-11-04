@@ -59,8 +59,12 @@ public class MypageService {
 		return mypageDAO.myPoint(id);
 	} 
    
-   public void wishlistInput(Map<String, Object> wishlistMap) {	   
-	   mypageDAO.wishlistInput(wishlistMap);
+   public WishlistDTO wishlistCheck(Map<String, Object> map) {
+	   return mypageDAO.wishlistCheck(map);
+   }   
+   
+   public void wishlistInput(Map<String, Object> map) {	   
+	   mypageDAO.wishlistInput(map);
    }
    
    public List<WishlistDTO> wishlist(String id) {	   

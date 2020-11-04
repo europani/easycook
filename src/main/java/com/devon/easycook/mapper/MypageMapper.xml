@@ -268,13 +268,23 @@
    </select>
    
    
+   <!-- 추가하려는 상품이 wishlist에 있는지 확인용 -->
+   <select id="wishlistCheck" parameterType="HashMap" resultType="Wishlist">
+   SELECT
+    id,
+    product_no as productNo
+   FROM
+    wishlist where id = #{id} and product_no = #{productNo}
+   </select>
+   
+   
    <!-- wishlist 추가하기 -->
    <select id="wishlistInput">
    Insert into WISHLIST(id, product_no)
    	VALUES (#{id}, #{productNo})
    </select>
    
-   
+     
    <!-- wishlist 목록 출력 -->
    <select id="wishlist" parameterType="String" resultMap="myWishlist">
    SELECT

@@ -115,7 +115,7 @@
 			<td>${ordersDetail.product.productName }</td>
 			<td>${ordersDetail.ordersDetail.detailQty }개</td>
 			<td>
-			<fmt:formatDate pattern="###,###,###"
+			<fmt:formatNumber pattern="###,###,###"
 			 value="${ordersDetail.product.productPrice * ordersDetail.ordersDetail.detailQty }"/>원
 			</td>
 			<td>
@@ -168,7 +168,7 @@
 	      	</c:if>
 	      	<tr>
 	      		<th>실 결제금액</th>
-	      		<td><fmt:formatDate pattern="###,###,###" value="${totalpay }"/>원</td>
+	      		<td><fmt:formatNumber pattern="###,###,###" value="${totalpay }"/>원</td>
 	      	</tr>
 	      	</tbody>   
 	</table>

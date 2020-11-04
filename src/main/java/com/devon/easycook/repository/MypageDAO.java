@@ -116,6 +116,15 @@ public class MypageDAO extends AbstractMybatisDAO{
 		}
 	}
    
+   public WishlistDTO wishlistCheck(Map<String, Object> map)  {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	   try {
+		   return sqlsession.selectOne(namespace + ".wishlistCheck", map);
+		} finally {
+			sqlsession.close();
+		}
+	}
+   
    public void wishlistInput(Map<String, Object> wishlistMap) {
 	   SqlSession sqlsession = getSqlSessionFactory().openSession();
 	   int result = 0;

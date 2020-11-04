@@ -56,7 +56,7 @@
                            </td>
 
                            <td class="image-prod"><div class="img"
-                                 style="background-image: url(../resources/images/product-1.jpg);"></div></td>
+                                 style="background-image: url(../resources/images/${list.product.productImage});"></div></td>
 
                            <td class="product-name">
                               <h3>${list.product.productName }</h3>

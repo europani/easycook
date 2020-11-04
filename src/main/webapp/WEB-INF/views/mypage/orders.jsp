@@ -104,9 +104,9 @@
         <div class="search-date">       
 	      <form id="ordersSearch" name="ordersSearch">
 	      <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
-	      <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
+	      <input type="date" name="fromDate" id="fromDate" min="2020-01-01" max="">&nbsp;&nbsp;~&nbsp;&nbsp;
 	      <label for="UserCheckOut"></label> 
-	      <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
+	      <input type="date" name="toDate" id="toDate" min="2020-01-01" max="2020-12-31">&nbsp;&nbsp;
 	      <input type="button"  id="SearchButton" class="btn-search" value="조회하기"></button>
 	      </form>     
       	</div>         
@@ -177,6 +177,22 @@
 
 <script src="/easycook/resources/admin/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("toDate").setAttribute("max", today);
+
+
 $('#SearchButton').on('click', function(){
 	/* alert($("#searchgogo").serialize()) */
 	$( '#order-table > tbody').empty();
