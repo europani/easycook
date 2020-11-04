@@ -301,11 +301,11 @@
 		<div class="payment-content3"></div>
 		<div class="payment-pay">
 		
-		<form action="/easycook/order/paymentComplete" method="post" id="paymentForm">
+		<form action="/easycook/order/payment" method="post" id="paymentForm">
 			<input type="text"  id="checkForm" name="check" value="${check}" />
 			<input type="text"  id="couponForm" name="discountCoupon" value="${discountCoupon}" />
 			<input type="text"  id="pointForm" name="discountPoint" value="${discountPoint}" />
-			<input type="text" id="ordersTotalForm" name="ordersTotal" value="${ordersTotal}" />	
+			<input type="hidden" id="ordersTotalForm" name="ordersTotal" value="${ordersTotal}" />	
 		</form>
 		<button class="btn-payment" type="submit" form="paymentForm">결제하기</button>
 		

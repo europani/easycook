@@ -103,16 +103,40 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
-	
+	// 주문번호 max
+	public int maxOrdersNo() {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".maxOrdersNo");
+		} finally {
+			sqlsession.close();
+		}
+	}
+
+	public List<CartDTO> getCartItem(String id) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectList(namespace + ".getCartItem", id);
+		} finally {
+			sqlsession.close();
+		}
+	}
+
 	// 주문 완료 후 주문상세내역에 추가
-	/*
-	 * public void ordersDetailInsert(OrdersDetailDTO dto) { sqlsession =
-	 * getSqlSessionFactory().openSession(); int result = 0; try { result =
-	 * sqlsession.insert(namespace + ".ordersDetailInsert", dto); if (result != 0) {
-	 * sqlsession.commit(); } } finally { sqlsession.close(); } }
-	 */
-	
-	
+
+	public void ordersDetailInsert(OrdersDetailDTO dto) {
+		sqlsession = getSqlSessionFactory().openSession();
+		int result = 0;
+		try {
+			result = sqlsession.insert(namespace + ".ordersDetailInsert", dto);
+			if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	}
+
 	
 	
 	

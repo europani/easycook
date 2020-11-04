@@ -92,6 +92,7 @@ public class OrderController {
 	}
 
 	
+	
 	// 결제 후 
 	@PostMapping("/paymentComplete") public String insertOrders(@ModelAttribute OrdersDTO dto,
 			@ModelAttribute OrdersDetailDTO dto2, HttpServletRequest request) {
@@ -114,26 +115,7 @@ public class OrderController {
 			dto.setDiscountCoupon(0);
 			dto.setDiscountPoint(0);
 		}
-		orderService.ordersInsert(dto);
-		
-		// 2. ordersDetail에 insert
-		int ordersNo = dto.getOrdersNo();
-		List<CartDTO> list = orderService.cartList(Id);
-		
-		for (int i = 0; i < list.size(); i++) {
-			
-          int productNo = list.get(i).getProductNo();
-          int detailQty = list.get(i).getCartQty();
-          
-          System.out.println(i+" => "+ ordersNo);
-          System.out.println(i+" => "+ productNo);
-          System.out.println(i+" => "+ detailQty);
-          //orderService.ordersDetailInsert(dto);
-       }
-
-		
-		/* list에서 뽑아오기중 */
-		/* dto2 */
+		orderService.orders(dto);
 		
 		return "order/paymentComplete"; 
 	}
@@ -141,7 +123,10 @@ public class OrderController {
 
 	  
 	  
-	 
+	@PostMapping("/payment")
+	public String payment(HttpServletRequest request, Model model) {
+		return "order/payment";
+	}
 
 	
 	

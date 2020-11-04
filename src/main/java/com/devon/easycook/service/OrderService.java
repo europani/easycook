@@ -39,7 +39,7 @@ public class OrderService {
 		orderDao.cartDelete(cartNo); 
 	}
 	
-	// 장바구니 삭제하기
+	// 장바구니 전체 삭제하기
 	public void cartDeleteAll(String id) {
 		orderDao.cartDeleteAll(id); 
 	}
@@ -50,14 +50,30 @@ public class OrderService {
 	}
 	
 	// 주문완료 후 주문목록 추가하기
-	public void ordersInsert(OrdersDTO dto) { 
+	public void orders(OrdersDTO dto) { 
+		
 		orderDao.ordersInsert(dto); 
+		String id = dto.getId();
+		System.out.println(id);
+		int ordersNo = orderDao.maxOrdersNo();
+		
+		System.out.println("아아아아아!!!!!!!!!!!!!!!!"+ordersNo);
+		List<CartDTO> cartList = orderDao.getCartItem(id);
+		System.out.println("아아아아아@@@@@@@@@@"+cartList);
+		
+		/*
+		 * HashMap<String, Object> map = new HashMap<String, Object>();
+		 * map.put("ordersNo", ordersNo);
+		 */
+		/*
+		 * for (int i = 0; i < cartList.size(); i++) { map.put("productNo", ordersNo);
+		 * map.put("detailQty", ordersNo); orderDao.ordersDetailInsert(map); }
+		 */
+		
 	}
-	// 주문완료 후 주문상세내역 추가하기
-	/*
-	 * public void ordersDetailInsert(OrdersDetailDTO dto) {
-	 * orderDao.ordersDetailInsert(dto); }
-	 */
+	
+	
+		
 	
 	
 	

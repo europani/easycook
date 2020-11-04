@@ -46,8 +46,18 @@
 			<id property="id" column="id" />
 		</association>
 	</resultMap>
-
-
+	
+<!-- 	<resultMap id="CartItem" type="Cart">
+			<id property="cartNo" column="cart_no" />
+			<result property="id" column="id" />
+			<result property="productNo" column="product_no" />
+			<result property="cartQty" column="cart_qty" />
+			
+		<association property="orders" javaType="Orders"> 
+			<id property="id" column="id" />
+		</association>
+		
+	</resultMap> -->
 	<!-- 장바구니에 추가하기 담기를 누를때 상품번호/id 있으면 update 없으면 insert -->
 	<insert id="cartInsert" >
 		MERGE INTO CART
@@ -137,8 +147,23 @@
 		)
 	</insert>
 	
+	<!-- orderNo 구하기 -->
+	<select id="maxOrdersNo" resultType="int">
+      SELECT max(orders_no) FROM orders
+   </select>
+	
+	<!-- 장바구니 목록보기 -->
+	<select id="getCartItem" resultType="Cart">
+		Select product_no AS productNo , cart_qty AS cartQty 
+		FROM cart 
+		where id = #{id}
+	</select>
+	
+	
+	
+	
 	<!-- 결제후 OrdersDetail Insert -->
-<!-- 	<insert id="ordersDetailInsert" >
+	<insert id="ordersDetailInsert" >
 		INSERT INTO orders_detail
 		VALUES (
 			#{ordersNo},
@@ -147,7 +172,7 @@
 			0,
 			0
 		)
-	</insert> -->
+	</insert>
 
 	<!-- 결제 후 적립금 1% 적립 -->
 <!-- 	<update id="pointUpdate">
