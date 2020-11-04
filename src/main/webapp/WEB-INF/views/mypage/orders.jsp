@@ -135,7 +135,7 @@
 	          <button onclick="location.href='ordersProduct/${orders.ordersNo}'">상세보기</button>
 	       	  &nbsp;&nbsp;       
 	         <c:if test="${orders.ordersStatus eq '주문완료'}">
-	         <button onclick="window.open('returnOrderQuestion/${orders.ordersNo}','주문취소','width=500,height=300,top=100,left=500' );">주문취소</button>          
+	         <button onclick="window.open('returnOrderQuestion/${orders.ordersNo}','주문취소','width=300,height=150,top=100,left=500' );">주문취소</button>          
 	         </c:if>      
 	         </td> 
 	        </tr>

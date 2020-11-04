@@ -195,11 +195,18 @@ public class MypageController {
 	}
    
    
-	
 	// 위시리스트 추가, 목록보기, 삭제창
-   @GetMapping("/wishlistAdd/{productNo}")
-   public String wishlistAdd(@PathVariable("productNo") int productNo,
-		   HttpServletRequest request) {
+	@GetMapping("/wishlistAddRequire/{productName}/{productNo}")
+	public String wishlistAddRequire(@PathVariable("productName") String productName,
+			@PathVariable("productNo") String productNo, Model model) {
+		model.addAttribute("productName", productName);
+		model.addAttribute("productNo", productNo);
+		return "mypage/wishlistAddRequire";
+	}
+	
+	
+   @PostMapping("/wishlistAdd/{productNo}")
+   public String wishlistAdd(@PathVariable("productNo") int productNo, HttpServletRequest request) {
 	   	  
 	  HttpSession session = request.getSession(true);
 	  MemberDTO member =(MemberDTO) session.getAttribute("member");
@@ -212,7 +219,7 @@ public class MypageController {
 	  mypageService.wishlistInput(wishlistMap);
 	  
 
-      return "mypage/wishlistAddSuccess";
+      return "mypage/wishlistAddRequire";
    }
    
    @GetMapping("/wishlist")
