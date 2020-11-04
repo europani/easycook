@@ -103,7 +103,6 @@ public class OrderController {
 		HttpSession session = request.getSession(true);
 		MemberDTO member = (MemberDTO) session.getAttribute("member");
 		String Id = member.getId();
-		// 1. orders에 insert
 		dto.setId(Id);
 		dto.setOrdersTotal(dto.getOrdersTotal());
 		

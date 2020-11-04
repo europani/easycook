@@ -93,9 +93,6 @@ p{
     text-align: center;
  }
 
-
-
-
 </style>
 	<section class="ftco-section ftco-cart">
 		
@@ -154,11 +151,7 @@ p{
 			<p><a href="/easycook" class="btn btn-primary py-3 px-5" style="text-align: center">홈으로</a></p>
 		</div>
 		</div>
-		
 	</section>
-	
-	
 </body>
-
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

@@ -187,7 +187,6 @@
 					<tr>
 						<th>주문하시는 분</th>
 						<td>${list[0].member.name}</td>
-						
 					</tr>
 					<tr>
 						<th>연락처</th>
@@ -226,9 +225,8 @@
 							<td><c:out value="${fee}" /> 원</td>
 						</c:if>
 
-<!-- 2500추가해야해 -->
 						<c:if test="${total < 50000}">
-							<c:set var="fee" value="98" />
+							<c:set var="fee" value="2500" />
 							<td><c:out value="${fee}" /> 원 (※ 5만원 이상 주문시 무료)</td>
 						</c:if>
 					</tr>
@@ -264,16 +262,10 @@
 														<li><input type="radio" name="coupon"
 															value="${row2.couponDiscount},${row2.couponNo}"> 
 															[ ${row2.couponTitle} ] ${row2.couponDiscount}% 할인 (${row2.couponSdate} ~ ${row2.couponEdate}) 
-															<%--<c:if test="${row2.couponType == 0}">
-													</c:if>
-													<c:if test="${row2.couponType == 1}">
-													${row2.couponDiscount}원 할인 
-													</c:if> --%></li>
+														</li>
 													</c:forEach>
 												</ul>
-												<button type="button" name="button" id="radioButton">쿠폰
-													적용</button>
-												<!-- <button type="button" name="button" id="radioButton2">set radio Value</button> -->
+												<button type="button" name="button" id="radioButton">쿠폰적용</button>
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -281,7 +273,6 @@
 							</div> <!-- End Modal -->
 						</td>
 					</tr>
-					
 					
 					<tr>
 						<th>적립금 사용</th>
@@ -305,14 +296,13 @@
 		<div class="payment-pay">
 		
 		<form action="/easycook/order/payment" method="post" id="paymentForm">
-			<input type="text"  id="checkForm" name="check" value="${check}" />
-			<input type="text"  id="couponNo" name="couponNo" value="${couponNo}" />
-			<input type="text"  id="couponForm" name="discountCoupon" value="${discountCoupon}" />
-			<input type="text"  id="pointForm" name="discountPoint" value="${discountPoint}" />
-			<input type="text" id="ordersTotalForm" name="ordersTotal" value="${ordersTotal}" />	
+			<input type="hidden" id="checkForm" name="check" value="${check}" />
+			<input type="hidden"  id="couponNo" name="couponNo" value="${couponNo}" />
+			<input type="hidden"  id="couponForm" name="discountCoupon" value="${discountCoupon}" />
+			<input type="hidden"  id="pointForm" name="discountPoint" value="${discountPoint}" />
+			<input type="hidden" id="ordersTotalForm" name="ordersTotal" value="${ordersTotal}" />	
 		</form>
 		<button class="btn-payment" type="submit" form="paymentForm">결제하기</button>
-		
 		</div>
 
 	</div>
