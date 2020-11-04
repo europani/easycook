@@ -96,12 +96,12 @@ public class OrderService {
 	
 	
 	
-	   public void checkCancel(int ordersNo) {
+	public void checkCancel(int ordersNo) {
 		int result = orderDao.checkCancel(ordersNo);	
 		if (result == 1) {
 			orderDao.checkRefund(ordersNo);
 		}
-		}
+	}
 
 	
 	public void doCancel(RefundDTO refund) {

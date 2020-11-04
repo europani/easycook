@@ -69,7 +69,7 @@ public class MemberController {
 			session.setAttribute("member", member);
 			return "redirect:/";
 		} else if (passMatch) {
-			return "member/authNotYet"; // 수정예정
+			return "member/authNotYet";
 		} else { // 로그인실패
 			return "redirect:/member/login";
 		}
@@ -83,13 +83,11 @@ public class MemberController {
 
 	@GetMapping("/signuplist")
 	public String signuplist() {
-		System.out.println("회원가입폼 리스트입니다.");
 		return "member/signuplist";
 	}
 
 	@GetMapping("/signup")
 	public String signup() {
-		System.out.println("회원가입을 시작합니다.");
 		return "member/signup";
 	}
 
@@ -272,7 +270,7 @@ public class MemberController {
 		boolean passMatch = passEncoder.matches(pwd, dbPwd);
 		if (passMatch) {
 			memberService.delete(id);
-			return "redirect:/";
+			return "member/deleteOk";
 		} else {
 			return "redirect:/member/delete";
 		}

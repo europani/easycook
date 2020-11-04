@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
         <tbody>
 		<c:forEach var="orders" items="${orderListDate }">  
 	        <tr>
-	          <td>${orders.ordersDate }</td>
+	          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${orders.ordersDate }"/></td>
 	          <td>${orders.ordersNo }</td>
-	          <td>${orders.ordersTotal }원</td>
+	          <td><fmt:formatNumber value="${orders.ordersTotal }" pattern="###,###,###"/>원</td>
 	          <td>
 	          ${orders.ordersStatus }
 	          <button onclick="location.href='ordersProduct/${orders.ordersNo}'">상세보기</button>

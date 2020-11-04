@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
  <div id="couponDateList">
       <div id="사용가능한 쿠폰" class="coupon">
-        <h2>사용가능한 쿠폰</h2>
+         <br/>
          <table id="coupon-table">
          <thead>
        <tr>
@@ -23,8 +23,8 @@
           <td>${coupon.ucouponNo }</td>
           <td>${coupon.coupon.couponTitle }</td>
           <td>${coupon.coupon.couponDiscount }% 할인쿠폰</td>
-          <td>${coupon.coupon.couponEdate }</td>
-          <td>${coupon.coupon.couponSdate }</td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${coupon.coupon.couponEdate }"/></td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${coupon.coupon.couponSdate }"/></td>
         </tr>    
         </c:if> 
         </c:forEach>
@@ -36,7 +36,7 @@
       </div>
 
       <div id="사용불가능한 쿠폰" class="coupon" style="display:none">
-        <h2>사용불가능한 쿠폰</h2>
+         <br/>
         <table id="coupon-table">
          <thead>
        <tr>
@@ -54,8 +54,8 @@
           <td>${coupon.ucouponNo }</td>
           <td>${coupon.coupon.couponTitle }</td>
           <td>${coupon.coupon.couponDiscount }% 할인쿠폰</td>
-          <td>${coupon.coupon.couponEdate }</td>
-          <td>${coupon.coupon.couponSdate }</td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${coupon.coupon.couponEdate }"/></td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${coupon.coupon.couponSdate }"/></td>
         </tr>   
         </c:if>  
         </c:forEach>

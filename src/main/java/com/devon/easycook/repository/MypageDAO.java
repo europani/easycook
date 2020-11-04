@@ -37,22 +37,31 @@ public class MypageDAO extends AbstractMybatisDAO{
    public List<OrdersDTO> ordersDetail(int ordersNo) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
-	         return sqlsession.selectList(namespace + ".ordersDetailList", ordersNo);
+	         return sqlsession.selectList(namespace + ".ordersDetail", ordersNo);
 	      } finally {
 	         sqlsession.close();
 	      }
 	}
    
-   public List<OrdersDTO> ordersSearch(Map<String, Object> map) {
+   public List<OrdersDTO> ordersDaySearch(Map<String, Object> map) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
-	         return sqlsession.selectList(namespace + ".ordersSearch", map);
+	         return sqlsession.selectList(namespace + ".ordersDaySearch", map);
 	      } finally {
 	         sqlsession.close();
 	      }
 	   }
    
 	public int countUserOrder(String id) {
+		sqlsession = getSqlSessionFactory().openSession();
+		try {
+			return sqlsession.selectOne(namespace + ".countUserOrder", id);
+		} finally {
+			sqlsession.close();
+		}
+	}
+	
+	public int countUserCancel(String id) {
 		sqlsession = getSqlSessionFactory().openSession();
 		try {
 			return sqlsession.selectOne(namespace + ".countUserOrder", id);
@@ -69,7 +78,8 @@ public class MypageDAO extends AbstractMybatisDAO{
 			sqlsession.close();
 		}
 	}
-   
+   	
+	
    public List<UcouponDTO> coupon(String id) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
@@ -79,10 +89,10 @@ public class MypageDAO extends AbstractMybatisDAO{
       }
    }
    
-   public List<UcouponDTO> couponSearch(Map<String, Object> map) {
+   public List<UcouponDTO> couponDaySearch(Map<String, Object> map) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
-	         return sqlsession.selectList(namespace + ".couponSearch", map);
+	         return sqlsession.selectList(namespace + ".couponDaySearch", map);
 	      } finally {
 	         sqlsession.close();
 	      }
@@ -130,6 +140,21 @@ public class MypageDAO extends AbstractMybatisDAO{
 	  
    }
    
+   public void wishlistDelete(int productNo) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	   int result = 0;
+	   try {
+		   result = sqlsession.insert(namespace + ".wishlistDelete", productNo);
+		   if (result != 0) {
+				sqlsession.commit();
+			}
+		} finally {
+			sqlsession.close();
+		}
+	   
+   }
+   
+   
    public OrdersDTO cancelRequire(Map<String, Object> refundCheckMap) {
       SqlSession sqlsession = getSqlSessionFactory().openSession();
       try {
@@ -138,6 +163,16 @@ public class MypageDAO extends AbstractMybatisDAO{
          sqlsession.close();
       }
    }
+   
+   public int orderPerProduct(int ordersNo) {
+	   SqlSession sqlsession = getSqlSessionFactory().openSession();
+	   try {
+		   return sqlsession.selectOne(namespace + ".orderPerProduct", ordersNo);
+		} finally {
+			sqlsession.close();
+		}
+	}
+   
    
    public List<RefundDTO> refund(String id) {
 	   SqlSession sqlsession = getSqlSessionFactory().openSession();
@@ -149,10 +184,19 @@ public class MypageDAO extends AbstractMybatisDAO{
 	  
    }
    
-   public List<RefundDTO> refundSearch(Map<String, Object> dateMap) {
+   public RefundDTO checkRefund(Map<String, Object> map) {
+	    SqlSession sqlsession = getSqlSessionFactory().openSession();
+	    try {
+	       return sqlsession.selectOne(namespace + ".checkRefund", map);
+	    } finally {
+	       sqlsession.close();
+	    }
+   }
+   
+   public List<RefundDTO> refundDaySearch(Map<String, Object> dateMap) {
 	      SqlSession sqlsession = getSqlSessionFactory().openSession();
 	      try {
-	         return sqlsession.selectList(namespace + ".refundSearch", dateMap);
+	         return sqlsession.selectList(namespace + ".refundDaySearch", dateMap);
 	      } finally {
 	         sqlsession.close();
 	      }

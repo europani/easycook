@@ -9,11 +9,11 @@
 <body>
 <h2 align="center">정말로 주문을 취소하시겠습니까? (주문번호 : ${ordersNo })</h2>
 <h4 align="center">주문 취소 후에는 변경할 수 없습니다!</h4>
-<form method="post" name="returnForm" >
+<form method="post" name="returnForm" style="text-align: center">
 <input type="button" value="확인" onclick="returnOrder()">
 <input type="hidden" name="no" value="${ordersNo }">
 </form>
-
+<script src="/easycook/resources/js/ajax.js"></script>
 <script>
 	function returnOrder() {	
 		const returnForm = document.returnForm;
@@ -25,7 +25,7 @@
 				opener.parent.location.reload();
 				window.close();
 			}
-		};
+		}
 	}
 
 </script>

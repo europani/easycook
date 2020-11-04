@@ -263,7 +263,7 @@
 
 	<select id="getFullInfo" resultType="Orders">
 		SELECT orders_no AS
-		ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo,
+		ordersNo, id, orders_date AS ordersDate,
 		orders_status AS ordersStatus, orders_total AS ordersTotal
 		FROM (
 		SELECT ROWNUM RN, A.*
@@ -294,7 +294,7 @@
 
 	<select id="getCancelInfo" resultType="Orders">
 		SELECT orders_no AS
-		ordersNo, id, orders_date AS ordersDate, cart_no AS cartNo,
+		ordersNo, id, orders_date AS ordersDate,
 		orders_status AS ordersStatus, orders_total AS ordersTotal
 		FROM (
 		SELECT ROWNUM RN, A.*

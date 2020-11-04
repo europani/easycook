@@ -130,7 +130,7 @@
                <img src="/easycook/resources/mart/images/logo.png" width="200" height="100"></a>
                <ul class="nav navbar-nav" style="margin-top: 27px;">
                   <li class="dropdown"><a
-                     href="/easycook/product">이지쿡</a>
+                     href="/easycook/product">이지쿡박스</a>
                      <div class="dropdown-content">
                         <a href="/easycook/product">전체상품</a>
                         <a href="/easycook/product?sort=10">한식</a>
@@ -141,7 +141,7 @@
                      </div>
                   </li>
                   <li>
-                     <a href="/easycook/today">핫딜</a>
+                     <a href="/easycook/today">핫딜!</a>
                   </li>
                   <li>
                      <a href="/easycook/weatherCheck">오늘 뭐 먹지?</a>
@@ -156,7 +156,7 @@
                   </li>
                   <li><a href="#" class="search-btn"><i
                         class="fa fa-search" aria-hidden="true"></i></a></li>
-                  <li><a href="/easycook/order/cart"><span> Cart -&nbsp;</span> <span
+                  <li><a href="/easycook/order/cart"><span> Cart &nbsp;</span> <span
                         class="shoping-cart">${count}</span></a></li>
                </ul>
                <ul class="nav navbar-nav navbar-right cart-menu"

@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,11 +30,12 @@
         clear: both;
         padding: 20px;
       }
-      #content-detail {
-         width: 700px;
+      .search-date {
+         width: 70%;
          padding: 30px 20px 30px;
-        float: left;
-        background-color: #F8F8F8;
+         margin : auto;
+         float: center;
+         background-color: #F8F8F8;
       }
       #content-detail2 {
          text-align: left;
@@ -99,19 +101,16 @@
    <h3>반품내역</h3>
         <hr>
         <br>
-        <div id="content-detail">
-        
+      <div class="search-date">  
       <form id="refundSearch" name="refundSearch">
       <label for="UserCheckIN">조회기간 </label>&nbsp;&nbsp;&nbsp;
       <input type="date" name="fromDate" id="fromDate">&nbsp;&nbsp;~&nbsp;&nbsp;
       <label for="UserCheckOut"></label> 
       <input type="date" name="toDate" id="toDate">&nbsp;&nbsp;
       <input type="button"  id="SearchButton" class="btn-search" value="조회하기"></button>
-      </form>
-        
+      </form>        
       </div>         
-      <br><br><br><br>
-         <br><hr><br>
+      <br><br><hr><br>
         <div id="content-detail2">
          <h5>${id }님의 반품 내역입니다.</h5>
         <br><br>
@@ -129,7 +128,7 @@
         <c:forEach var="refund" items="${refund }">
         <c:if test="${refund.ordersNo != null }">        
         <tr>
-          <td>${refund.refundDate }</td>
+          <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${refund.refundDate }"/></td>
           <td>${refund.productNo }</td>
           <td>${refund.product.productName }</td>
           <td>${refund.refundQty }</td>

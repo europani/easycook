@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -150,12 +151,12 @@
 	      </thead>
 	      <tbody>	   		
 	         <tr>
-	         <td>${cancelRequire.product.productImage } 이경로로 사진불러올것</td>
+	         <td><img src="${cancelRequire.product.productImage }"></td>
 	         <td>상품명-${cancelRequire.product.productName }</td>
-	         <td id="product">${productPrice }  </td>
+	         <td id="product"><fmt:formatNumber value="${productPrice }" pattern="###,###,###"/>원</td>
 	         <td>
 	            <select name="refundQty" id="productSelectCount" onchange="paychangeTest(this)">
-	            <c:forEach var="refundQty" begin="1" step="1" end="${cancelRequire.ordersDetail.detailQty - refundQty }">
+	            <c:forEach var="refundQty" begin="1" step="1" end="${cancelRequire.ordersDetail.detailQty - checkRefund.refundQty }">
 	             <option value="${refundQty }">${refundQty }</option>
 	            </c:forEach>
 	            </select>
@@ -182,9 +183,12 @@
 	      	<col style="width:80%">
 	      </colgroup>
 	      	 <tbody>
-		      	<tr>
-		      		<th>총 환불예정금액</th>
+	      	 	<tr>
+		      		<th>환불예정금액</th>
 		      		<td id="totalCancel">0</td>
+		      	</tr>
+		      	<tr>
+		      		<td colspan="2" align="center"><strong> 반품 신청 후에는 취소할 수 없으니 신중히 결정해주세요!</strong></td>
 		      	</tr>
 	      	</tbody>   
       	 </table>
@@ -202,11 +206,11 @@
 
 <script type="text/javascript">
 
-function paychangeTest(count) {
+function paychangeTest(Qty) {
 	
 	var test = document.getElementById('product').innerHTML;	
 	var test2 = document.getElementById('totalCancel').innerHTML;
-	var result = count.value * test;
+	var result = Qty.value * test;
 	
 	document.getElementById('totalpay').innerHTML = result;
 	document.getElementById('totalCancel').innerHTML = result;
