@@ -39,9 +39,7 @@
 													<td class="product-remove">
 														
 														
-														<button
-															onclick="document.getElementById('id01').style.display='block'"
-															class="ion-ios-close"></button> 
+														<button onclick="document.getElementById('id01').style.display='block'" class="ion-ios-close"></button> 
 													
 														<div id="id01" class="w3-modal w3-animate-opacity">
 															<div class="w3-modal-content w3-card-4">
@@ -53,8 +51,8 @@
 																</header>
 																<div class="w3-container">
 																	
-																	<p><h3><a href="/easycook/order/cart/delete?cartNo=${row.cartNo}">
-																	<span>Yes</span></a></h3></p>
+																	<h3><a href="/easycook/order/cart/delete?cartNo=${row.cartNo}">
+																	<span>Yes</span></a></h3>
 																</div>
 															</div>
 														</div>

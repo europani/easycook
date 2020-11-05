@@ -4,7 +4,7 @@
 <!-- 회원가입style시작 -->
 <style>
 .sign{
-    width:34%;
+    width:50%;
     height:700px;
   	margin:0 auto;
   	margin-top:100px;
@@ -23,6 +23,7 @@
    margin:2px;
 }
 </style>
+<link href="../resources/css/seekId.css" rel="stylesheet" type="text/css">
 <body width="100%" height="100%">
 	<form method="post" class="sign" name="signUpForm" action="signup">
 		<table width="720">
@@ -107,7 +108,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="button"  class="btn_member_white_signup"
-					value="회원가입" onclick="button()"> <input type="reset" class="btn_member_white_signup" value="취소"></td>
+					value="회원가입" onclick="button()"> <input type="reset" class="btn_member_white_signup" value="취소" onclick="javscript:window.history.back()"></td>
 			</tr>
 		</table>
 	</form>

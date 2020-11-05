@@ -31,7 +31,7 @@
          font-size : 20px;   
          float: left;
          list-style: none;
-         margin: 0px 40px 0px 50px;
+         margin-left:40px;
          text-align: center;
          width:260px; height:199px;
          background:#f6f6f6;   color:black; 

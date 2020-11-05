@@ -23,11 +23,11 @@
                   <table class="table">
                      <thead class="thead-primary">
                         <tr class="text-center">
-                           <th>&nbsp;</th>
-                           <th>상품목록</th>
-                           <th>&nbsp;</th>
-                           <th>중량</th>
-                           <th>가격</th>
+                           <th></th>
+                           <th></th>
+                           <th>상품</th>
+                           <th style="text-align: center;">중량</th>
+                           <th style="text-align: center;">가격</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -55,9 +55,7 @@
                                  
                            </td>
 
-                           <td class="image-prod"><div class="img"
-                                 style="background-image: url(../resources/images/${list.product.productImage});"></div></td>
-
+                           <td><img src="<%=request.getContextPath() %>/resources/product/${list.product.productImage }"></td>
                            <td class="product-name">
                               <h3>${list.product.productName }</h3>
                               <p>${list.product.productDetail }</p>

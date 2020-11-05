@@ -130,6 +130,10 @@
        margin-top : 15px;
        text-align: center;
       } 
+      
+      td, th {
+      	text-align: center;
+      }
     </style>
 <body>
    <div id="jb-container">
@@ -143,7 +147,7 @@
 	    <table id="order-table">
 	      <thead>
 	         <tr> 
-	         <th colspan="2" style="text-align: center">상품명</th> 
+	         <th colspan="2">상품명</th> 
 	         <th>상품금액</th>
 	         <th>수량</th>  
 	         <th>환불예정금액</th>
@@ -151,9 +155,8 @@
 	      </thead>
 	      <tbody>	   		
 	         <tr>
-	         <td><img src="${cancelRequire.product.productImage }"></td>
-	         <td>상품명-${cancelRequire.product.productName }</td>
-	         <td id="product"><fmt:formatNumber value="${productPrice }" pattern="###,###,###"/>원</td>
+	         <td colspan="2">${cancelRequire.product.productName }</td>
+	         <td id="product">${productPrice }</td>
 	         <td>
 	            <select name="refundQty" id="productSelectCount" onchange="paychangeTest(this)">
 	            <c:forEach var="refundQty" begin="1" step="1" end="${cancelRequire.ordersDetail.detailQty - checkRefund.refundQty }">

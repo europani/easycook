@@ -349,7 +349,7 @@ public class MemberController {
 		MemberDTO member = memberService.login(map);
 		session.setAttribute("member", member);
 
-		return "redirect:/member/login";
+		return "redirect:/";
 	}
 
 	@GetMapping(value = "/kakaosignup", produces = "application/json;charset=UTF-8")
@@ -481,7 +481,7 @@ public class MemberController {
 		MemberDTO member = memberService.login(map);
 		session.setAttribute("member", member);
 
-		return "redirect:/member/login";
+		return "redirect:/";
 	}
 
 	@ModelAttribute
