@@ -159,9 +159,10 @@
 	         <td id="product">${productPrice }</td>
 	         <td>
 	            <select name="refundQty" id="productSelectCount" onchange="paychangeTest(this)">
-	            <c:forEach var="refundQty" begin="1" step="1" end="${cancelRequire.ordersDetail.detailQty - checkRefund.refundQty }">
-	             <option value="${refundQty }">${refundQty }</option>
-	            </c:forEach>
+		            <option value="" disabled selected>---</option>
+		            <c:forEach var="refundQty" begin="1" step="1" end="${cancelRequire.ordersDetail.detailQty - checkRefund.refundQty }">
+		            <option value="${refundQty }">${refundQty }</option>
+		            </c:forEach>
 	            </select>
 	         </td>
 	         <td id="totalpay">0</td>

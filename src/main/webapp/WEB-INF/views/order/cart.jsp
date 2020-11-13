@@ -39,13 +39,13 @@
 													<td class="product-remove">
 														
 														
-														<button onclick="document.getElementById('id01').style.display='block'" class="ion-ios-close"></button> 
+														<button onclick="document.querySelector('.id01').style.display='block'" class="ion-ios-close"></button> 
 													
 														<div id="id01" class="w3-modal w3-animate-opacity">
 															<div class="w3-modal-content w3-card-4">
 																<header class="w3-container w3-teal">
 																	<span
-																		onclick="document.getElementById('id01').style.display='none'"
+																		onclick="document.querySelector('.id01').style.display='none'"
 																		class="w3-button w3-large w3-display-topright">&times;</span>
 																	<h3>${row.product.productName}를 장바구니에서 삭제하시겠습니까?</h3>
 																</header>
