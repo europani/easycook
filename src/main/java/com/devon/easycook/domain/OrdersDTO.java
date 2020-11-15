@@ -3,8 +3,6 @@ package com.devon.easycook.domain;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import org.apache.ibatis.type.Alias;
-
 import lombok.Data;
 
 @Data

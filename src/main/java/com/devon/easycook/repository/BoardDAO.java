@@ -93,13 +93,6 @@ public class BoardDAO extends AbstractMybatisDAO {
 	      }
 	   }
 	
-	
-	
-	
-	
-	
-	
-	
 	// ADMIN
 	public List<NoticeDTO> getNoticeInfo(PagingVO vo) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

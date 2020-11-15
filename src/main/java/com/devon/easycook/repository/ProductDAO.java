@@ -15,13 +15,12 @@ import com.devon.easycook.util.PagingVO;
 
 @Repository
 public class ProductDAO extends AbstractMybatisDAO {
+	private String namespace = "productMapper";
 	
 	HashMap<String, Object> map = new HashMap<String, Object>();
 	
-	
 	@Autowired
 	SqlSession sqlsession;
-	private String namespace = "productMapper";
 	
 	//상품 검색
 	public int getProductSearch(String sentence) throws Exception {
@@ -65,17 +64,6 @@ public class ProductDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
-	
-	/*
-	 * public void productUpdate(ProductDTO dto) { return }
-	 * 
-	 * public ProductDTO productDelete(int product_no) { return }
-	 */
-
-
-
-
-
 
 	public ReviewDTO reviewCal(int productNo) {
 		sqlsession = getSqlSessionFactory().openSession();

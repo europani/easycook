@@ -36,16 +36,6 @@ public class ProductService {
 	public ProductDTO productDetail(int productNo) {
 		return productDao.productDetail(productNo);
 	}
-	
-	/*상품 수정 및 삭제
-	 * public void productUpdate(ProductDTO dto) { return }
-	 * 
-	 * public ProductDTO productDelete(int product_no) { return }
-	 */
-	
-
-
-
 
 	public ReviewDTO reviewCal(int productNo) {
 		return productDao.reviewCal(productNo);

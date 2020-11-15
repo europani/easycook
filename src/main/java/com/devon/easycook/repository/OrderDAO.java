@@ -1,10 +1,8 @@
 package com.devon.easycook.repository;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +11,18 @@ import org.springframework.stereotype.Repository;
 import com.devon.easycook.domain.CartDTO;
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
-import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.RefundDTO;
 import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.util.PagingVO;
 
 @Repository
 public class OrderDAO extends AbstractMybatisDAO {
+	private String namespace = "orderMapper";
 
 	@Autowired
 	SqlSession sqlsession;
 
-	private String namespace = "orderMapper";
-
 	// 장바구니에 추가하기
-	// dto에 저장된 값을 받아서 sql 세션에 저장하고 cart/cartInsert로 감 mapper로
 	public void cartInsert(CartDTO dto) {
 		sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
@@ -64,7 +59,6 @@ public class OrderDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
-
 	
 
 	// 쿠폰 목록 보기
@@ -111,7 +105,6 @@ public class OrderDAO extends AbstractMybatisDAO {
 	}
 
 	// 주문 완료 후 주문상세내역에 추가
-
 	public void ordersDetailInsert(HashMap<String, Object> map) {
 		sqlsession = getSqlSessionFactory().openSession();
 		int result = 0;
@@ -138,7 +131,6 @@ public class OrderDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
-	
 	
 	public void pointUse(OrdersDTO orders) {
 		sqlsession = getSqlSessionFactory().openSession();
@@ -192,16 +184,6 @@ public class OrderDAO extends AbstractMybatisDAO {
 			sqlsession.close();
 		}
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public void updateReviewCheck(ReviewDTO review) {
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
@@ -262,8 +244,8 @@ public class OrderDAO extends AbstractMybatisDAO {
 		}
 	}
 
+	
 	// ADMIN
-
 	public int countOrder() {
 		sqlsession = getSqlSessionFactory().openSession();
 		try {

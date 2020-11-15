@@ -42,12 +42,6 @@ public class BoardService {
 	    return boardDao.eventDetail(eventNo);
 	 }
 	
-	
-	
-	
-	
-	
-	
 	// ADMIN
 	public List<NoticeDTO> getNoticeInfo(PagingVO vo) {
 		return boardDao.getNoticeInfo(vo);

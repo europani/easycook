@@ -4,13 +4,14 @@
 <mapper namespace="boardMapper">
 
 	<!-- 검색 -->
-   <select id="getArticleCount" parameterType="hashmap" resultType="int">
-	   	select nvl(count(*),0)  from notice 
-	    <if test="category!=null and category !='' ">
-	    where ${category}  like '%${sentence}%'
-   		</if>
-   </select>
-   <!-- 검색한거 보여주기 -->
+	<select id="getArticleCount" parameterType="hashmap" resultType="int">
+	 	select nvl(count(*),0)  from notice 
+	  <if test="category!=null and category !='' ">
+	  where ${category}  like '%${sentence}%'
+			</if>
+	</select>
+   
+    <!-- 검색한거 보여주기 -->
     <select id="getArticles" parameterType="hashmap" resultType="Notice">
       <if test="category==null or category == ''">   
 		   SELECT notice_no AS noticeNo, notice_title AS noticeTitle, notice_content AS noticeContent, notice_image AS noticeFilename, notice_count AS noticeCount, notice_date AS noticeDate 

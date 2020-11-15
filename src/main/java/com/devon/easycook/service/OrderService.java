@@ -1,6 +1,5 @@
 package com.devon.easycook.service;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -11,9 +10,7 @@ import org.springframework.stereotype.Service;
 import com.devon.easycook.domain.CartDTO;
 import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
-import com.devon.easycook.domain.OrdersDetailDTO;
 import com.devon.easycook.domain.RefundDTO;
-import com.devon.easycook.repository.MypageDAO;
 import com.devon.easycook.repository.OrderDAO;
 import com.devon.easycook.util.PagingVO;
 
@@ -74,7 +71,6 @@ public class OrderService {
 			orderDao.reduceStock(map);
 		}
 		
-		
 		// 3. 적립금 1% 추가 (member)
 		orderDao.pointUpdate(dto);
 		
@@ -90,34 +86,12 @@ public class OrderService {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 
-
-
-	
-	
-	
-	
-	
 	public void checkCancel(int ordersNo) {
 		int result = orderDao.checkCancel(ordersNo);	
 		if (result == 1) {
 			orderDao.checkRefund(ordersNo);
 		}
 	}
-
 	
 	public void doCancel(RefundDTO refund) {
 		int result = orderDao.makeRefundTable(refund);
@@ -125,10 +99,8 @@ public class OrderService {
 			orderDao.checkRefund(refund.getOrdersNo());
 		}
 	}
-	
 
 	// ADMIN
-	
 	public int countOrder() {
 		return orderDao.countOrder();
 	}
@@ -176,7 +148,4 @@ public class OrderService {
 	public void refundStatus(HashMap<String, Object> map) {
 		orderDao.refundStatus(map);
 	}
-	
-	
-	
 }

@@ -111,14 +111,12 @@ public class BoardController {
 		mv.addObject("endPage", endPage);
 		mv.setViewName("board/notice");
 		
-
 		return mv;
 	}
+	
 	@RequestMapping("/notice/{noticeNo}")
 	public String content(@PathVariable("noticeNo") int noticeNo, Model m) throws Exception {
-
 		NoticeDTO article = boardService.getArticle(noticeNo, true);
-
 		m.addAttribute("article", article);
 		return "board/noticeDetail";
 	}
@@ -151,11 +149,9 @@ public class BoardController {
 		return boardService.giveCoupon(map);
 	}
 	
-	
 	@GetMapping("/faq")
 	public String faq() {
 		return "board/faq";
 	}
-	
 	
 }

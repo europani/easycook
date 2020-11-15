@@ -7,7 +7,7 @@
 	 
 	function geo_options() {
 		enableHighAccuracy: true
-	  };
+	};
 	 
 	function showPosition(position) {
 	 	var lat = position.coords.latitude; 

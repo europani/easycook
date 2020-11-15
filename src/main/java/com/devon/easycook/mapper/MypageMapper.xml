@@ -120,11 +120,6 @@
 	</association>
 </resultMap>
 
-
-
-
-
-	<!--   -->
    <select id="OrderList" parameterType="String" resultMap="OrderList">
    select 
    	o.orders_date,
@@ -200,8 +195,6 @@
    where
     p.product_no = od.product_no and o.orders_no = #{ordersNo} and o.orders_no = od.orders_no 
    </select>
-   
-   
    
    <!-- 날짜따른 주문목록 확인하기 -->
    <select id="ordersDaySearch" parameterType="HashMap" resultType="Orders">
@@ -328,15 +321,6 @@
    	od.product_no = p.product_no
    </select>
    
-   <!-- 2) 반품신청 제한걸기위한, 환불신청시 기존 반품내역 확인 -->
-<!--    <select id="checkRefund" parameterType="HashMap" resultType="Refund">
-   SELECT
-    product_no as productNo, refund_qty as refundQty 
-   FROM refund
-   WHERE orders_no = #{ordersNo} and product_no = #{productNo}
-   </select> -->
-   
-   
    <!-- 반품내역 확인하기 -->
    <select id="refund" parameterType="String" resultMap="refundList">
    SELECT
@@ -362,18 +346,6 @@
     r.product_no = p.product_no and
     to_char(r.refund_date, 'yyyy-mm-dd') between #{fromDate} and #{toDate} 
    </select>
-   
-
-
-
-
-
-
-   	
-   
-   
-
-
 
 	<insert id="writeReview" parameterType="Review">
 		<if test="reviewImage != null">

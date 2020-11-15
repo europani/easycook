@@ -189,36 +189,11 @@
 		WHERE id = #{id}
 	</delete>
 
-
-	
-
-
-
-
-
-
-
-
 	<update id="updateReviewCheck" parameterType="Review">
 		update
 		orders_detail set REVIEW_CHECK = 1 WHERE orders_no = #{ordersNo} AND
 		product_no = #{productNo}
 	</update>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<!-- 주문취소 check -->
 	<select id="checkCancel" parameterType="int">
@@ -228,11 +203,13 @@
     	WHERE
     orders_no = #{ordersNo}
 	</select>
+	
    <!-- refund테이블에 데이터 추가(반품) -->
    <select id="makeRefundTable" parameterType="Refund">
    INSERT INTO REFUND(orders_no,product_no,id,refund_qty,refund_date,refund_status,refund_reason)
 	VALUES(#{ordersNo},#{productNo},#{id},#{refundQty},sysdate,#{refundStatus},#{refundReason})
    </select>	
+   
 	<!-- 반품 check -->
 	<select id="checkRefund" parameterType="int">
 	UPDATE orders_detail	
@@ -241,11 +218,6 @@
     	WHERE
     orders_no = #{ordersNo}
 	</select>
-	
-	
-
-
-
 
 	<!-- ADMIN -->
 	<select id="countOrder" resultType="int">

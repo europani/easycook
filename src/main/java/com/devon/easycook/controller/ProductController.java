@@ -28,7 +28,6 @@ public class ProductController {
 	public String sentence = "";
 	public String remoteId = "";
 	
-	
 	public ModelAndView mv = new ModelAndView();
 
 	@Autowired
@@ -47,6 +46,16 @@ public class ProductController {
 			session.setAttribute("sentence", request.getParameter("sentence"));
 		}
 		sentence = (String) session.getAttribute("sentence");
+	}
+	
+	@GetMapping("")
+	public String showAllProduct(Model model, @RequestParam(value = "sort", required = false) String sort) {
+		List<ProductDTO> list = productService.productList(sort);
+		int todayProNo = productService.todayProNo();
+		model.addAttribute("list", list);
+		model.addAttribute("sort", sort);
+		model.addAttribute("todayProNo", todayProNo);
+		return "product/product";
 	}
 	
 	@PostMapping("")
@@ -70,16 +79,6 @@ public class ProductController {
 		return mv;
 	}
 
-	@GetMapping("")
-	public String showAllProduct(Model model, @RequestParam(value = "sort", required = false) String sort) {
-		List<ProductDTO> list = productService.productList(sort);
-		int todayProNo = productService.todayProNo();
-		model.addAttribute("list", list);
-		model.addAttribute("sort", sort);
-		model.addAttribute("todayProNo", todayProNo);
-		return "product/product";
-	}
-
 	@GetMapping("/{productNo}")
 	public String showDetailProduct(@PathVariable("productNo") int productNo, Model model) {
 		ProductDTO detail = productService.productDetail(productNo);
@@ -93,12 +92,5 @@ public class ProductController {
 		model.addAttribute("todayProNo", todayProNo);
 		return "product/productDetail";
 	}
-
-	/*
-	 * @GetMapping("/{category}") public String product(@PathVariable("categoty")
-	 * String category, Model model) { ProductDTO cate =
-	 * productService.productCategory(category); model.addAttribute("list", list);
-	 * return "product"; }
-	 */
 
 }

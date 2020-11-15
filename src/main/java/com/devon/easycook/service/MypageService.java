@@ -6,9 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.devon.easycook.domain.CouponDTO;
 import com.devon.easycook.domain.OrdersDTO;
-import com.devon.easycook.domain.ProductDTO;
 import com.devon.easycook.domain.RefundDTO;
 import com.devon.easycook.domain.ReviewDTO;
 import com.devon.easycook.domain.UcouponDTO;
@@ -24,7 +22,6 @@ public class MypageService {
    
    public List<OrdersDTO> orders(Map<String, Object> map) {
       return mypageDAO.orders(map);
-      
    }
    
    public List<OrdersDTO> ordersDetail(int ordersNo) {
@@ -34,7 +31,6 @@ public class MypageService {
    
    public List<OrdersDTO> ordersDaySearch(Map<String, Object> dateMap) {
 	  return mypageDAO.ordersDaySearch(dateMap);
-	      
    }
   
    // 주문내역 페이징용
@@ -49,7 +45,7 @@ public class MypageService {
    
    public List<UcouponDTO> couponDaySearch(Map<String, Object> dateMap) {
 		return mypageDAO.couponDaySearch(dateMap);
-	}
+   }
    
    public int couponCount(String id) {
 	   return mypageDAO.couponCount(id); 
@@ -57,7 +53,7 @@ public class MypageService {
    
    public int myPoint(String id) {
 		return mypageDAO.myPoint(id);
-	} 
+   } 
    
    public WishlistDTO wishlistCheck(Map<String, Object> map) {
 	   return mypageDAO.wishlistCheck(map);
@@ -82,14 +78,11 @@ public class MypageService {
    
    public RefundDTO checkRefund(Map<String, Object> refundCheckMap) {
 	      return mypageDAO.checkRefund(refundCheckMap);
-	      
    }
    
    public int orderPerProduct(int ordersNo) {
 	   return mypageDAO.orderPerProduct(ordersNo);
    }
-   
-   
    
    public List<RefundDTO> refund(String id){
 	   return mypageDAO.refund(id);
@@ -99,31 +92,16 @@ public class MypageService {
 	   return mypageDAO.refundDaySearch(dateMap);
    }
    
-
-   
-
-   
-   
-   
-   
-   
-   
-   
    public void writeReview(ReviewDTO review) {
 		int result = mypageDAO.writeReview(review);
 		if (result != 0) {
 			new OrderDAO().updateReviewCheck(review);
 		}
-	}
+   }
    
    
    // ADMIN
    public List<OrdersDTO> getOrder(int orderNo) {
 		return mypageDAO.getOrder(orderNo);
 	}
-
-
-
-
-   
 }
