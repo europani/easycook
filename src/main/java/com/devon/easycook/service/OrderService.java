@@ -61,8 +61,6 @@ public class OrderService {
 		map.put("ordersNo", ordersNo);
 		for (int i = 0; i < cartList.size(); i++) { 
 			CartDTO cart = cartList.get(i);
-			System.out.println("productNo : " + cart.getProductNo());
-			System.out.println("cartQty : " + cart.getCartQty());
 			map.put("productNo", cart.getProductNo());
 			map.put("detailQty", cart.getCartQty()); 
 			orderDao.ordersDetailInsert(map);

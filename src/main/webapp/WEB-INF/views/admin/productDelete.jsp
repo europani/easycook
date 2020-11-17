@@ -41,9 +41,8 @@
 
 	<div class="w3-container w3-center">
 		<h2>상품 삭제</h2>
-		<div class="w3-padding w3-display-topmiddle">
-		<form method="post" action="" name="deleteForm"
-			enctype="multipart/form-data">
+		<div >
+		<form method="post" action="" name="deleteForm">
 			<table>
 				<tr>
 					<td><font color="red">삭제를 위해 선택한 상품번호를 입력해주세요.</font></td>

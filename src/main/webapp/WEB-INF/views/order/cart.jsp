@@ -5,6 +5,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <body class="goto-here">
 
 	<section class="ftco-section ftco-cart">
@@ -38,14 +39,13 @@
 												<tr class="text-center">
 													<td class="product-remove">
 														
+														<button onclick="document.getElementById(${i.index }).style.display='block'" class="ion-ios-close"></button> 
 														
-														<button onclick="document.querySelector('.id01').style.display='block'" class="ion-ios-close"></button> 
-													
-														<div id="id01" class="w3-modal w3-animate-opacity">
+														<div class="w3-modal w3-animate-opacity" id="${i.index }">
 															<div class="w3-modal-content w3-card-4">
 																<header class="w3-container w3-teal">
 																	<span
-																		onclick="document.querySelector('.id01').style.display='none'"
+																		onclick="document.getElementById(${i.index }).style.display='none'"
 																		class="w3-button w3-large w3-display-topright">&times;</span>
 																	<h3>${row.product.productName}를 장바구니에서 삭제하시겠습니까?</h3>
 																</header>
@@ -112,42 +112,5 @@
 			</div>
 		</div>
 	</section>
-	<!--   <script>
-      $(document).ready(function(){
-
-      var quantitiy=0;
-         $('.quantity-right-plus').click(function(e){
-              
-              // Stop acting like a button
-              e.preventDefault();
-              // Get the field name
-              var quantity = parseInt($('#quantity').val());
-              
-              // If is not undefined
-                  
-                  $('#quantity').val(quantity + 1);
-
-                
-                  // Increment
-              
-          });
-
-           $('.quantity-left-minus').click(function(e){
-              // Stop acting like a button
-              e.preventDefault();
-              // Get the field name
-              var quantity = parseInt($('#quantity').val());
-              
-              // If is not undefined
-            
-                  // Increment
-                  if(quantity>0){
-                  $('#quantity').val(quantity - 1);
-                  }
-          });
-          
-      });
-      
-   </script> -->
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

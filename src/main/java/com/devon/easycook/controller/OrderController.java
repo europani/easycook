@@ -77,7 +77,6 @@ public class OrderController {
 	// 결제 후 
 	@GetMapping("/paymentComplete") 
 	public String insertOrders(@ModelAttribute OrdersDTO dto, HttpServletRequest request, Model model) {
-		System.out.println("total : " + dto.getOrdersTotal());
 		HttpSession session = request.getSession(true);
 		MemberDTO member = (MemberDTO) session.getAttribute("member");
 		String Id = member.getId();

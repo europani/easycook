@@ -31,17 +31,17 @@
                         </tr>
                      </thead>
                      <tbody>
-                     <c:forEach var="list" items="${myWishlist }">
+                     <c:forEach var="list" items="${myWishlist }" varStatus="i">
                         <tr class="text-center">                     
                            <td class="product-remove">
- 								<button onclick="document.getElementById('id01').style.display='block'"
+ 								<button onclick="document.getElementById(${i.index }).style.display='block'"
 									class="ion-ios-close"></button> 
 													
-									<div id="id01" class="w3-modal w3-animate-opacity">
+									<div id="${i.index }" class="w3-modal w3-animate-opacity">
 										<div class="w3-modal-content w3-card-4">
 											<header class="w3-container w3-teal">
 												<span
-													onclick="document.getElementById('id01').style.display='none'"
+													onclick="document.getElementById(${i.index }).style.display='none'"
 													class="w3-button w3-large w3-display-topright">&times;</span>
 													<h3>${list.product.productName}를 위시리스트에서 삭제하시겠습니까?</h3>
 											</header>
