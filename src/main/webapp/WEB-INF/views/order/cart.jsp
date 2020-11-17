@@ -38,9 +38,7 @@
 											<c:forEach var="row" items="${list}" varStatus="i">
 												<tr class="text-center">
 													<td class="product-remove">
-														
 														<button onclick="document.getElementById(${i.index }).style.display='block'" class="ion-ios-close"></button> 
-														
 														<div class="w3-modal w3-animate-opacity" id="${i.index }">
 															<div class="w3-modal-content w3-card-4">
 																<header class="w3-container w3-teal">
