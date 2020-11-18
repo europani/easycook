@@ -61,5 +61,5 @@
 <br>
 
 #### 날씨메뉴추천
-![weather](https://user-images.githubusercontent.com/48157259/99496661-17814080-29b8-11eb-9a6b-253851ef7d38.png)
+![weather](https://user-images.githubusercontent.com/48157259/99497411-3e8c4200-29b9-11eb-8d75-412b27dda638.png)
 > OpenWeatherMap API를 사용하여 접속지역의 실시간 날씨정보를 받아오면 DB에 등록해놓은 날씨정보에 맵핑된 상품번호를 불러 오게 하였습니다. 이를 통해 현재날씨에 어울리는 메뉴를 추천하는 기능을 구현하였습니다.
