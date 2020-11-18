@@ -103,30 +103,9 @@
 			let $temp = data.main.temp;
 			let $location = data.name;
 			let $weather = data.weather[0].main;
-			
-			/* if($weather == "Clouds") {
-				$weather = "구름";
-			} else if($weather == "Rain") {
-				$weather = "비";
-			} else if ($weather == "Snow") {
-				$weather = "눈";
-			} else if ($weather == "Mist") {
-				$weather = "안개";
-			} else
-				$weather = "맑음"; */
 			$('.temp').append($temp + "°C");
 			$('.weather').append('<img src="<%=request.getContextPath() %>/resources/weather/' + $weather + '.png">');
 			
-			/* $.ajax({
-				url : '${pageContext.request.contextPath}/weatherCheck?weather='+ $weather,
-				type : 'get',
-				success : function(data) {
-					console.log(data);
-						/* ${list} = data;	 				
-					}, error : function() {
-							console.log("실패");
-					}
-				}); */
 		}); 
 	}
 	

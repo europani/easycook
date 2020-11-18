@@ -192,19 +192,4 @@ public class MemberDAO extends AbstractMybatisDAO {
 		}
 	}
 
-
-
-//	public int getArticleCount(String boardid, String category, String sentence) {
-//		SqlSession sqlsession = getSqlSessionFactory().openSession();
-//		try {
-//			map.clear();
-//			map.put("boardid", boardid);
-//			map.put("category", category);
-//			map.put("sentence", sentence);
-//			return sqlsession.selectOne(namespace + ".getArticleCount", map);
-//		} finally {
-//			sqlsession.close();
-//		}
-//	}
-
 }
